@@ -67,3 +67,46 @@ REGISTRO/LOGIN
         <!-- <h3>Queremos asegurarnos de que nuestras mascotas encuentren hogares seguros.<br>Por favor regístrate antes de
             adoptar.</h3> -->
 <!-- <p>¡Únete a nuestra comunidad de amantes de los animales y ayúdanos a cambiar vidas una pata a la vez! 🐾</p> -->
+
+//-----------------------------------------------------
+
+/*let tasks = []; // crea un array vacio (listas)
+
+const form = document.querySelector(".form_task");
+const taskInput = document.querySelector("#taskInput");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const txt_tarea = (taskInput.value.trim());
+
+    let erroresValidacion = false;
+    
+    if(txt_tarea.length < 5){
+        erroresValidacion = true;
+        const error = document.querySelector(".error")
+        error.textContent = "El texto de la tarea debe contener al menos 5 caractres";
+        //console.log(txt_tarea);
+
+        setTimeout(() => {
+            error.textContent = "";
+        }, 4000); // 4.000 milisegundos
+    } 
+
+    if(!erroresValidacion){
+       // console.log(txt_tarea);
+       const task = {
+            id: Date.now(), // nos da la cantidad de milisegundos desde 01/01/1970. Genero un numero unico
+            txt_tarea: txt_tarea,
+            completa: false,
+       };
+       
+       //console.log(task);
+
+       tasks.push(task); // Agrego la tarea a la lista de tareas
+       console.log(tasks);
+
+       //taskInput.value = ""; // limpiar el campo de la tarea (input)
+       form.reset();
+    }
+
+})*/
