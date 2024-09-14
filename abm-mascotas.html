@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,65 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/abm.css">
 </head>
+
 <body>
     <header id="header"></header>
 
-    <div>
+    <!-- <div>
         <h1>Listado</h1>
         <form action="">
             <label for="nombre">Nombre peludito:</label>
             <input type="text" name="nombre" id="name">
             <button>Agregar</button>
         </form>
-    </div>
+    </div> -->
+
+    <main class="main">
+        <h1 class="main__title">Tareas</h1>
+        <section class="section section-form">
+            <h2 class="section__title">Crear Tarea</h2>
+            <form class="form_task">
+                <label class="form__label" for="taskInput">Tarea: </label>
+                <input class="form__input" id="taskInput" type="text" />
+                <button class="form__button" type="submit">Crear</button>
+            </form>
+            <div class="error"></div>
+        </section>
+        <section class="section section-list">
+            <h2 class="section__title">Listado Tareas</h2>
+            <ul id="taskList" class="tasks">
+                <!-- <li class="tasks__item">
+                <p class="">Tarea 1</p>
+                <div>
+                  <i class="bx bx-check"></i>
+                  <i class="bx bx-trash"></i>
+                </div>
+              </li>
+    
+              <li class="tasks__item">
+                <p class="done">Tarea 2</p>
+                <div>
+                  <i class="bx bx-check"></i>
+                  <i class="bx bx-trash"></i>
+                </div>
+              </li>
+    
+              <li class="tasks__item">
+                <p class="">Tarea 3</p>
+                <div>
+                  <i class="bx bx-check"></i>
+                  <i class="bx bx-trash"></i>
+                </div>
+              </li> -->
+            </ul>
+        </section>
+    </main>
+    <!-- <footer class="footer">
+          <small>Copyright 2024</small>
+        </footer> -->
 
     <footer id="footer"></footer>
     <script src="js/script.js"></script>
 </body>
+
 </html>
