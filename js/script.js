@@ -32,8 +32,8 @@ const renderTasks = () => {
 }
 
 form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const txt_tarea = (taskInput.value.trim());
+    event.preventDefault(); //tomo el control del evento, lo atrapo porque sino se va
+    const txt_tarea = (taskInput.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     let erroresValidacion = false;
 
