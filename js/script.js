@@ -14,9 +14,10 @@ const taskInput = document.querySelector("#taskInput"); // Input
 const taskList = document.querySelector("#taskList"); // Lsita li
 
 // Mostrar las tareas en HTML
-const renderTasks = () => {
+const renderTasks = () => {  //render seria Presentacion, en este caso presentar tareas
     taskList.innerHTML = ""; // Borrar toda la infor del ul
     tasks.forEach((task) => {
+        // Dinamico con el texto ingresado en el input
         const html = `
             <li data-id="${task.id}" class="tasks__item">
                 <p class="${task.completa && "done"}">${task.txt_tarea}</p>
@@ -48,6 +49,7 @@ form.addEventListener("submit", async (event) => {
     }
     if (!erroresValidacion) {
         const task = {
+            //id: Date.now(), // nos da la cantidad de milisegundos desde 01/01/1970. Genero un numero unico
             txt_tarea: txt_tarea,
             completa: false,
         }
@@ -106,7 +108,7 @@ form.addEventListener("submit", async (event) => {
 
         }
 
-        taskInput.value = ""; // limpiar el texto en el input
+        taskInput.value = ""; // limpiar el texto en el input //es lo mismo que poner con el evento focus
         renderTasks();
     }
 })
