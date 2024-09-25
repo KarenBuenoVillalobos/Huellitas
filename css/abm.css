@@ -23,6 +23,7 @@ ol {
 
 .main {
   margin: 0.5em;
+  /* backdrop-filter: blur(10px); */
 }
 
 
@@ -44,7 +45,7 @@ ol {
 }
 
 .section__title {
-  margin-bottom: 0.5em;
+  margin-bottom: 1.3em;
 }
 
 .form_task {
@@ -104,24 +105,35 @@ ol {
   height: 100vh;
   background-image: url(/img/fondo-formadopcion.webp);
   background-size: cover;
+  /* backdrop-filter: blur(10px); */
 }
 .main__title{
   color: whitesmoke;
 }
+.section-form{
+  padding: 45px 80px;
+  border-radius: 50px 0;
+  background-color: #ffafcc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Sombra para efecto elevado */
+  min-width: 550px; /*o 500px*/
+}
+.section__title{
+  text-align: center;
+}
 .form__label{
-  font-size: 2em;
+  font-size: 1.3em;
 }
 .form__input{
   border-radius: 5px;
   padding: 2px 10px;
+  margin: 0 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Sombra para efecto elevado */
   border-color: transparent;
-  width: 100px;
+  width: 200px;
 }
 .form__input:focus{
   border: 3px solid transparent;
   outline: 3px rgb(245, 245, 245) solid; /*sirve para cambiar el borde al hacer click*/
-  
 }
 .form__button{
   padding: 10px 30px;
@@ -129,7 +141,7 @@ ol {
   border: 3px solid whitesmoke;
   background-color: whitesmoke;
   color: #ffafcc;
-  /* transition: 0.8s; */
+  transition: 0.2s;
   font-weight: bold;
   cursor: pointer;
   font-size: 1em;
@@ -137,6 +149,37 @@ ol {
 }
 .form__button:hover{
   border: 3px solid palevioletred;
-  background-color: #ffafcc;
+  background-color: palevioletred;
   color: whitesmoke;
+}
+.section-list{
+  padding: 60px 100px;
+  border-radius: 50px 0;
+  background-color: #ffafcc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Sombra para efecto elevado */  
+  min-width: 800px;
+}
+
+.tasks__item{ /*cada perrito agregado*/
+  margin: 5px 0;
+  padding: 20px 30px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+.tasks__item p{
+  font-size: 1.4em;
+}
+
+/*MEDIA QUERIES ABM*/
+/*PÁGINA ABM-LISTADO*/
+@media (max-width: 768px) { /* 765 */
+  .section-form{
+    /* min-width: 500px; */
+  }
+}
+@media screen and (max-width: 576px){
+  .section-form{
+    min-width: 400px;
+    /* padding: 40px; */
+  }
 }

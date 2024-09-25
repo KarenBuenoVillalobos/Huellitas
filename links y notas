@@ -110,3 +110,11 @@ form.addEventListener("submit", async (event) => {
     }
 
 })*/
+
+-----------------------------------------------------
+comandos para abrir con el local storage en el git bash
+
+node -v
+npm -v
+npm run dev
+------------------------------------------------------
