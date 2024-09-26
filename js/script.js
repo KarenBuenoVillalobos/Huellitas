@@ -11,7 +11,11 @@ let tasks = []; // crear un lista o array vacio
 
 const form = document.querySelector(".form_task"); // Formulario
 const taskInput = document.querySelector("#taskInput"); // Input
-const taskList = document.querySelector("#taskList"); // Lsita li
+
+const taskInputEdad = document.querySelector("#taskInputEdad"); // Input
+const taskInputDescrip = document.querySelector("#taskInputDescrip"); // Input
+
+const taskList = document.querySelector("#taskList"); // Lista li
 
 // Mostrar las tareas en HTML
 const renderTasks = () => {  //render seria Presentacion, en este caso presentar tareas
@@ -21,6 +25,8 @@ const renderTasks = () => {  //render seria Presentacion, en este caso presentar
         const html = `
             <li data-id="${task.id}" class="tasks__item">
                 <p class="${task.completa && "done"}">${task.txt_tarea}</p>
+                <p class="${task.completa && "done"}">${task.txt_edad}</p>
+                <p class="${task.completa && "done"}">${task.txt_descrip}</p>
                 <div>
                     <i class="bx bx-check"></i>
                     <i class="bx bx-trash"></i>
@@ -36,25 +42,60 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault(); //tomo el control del evento, lo atrapo porque sino se va
     const txt_tarea = (taskInput.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
+    const edad = (taskInputEdad.value); //guarda el valor del input sin espacios (al principio y fin) en una variable
+    const txt_descrip = (taskInputDescrip.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
+
     let erroresValidacion = false;
 
-    if (txt_tarea.length < 5) {
+    if (txt_tarea.length < 3) {
         erroresValidacion = true;
-        const error = document.querySelector(".error");
-        error.textContent = "El texto de la tarea debe contener al menos 5 caracteres";
+        const error = document.querySelector(".error-nombre");
+        error.textContent = "El nombre debe contener al menos 3 caracteres.";
 
         setTimeout(() => {
             error.textContent = "";
         }, 4000); // 4.000 milisengundos = 4 segundos
     }
+
+    if (edad.value <= 0) {
+        erroresValidacion = true;
+        const error = document.querySelector(".error-edad");
+        error.textContent = "La edad debe ser mayor a 0.";
+        
+        setTimeout(() => {
+            error.textContent = "";
+        }, 4000); // 4.000 milisengundos = 4 segundos
+    }
+    if (edad == 0) {
+        erroresValidacion = true;
+        const error = document.querySelector(".error-edad");
+        error.textContent = "Se debe agregar edad.";
+        
+        setTimeout(() => {
+            error.textContent = "";
+        }, 4000); // 4.000 milisengundos = 4 segundos
+    }
+
+    if (txt_descrip.length === 0) {
+        erroresValidacion = true;
+        const error = document.querySelector(".error-descrip");
+        error.textContent = "Se debe agregar descripción.";
+        
+        setTimeout(() => {
+            error.textContent = "";
+        }, 4000); // 4.000 milisengundos = 4 segundos
+    }
+
     if (!erroresValidacion) {
         const task = {
             //id: Date.now(), // nos da la cantidad de milisegundos desde 01/01/1970. Genero un numero unico
             txt_tarea: txt_tarea,
+            edad: edad,
+            txt_descrip: txt_descrip,
             completa: false,
         }
 
-        // localStorage.setItem("tasks", JSON.stringify(tasks));  NO LO VAMOS A GUARDAR EN EL LOCALSTORAGE.
+        /* // localStorage.setItem("tasks", JSON.stringify(tasks));  NO LO VAMOS A GUARDAR EN EL LOCALSTORAGE.
 
         // INFORMACION EXTRAIDA DE: https://jsonplaceholder.typicode.com/posts
 
@@ -88,7 +129,7 @@ form.addEventListener("submit", async (event) => {
         // .then((json) => console.log(json))
         // .catch((error) => console.log(error)); // AGREGAMOS A LA DOCs CATCH
 
-        // MODIFICO ESTAS LINEAS DE CODIGO USANDO TRY - CATCH
+        // MODIFICO ESTAS LINEAS DE CODIGO USANDO TRY - CATCH */
 
         try {
             const response = await fetch('http://localhost:3000/tasks', {

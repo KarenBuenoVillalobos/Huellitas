@@ -29,9 +29,17 @@
             <form class="form_task">
                 <label class="form__label" for="taskInput">Nombre: </label>
                 <input class="form__input" id="taskInput" type="text" />
+
+                <label class="form__label" for="taskInput">Edad: </label>
+                <input class="form__input" id="taskInputEdad" type="number" />
+                <label class="form__label" for="taskInput">Descripción: </label>
+                <input class="form__input" id="taskInputDescrip" type="textarea" />
+
                 <button class="form__button" type="submit">Crear</button>
             </form>
-            <div class="error"></div>
+            <div class="error-nombre"></div>
+            <div class="error-edad"></div>
+            <div class="error-descrip"></div>
         </section>
         <section class="section section-list">
             <h2 class="section__title">Listado Huellitas</h2>

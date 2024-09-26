@@ -68,9 +68,12 @@ ol {
   padding: 0.25em 1em;
 }
 
-.error {
-  text-align: center;
+.error-nombre,
+.error-edad,
+.error-descrip {
+  /* text-align: center; */
   color: red;
+  margin-top: 5px;
 }
 
 .tasks__item {
@@ -102,9 +105,10 @@ ol {
 .main{
   margin: 0;
   padding: 50px;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(/img/fondo-formadopcion.webp);
   background-size: cover;
+  background-attachment: fixed;
   /* backdrop-filter: blur(10px); */
 }
 .main__title{
