@@ -13,6 +13,7 @@ const form = document.querySelector(".form_task"); // Formulario
 const taskInput = document.querySelector("#taskInput"); // Input
 
 const taskInputEdad = document.querySelector("#taskInputEdad"); // Input
+const selectTipoEdad = document.querySelector("#select__tipoedad"); // Input
 const taskInputDescrip = document.querySelector("#taskInputDescrip"); // Input
 
 const taskList = document.querySelector("#taskList"); // Lista li
@@ -43,6 +44,7 @@ form.addEventListener("submit", async (event) => {
     const txt_tarea = (taskInput.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     const edad = parseInt(taskInputEdad.value); // convertir a numero
+    const tipoEdad = (selectTipoEdad.value); 
     const txt_descrip = (taskInputDescrip.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     let erroresValidacion = false;
@@ -91,6 +93,7 @@ form.addEventListener("submit", async (event) => {
             //id: Date.now(), // nos da la cantidad de milisegundos desde 01/01/1970. Genero un numero unico
             txt_tarea: txt_tarea,
             edad: parseInt(edad),
+            tipoEdad: tipoEdad,
             txt_descrip: txt_descrip,
             completa: false,
         }
