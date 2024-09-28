@@ -1,21 +1,6 @@
 {
   "tasks": [
     {
-      "id": "ebca",
-      "txt_tarea": "Abi bb",
-      "completa": false
-    },
-    {
-      "id": "d489",
-      "txt_tarea": "Kayla",
-      "completa": false
-    },
-    {
-      "id": "2170",
-      "txt_tarea": "Amapola",
-      "completa": false
-    },
-    {
       "id": "a589",
       "txt_tarea": "Callie",
       "completa": false
@@ -31,8 +16,24 @@
       "completa": false
     },
     {
-      "id": "cf31",
-      "txt_tarea": "Lanita",
+      "id": "c950",
+      "txt_tarea": "Abi",
+      "edad": 9,
+      "txt_descrip": "Es gris y blanca.",
+      "completa": false
+    },
+    {
+      "id": "954e",
+      "txt_tarea": "Kayla",
+      "edad": 12,
+      "txt_descrip": "Es gris, blanca y gruñona.",
+      "completa": false
+    },
+    {
+      "id": "3dad",
+      "txt_tarea": "Amapola",
+      "edad": 6,
+      "txt_descrip": "Es tricolor y mimosa.",
       "completa": false
     }
   ]

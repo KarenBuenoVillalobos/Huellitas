@@ -25,7 +25,7 @@ const renderTasks = () => {  //render seria Presentacion, en este caso presentar
         const html = `
             <li data-id="${task.id}" class="tasks__item">
                 <p class="${task.completa && "done"}">${task.txt_tarea}</p>
-                <p class="${task.completa && "done"}">${task.txt_edad}</p>
+                <p class="${task.completa && "done"}">${task.edad}</p>
                 <p class="${task.completa && "done"}">${task.txt_descrip}</p>
                 <div>
                     <i class="bx bx-check"></i>
@@ -42,7 +42,7 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault(); //tomo el control del evento, lo atrapo porque sino se va
     const txt_tarea = (taskInput.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
-    const edad = (taskInputEdad.value); //guarda el valor del input sin espacios (al principio y fin) en una variable
+    const edad = parseInt(taskInputEdad.value); // convertir a numero
     const txt_descrip = (taskInputDescrip.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     let erroresValidacion = false;
@@ -57,16 +57,16 @@ form.addEventListener("submit", async (event) => {
         }, 4000); // 4.000 milisengundos = 4 segundos
     }
 
-    if (edad.value <= 0) {
+    if (isNaN(edad) || edad < 0) {
         erroresValidacion = true;
         const error = document.querySelector(".error-edad");
-        error.textContent = "La edad debe ser mayor a 0.";
+        error.textContent = "La edad debe ser mayor o igual a 0.";
         
         setTimeout(() => {
             error.textContent = "";
         }, 4000); // 4.000 milisengundos = 4 segundos
     }
-    if (edad == 0) {
+    if (edad === 0) {
         erroresValidacion = true;
         const error = document.querySelector(".error-edad");
         error.textContent = "Se debe agregar edad.";
@@ -86,11 +86,11 @@ form.addEventListener("submit", async (event) => {
         }, 4000); // 4.000 milisengundos = 4 segundos
     }
 
-    if (!erroresValidacion) {
+    if (!erroresValidacion) { //Si no hay errores, procede a crear la tarea
         const task = {
             //id: Date.now(), // nos da la cantidad de milisegundos desde 01/01/1970. Genero un numero unico
             txt_tarea: txt_tarea,
-            edad: edad,
+            edad: parseInt(edad),
             txt_descrip: txt_descrip,
             completa: false,
         }
@@ -146,7 +146,6 @@ form.addEventListener("submit", async (event) => {
 
         } catch (error) {
             console.log(error);
-
         }
 
         taskInput.value = ""; // limpiar el texto en el input //es lo mismo que poner con el evento focus

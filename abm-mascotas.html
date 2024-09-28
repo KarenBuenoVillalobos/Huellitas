@@ -27,19 +27,29 @@
         <section class="section section-form">
             <h2 class="section__title">Agregar Huellita</h2>
             <form class="form_task">
+              <div class="form__container">
                 <label class="form__label" for="taskInput">Nombre: </label>
                 <input class="form__input" id="taskInput" type="text" />
-
+                
                 <label class="form__label" for="taskInput">Edad: </label>
-                <input class="form__input" id="taskInputEdad" type="number" />
+                <input class="form__inputedad" id="taskInputEdad" type="number" />
+                <select name="" class="form__selectedad" id="taskInputTipoEdad">
+                  <option value="meses">Mes/es</option>
+                  <option value="anios">Año/s</option>
+                </select>
+
+              </div>
+              <div class="form__container">
                 <label class="form__label" for="taskInput">Descripción: </label>
                 <input class="form__input" id="taskInputDescrip" type="textarea" />
-
                 <button class="form__button" type="submit">Crear</button>
+              </div>
             </form>
-            <div class="error-nombre"></div>
-            <div class="error-edad"></div>
-            <div class="error-descrip"></div>
+            <section class="section section__error">
+              <div class="error-nombre"></div>
+              <div class="error-edad"></div>
+              <div class="error-descrip"></div>
+            </section>
         </section>
         <section class="section section-list">
             <h2 class="section__title">Listado Huellitas</h2>
