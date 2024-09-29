@@ -35,6 +35,14 @@
       "edad": 6,
       "txt_descrip": "Es tricolor y mimosa.",
       "completa": false
+    },
+    {
+      "id": "2f97",
+      "txt_tarea": "tyerty",
+      "edad": 2,
+      "tipoEdad": "1",
+      "txt_descrip": "dgfhfgh",
+      "completa": false
     }
   ]
 }

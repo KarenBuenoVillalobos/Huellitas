@@ -14,6 +14,7 @@ const taskInput = document.querySelector("#taskInput"); // Input
 
 const taskInputEdad = document.querySelector("#taskInputEdad"); // Input
 const selectTipoEdad = document.querySelector("#select__tipoedad"); // Input
+
 const taskInputDescrip = document.querySelector("#taskInputDescrip"); // Input
 
 const taskList = document.querySelector("#taskList"); // Lista li
@@ -23,10 +24,11 @@ const renderTasks = () => {  //render seria Presentacion, en este caso presentar
     taskList.innerHTML = ""; // Borrar toda la infor del ul
     tasks.forEach((task) => {
         // Dinamico con el texto ingresado en el input
+        // const tipoEdadTexto = task.tipoEdad === "1" ? "Mes/es" : "Año/s";
         const html = `
             <li data-id="${task.id}" class="tasks__item">
                 <p class="${task.completa && "done"}">${task.txt_tarea}</p>
-                <p class="${task.completa && "done"}">${task.edad}</p>
+                <p class="${task.completa && "done"}">${task.edad + " " + task.tipoEdad}</p>
                 <p class="${task.completa && "done"}">${task.txt_descrip}</p>
                 <div>
                     <i class="bx bx-check"></i>
@@ -44,7 +46,7 @@ form.addEventListener("submit", async (event) => {
     const txt_tarea = (taskInput.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     const edad = parseInt(taskInputEdad.value); // convertir a numero
-    const tipoEdad = (selectTipoEdad.value); 
+    const tipoEdad = selectTipoEdad.options(selectTipoEdad.selectedIndex).text;
     const txt_descrip = (taskInputDescrip.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     let erroresValidacion = false;
@@ -152,6 +154,7 @@ form.addEventListener("submit", async (event) => {
         }
 
         taskInput.value = ""; // limpiar el texto en el input //es lo mismo que poner con el evento focus
+        selectTipoEdad.selectedIndex = 0;
         renderTasks();
     }
 })
