@@ -5,22 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Mascotas</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/abm.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/abm.css">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header id="header"></header>
-
-    <!-- <div>
-        <h1>Listado</h1>
-        <form action="">
-            <label for="nombre">Nombre peludito:</label>
-            <input type="text" name="nombre" id="name">
-            <button>Agregar</button>
-        </form>
-    </div> -->
 
     <main class="main">
         <h1 class="main__title">Listado de Peluditos</h1>
@@ -30,18 +21,17 @@
               <div class="form__container">
                 <label class="form__label" for="taskInput">Nombre: </label>
                 <input class="form__input" id="taskInput" type="text" />
-                
                 <label class="form__label" for="taskInput">Edad: </label>
                 <input class="form__inputedad" id="taskInputEdad" type="number" />
-                <select name="select__tipoedad" class="form__selectedad">
-                  <option value="1" id="select__tipoedad">Mes/es</option>
-                  <option value="2" id="select__tipoedad">Año/s</option>
+                <select name="select__tipoedad" class="form__selectedad" id="select__tipoedad">
+                  <option value="1">Mes/es</option>
+                  <option value="2">Año/s</option>
                 </select>
-
               </div>
               <div class="form__container">
                 <label class="form__label" for="taskInput">Descripción: </label>
                 <input class="form__input" id="taskInputDescrip" type="textarea" />
+                <!-- <textarea class="form__input" name="taskInputDescrip" id="taskInputDescrip" type="textarea"></textarea> -->
                 <button class="form__button" type="submit">Crear</button>
               </div>
             </form>
@@ -53,31 +43,16 @@
         </section>
         <section class="section section-list">
             <h2 class="listado__title">Listado Huellitas</h2>
+            <div class="tasks__title">
+              <p id="p-nombre">Nombre</p>
+              <p id="p-edad">Edad</p>
+              <p id="p-descrip">Descripción</p>
+              <p id="p-botones"></p>
+            </div>
+
             <ul id="taskList" class="tasks">
-                <!-- <li class="tasks__item">
-                <p class="">Tarea 1</p>
-                <div>
-                  <i class="bx bx-check"></i>
-                  <i class="bx bx-trash"></i>
-                </div>
-              </li>
-    
-              <li class="tasks__item">
-                <p class="done">Tarea 2</p>
-                <div>
-                  <i class="bx bx-check"></i>
-                  <i class="bx bx-trash"></i>
-                </div>
-              </li>
-    
-              <li class="tasks__item">
-                <p class="">Tarea 3</p>
-                <div>
-                  <i class="bx bx-check"></i>
-                  <i class="bx bx-trash"></i>
-                </div>
-              </li> -->
             </ul>
+
         </section>
     </main>
     <!-- <footer class="footer">

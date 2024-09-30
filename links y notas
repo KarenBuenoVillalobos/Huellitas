@@ -116,5 +116,9 @@ comandos para abrir con el local storage en el git bash
 
 node -v
 npm -v
+
+npm install
+npm audit fix
+
 npm run dev
 ------------------------------------------------------

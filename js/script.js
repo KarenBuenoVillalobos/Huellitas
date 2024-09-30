@@ -11,12 +11,9 @@ let tasks = []; // crear un lista o array vacio
 
 const form = document.querySelector(".form_task"); // Formulario
 const taskInput = document.querySelector("#taskInput"); // Input
-
 const taskInputEdad = document.querySelector("#taskInputEdad"); // Input
 const selectTipoEdad = document.querySelector("#select__tipoedad"); // Input
-
 const taskInputDescrip = document.querySelector("#taskInputDescrip"); // Input
-
 const taskList = document.querySelector("#taskList"); // Lista li
 
 // Mostrar las tareas en HTML
@@ -24,7 +21,6 @@ const renderTasks = () => {  //render seria Presentacion, en este caso presentar
     taskList.innerHTML = ""; // Borrar toda la infor del ul
     tasks.forEach((task) => {
         // Dinamico con el texto ingresado en el input
-        // const tipoEdadTexto = task.tipoEdad === "1" ? "Mes/es" : "Año/s";
         const html = `
             <li data-id="${task.id}" class="tasks__item">
                 <p class="${task.completa && "done"}">${task.txt_tarea}</p>
@@ -44,9 +40,8 @@ const renderTasks = () => {  //render seria Presentacion, en este caso presentar
 form.addEventListener("submit", async (event) => {
     event.preventDefault(); //tomo el control del evento, lo atrapo porque sino se va
     const txt_tarea = (taskInput.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
-
     const edad = parseInt(taskInputEdad.value); // convertir a numero
-    const tipoEdad = selectTipoEdad.options(selectTipoEdad.selectedIndex).text;
+    const tipoEdad = selectTipoEdad.options[selectTipoEdad.selectedIndex].text;
     const txt_descrip = (taskInputDescrip.value.trim()); //guarda el valor del input sin espacios (al principio y fin) en una variable
 
     let erroresValidacion = false;
@@ -100,40 +95,6 @@ form.addEventListener("submit", async (event) => {
             completa: false,
         }
 
-        /* // localStorage.setItem("tasks", JSON.stringify(tasks));  NO LO VAMOS A GUARDAR EN EL LOCALSTORAGE.
-
-        // INFORMACION EXTRAIDA DE: https://jsonplaceholder.typicode.com/posts
-
-        // fetch('https://jsonplaceholder.typicode.com/posts', {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //       title: 'foo',
-        //       body: 'bar',
-        //       userId: 1,
-        //     }),
-        //     headers: {
-        //       'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        //   })
-        //     .then((response) => response.json())
-        //     .then((json) => console.log(json));
-
-        // JSON.stringify(task) transforma un objeto JS que del tipo array
-        // en un objeto JSON del tipo string
-
-        // MODIFICO ESTAS LINEAS DE CODIGO A LAS NECESIDADES DE MI PROYECTO
-
-        // fetch('http://localhost:3000/tasks', {
-        //     method: 'POST',
-        //     body: JSON.stringify(task),  // TAREA CREADA EN LA LINEA 42
-        //     headers: {
-        //     'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        // })
-        // .then((response) => response.json())
-        // .then((json) => console.log(json))
-        // .catch((error) => console.log(error)); // AGREGAMOS A LA DOCs CATCH
-
         // MODIFICO ESTAS LINEAS DE CODIGO USANDO TRY - CATCH */
 
         try {
@@ -154,7 +115,6 @@ form.addEventListener("submit", async (event) => {
         }
 
         taskInput.value = ""; // limpiar el texto en el input //es lo mismo que poner con el evento focus
-        selectTipoEdad.selectedIndex = 0;
         renderTasks();
     }
 })
@@ -164,24 +124,7 @@ taskList.addEventListener("click", (event) => {
     if (event.target.classList.contains("bx-check")) {
         const id = event.target.closest("li").dataset.id;
         const task = tasks.find((task) => task.id == id);
-        task.completa = !task.completa;
-
-        // HACER UN PUT
-
-        // fetch('https://jsonplaceholder.typicode.com/posts/1', {
-        //     method: 'PUT',
-        //     body: JSON.stringify({
-        //       id: 1,
-        //       title: 'foo',
-        //       body: 'bar',
-        //       userId: 1,
-        //     }),
-        //     headers: {
-        //       'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        //   })
-        //     .then((response) => response.json())
-        //     .then((json) => console.log(json));        
+        task.completa = !task.completa; 
 
         fetch(`http://localhost:3000/tasks/${id}`, { // CAMBIO URL Y ID
             method: 'PUT',
@@ -204,10 +147,6 @@ taskList.addEventListener("click", (event) => {
 
         tasks.splice(taskIndex, 1);
 
-        // fetch('https://jsonplaceholder.typicode.com/posts/1', {
-        //     method: 'DELETE',
-        // });
-
         fetch(`http://localhost:3000/tasks/${id}`, { // CAMBIO URL Y ID
             method: 'DELETE',
         });
@@ -218,10 +157,6 @@ taskList.addEventListener("click", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    // fetch('https://jsonplaceholder.typicode.com/posts')
-    //     .then((response) => response.json())
-    //     .then((json) => console.log(json));
 
     fetch("http://localhost:3000/tasks") // NO NECESITO PONER EL METODO GET
         .then((response) => response.json())
