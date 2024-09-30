@@ -35,7 +35,9 @@ ol {
   border-radius: 50px 0;
   background-color: #ffafcc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);  /* Sombra para efecto elevado */
-  width: 750px;
+  /* width: 750px; */
+  max-width: 750px;
+  min-width: 650px;
   margin: 20px auto;
 }
 
@@ -68,7 +70,9 @@ ol {
   margin: 0 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Sombra para efecto elevado */
   border-color: transparent;
-  width: 200px;
+  /* width: 200px; */
+  max-width: 200px;
+  min-width: 120px;
 }
 .form__inputedad:focus,
 .form__selectedad:focus,
@@ -81,14 +85,16 @@ ol {
 .form__inputedad,
 .form__selectedad {
   border-radius: 5px;
-  padding: 10px;
+  padding: 8px;
   margin: 0 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);  /* Sombra para efecto elevado */
   border-color: transparent;
 }
 
 .form__inputedad {
-  width: 60px;
+  /* width: 60px; */
+  max-width: 50px;
+  min-width: 40px;
 }
 /* 
 textarea{
@@ -131,11 +137,13 @@ textarea{
 }
 
 .section-list {
-  padding: 60px 100px;
+  padding: 60px 80px;
   border-radius: 50px 0;
   background-color: #eafae4;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);  /* Sombra para efecto elevado */
-  width: 1200px;
+  /* width: 1200px; */
+  max-width: 1200px;
+  min-width: 650px;
   margin: auto;
 }
 
@@ -168,7 +176,7 @@ textarea{
 .tasks__item p {
   font-size: 1.4em;
   color: rgb(63, 63, 63);
-  min-width: 200px;
+  min-width: 120px;
 }
 
 .done {
@@ -199,19 +207,21 @@ textarea{
 } */
 
 @media (max-width: 768px) {
-  .section-form{
+  .section-form,
+  .section-list{
     padding: 40px 60px;
     width: auto;
+    max-width: 650px;
+    min-width: 450px;
   }
   .form__label{
     font-size: 1.1em;
   }
   .form__input{
-    width: auto;
+    min-width: 120px;
   }
-  .section-list{
-    padding: 60px;
-    width: auto;
+  .form__selectedad{
+    min-width: 70px;
   }
   .tasks__title p{
     /* min-width: 30px; */
@@ -245,7 +255,9 @@ textarea{
     font-size: 1em;
   }
   .form__selectedad{
-    max-width: 90px;
+    /* max-width: 90px; */
+    /* min-width: 70px; */
+    width: 80px;
   }
   .form__button{
     padding: 10px 25px;
