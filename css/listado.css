@@ -211,7 +211,10 @@ textarea{
   .section-list{
     padding: 40px 60px;
     max-width: 650px;
-    min-width: 400px;
+    min-width: 300px;
+  }
+  .section__title{
+    margin-bottom: 20px;
   }
   .form__label{
     font-size: 1.1em;
@@ -227,28 +230,31 @@ textarea{
     width: auto;
   }
   .tasks__item p{
-    min-width: 100px;
+    min-width: 50px;
     font-size: 1em;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .section-form{
-    padding: 40px;
+  .section-form,
+  .section-list{
+    /* padding: 40px; */
+    padding: 30px 35px;
   }
   .form__container{
     margin-top: 25px;
   }
+  .form__input{
+    max-width: 100px;
+  }
   .form__inputedad,
   .form__selectedad,
   .form__input{
-    max-width: 100px;
-    /* width: auto; */
     margin: 0 5px;
     padding: 5px;
   }
   .form__inputedad{
-    width: 50px;
+    width: 40px;
   }
   .form__label{
     font-size: 1em;
@@ -260,12 +266,16 @@ textarea{
   }
   .form__button{
     padding: 10px 25px;
+    font-size: 14px;
   }
-  .section-list{
-    /* min-width: 400px; */
-    padding: 40px;
+  .listado__title{
+    margin-bottom: 20px;
   }
   .tasks__title p {
     font-size: 1em;
+  }
+  .tasks__title,
+  .tasks__item{
+    padding: 15px 25px;
   }
 }
