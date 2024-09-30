@@ -30,17 +30,11 @@ ol {
   color: whitesmoke;
 }
 
-.section {
-  /* margin-bottom: 1em; */
-}
-
 .section-form {
   padding: 45px 80px 50px;
   border-radius: 50px 0;
   background-color: #ffafcc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);  /* Sombra para efecto elevado */
-  /* min-width: 550px;
-  max-width: 800px; */
   width: 750px;
   margin: 20px auto;
 }
@@ -156,7 +150,6 @@ textarea{
   font-size: 1.2rem;
   font-weight: bold;
   color: whitesmoke;
-  /* min-width: 50px; */
 }
 
 .tasks__title,
@@ -202,11 +195,7 @@ textarea{
 /*PÁGINA ABM-LISTADO*/
 
 /* @media (min-width: 768px) {
-  .section {
-    max-width: 750px;
-    margin: auto;
-    margin-bottom: 1.5em;
-  }
+
 } */
 
 @media (max-width: 768px) {

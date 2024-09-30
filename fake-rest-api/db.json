@@ -47,6 +47,14 @@
       "tipoEdad": "Mes/es",
       "txt_descrip": "Es blanca, marrón y adorable.",
       "completa": false
+    },
+    {
+      "id": "96c8",
+      "txt_tarea": "Gatito",
+      "edad": 3,
+      "tipoEdad": "Mes/es",
+      "txt_descrip": "Gatito de prueba",
+      "completa": false
     }
   ]
 }

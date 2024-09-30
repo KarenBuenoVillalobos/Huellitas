@@ -115,6 +115,9 @@ form.addEventListener("submit", async (event) => {
         }
 
         taskInput.value = ""; // limpiar el texto en el input //es lo mismo que poner con el evento focus
+        taskInputEdad.value = "";
+        selectTipoEdad.selectedIndex = 0;
+        taskInputDescrip.value = "";
         renderTasks();
     }
 })
