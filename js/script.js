@@ -56,19 +56,19 @@ form.addEventListener("submit", async (event) => {
         }, 4000); // 4.000 milisengundos = 4 segundos
     }
 
-    if (isNaN(edad) || edad < 0) {
+    if (edad === 0) {
         erroresValidacion = true;
         const error = document.querySelector(".error-edad");
-        error.textContent = "La edad debe ser mayor o igual a 0.";
+        error.textContent = "Se debe agregar edad.";
         
         setTimeout(() => {
             error.textContent = "";
         }, 4000); // 4.000 milisengundos = 4 segundos
     }
-    if (edad === 0) {
+    if (isNaN(edad) || edad < 0) {
         erroresValidacion = true;
         const error = document.querySelector(".error-edad");
-        error.textContent = "Se debe agregar edad.";
+        error.textContent = "La edad debe ser mayor a 0.";
         
         setTimeout(() => {
             error.textContent = "";

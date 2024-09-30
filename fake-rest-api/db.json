@@ -49,11 +49,19 @@
       "completa": false
     },
     {
-      "id": "96c8",
-      "txt_tarea": "Gatito",
-      "edad": 3,
+      "id": "ccff",
+      "txt_tarea": "tyerty",
+      "edad": 1,
       "tipoEdad": "Mes/es",
-      "txt_descrip": "Gatito de prueba",
+      "txt_descrip": "dgfhfgh",
+      "completa": false
+    },
+    {
+      "id": "bf13",
+      "txt_tarea": "tyerty",
+      "edad": 0,
+      "tipoEdad": "Mes/es",
+      "txt_descrip": "dgfhfgh",
       "completa": false
     }
   ]
