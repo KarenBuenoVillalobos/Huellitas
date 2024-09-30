@@ -47,22 +47,6 @@
       "tipoEdad": "Mes/es",
       "txt_descrip": "Es blanca, marrón y adorable.",
       "completa": false
-    },
-    {
-      "id": "ccff",
-      "txt_tarea": "tyerty",
-      "edad": 1,
-      "tipoEdad": "Mes/es",
-      "txt_descrip": "dgfhfgh",
-      "completa": false
-    },
-    {
-      "id": "bf13",
-      "txt_tarea": "tyerty",
-      "edad": 0,
-      "tipoEdad": "Mes/es",
-      "txt_descrip": "dgfhfgh",
-      "completa": false
     }
   ]
 }
