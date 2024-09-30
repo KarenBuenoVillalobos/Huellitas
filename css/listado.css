@@ -210,9 +210,8 @@ textarea{
   .section-form,
   .section-list{
     padding: 40px 60px;
-    width: auto;
     max-width: 650px;
-    min-width: 450px;
+    min-width: 400px;
   }
   .form__label{
     font-size: 1.1em;
