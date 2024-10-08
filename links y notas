@@ -113,12 +113,13 @@ form.addEventListener("submit", async (event) => {
 
 -----------------------------------------------------
 comandos para abrir con el local storage en el git bash
+♡⸜(˶˃ ᵕ ˂˶)⸝♡
 
 node -v
 npm -v
 
 npm install
-npm audit fix
+npm audit fix /solo por si hay algun error
 
 npm run dev
 ------------------------------------------------------
