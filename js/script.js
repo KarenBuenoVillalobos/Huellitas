@@ -97,22 +97,28 @@ form.addEventListener("submit", async (event) => {
 
         // MODIFICO ESTAS LINEAS DE CODIGO USANDO TRY - CATCH */
 
-        try {
-            const response = await fetch('http://localhost:3000/tasks', {
-                method: 'POST',
-                body: JSON.stringify(task),  // TAREA CREADA EN LA LINEA 42
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
-            })
+        // try {
+        //     const response = await fetch('http://localhost:3000/tasks', {
+        //         method: 'POST',
+        //         body: JSON.stringify(task),  // TAREA CREADA EN LA LINEA 42
+        //         headers: {
+        //             'Content-type': 'application/json; charset=UTF-8',
+        //         },
+        //     })
 
-            const json = await response.json(); // ESPERO A QUE ESA RESPUESTA SE TRANSFORME EN UN JSON
-            task.id = json.id;
-            tasks.push(task); // AGREGUE LA TAREA A LA LISTA DE TAREAS
+        //     const json = await response.json(); // ESPERO A QUE ESA RESPUESTA SE TRANSFORME EN UN JSON
+        //     task.id = json.id;
+        //     tasks.push(task); // AGREGUE LA TAREA A LA LISTA DE TAREAS
 
-        } catch (error) {
-            console.log(error);
-        }
+        // } catch (error) {
+        //     console.log(error);
+        // }
+
+        tasks.push(task); // Agrego la tarea a la lista de tareas
+        console.log(tasks);
+ 
+        // Almaceno las tareas en el localStorage
+        localStorage.setItem("tasks", JSON.stringify(tasks));
 
         taskInput.value = ""; // limpiar el texto en el input //es lo mismo que poner con el evento focus
         taskInputEdad.value = "";
@@ -127,21 +133,26 @@ taskList.addEventListener("click", (event) => {
     if (event.target.classList.contains("bx-check")) {
         const id = event.target.closest("li").dataset.id;
         const task = tasks.find((task) => task.id == id);
-        task.completa = !task.completa; 
 
-        fetch(`http://localhost:3000/tasks/${id}`, { // CAMBIO URL Y ID
-            method: 'PUT',
-            body: JSON.stringify(task),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json))
-            .catch((error) => console.log(error)); // AGREGAMOS A LA DOCs CATCH
+        task.completa = !task.completa; 
+        console.log(task);
+
+        renderTasks();
+
+        // fetch(`http://localhost:3000/tasks/${id}`, { // CAMBIO URL Y ID
+        //     method: 'PUT',
+        //     body: JSON.stringify(task),
+        //     headers: {
+        //         'Content-type': 'application/json; charset=UTF-8',
+        //     },
+        // })
+        //     .then((response) => response.json())
+        //     .then((json) => console.log(json))
+        //     .catch((error) => console.log(error)); // AGREGAMOS A LA DOCs CATCH
 
         event.target.closest("li").querySelector("p").classList.toggle("done");
 
+        localStorage.setItem("tasks", JSON.stringify(tasks));
     };
 
     if (event.target.classList.contains("bx-trash")) {
@@ -150,21 +161,25 @@ taskList.addEventListener("click", (event) => {
 
         tasks.splice(taskIndex, 1);
 
-        fetch(`http://localhost:3000/tasks/${id}`, { // CAMBIO URL Y ID
-            method: 'DELETE',
-        });
+        // fetch(`http://localhost:3000/tasks/${id}`, { // CAMBIO URL Y ID
+        //     method: 'DELETE',
+        // });
 
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         event.target.closest("li").remove();
     }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    fetch("http://localhost:3000/tasks") // NO NECESITO PONER EL METODO GET
-        .then((response) => response.json())
-        .then((json) => {
-            tasks = json;
-            renderTasks();
-        })
+    // fetch("http://localhost:3000/tasks") // NO NECESITO PONER EL METODO GET
+    //     .then((response) => response.json())
+    //     .then((json) => {
+    //         tasks = json;
+    //         renderTasks();
+    //     })
+    
+    tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    renderTasks();
 
 });
