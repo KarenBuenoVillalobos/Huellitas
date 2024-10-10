@@ -112,7 +112,7 @@ form.addEventListener("submit", async (event) => {
 })*/
 
 -----------------------------------------------------
-comandos para abrir con el local storage en el git bash
+comandos para abrir el local storage con el git bash
 ♡⸜(˶˃ ᵕ ˂˶)⸝♡
 
 node -v
@@ -123,3 +123,37 @@ npm audit fix /solo por si hay algun error
 
 npm run dev
 ------------------------------------------------------
+comandos git bash para node
+(˶ᵔ ᵕ ᵔ˶)
+CTRL + ñ para abrir terminal en vsc
+
+node (entro a una especie de consola, poner .exit para salir)
+
+Pasos:
+dir (para ver el contenido de la carpeta)
+
+1 cd node_1 (para ubicarme en la carpeta en caso de que de error)
+ESCRIBIR DENTRO DE LA CARPETA QUE ESTE EL ARCHIVO JS A EJECUTAR
+2 node index.js (dsp de esto ejecuta lo que este dentro del archivo mencionado)
+
+
+----------------
+../node_3
+npm init (nos crea un archivo package json) {-y para que cree uno por defecto}
+
+package name: (node_3) index.js  (nos pide para nombrarlo)
+version: (1.0.0)    hacer enter
+description: Uso npm
+entry point: (index.js)    hacer enter
+test command:     hacer enter
+git respository:   hacer enter
+keywords:    hacer enter
+author: JCL
+license: (ISC) MIT
+
+Is this ok?   enter
+
+Hago los cambios necesarios si lo necesito dentro del archivo (consola no) y hago click en Depurar
+
+npm i express (instala el node express)
+rm -rf node_modules (limpio la carpeta, la elimino)

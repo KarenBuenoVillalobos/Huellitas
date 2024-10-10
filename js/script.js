@@ -93,24 +93,7 @@ form.addEventListener("submit", async (event) => {
             tipoEdad: tipoEdad,
             txt_descrip: txt_descrip,
             completa: false,
-        }
-        
-        // localStorage.setItem(email,JSON.stringify({ nombre, apellido, email, password }));
-        
-        // localStorage.setItem("tasks", JSON.stringify(tasks));  NO LO VAMOS A GUARDAR EN EL LOCALSTORAGE.
-
-        // MODIFICO ESTAS LINEAS DE CODIGO A LAS NECESIDADES DE MI PROYECTO
-
-        // fetch('http://localhost:3000/tasks', {
-        //     method: 'POST',
-        //     body: JSON.stringify(task),  // TAREA CREADA EN LA LINEA 42
-        //     headers: {
-        //     'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        // })
-        // .then((response) => response.json())
-        // .then((json) => console.log(json))
-        // .catch((error) => console.log(error)); // AGREGAMOS A LA DOCs CATCH
+        }        
 
         // MODIFICO ESTAS LINEAS DE CODIGO USANDO TRY - CATCH */
 
@@ -173,7 +156,6 @@ taskList.addEventListener("click", (event) => {
 
         event.target.closest("li").remove();
     }
-
 });
 
 document.addEventListener("DOMContentLoaded", () => {
