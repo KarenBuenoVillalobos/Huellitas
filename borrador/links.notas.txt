@@ -139,7 +139,7 @@ ESCRIBIR DENTRO DE LA CARPETA QUE ESTE EL ARCHIVO JS A EJECUTAR
 
 ----------------
 ../node_3
-npm init (nos crea un archivo package json) {-y para que cree uno por defecto}
+npm init (nos crea un archivo package.json) {-y para que cree uno por defecto}
 
 package name: (node_3) index.js  (nos pide para nombrarlo)
 version: (1.0.0)    hacer enter
@@ -157,3 +157,53 @@ Hago los cambios necesarios si lo necesito dentro del archivo (consola no) y hag
 
 npm i express (instala el node express)
 rm -rf node_modules (limpio la carpeta, la elimino)
+
+-----------------------------------------------
+
+CREATE DATABASE huellitas;
+USE huellitas;
+
+CREATE TABLE animales (
+    id_animal INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(10) NOT NULL,
+    especie VARCHAR(10) NOT NULL,
+    raza VARCHAR(20),
+    edad INT,
+    tamaño VARCHAR(20),
+    estado_salud VARCHAR(50),
+    descripcion TEXT,
+    foto VARCHAR(255),
+    fecha_adopcion DATE
+);
+
+CREATE TABLE adoptantes (
+    id_adoptante INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(25) NOT NULL,
+    apellido VARCHAR(25) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    telefono VARCHAR(15),
+    direccion VARCHAR(50),
+    fecha_adopcion DATE
+);
+
+CREATE TABLE adopciones (
+    id_adopcion INT AUTO_INCREMENT PRIMARY KEY,
+    id_animal INT,
+    id_adoptante INT,
+    fecha DATE,
+    comentarios TEXT,
+    FOREIGN KEY (id_animal) REFERENCES animales(id_animal),
+    FOREIGN KEY (id_adoptante) REFERENCES adoptantes(id_adoptante)
+);
+
+     POSIBLE TABLA PARA TRANSITOS, TERMINAR DE MODIFICAR
+CREATE TABLE transitos (
+    id_transito INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(25) NOT NULL,
+    direccion VARCHAR(50),
+    telefono VARCHAR(15),
+    email VARCHAR(30)
+);
+
+INSERT INTO Animales (nombre, especie, edad, descripcion, fecha_adopcion) 
+VALUES ('Rocky', 'Perro', 3, 'Amigable y enérgico, perfecto para familias.', NULL);
