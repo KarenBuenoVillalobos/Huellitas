@@ -19,7 +19,7 @@ router.post('/', controller.insertAnimal);
 router.put('/:id_animal', controller.updateAnimal);
 
 //// METODO DELETE ////
-router.delete('/:id_animal', controller.destroyAnimal);
+router.delete('/:id_animal', controller.deleteAnimal);
 
 // EXPORTAR ROUTERS
 module.exports = router;

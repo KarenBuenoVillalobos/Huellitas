@@ -1,10 +1,12 @@
 /// CONTROLADORES DEL MODULO ///
 
-// Campos de la tabla peliculas
-// id_pelicula
-// titulo
-// fecha_estreno
-// director
+// Campos de la tabla animales
+// id_animal
+// nombre
+// especie
+// edad
+// descripcion
+// fecha_adopcion
 
 const db = require("../db/db");
 
@@ -57,7 +59,7 @@ const insertAnimal = (req, res) => {   //storeMovie
 const updateAnimal = (req, res) => {
     const {id_animal} = req.params;
     const {nombre, especie, edad, descripcion, fecha_adopcion} = req.body;
-    const sql ="UPDATE animales SET nombre = ?, especie = ?, edad = ?, descripcion = ?, fecha_adopcion = ?, WHERE id_animal = ?";
+    const sql ="UPDATE animales SET nombre = ?, especie = ?, edad = ?, descripcion = ?, fecha_adopcion = ? WHERE id_animal = ?";
     db.query(sql,[nombre, especie, edad, descripcion, fecha_adopcion, id_animal], (error, result) => {
         console.log(result);
         if(error){
@@ -75,7 +77,7 @@ const updateAnimal = (req, res) => {
 
 
 //// METODO DELETE ////
-const destroyAnimal = (req, res) => {
+const deleteAnimal = (req, res) => {
     const {id_animal} = req.params;
     const sql = "DELETE FROM animales WHERE id_animal = ?";
     db.query(sql,[id_animal], (error, result) => {
@@ -97,5 +99,5 @@ module.exports = {
     showAnimal,
     insertAnimal,
     updateAnimal,
-    destroyAnimal
+    deleteAnimal
 };
