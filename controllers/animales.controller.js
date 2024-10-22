@@ -42,9 +42,18 @@ const showAnimal = (req, res) => {
 
 //// METODO POST  ////
 const insertAnimal = (req, res) => {   //storeMovie
+    console.log(req.file);
+    let imageName = "";
+
+    if(req.file){
+        imageName = req.file.filename;
+    };
+
     const {nombre, especie, edad, descripcion, fecha_adopcion} = req.body;
-    const sql = "INSERT INTO animales (nombre, especie, edad, descripcion, fecha_adopcion) VALUES (?,?,?,?,?)";
-    db.query(sql,[nombre, especie, edad, descripcion, fecha_adopcion], (error, result) => {
+
+    const sql = "INSERT INTO animales (nombre, especie, edad, descripcion, fecha_adopcion, imagen) VALUES (?,?,?,?,?,?)";
+
+    db.query(sql,[nombre, especie, edad, descripcion, fecha_adopcion, imageName], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
