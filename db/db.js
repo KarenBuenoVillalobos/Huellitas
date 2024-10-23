@@ -12,7 +12,7 @@ connection.connect((error) => {
     if(error){
         return console.error(error);
     }
-    console.log("Estamos conectados a la Base de Datos - huellitas");
+    console.log("Estamos conectados a la Base de Datos - Huellitas");
 });
 
 // EXPORTAR DEL MODULO LA FUNCION CONNECTION

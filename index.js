@@ -1,5 +1,7 @@
 // Archivo de entrada (enterpoint)
 
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 
@@ -17,10 +19,18 @@ app.use('/adoptantes', adoptantesRouter);
 const adopcionesRouter = require('./routers/adopciones.router');
 app.use('/adopciones', adopcionesRouter);
 
+//Router de Registro
+const authRouter = require("./routers/auth.router");
+app.use("/auth", authRouter);
+
+const usuariosRouter = require('./routers/usuarios.router');
+app.use('/login', usuariosRouter);
+
 app.get("/", (req, res) => {
     res.end("Hola Huellitas");
 });
 // Esta es la ruta principal del proyecto "/"
 
-const PORT = 3000;
+// const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
