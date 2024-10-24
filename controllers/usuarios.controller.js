@@ -33,9 +33,9 @@ const showUsuario = (req, res) => {
 //// METODO PUT  ////
 const updateUsuario = (req, res) => {
     const {id_usuario} = req.params;
-    const {nombre, email, password} = req.body;
-    const sql ="UPDATE usuarios SET nombre = ?, email = ?, password = ? WHERE id_usuario = ?";
-    db.query(sql,[nombre, email, password, id_usuario], (error, result) => {
+    const {user, email, password} = req.body;
+    const sql ="UPDATE usuarios SET user = ?, email = ?, password = ? WHERE id_usuario = ?";
+    db.query(sql,[user, email, password, id_usuario], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

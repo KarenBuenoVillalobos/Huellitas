@@ -5,7 +5,7 @@ const db = require("../db/db"); // Importar la conexión a la base de datos
 
 // Función para registrar usuario
 const register = (req, res) => {
-    const { nombre, email, password } = req.body;
+    const { user, email, password } = req.body;
 
     // Verificar si el usuario ya existe
     db.query('SELECT * FROM usuarios WHERE email = ?', [email], (error, results) => {
@@ -26,7 +26,7 @@ const register = (req, res) => {
             }
 
             // Insertar nuevo usuario en la base de datos
-            db.query('INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)', [nombre, email, hash], (insertError, insertResults) => {
+            db.query('INSERT INTO usuarios (user, email, password) VALUES (?, ?, ?)', [user, email, hash], (insertError, insertResults) => {
                 if (insertError) {
                     console.error("Error inserting user:", insertError);
                     return res.status(500).send("Error registering user");

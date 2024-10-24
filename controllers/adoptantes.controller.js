@@ -43,9 +43,9 @@ const showAdoptante = (req, res) => {
 
 //// METODO POST  ////
 const insertAdoptante = (req, res) => {   //storeMovie
-    const {nombre, apellido, email, telefono, direccion, fecha_adopcion} = req.body;
-    const sql = "INSERT INTO adoptantes (nombre, apellido, email, telefono, direccion, fecha_adopcion) VALUES (?,?,?,?,?,?)";
-    db.query(sql,[nombre, apellido, email, telefono, direccion, fecha_adopcion], (error, result) => {
+    const {nombre_adoptante, apellido, telefono, direccion} = req.body;
+    const sql = "INSERT INTO adoptantes (nombre_adoptante, apellido, telefono, direccion) VALUES (?,?,?,?)";
+    db.query(sql,[nombre_adoptante, apellido, telefono, direccion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -59,9 +59,9 @@ const insertAdoptante = (req, res) => {   //storeMovie
 //// METODO PUT  ////
 const updateAdoptante = (req, res) => {
     const {id_adoptante} = req.params;
-    const {nombre, apellido, email, telefono, direccion, fecha_adopcion} = req.body;
-    const sql ="UPDATE adoptantes SET nombre = ?, apellido = ?, email = ?, telefono = ?, direccion = ?, fecha_adopcion = ? WHERE id_adoptante = ?";
-    db.query(sql,[nombre, apellido, email, telefono, direccion, fecha_adopcion, id_adoptante], (error, result) => {
+    const {nombre_adoptante, apellido, telefono, direccion} = req.body;
+    const sql ="UPDATE adoptantes SET nombre_adoptante = ?, apellido = ?, telefono = ?, direccion = ? WHERE id_adoptante = ?";
+    db.query(sql,[nombre_adoptante, apellido, telefono, direccion, id_adoptante], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

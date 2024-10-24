@@ -41,9 +41,9 @@ const showAdopcion = (req, res) => {
 
 //// METODO POST  ////
 const insertAdopcion = (req, res) => {   //storeMovie
-    const {fecha, comentarios} = req.body;
-    const sql = "INSERT INTO adopciones (fecha, comentarios) VALUES (?,?)";
-    db.query(sql,[fecha, comentarios], (error, result) => {
+    const {fecha_adopcion, seguimiento} = req.body;
+    const sql = "INSERT INTO adopciones (fecha_adopcion, seguimiento) VALUES (?,?)";
+    db.query(sql,[fecha_adopcion, seguimiento], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -57,9 +57,9 @@ const insertAdopcion = (req, res) => {   //storeMovie
 //// METODO PUT  ////
 const updateAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
-    const {fecha, comentarios} = req.body;
-    const sql ="UPDATE adopciones SET fecha = ?, comentarios = ?, WHERE id_adopcion = ?";
-    db.query(sql,[fecha, comentarios, id_adopcion], (error, result) => {
+    const {fecha_adopcion, seguimiento} = req.body;
+    const sql ="UPDATE adopciones SET fecha_adopcion = ?, seguimiento = ?, WHERE id_adopcion = ?";
+    db.query(sql,[fecha_adopcion, seguimiento, id_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
