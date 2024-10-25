@@ -43,9 +43,9 @@ const showAdoptante = (req, res) => {
 
 //// METODO POST  ////
 const insertAdoptante = (req, res) => {   //storeMovie
-    const {nombre_adoptante, apellido, telefono, direccion} = req.body;
-    const sql = "INSERT INTO adoptantes (nombre_adoptante, apellido, telefono, direccion) VALUES (?,?,?,?)";
-    db.query(sql,[nombre_adoptante, apellido, telefono, direccion], (error, result) => {
+    const {telefono, direccion} = req.body;
+    const sql = "INSERT INTO adoptantes (telefono, direccion) VALUES (?,?)";
+    db.query(sql,[telefono, direccion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -59,9 +59,9 @@ const insertAdoptante = (req, res) => {   //storeMovie
 //// METODO PUT  ////
 const updateAdoptante = (req, res) => {
     const {id_adoptante} = req.params;
-    const {nombre_adoptante, apellido, telefono, direccion} = req.body;
-    const sql ="UPDATE adoptantes SET nombre_adoptante = ?, apellido = ?, telefono = ?, direccion = ? WHERE id_adoptante = ?";
-    db.query(sql,[nombre_adoptante, apellido, telefono, direccion, id_adoptante], (error, result) => {
+    const {telefono, direccion} = req.body;
+    const sql ="UPDATE adoptantes SET telefono = ?, direccion = ? WHERE id_adoptante = ?";
+    db.query(sql,[telefono, direccion, id_adoptante], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

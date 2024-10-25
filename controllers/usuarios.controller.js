@@ -32,10 +32,17 @@ const showUsuario = (req, res) => {
 
 //// METODO PUT  ////
 const updateUsuario = (req, res) => {
+    console.log(req.file);
+    let imageName = "";
+
+    if(req.file){
+        imageName = req.file.filename;
+    };
+
     const {id_usuario} = req.params;
-    const {user, email, password} = req.body;
-    const sql ="UPDATE usuarios SET user = ?, email = ?, password = ? WHERE id_usuario = ?";
-    db.query(sql,[user, email, password, id_usuario], (error, result) => {
+    const {nombre_apellido, email, sexo, localidad, password} = req.body; //AGREGAR FOTO
+    const sql ="UPDATE usuarios SET nombre_apellido = ?, email = ?, sexo = ?, localidad = ?, password = ? WHERE id_usuario = ?";
+    db.query(sql,[nombre_apellido, email, sexo, localidad, password, imageName, id_usuario], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
