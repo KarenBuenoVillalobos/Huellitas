@@ -9,15 +9,21 @@ app.use(express.json());
 //en el cuerpo de la peticion viene un json, lo transformo en un obj JS y
 //de esta manera lo puedo utilizar
 
+const adopcionesRouter = require('./routers/adopciones.router');
+app.use('/adopciones', adopcionesRouter);
+
 const animalesRouter = require('./routers/animales.router');
 app.use('/animales', animalesRouter);
 // Siempre que me refiera a animales le coloco el prefijo
 
-const adoptantesRouter = require('./routers/adoptantes.router');
-app.use('/adoptantes', adoptantesRouter);
+const articulosRouter = require('./routers/articulos.router');
+app.use('/articulos', articulosRouter);
 
-const adopcionesRouter = require('./routers/adopciones.router');
-app.use('/adopciones', adopcionesRouter);
+const donacionesRouter = require('./routers/donaciones.router');
+app.use('/donaciones', donacionesRouter);
+
+const voluntariosRouter = require('./routers/voluntarios.router');
+app.use('/voluntarios', voluntariosRouter);
 
 //Router de Registro
 const authRouter = require("./routers/auth.router");

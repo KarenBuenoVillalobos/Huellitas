@@ -2,10 +2,11 @@
 
 // Campos de la tabla ADOPCIONES
 // id_adopcion
+// id_usuario
 // id_animal
-// id_adoptante
-// fecha
-// comentarios
+// telefono
+// direccion
+// fecha_adopcion
 
 const db = require("../db/db");
 
@@ -32,7 +33,7 @@ const showAdopcion = (req, res) => {
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
         }
         if(rows.length == 0){
-            return res.status(404).send({error : "ERROR: No existe la adopcion buscada."});
+            return res.status(404).send({error : "ERROR: No existe la adopción buscada."});
         };
         res.json(rows[0]); 
         // me muestra el elemento en la posicion cero si existe.
@@ -40,10 +41,10 @@ const showAdopcion = (req, res) => {
 };
 
 //// METODO POST  ////
-const insertAdopcion = (req, res) => {   //storeMovie
-    const {fecha_adopcion, seguimiento} = req.body;
-    const sql = "INSERT INTO adopciones (fecha_adopcion, seguimiento) VALUES (?,?)";
-    db.query(sql,[fecha_adopcion, seguimiento], (error, result) => {
+const insertAdopcion = (req, res) => {
+    const {telefono, direccion, fecha_adopcion} = req.body;
+    const sql = "INSERT INTO adopciones (telefono, direccion, fecha_adopcion) VALUES (?,?,?)";
+    db.query(sql,[telefono, direccion, fecha_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -57,9 +58,9 @@ const insertAdopcion = (req, res) => {   //storeMovie
 //// METODO PUT  ////
 const updateAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
-    const {fecha_adopcion, seguimiento} = req.body;
-    const sql ="UPDATE adopciones SET fecha_adopcion = ?, seguimiento = ?, WHERE id_adopcion = ?";
-    db.query(sql,[fecha_adopcion, seguimiento, id_adopcion], (error, result) => {
+    const {telefono, direccion, fecha_adopcion} = req.body;
+    const sql ="UPDATE adopciones SET telefono = ?, direccion = ?, fecha_adopcion = ? WHERE id_adopcion = ?";
+    db.query(sql,[telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

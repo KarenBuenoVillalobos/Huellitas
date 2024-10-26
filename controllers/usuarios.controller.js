@@ -1,5 +1,16 @@
 // Código cortesía del repositorio de Leonel Girett 
 
+/// CONTROLADORES DEL MODULO ///
+
+// Campos de la tabla USUARIOS
+// id_adopcion
+// nombre_apellido
+// email
+// sexo
+// localidad
+// password
+// imagen
+
 const db = require("../db/db");
 
 //// METODO GET  /////

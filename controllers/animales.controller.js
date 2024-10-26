@@ -1,12 +1,12 @@
 /// CONTROLADORES DEL MODULO ///
 
-// Campos de la tabla animales
+// Campos de la tabla ANIMALES
 // id_animal
-// nombre
+// nombre_animal
 // especie
 // edad
 // descripcion
-// fecha_adopcion
+// imagen
 
 const db = require("../db/db");
 
