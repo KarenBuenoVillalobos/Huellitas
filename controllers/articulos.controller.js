@@ -8,7 +8,7 @@ const db = require("../db/db");
 
 //// METODO GET  /////
 
-// Para todos los animales
+// Para todos los articulos
 const allArticulo = (req, res) => {
     const sql = "SELECT * FROM articulos";
     db.query(sql, (error, rows) => {
@@ -19,7 +19,7 @@ const allArticulo = (req, res) => {
     }); 
 };
 
-// Para un animal
+// Para un articulo
 const showArticulo = (req, res) => {
     const {id_articulo} = req.params;
     const sql = "SELECT * FROM articulos WHERE id_articulo = ?";

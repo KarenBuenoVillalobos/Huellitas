@@ -51,9 +51,9 @@ const updateUsuario = (req, res) => {
     };
 
     const {id_usuario} = req.params;
-    const {nombre_apellido, email, sexo, localidad, password} = req.body; //AGREGAR FOTO
-    const sql ="UPDATE usuarios SET nombre_apellido = ?, email = ?, sexo = ?, localidad = ?, password = ? WHERE id_usuario = ?";
-    db.query(sql,[nombre_apellido, email, sexo, localidad, password, imageName, id_usuario], (error, result) => {
+    const {nombre_apellido, email, localidad, sexo, password} = req.body; //AGREGAR FOTO
+    const sql ="UPDATE usuarios SET nombre_apellido = ?, email = ?, localidad = ?, sexo = ?, password = ? WHERE id_usuario = ?";
+    db.query(sql,[nombre_apellido, email, localidad, sexo, password, imageName, id_usuario], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

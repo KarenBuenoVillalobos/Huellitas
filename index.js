@@ -33,7 +33,7 @@ const usuariosRouter = require('./routers/usuarios.router');
 app.use('/login', usuariosRouter);
 
 app.get("/", (req, res) => {
-    res.end("Hola Huellitas");
+    res.end("Hola Huellitas!");
 });
 // Esta es la ruta principal del proyecto "/"
 

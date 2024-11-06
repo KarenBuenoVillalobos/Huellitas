@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicie sesión</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/inicio-sesion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <header id="header"></header>
+    
+    <main id="main-inicio-sesion">
+        <section class="section-form">
+            <form action="">
+                <h1>Iniciar sesión</h1>
+                <input type="email" name="email" id="email" placeholder="Correo electrónico">
+                <input type="password" name="password" id="password" placeholder="Contraseña">
+            </form>
+            <button>Ingresar</button>
+        </section>
+        <section class="section-form">
+            <form action="">
+                <h1>Registrate</h1>
+                <input type="text" name="nombre_apellido" id="nombre_apellido" placeholder="Nombre y Apellido">
+                <input type="email" name="email" id="email" placeholder="Correo electrónico">
+                <select name="localidad" id="localidad"></select>
+                <div class="radiobtn-genero">
+                    <input type="radio" name="genero" id="genero"> F
+                    <input type="radio" name="genero" id="genero"> M
+                    <input type="radio" name="genero" id="genero"> Otro
+                </div>
+                <input type="password" name="password" id="password" placeholder="Contraseña">
+                <input type="password" name="password" id="password" placeholder="Confirmar contraseña">
+                <input type="file" name="imagen" id="imagen">
+            </form>
+            <button>Registrate</button>
+        </section>
+    </main>
+
+    <footer id="footer"></footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -33,7 +33,8 @@ const register = (req, res) => {
             }
 
             // Insertar nuevo usuario en la base de datos
-            db.query('INSERT INTO usuarios (nombre_apellido, email, sexo, localidad, password, imagen) VALUES (?, ?, ?, ?, ?, ?)', [nombre_apellido, email, sexo, localidad, hash, imageName], (insertError, insertResults) => {
+            db.query('INSERT INTO usuarios (nombre_apellido, email, sexo, localidad, password, imagen) VALUES (?, ?, ?, ?, ?, ?)',
+                [nombre_apellido, email, sexo, localidad, hash, imageName], (insertError, insertResults) => {
                 if (insertError) {
                     console.error("Error inserting user:", insertError);
                     return res.status(500).send("Error registering user");
@@ -62,7 +63,7 @@ const login = (req, res) => {
     db.query('SELECT * FROM usuarios WHERE email = ?', [email], (error, results) => {
         if (error) {
             console.error("Login error:", error);
-            return res.status(500).send("Error during login");
+            return res.status(500).send("Error during login.");
         }
 
         // Verificar si el usuario existe
@@ -76,7 +77,7 @@ const login = (req, res) => {
         bcrypt.compare(password, usuario.password, (err, passwordIsValid) => {
             if (err) {
                 console.error("Error comparing passwords:", err);
-                return res.status(500).send("Error comparing passwords");
+                return res.status(500).send("Error comparing passwords.");
             }
 
             if (!passwordIsValid) {

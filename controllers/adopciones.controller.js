@@ -12,7 +12,7 @@ const db = require("../db/db");
 
 //// METODO GET  /////
 
-// Para todos los animales
+// Para todos las adopciones
 const allAdopcion = (req, res) => {
     const sql = "SELECT * FROM adopciones";
     db.query(sql, (error, rows) => {
@@ -23,7 +23,7 @@ const allAdopcion = (req, res) => {
     }); 
 };
 
-// Para un animal
+// Para una adopcion
 const showAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
     const sql = "SELECT * FROM adopciones WHERE id_animal = ?";
