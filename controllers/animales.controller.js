@@ -51,7 +51,7 @@ const insertAnimal = (req, res) => {   //storeMovie
 
     const {nombre_animal, especie, edad, descripcion} = req.body;
 
-    const sql = "INSERT INTO animales (nombre_animal, especie, edad, descripcion, imagen) VALUES (?,?,?,?,?)";
+    const sql = "INSERT INTO animales (nombre_animal, especie, edad, descripcion, foto_animal) VALUES (?,?,?,?,?)";
 
     db.query(sql,[nombre_animal, especie, edad, descripcion, imageName], (error, result) => {
         console.log(result);
@@ -66,17 +66,17 @@ const insertAnimal = (req, res) => {   //storeMovie
 
 //// METODO PUT  ////
 const updateAnimal = (req, res) => {
-    // console.log(req.file);
-    // let imageName = "";
+    console.log(req.file);
+    let imageName = "";
 
-    // if(req.file){
-    //     imageName = req.file.filename;
-    // };
+    if(req.file){
+        imageName = req.file.filename;
+    };
 
     const {id_animal} = req.params;
     const {nombre_animal, especie, edad, descripcion} = req.body;
-    const sql ="UPDATE animales SET nombre_animal = ?, especie = ?, edad = ?, descripcion = ? WHERE id_animal = ?";
-    db.query(sql,[nombre_animal, especie, edad, descripcion, id_animal], (error, result) => {
+    const sql ="UPDATE animales SET nombre_animal = ?, especie = ?, edad = ?, descripcion = ?, foto_animal = ? WHERE id_animal = ?";
+    db.query(sql,[nombre_animal, especie, edad, descripcion, imageName, id_animal], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

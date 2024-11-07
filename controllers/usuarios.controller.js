@@ -51,9 +51,9 @@ const updateUsuario = (req, res) => {
     };
 
     const {id_usuario} = req.params;
-    const {nombre_apellido, email, localidad, sexo, password} = req.body; //AGREGAR FOTO
-    const sql ="UPDATE usuarios SET nombre_apellido = ?, email = ?, localidad = ?, sexo = ?, password = ? WHERE id_usuario = ?";
-    db.query(sql,[nombre_apellido, email, localidad, sexo, password, imageName, id_usuario], (error, result) => {
+    const {nombre_apellido, email, localidad, genero, password} = req.body;
+    const sql ="UPDATE usuarios SET nombre_apellido = ?, email = ?, localidad = ?, genero = ?, password = ?, foto_usuario = ? WHERE id_usuario = ?";
+    db.query(sql,[nombre_apellido, email, localidad, genero, password, imageName, id_usuario], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -81,7 +81,7 @@ const deleteUsuario = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error : "ERROR: El usuario a borrar no existe."});
         };
-        res.json({mesaje : "Usuario Eliminado"});
+        res.json({mensaje : "Usuario Eliminado"});
     }); 
 };
 

@@ -1,41 +1,55 @@
-#main-inicio-sesion{
+
+
+.main-inicio-sesion{
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 5%;
 }
 
 .section-form{
-    width: 35%;
-    margin: auto;
-    padding: 60px 40px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 100px;
     border: 1px solid palevioletred;
     border-radius: 25px;
     justify-items: center;
 }
-
+#foto_usuario{
+    display: block;
+}
 .section-form h1{
     text-align: center;
     margin-bottom: 30px;
 }
 
 .section-form input{
-    display: block;
-    margin-bottom: 15px;
-    padding: 15px;
+    /* display: block; */
+    width: 100%;
+    margin: 0 auto 25px;
+    padding: 15px 20px;
     border-radius: 20px;
 }
 
 .section-form select{
-    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto 15px;
+    padding: 10px 0;
+    text-align: center;
 }
 
-.radiobtn-genero input{
-    display: inline-block;
+.radiobtn-genero{
+    display: flex;
+    margin: 0 15px;
 }
 
 .section-form button {
     margin-top: 30px;
     padding: 15px 30px;
-    border: 1px;
+    border-color: transparent;
     border-radius: 25px;
     cursor: pointer;
 }

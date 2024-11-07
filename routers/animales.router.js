@@ -47,10 +47,10 @@ router.get('/', controller.allAnimal);
 router.get('/:id_animal', controller.showAnimal);
 
 //// METODO POST  ////
-router.post('/', upload.single('imagen'), controller.insertAnimal);
+router.post('/', upload.single('foto_animal'), controller.insertAnimal); //upload.single('imagen')
 
 //// METODO PUT  ////
-router.put('/:id_animal', controller.updateAnimal);
+router.put('/:id_animal', upload.single('foto_animal'), controller.updateAnimal);
 
 //// METODO DELETE ////
 router.delete('/:id_animal', controller.deleteAnimal);

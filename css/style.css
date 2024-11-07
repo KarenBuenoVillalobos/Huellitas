@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: "Varela Round", sans-serif;
 }
+#adminheader,
 #header {   /*MENU Y TITULO*/
     height: 100px;
     background-color: #ffafcc;
@@ -290,6 +291,7 @@ iframe {
 }
 #footer a{
     text-decoration: none;
+    color: whitesmoke;
 }
 #footer img {
     margin: 10px auto;

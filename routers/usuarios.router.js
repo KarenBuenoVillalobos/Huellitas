@@ -51,7 +51,7 @@ router.get('/:id_usuario', controller.showUsuario);
 
 
 //// METODO PUT  ////
-router.put('/:id_usuario', upload.single('imagen'), controller.updateUsuario);
+router.put('/:id_usuario', upload.single('foto_usuario'), controller.updateUsuario); //upload.single('imagen')
 
 //// METODO DELETE ////
 router.delete('/:id_usuario', controller.deleteUsuario);

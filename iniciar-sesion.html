@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicie sesión</title>
+    <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/inicio-sesion.css">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 <body>
     <header id="header"></header>
     
-    <main id="main-inicio-sesion">
+    <main class="main-inicio-sesion">
         <section class="section-form">
             <form action="">
                 <h1>Iniciar sesión</h1>
@@ -26,16 +26,22 @@
             <form action="">
                 <h1>Registrate</h1>
                 <input type="text" name="nombre_apellido" id="nombre_apellido" placeholder="Nombre y Apellido">
-                <input type="email" name="email" id="email" placeholder="Correo electrónico">
-                <select name="localidad" id="localidad"></select>
+                <input type="email" name="email" id="email-registro" placeholder="Correo electrónico">
+                <select name="localidad" id="localidad">
+                    <option value="1">CABA</option>
+                    <option value="2">Zona Norte</option>
+                    <option value="3">Zona Sur</option>
+                    <option value="4">Zona Este</option>
+                    <option value="5">Zona Oeste</option>
+                </select>
                 <div class="radiobtn-genero">
-                    <input type="radio" name="genero" id="genero"> F
                     <input type="radio" name="genero" id="genero"> M
+                    <input type="radio" name="genero" id="genero"> F
                     <input type="radio" name="genero" id="genero"> Otro
                 </div>
-                <input type="password" name="password" id="password" placeholder="Contraseña">
-                <input type="password" name="password" id="password" placeholder="Confirmar contraseña">
-                <input type="file" name="imagen" id="imagen">
+                <input type="password" name="password" id="password-registro" placeholder="Contraseña">
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmar contraseña">
+                <input type="file" name="foto_usuario" id="foto_usuario">
             </form>
             <button>Registrate</button>
         </section>

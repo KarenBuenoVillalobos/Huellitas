@@ -12,7 +12,7 @@ const register = (req, res) => {
         imageName = req.file.filename;
     };
 
-    const { nombre_apellido, email, sexo, localidad, password } = req.body;
+    const { nombre_apellido, email, genero, localidad, password } = req.body;
 
     // Verificar si el usuario ya existe
     db.query('SELECT * FROM usuarios WHERE email = ?', [email], (error, results) => {
@@ -33,8 +33,8 @@ const register = (req, res) => {
             }
 
             // Insertar nuevo usuario en la base de datos
-            db.query('INSERT INTO usuarios (nombre_apellido, email, sexo, localidad, password, imagen) VALUES (?, ?, ?, ?, ?, ?)',
-                [nombre_apellido, email, sexo, localidad, hash, imageName], (insertError, insertResults) => {
+            db.query('INSERT INTO usuarios (nombre_apellido, email, genero, localidad, password, foto_usuario) VALUES (?, ?, ?, ?, ?, ?)',
+                [nombre_apellido, email, genero, localidad, hash, imageName], (insertError, insertResults) => {
                 if (insertError) {
                     console.error("Error inserting user:", insertError);
                     return res.status(500).send("Error registering user");
