@@ -42,7 +42,7 @@ const authMiddleware = require("../middleware/auth.middleware")
 
 
 //// METODO POST  ////
-router.post('/register',upload.single('foto_usuario'), controller.register); //upload.single('imagen')
+router.post('/registro',upload.single('foto_usuario'), controller.register); //upload.single('imagen')
 router.post('/login', controller.login);
 
 router.get("/protected", authMiddleware, (req, res) => {

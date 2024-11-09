@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/inicio-sesion.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
@@ -15,18 +15,10 @@
     
     <main class="main-inicio-sesion">
         <section class="section-form">
-            <form action="">
-                <h1>Iniciar sesión</h1>
-                <input type="email" name="email" id="email" placeholder="Correo electrónico">
-                <input type="password" name="password" id="password" placeholder="Contraseña">
-            </form>
-            <button>Ingresar</button>
-        </section>
-        <section class="section-form">
-            <form action="">
+            <form id="registro-form">
                 <h1>Registrate</h1>
                 <input type="text" name="nombre_apellido" id="nombre_apellido" placeholder="Nombre y Apellido">
-                <input type="email" name="email" id="email-registro" placeholder="Correo electrónico">
+                <input type="email" name="email" id="email" placeholder="Correo electrónico">
                 <select name="localidad" id="localidad">
                     <option value="1">CABA</option>
                     <option value="2">Zona Norte</option>
@@ -35,19 +27,24 @@
                     <option value="5">Zona Oeste</option>
                 </select>
                 <div class="radiobtn-genero">
-                    <input type="radio" name="genero" id="genero"> M
-                    <input type="radio" name="genero" id="genero"> F
-                    <input type="radio" name="genero" id="genero"> Otro
+                    <input type="radio" name="genero" id="genero-m" value="M">
+                    <label for="genero-m">M</label>
+                    <input type="radio" name="genero" id="genero-f" value="F">
+                    <label for="genero-f">F</label>
+                    <input type="radio" name="genero" id="genero-otro" value="Otro">
+                    <label for="genero-otro">Otro</label>
                 </div>
-                <input type="password" name="password" id="password-registro" placeholder="Contraseña">
+                <input type="password" name="password" id="password" placeholder="Contraseña">
                 <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmar contraseña">
                 <input type="file" name="foto_usuario" id="foto_usuario">
+                <button type="submit">Registrate</button>
+                <p class="error invisible_visible"></p>
             </form>
-            <button>Registrate</button>
         </section>
     </main>
 
     <footer id="footer"></footer>
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/registro.js"></script>
 </body>
 </html>

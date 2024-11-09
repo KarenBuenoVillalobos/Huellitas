@@ -27,7 +27,7 @@ app.use('/voluntarios', voluntariosRouter);
 
 //Router de Registro
 const authRouter = require("./routers/auth.router");
-app.use("/auth", authRouter);
+app.use("/auth", authRouter);  // /registro
 
 const usuariosRouter = require('./routers/usuarios.router');
 app.use('/login', usuariosRouter);
@@ -36,6 +36,19 @@ app.get("/", (req, res) => {
     res.end("Hola Huellitas!");
 });
 // Esta es la ruta principal del proyecto "/"
+
+// // Autenticacion
+// import {methods as authentication} from "./controllers/auth.controller.js";
+
+// // Autorizacion
+// import {methods as authorization} from "./middleware/authorization.js";
+
+// // Rutas
+// app.get("/", authorization.soloPublico, (req,res) => res.sendFile(__dirname + "/login.html"));
+// app.get("/registro", authorization.soloPublico, (req,res) => res.sendFile(__dirname + "/register.html"));
+// app.get("/admin", authorization.soloAdmin, (req,res) => res.sendFile(__dirname + "/admin/admin.html"));
+// app.post("/api/login",authentication.login);
+// app.post("/api/register",authentication.register);
 
 // const PORT = 3000;
 const PORT = process.env.PORT || 3001;

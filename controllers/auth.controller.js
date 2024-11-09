@@ -3,6 +3,33 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../db/db"); // Importar la conexión a la base de datos
 
+// document.getElementById("registro-form").addEventListener("submit", async(e) => { // (e) es el evento
+//     e.preventDefault();
+//     const nombre_apellido = document.getElementById("nombre_apellido").value;
+//     const email = document.getElementById("email").value;
+//     const localidad = document.getElementById("localidad").value;
+//     const genero = document.querySelector('input[name="genero"]:checked')?.nextElementSibling.textContent;
+//     const password = document.getElementById("password").value;
+//     const confirmPassword = document.getElementById("confirmPassword").value;
+//     // const foto_usuario = document.getElementById("foto_usuario").value;
+//     const foto_usuario = document.getElementById("foto_usuario").files[0];
+
+//     body: JSON.stringify({
+//         nombre_apellido: nombre_apellido,
+//         email: email,
+//         localidad: localidad,
+//         genero: genero,
+//         passwordRegistro: password,
+//         confirmPassword: confirmPassword,
+//         foto_usuario: foto_usuario
+//     });
+//     if(!res.ok) return mensajeError.classList.toggle("invisible_visible", false);
+//     const resJson = await res.json();
+//     if(resJson.redirect){
+//         window.location.href = resJson.redirect;
+//     }
+// })
+
 // Función para registrar usuario
 const register = (req, res) => {
     console.log(req.file);
