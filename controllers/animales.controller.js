@@ -40,8 +40,25 @@ const showAnimal = (req, res) => {
     }); 
 };
 
+const showAnimalName = (req, res) => {
+    const {nombre_animal} = req.params;
+    console.log(nombre_animal)
+    const sql = "SELECT * FROM animales WHERE nombre_animal = ?";
+    db.query(sql,[nombre_animal], (error, rows) => {
+        console.log(rows);
+        if(error){
+            return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
+        }
+        if(rows.length == 0){
+            return res.status(404).send({error : "ERROR: No existe el animal buscado."});
+        };
+        res.json(rows[0]); 
+        // me muestra el elemento en la posicion cero si existe.
+    }); 
+};
+
 //// METODO POST  ////
-const insertAnimal = (req, res) => {   //storeMovie
+const insertAnimal = (req, res) => {
     console.log(req.file);
     let imageName = "";
 
@@ -60,7 +77,7 @@ const insertAnimal = (req, res) => {   //storeMovie
         }
         const animal = {...req.body, id: result.insertId}; // ... reconstruir el objeto del body
         res.status(201).json(animal); // muestra creado con exito el elemento
-    });     
+    });
 
 };
 
@@ -104,7 +121,7 @@ const deleteAnimal = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error : "ERROR: El animal a borrar no existe."});
         };
-        res.json({mesaje : "Animal Borrado"});
+        res.json({mensaje : "Animal Borrado"});
     }); 
 };
 
@@ -115,5 +132,6 @@ module.exports = {
     showAnimal,
     insertAnimal,
     updateAnimal,
-    deleteAnimal
+    deleteAnimal,
+    showAnimalName
 };

@@ -38,9 +38,9 @@ const showVoluntario = (req, res) => {
 
 //// METODO POST  ////
 const insertVoluntario = (req, res) => {
-    const {asignacion} = req.body;
-    const sql = "INSERT INTO voluntarios (asignacion) VALUES (?)";
-    db.query(sql,[asignacion], (error, result) => {
+    const {asignacion, tarea} = req.body;
+    const sql = "INSERT INTO voluntarios (asignacion, tarea) VALUES (?,?)";
+    db.query(sql,[asignacion, tarea], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -54,9 +54,9 @@ const insertVoluntario = (req, res) => {
 //// METODO PUT  ////
 const updateVoluntario = (req, res) => {
     const {id_voluntario} = req.params;
-    const {asignacion} = req.body;
-    const sql ="UPDATE voluntarios SET asignacion = ? WHERE id_voluntario = ?";
-    db.query(sql,[asignacion, id_voluntario], (error, result) => {
+    const {asignacion, tarea} = req.body;
+    const sql ="UPDATE voluntarios SET asignacion = ?, tarea = ? WHERE id_voluntario = ?";
+    db.query(sql,[asignacion, tarea, id_voluntario], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -84,7 +84,7 @@ const deleteVoluntario = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error : "ERROR: El voluntario a borrar no existe."});
         };
-        res.json({mesaje : "Voluntario Borrado"});
+        res.json({mensaje : "Voluntario Borrado"});
     }); 
 };
 

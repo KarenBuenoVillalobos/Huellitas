@@ -3,43 +3,28 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../db/db"); // Importar la conexión a la base de datos
 
-// document.getElementById("registro-form").addEventListener("submit", async(e) => { // (e) es el evento
-//     e.preventDefault();
-//     const nombre_apellido = document.getElementById("nombre_apellido").value;
-//     const email = document.getElementById("email").value;
-//     const localidad = document.getElementById("localidad").value;
-//     const genero = document.querySelector('input[name="genero"]:checked')?.nextElementSibling.textContent;
-//     const password = document.getElementById("password").value;
-//     const confirmPassword = document.getElementById("confirmPassword").value;
-//     // const foto_usuario = document.getElementById("foto_usuario").value;
-//     const foto_usuario = document.getElementById("foto_usuario").files[0];
-
-//     body: JSON.stringify({
-//         nombre_apellido: nombre_apellido,
-//         email: email,
-//         localidad: localidad,
-//         genero: genero,
-//         passwordRegistro: password,
-//         confirmPassword: confirmPassword,
-//         foto_usuario: foto_usuario
-//     });
-//     if(!res.ok) return mensajeError.classList.toggle("invisible_visible", false);
-//     const resJson = await res.json();
-//     if(resJson.redirect){
-//         window.location.href = resJson.redirect;
-//     }
-// })
-
 // Función para registrar usuario
 const register = (req, res) => {
+
     console.log(req.file);
     let imageName = "";
 
     if(req.file){
         imageName = req.file.filename;
+        // imageName = document.getElementById("foto_usuario").files[0];
     };
 
-    const { nombre_apellido, email, genero, localidad, password } = req.body;
+    const { nombre_apellido, email, localidad, genero, password } = req.body;
+
+    // const nombre_apellido = document.getElementById("nombre_apellido").value;
+    // const email = document.getElementById("email").value;
+    // const localidad = document.getElementById("localidad").value;
+    // const genero = document.querySelector('input[name="genero"]:checked')?.nextElementSibling.textContent;
+    // const password = document.getElementById("password").value;
+    // const confirmPassword = document.getElementById("confirmPassword").value;
+    // const foto_usuario = document.getElementById("foto_usuario").value;
+
+    // const foto_usuario = document.getElementById("foto_usuario").files[0];
 
     // Verificar si el usuario ya existe
     db.query('SELECT * FROM usuarios WHERE email = ?', [email], (error, results) => {
@@ -60,8 +45,8 @@ const register = (req, res) => {
             }
 
             // Insertar nuevo usuario en la base de datos
-            db.query('INSERT INTO usuarios (nombre_apellido, email, genero, localidad, password, foto_usuario) VALUES (?, ?, ?, ?, ?, ?)',
-                [nombre_apellido, email, genero, localidad, hash, imageName], (insertError, insertResults) => {
+            db.query('INSERT INTO usuarios (nombre_apellido, email, localidad, genero, password, foto_usuario) VALUES (?, ?, ?, ?, ?, ?)',
+                [nombre_apellido, email, localidad, genero, hash, imageName], (insertError, insertResults) => {
                 if (insertError) {
                     console.error("Error inserting user:", insertError);
                     return res.status(500).send("Error registering user");
@@ -106,7 +91,8 @@ const login = (req, res) => {
                 console.error("Error comparing passwords:", err);
                 return res.status(500).send("Error comparing passwords.");
             }
-
+console.log(password)
+console.log(usuario.password)
             if (!passwordIsValid) {
                 return res.status(401).send({ auth: false, token: null });
             }

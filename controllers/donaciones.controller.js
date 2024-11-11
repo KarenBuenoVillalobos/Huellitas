@@ -40,9 +40,9 @@ const showDonacion = (req, res) => {
 
 //// METODO POST  ////
 const insertDonacion = (req, res) => {
-    const {fecha_donacion} = req.body;
-    const sql = "INSERT INTO donaciones (fecha_donacion) VALUES (?)";
-    db.query(sql,[fecha_donacion], (error, result) => {
+    const {id_usuario, id_articulo, fecha_donacion} = req.body;
+    const sql = "INSERT INTO donaciones (id_usuario, id_articulo, fecha_donacion) VALUES (?,?,?)";
+    db.query(sql,[id_usuario, id_articulo, fecha_donacion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -56,9 +56,9 @@ const insertDonacion = (req, res) => {
 //// METODO PUT  ////
 const updateDonacion = (req, res) => {
     const {id_donacion} = req.params;
-    const {fecha_donacion} = req.body;
-    const sql ="UPDATE donaciones SET fecha_donacion = ? WHERE id_donacion = ?";
-    db.query(sql,[fecha_donacion, id_donacion], (error, result) => {
+    const {id_usuario, id_articulo, fecha_donacion} = req.body;
+    const sql ="UPDATE donaciones SET id_usuario = ?, id_articulo = ?, fecha_donacion = ? WHERE id_donacion = ?";
+    db.query(sql,[id_usuario, id_articulo, fecha_donacion, id_donacion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -86,7 +86,7 @@ const deleteDonacion = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error : "ERROR: La donación a borrar no existe."});
         };
-        res.json({mesaje : "Donación Borrada"});
+        res.json({mensaje : "Donación Borrada"});
     }); 
 };
 

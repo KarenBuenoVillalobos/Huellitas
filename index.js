@@ -1,6 +1,9 @@
 // Archivo de entrada (enterpoint)
 
 require("dotenv").config();
+// console.log("SECRET_KEY:", process.env.SECRET_KEY);
+// console.log("JWT_SECRET:", process.env.JWT_SECRET);
+// console.log("JWT_EXPIRATION:", process.env.JWT_EXPIRATION);
 
 const express = require("express");
 const app = express();

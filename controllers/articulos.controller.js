@@ -38,9 +38,9 @@ const showArticulo = (req, res) => {
 
 //// METODO POST  ////
 const insertArticulo = (req, res) => {
-    const {nombre_articulo} = req.body;
-    const sql = "INSERT INTO articulos (nombre_articulo) VALUES (?)";
-    db.query(sql,[nombre_articulo], (error, result) => {
+    const {nombre_articulo, detalles} = req.body;
+    const sql = "INSERT INTO articulos (nombre_articulo, detalles) VALUES (?,?)";
+    db.query(sql,[nombre_articulo, detalles], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -54,9 +54,9 @@ const insertArticulo = (req, res) => {
 //// METODO PUT  ////
 const updateArticulo = (req, res) => {
     const {id_articulo} = req.params;
-    const {nombre_articulo} = req.body;
-    const sql ="UPDATE articulos SET nombre_articulo = ? WHERE id_articulo = ?";
-    db.query(sql,[nombre_articulo, id_articulo], (error, result) => {
+    const {nombre_articulo, detalles} = req.body;
+    const sql ="UPDATE articulos SET nombre_articulo = ?, detalles = ? WHERE id_articulo = ?";
+    db.query(sql,[nombre_articulo, detalles, id_articulo], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -84,7 +84,7 @@ const deleteArticulo = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error : "ERROR: El artículo a borrar no existe."});
         };
-        res.json({mesaje : "Artículo Borrado"});
+        res.json({mensaje : "Artículo Borrado"});
     }); 
 };
 

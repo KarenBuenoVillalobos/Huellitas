@@ -42,9 +42,9 @@ const showAdopcion = (req, res) => {
 
 //// METODO POST  ////
 const insertAdopcion = (req, res) => {
-    const {telefono, direccion, fecha_adopcion} = req.body;
-    const sql = "INSERT INTO adopciones (telefono, direccion, fecha_adopcion) VALUES (?,?,?)";
-    db.query(sql,[telefono, direccion, fecha_adopcion], (error, result) => {
+    const {id_usuario, id_animal, telefono, direccion, fecha_adopcion} = req.body;
+    const sql = "INSERT INTO adopciones (id_usuario, id_animal, telefono, direccion, fecha_adopcion) VALUES (?,?,?,?,?)";
+    db.query(sql,[id_usuario, id_animal, telefono, direccion, fecha_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -58,9 +58,9 @@ const insertAdopcion = (req, res) => {
 //// METODO PUT  ////
 const updateAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
-    const {telefono, direccion, fecha_adopcion} = req.body;
-    const sql ="UPDATE adopciones SET telefono = ?, direccion = ?, fecha_adopcion = ? WHERE id_adopcion = ?";
-    db.query(sql,[telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
+    const {id_usuario, id_animal, telefono, direccion, fecha_adopcion} = req.body;
+    const sql ="UPDATE adopciones SET id_usuario = ?, id_animal = ?, telefono = ?, direccion = ?, fecha_adopcion = ? WHERE id_adopcion = ?";
+    db.query(sql,[id_usuario, id_animal, telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -88,7 +88,7 @@ const deleteAdopcion = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error : "ERROR: La adopción a borrar no existe."});
         };
-        res.json({mesaje : "Adopcion Borrada"});
+        res.json({mensaje : "Adopcion Borrada"});
     }); 
 };
 
