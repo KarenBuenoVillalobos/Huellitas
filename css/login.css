@@ -1,66 +1,135 @@
 
-.main-inicio-sesion{
+.main-login-registro{
+    width: 100%;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5%;
+    background-color: #F0F4F3;
 }
-
-.section-form{
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 60px 100px;
-    border: 1px solid palevioletred;
-    border-radius: 25px;
-    /* justify-items: center; */
-    /* display: flex; */
-    /* flex-direction: column; */
-}
-#foto_usuario{
-    margin-bottom: 0px;
-}
-.section-form h1{
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.section-form input{
-    /* display: block; */
-    width: 100%;
-    margin: 0 auto 25px;
-    padding: 15px 20px;
-    border-radius: 20px;
-}
-
-.section-form select{
-    display: block;
-    width: 100%;
-    max-width: 180px;
-    margin: 0 auto 15px;
-    padding: 10px 0;
-    text-align: center;
-}
-
-.radiobtn-genero{
+.container{
+    width: 800px;
+    height: 500px;
     display: flex;
-    margin: 0 15px;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-
-.section-form button {
-    padding: 15px 30px;
-    border-color: transparent;
-    border-radius: 25px;
+.container-form{
+    width: 100%;
+    overflow: hidden;
+}
+.container-form form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in;
+}
+.container-form h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.container-form span{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.container-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    background-color: #EEEEEE;
+}
+.container-input input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+.container-form a{
+    color: black;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
+    background-color: #3AB397;
+    color: white;
+}
+/*Animation form*/
+.sign-up{
+    transform: translateX(-100%);
+}
+.container.toggle .sign-in{
+    transform: translateX(100%);
+}
+.container.toggle .sign-up{
+    transform: translateX(0);
+}
+
+/*Welcome*/
+.container-welcome{
+    position: absolute;
+    width: 50%;
+    height: 100%;
     display: flex;
-    /* width: 100%; */
-    margin: 20px auto 0;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    background-color: #3AB397;
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+    overflow: hidden;
+    border-radius: 50% 0 0 50%;
 }
-
-.error{
-    color: darkred;
+.container.toggle .container-welcome{
+    transform: translateX(0);
+    border-radius: 0 50% 50% 0;
+    background-color: #3AA8AD;
 }
-
-.invisible_visible{
-    display: none;
+.container-welcome .welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+.welcome-sign-in{
+    transform: translateX(100%);
+}
+.container-welcome h3{
+    font-size: 40px;
+}
+.container-welcome p{
+    font-size: 14px;
+    text-align: center;
+}
+.container-welcome .button{
+    border: 2px solid white;
+    background-color: transparent;
+}
+.container.toggle .welcome-sign-in{
+    transform: translateX(0);
+}
+.container.toggle .welcome-sign-up{
+    transform: translateX(-100%);
 }
