@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const tblListado = document.querySelector('.tbl-listado table');
     const btnBuscar = document.querySelector('#buscar-id');
     const btnEliminar = document.querySelector('#eliminar');
-    let vehiculos = []; // Array para almacenar los vehículos
+    let adopciones = []; // Array para almacenar los vehículos
 
     // Llamar a la función para inicializar la tabla
     //crearTablaListado();
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 id_usuario: id_usuario,
                 id_animal: id_animal,
                 telefono: parseInt(telefono),
-                direccion: parseInt(direccion),
+                direccion: direccion,
                 fecha_adopcion: fecha_adopcion,
             };
 
@@ -69,26 +69,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 <th>ID Usuario</th>
                 <th>ID Animal</th>
                 <th>Teléfono</th>
-                <th>Capacidad Maletero</th>
-                <th>Marca</th>
-                <th>Número Puertas</th>
-                <th>Número Plazas</th>
+                <th>Dirección</th>
+                <th>Fecha Adopción</th>
             </tr>
         `;
 
         // Agregar cada vehículo a la tabla
-        vehiculos.forEach(vehiculo => {
+        adopciones.forEach(adopcion => {
             tblListado.innerHTML += `
                 <tr>
-                    <td>${vehiculo.id}</td>
-                    <td>${vehiculo.matricula}</td>
-                    <td>${vehiculo.grupo}</td>
-                    <td>${vehiculo.modelo}</td>
-                    <td>${vehiculo.capacidadMaletero}</td>
-                    <td>${vehiculo.marca}</td>
-                    <td>${vehiculo.numPuertas}</td>
-                    <td>${vehiculo.numPlazas}</td>
-                    <td><button class="btn-modificar" data-id="${vehiculo.id}"></button><button class="btn-eliminar" data-id="${vehiculo.id}"></button></td>
+                    <td>${adopcion.id_adopcion}</td>
+                    <td>${adopcion.id_usuario}</td>
+                    <td>${adopcion.id_animal}</td>
+                    <td>${adopcion.telefono}</td>
+                    <td>${adopcion.direccion}</td>
+                    <td>${adopcion.fecha_adopcion}</td>
+                    <td><button class="btn-modificar" data-id="${adopcion.id_adopcion}"></button><button class="btn-eliminar" data-id="${adopcion.id_adopcion}"></button></td>
                 </tr>
             `;
         });
@@ -97,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.btn-modificar').forEach(button => {
             button.addEventListener('click', (e) => {
                 const id = parseInt(e.target.getAttribute('data-id'));
-                cargarVehiculoParaModificar(id);
+                cargarAdopcionParaModificar(id);
             });
         });
 
@@ -105,21 +101,19 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.btn-eliminar').forEach(button => {
             button.addEventListener('click', (e) => {
                 const id = parseInt(e.target.getAttribute('data-id'));
-                eliminarVehiculo(id);
+                eliminarAdopcion(id);
             });
         });
     }
 
-    function cargarVehiculoParaModificar(id) {
-        const vehiculo = vehiculos.find(veh => veh.id === id);
-        if (vehiculo) {
-            document.querySelector('#matricula').value = vehiculo.matricula;
-            document.querySelector('#grupo').value = vehiculo.grupo;
-            document.querySelector('#modelo').value = vehiculo.modelo;
-            document.querySelector('#capacidadMaletero').value = vehiculo.capacidadMaletero;
-            document.querySelector('#marca').value = vehiculo.marca;
-            document.querySelector('#numPuerta').value = vehiculo.numPuertas;
-            document.querySelector('#numPlaza').value = vehiculo.numPlazas;
+    function cargarAdopcionParaModificar(id_adopcion) {
+        const adopcion = adopciones.find(adop => adop.id_adopcion === id_adopcion);
+        if (adopcion) {
+            document.querySelector('#id_usuario').value = adopcion.id_usuario;
+            document.querySelector('#id_animal').value = adopcion.id_animal;
+            document.querySelector('#telefono').value = adopcion.telefono;
+            document.querySelector('#direccion').value = adopcion.direccion;
+            document.querySelector('#fecha_adopcion').value = adopcion.fecha_adopcion;
 
             // Abrir el modal
             modal.classList.add('modal--show');
@@ -139,18 +133,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function guardarCambios(id) {
+    function guardarCambios(id_adopcion) {
         // Obtener los datos modificados del formulario
-        const matricula = document.querySelector('#matricula').value;
-        const grupo = document.querySelector('#grupo').value;
-        const modelo = document.querySelector('#modelo').value;
-        const capacidadMaletero = document.querySelector('#capacidadMaletero').value;
-        const marca = document.querySelector('#marca').value;
-        const numPuertas = document.querySelector('#numPuerta').value;
-        const numPlazas = document.querySelector('#numPlaza').value;
-    
+        const id_usuario = document.querySelector('#id_usuario').value;
+        const id_animal = document.querySelector('#id_animal').value;
+        const telefono = document.querySelector('#telefono').value;
+        const direccion = document.querySelector('#direccion').value;
+        const fecha_adopcion = document.querySelector('#fecha_adopcion').value;
+
         //Paso los datos a una funcion que me valida los datos
-        const validar = validarDatosVehiculos(matricula, grupo, modelo, capacidadMaletero, marca, numPuertas, numPlazas);
+        const validar = validarDatosAdopciones(id_usuario, id_animal, telefono, direccion, fecha_adopcion);
     
         if (validar) {
             // Mostrar confirmación con swal
@@ -166,15 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Actualizar el vehículo en el array
-                    const vehiculo = vehiculos.find(veh => veh.id === id);
-                    if (vehiculo) {
-                        vehiculo.matricula = matricula;
-                        vehiculo.grupo = grupo;
-                        vehiculo.modelo = modelo;
-                        vehiculo.capacidadMaletero = parseInt(capacidadMaletero);
-                        vehiculo.marca = marca;
-                        vehiculo.numPuertas = parseInt(numPuertas);
-                        vehiculo.numPlazas = parseInt(numPlazas);
+                    const adopcion = adopciones.find(adop => adop.id_adopcion === id_adopcion);
+                    if (adopcion) {
+                        adopcion.id_usuario = id_usuario;
+                        adopcion.id_animal = id_animal;
+                        adopcion.telefono = parseInt(telefono);
+                        adopcion.direccion = direccion;
+                        adopcion.fecha_adopcion = fecha_adopcion;
     
                         // Actualizar la tabla
                         actualizarTabla();
@@ -196,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
     // Función para eliminar un vehículo
-    function eliminarVehiculo(id) {
+    function eliminarAdopcion(id_adopcion) {
         // Mostrar confirmación con swal
         Swal.fire({
             title: "¿Estás seguro?",
@@ -210,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Eliminar el vehículo del array
-                vehiculos = vehiculos.filter(vehiculo => vehiculo.id !== id);
+                adopciones = adopciones.filter(adopcion => adopcion.id_adopcion !== id_adopcion);
     
                 // Actualizar la tabla
                 actualizarTabla();
@@ -224,13 +214,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para limpiar los campos del formulario
     function limpiarCampos() {
-        document.querySelector('#matricula').value = '';
-        document.querySelector('#grupo').value = '';
-        document.querySelector('#modelo').value = '';
-        document.querySelector('#capacidadMaletero').value = '';
-        document.querySelector('#marca').value = '';
-        document.querySelector('#numPuerta').value = '';
-        document.querySelector('#numPlaza').value = '';
+        document.querySelector('#id_usuario').value = '';
+        document.querySelector('#id_animal').value = '';
+        document.querySelector('#telefono').value = '';
+        document.querySelector('#direccion').value = '';
+        document.querySelector('#fecha_adopcion').value = '';
     }
 
     //Buscar por ID --> si es distinto a vacio
@@ -238,71 +226,59 @@ document.addEventListener('DOMContentLoaded', function () {
         const idABuscar = document.querySelector('#numero-id').value.trim();
 
         if (idABuscar !== '') {
-            const vehiculoEncontrado = vehiculos.find(vehiculo => vehiculo.id === parseInt(idABuscar));
-            if (vehiculoEncontrado) {
-                mostrarVehiculoEncontrado(vehiculoEncontrado);
+            const adopcionEncontrada = adopciones.find(adopcion => adopcion.id_adopcion === parseInt(idABuscar));
+            if (adopcionEncontrada) {
+                mostrarAdopcionEncontrada(adopcionEncontrada);
             } else {
-                mostrarError('Vehículo no encontrado');
+                mostrarError('Adopción no encontrada.');
             }
         } else {
             mostrarError('Por favor, ingrese un ID para buscar.');
         }
     });
 
-    function mostrarVehiculoEncontrado(vehiculoEncontrado) {
+    function mostrarAdopcionEncontrada(adopcionEncontrada) {
         Swal.fire({
             icon: 'success',
-            title: 'Vehículo encontrado',
+            title: 'Adopción encontrada.',
             html: `
-                <b>ID:</b> ${vehiculoEncontrado.id}<br>
-                <b>Matrícula:</b> ${vehiculoEncontrado.matricula}<br>
-                <b>Grupo:</b> ${vehiculoEncontrado.grupo}<br>
-                <b>Modelo:</b> ${vehiculoEncontrado.modelo}<br>
-                <b>Capacidad Maletero:</b> ${vehiculoEncontrado.capacidadMaletero}<br>
-                <b>Marca:</b> ${vehiculoEncontrado.marca}<br>
-                <b>Número Puertas:</b> ${vehiculoEncontrado.numPuertas}<br>
-                <b>Número Plazas:</b> ${vehiculoEncontrado.numPlazas}<br>
+                <b>ID Adopción:</b> ${adopcionEncontrada.id_adopcion}<br>
+                <b>ID Usuario:</b> ${adopcionEncontrada.id_usuario}<br>
+                <b>ID Animal:</b> ${adopcionEncontrada.id_animal}<br>
+                <b>Teléfono:</b> ${adopcionEncontrada.telefono}<br>
+                <b>Dirección:</b> ${adopcionEncontrada.direccion}<br>
+                <b>Fecha Adopción:</b> ${adopcionEncontrada.fecha_adopcion}<br>
             `
         });
     }
-    function validarDatosVehiculos(matricula, grupo, modelo, capacidadMaletero, marca, numPuertas, numPlazas) {
-        if (matricula === '' || grupo === '' || modelo === '' || capacidadMaletero === '' || marca === '' || numPuertas === '' || numPlazas === '') {
+    function validarDatosAdopciones(id_usuario, id_animal, telefono, direccion, fecha_adopcion) {
+        if (id_usuario === '' || id_animal === '' || telefono === '' || direccion === '' || fecha_adopcion === '') {
             mostrarError('Por favor, complete todos los campos.');
             return false;
         }
 
-        if (!/^[a-zA-Z0-9]{1,6}$/.test(matricula)) {
+        if (!/^[a-zA-Z0-9]{1,6}$/.test(id_usuario)) { //ARREGLAR
             mostrarError('La matrícula debe contener hasta 6 caracteres alfanuméricos.');
             return false;
         }
 
-        if (!/^[a-zA-Z\s]{1,8}$/.test(grupo)) {
+        if (!/^[a-zA-Z\s]{1,8}$/.test(id_animal)) { //ARREGLAR
             mostrarError('El grupo debe contener hasta 8 caracteres y solo letras.');
             return false;
         }
 
-        if (modelo.length > 10) {
-            mostrarError('El modelo debe contener hasta 10 caracteres.');
+        if (telefono.length > 10) {
+            mostrarError('El teléfono debe contener hasta 10 números.');
             return false;
         }
 
-        if (isNaN(capacidadMaletero) || capacidadMaletero < 0 || capacidadMaletero > 1000) {
-            mostrarError('La capacidad de maletero debe ser un número entre 0 y 1000.');
+        if (!/^[a-zA-Z0-9]{1,40}$/.test(direccion)) {
+            mostrarError('La dirección debe contener hasta 40 caracteres alfanuméricos.');
             return false;
         }
 
-        if (!/^[a-zA-Z\s]{1,12}$/.test(marca)) {
+        if (!/^[a-zA-Z\s]{1,12}$/.test(fecha_adopcion)) { //ARREGLAR
             mostrarError('La marca debe contener hasta 12 caracteres y solo letras.');
-            return false;
-        }
-
-        if (isNaN(numPuertas) || numPuertas < 0 || numPuertas > 6) {
-            mostrarError('El número de puertas debe ser un número entre 0 y 6.');
-            return false;
-        }
-
-        if (isNaN(numPlazas) || numPlazas < 0 || numPlazas > 6) {
-            mostrarError('El número de plazas debe ser un número entre 0 y 6.');
             return false;
         }
 
@@ -338,123 +314,124 @@ document.addEventListener('DOMContentLoaded', function () {
     // });
 
     // Funciones para mostrar diferentes tablas
-    function mostrarAlquileres() {
+    function mostrarAdopciones() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
-        document.getElementById('tabla-alquileres').style.display = 'block';
+        document.getElementById('tabla-adopciones').style.display = 'block';
         contenidoDinamico.innerHTML = `
         <table>
             <tr>
-                <th>ID Alquiler</th>
-                <th>Duración</th>
-                <th>Precio Total</th>
-            </tr>
-        </table>
-    `;
-    }
-
-    function mostrarClientes() {
-        document.querySelectorAll('.tbl-listado').forEach(tabla => {
-            tabla.style.display = 'none';
-        });
-        document.getElementById('tabla-clientes').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Cliente</th>
-                <th>Nombre</th>
-                <th>DNI</th>
+                <th>ID Adopción</th>
+                <th>ID Usuario</th>
+                <th>ID Animal</th>
+                <th>Teléfono</th>
                 <th>Dirección</th>
-                <th>Teléfono</th>
+                <th>Fecha Adopción</th>
+            </tr>
+        </table>
+    `;
+    }
+
+    function mostrarAnimales() {
+        document.querySelectorAll('.tbl-listado').forEach(tabla => {
+            tabla.style.display = 'none';
+        });
+        document.getElementById('tabla-animales').style.display = 'block';
+        contenidoDinamico.innerHTML = `
+        <table>
+            <tr>
+                <th>ID Animal</th>
+                <th>Nombre Animal</th>
+                <th>Especie</th>
                 <th>Edad</th>
-                <th>Pago</th>
-                <th>Permiso</th>
+                <th>Descripción</th>
+                <th>Foto Animal</th>
             </tr>
         </table>
     `;
     }
 
-    function mostrarOficinas() {
+    function mostrarArticulos() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
-        document.getElementById('tabla-oficinas').style.display = 'block';
+        document.getElementById('tabla-articulos').style.display = 'block';
         contenidoDinamico.innerHTML = `
         <table>
             <tr>
-                <th>ID Oficina</th>
-                <th>Calle</th>
-                <th>Número</th>
-                <th>CP</th>
-                <th>Teléfono</th>
-                <th>Ciudad</th>
+                <th>ID Artículo</th>
+                <th>Nombre Artículo</th>
+                <th>Detalles</th>
             </tr>
         </table>
     `;
     }
-    document.getElementById('btn-oficinas').addEventListener('click', mostrarOficinas);
+    document.getElementById('btn-articulos').addEventListener('click', mostrarArticulos);
 
-    function mostrarVehiculos() {
+    function mostrarDonaciones() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
-        document.getElementById('tabla-vehiculos').style.display = 'block';
+        document.getElementById('tabla-donaciones').style.display = 'block';
         contenidoDinamico.innerHTML = `
         <table>
             <tr>
-                <th>ID</th>
-                <th>Vehículo</th>
+                <th>ID Donación</th>
+                <th>ID Usuario</th>
+                <th>ID Artículo</th>
+                <th>Fecha Donación</th>
             </tr>
             <!-- Agrega aquí las filas de la tabla -->
         </table>
     `;
     }
 
-    function mostrarReservas() {
+    function mostrarUsuarios() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
-        document.getElementById('tabla-reservas').style.display = 'block';
+        document.getElementById('tabla-usuarios').style.display = 'block';
         contenidoDinamico.innerHTML = `
         <table>
             <tr>
-                <th>ID Reserva</th>
-                <th>Nombre Reserva</th>
                 <th>ID Usuario</th>
-                <th>ID Alquiler</th>
-                <th>ID Vehículo</th>
+                <th>Nombre Apellido</th>
+                <th>Email</th>
+                <th>Localidad</th>
+                <th>Género</th>
+                <th>Password</th>
+                <th>Foto Usuario</th>
             </tr>
         </table>
     `;
     }
-    document.getElementById('btn-reservas').addEventListener('click', mostrarReservas);
+    document.getElementById('btn-usuarios').addEventListener('click', mostrarUsuarios);
 
-    function mostrarReportes() {
+    function mostrarVoluntarios() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
-        document.getElementById('tabla-reportes').style.display = 'block';
+        document.getElementById('tabla-voluntarios').style.display = 'block';
         contenidoDinamico.innerHTML = `
         <table>
             <tr>
-                <th>ID Reporte</th>
-                <th>ID Cliente</th>
-                <th>Motivo</th>
-                <th>Fecha</th>
+                <th>ID Voluntario</th>
+                <th>Asignación</th>
+                <th>Tarea</th>
             </tr>
         </table>
     `;
     }
-    document.getElementById('btn-reportes').addEventListener('click', mostrarReportes);
+    document.getElementById('btn-voluntarios').addEventListener('click', mostrarVoluntarios);
 
     // Event listeners para los botones
-    document.getElementById('btn-alquileres').addEventListener('click', mostrarAlquileres);
-    document.getElementById('btn-clientes').addEventListener('click', mostrarClientes);
-    document.getElementById('btn-oficinas').addEventListener('click', mostrarOficinas);
-    document.getElementById('btn-vehiculos').addEventListener('click', mostrarVehiculos);
-    document.getElementById('btn-reservas').addEventListener('click', mostrarReservas);
-    document.getElementById('btn-reportes').addEventListener('click', mostrarReportes);
+    document.getElementById('btn-adopciones').addEventListener('click', mostrarAdopciones);
+    document.getElementById('btn-animales').addEventListener('click', mostrarAnimales);
+    document.getElementById('btn-articulos').addEventListener('click', mostrarArticulos);
+    document.getElementById('btn-donaciones').addEventListener('click', mostrarDonaciones);
+    document.getElementById('btn-usuarios').addEventListener('click', mostrarUsuarios);
+    document.getElementById('btn-voluntarios').addEventListener('click', mostrarVoluntarios);
 
     // // Para consultar antes de Cerrar Sesión
     // const btnCerrarSesion = document.querySelector('a[href="/registro.html"]');
