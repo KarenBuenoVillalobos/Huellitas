@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Mascotas</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/listas.css">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+
+<body>
+    <header id="adminheader">
+        <a href="index.html" class="logo">
+            <img id="logo" src="/img/logo.png" alt="huellitas-de-amor">
+        </a>
+        <input type="checkbox" id="check">
+        <label for="check" class="mostrar-menu">&#8801</label>
+        <nav class="menu">
+            <a href="index.html">Home</a>
+            <a href="listado.html">Listado</a>
+            <a href="iniciar-sesion.html">Iniciar Sesión</a>
+            <label for="check" class="esconder-menu">&#215</label>
+        </nav>
+    </header>
+
+    <h1 class="main__title">Listas</h1>
+    <div class="btn-listados" id="opciones-servicios">
+        <input type="button" value="Adopciones" id="btn-adopciones">
+        <input type="button" value="Animales" id="btn-animales">
+        <input type="button" value="Artículos" id="btn-articulos">
+        <input type="button" value="Donaciones" id="btn-donaciones">
+        <input type="button" value="Usuarios" id="btn-usuarios">
+        <input type="button" value="Voluntarios" id="btn-voluntarios">
+    </div>
+    <div class="botones-listado">
+        <div class="busqueda">
+            <input type="button" value="Buscar:" id="buscar-id">
+            <input type="text" name="numero-id" id="numero-id" placeholder="ID">
+        </div>
+        <div class="btn-abm">
+            <input type="button" value="Crear" class="crear-abm">
+        </div>
+    </div>
+
+    <div class="tbl-listado fadeIn" id="tabla-adopciones">
+        <table>
+            <tr>
+                <th>ID Adopción</th>
+                <th>ID Usuario</th>
+                <th>ID Animal</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Fecha Adopción</th>
+            </tr>
+        </table>
+    </div>
+
+    <section class="modal">
+        <div class="modal__container">
+            <div class="span-cerrar">
+                <span class="modal__close">&times;</span>
+            </div>
+            <h2>Nueva Adopción</h2>
+            <form action="" class="modal__form">
+                <div class="modal__group">
+                    <label for="">ID Usuario:</label>
+                    <input type="text" id="id_usuario">
+                </div>
+                <div class="modal__group">
+                    <label for="">ID Animal:</label>
+                    <input type="text" id="id_animal">
+                </div>
+                <div class="modal__group">
+                    <label for="">Teléfono:</label>
+                    <input type="text" id="telefono">
+                </div>
+                <div class="modal__group">
+                    <label for="">Dirección:</label>
+                    <input type="text" id="direccion">
+                </div>
+                <div class="modal__group">
+                    <label for="">Fecha Adopción:</label>
+                    <input type="text" id="fecha_adopcion">
+                </div>
+                <div class="div-btncrear">
+                    <button class="btn__crear">Crear</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <div id="contenido-dinamico" class="contenido-dinamico">
+        <div class="tbl-listado fadeIn" id="tabla-animales">
+            <table>
+                <tr>
+                    <th>ID Animal</th>
+                    <th>Nombre Animal</th>
+                    <th>Especie</th>
+                    <th>Edad</th>
+                    <th>Descripción</th>
+                    <th>Foto Animal</th>
+                </tr>
+                <!-- <tr>
+                    <td>1</td>
+                    <td>8 días</td>
+                    <td>USD 150</td>
+                </tr> -->
+            </table>
+        </div>
+        <div class="tbl-listado fadeIn" id="tabla-articulos">
+            <table>
+                <tr>
+                    <th>ID Artículo</th>
+                    <th>Nombre Artículo</th>
+                    <th>Detalles</th>
+                </tr>
+                <!-- <tr>
+                    <td>Fernando</td>
+                    <td>34567891</td>
+                </tr> -->
+            </table>
+        </div>
+        <div class="tbl-listado fadeIn" id="tabla-donaciones">
+            <table>
+                <tr>
+                    <th>ID Donación</th>
+                    <th>ID Usuario</th>
+                    <th>ID Artículo</th>
+                    <th>Fecha Donación</th>
+                </tr>
+                <!-- <tr>
+                    <td>Juan B. Justo</td>
+                    <td>5678</td>
+                    <td>1245</td>
+                </tr> -->
+            </table>
+        </div>
+        <div class="tbl-listado fadeIn" id="tabla-usuarios">
+            <table>
+                <tr>
+                    <th>ID Usuario</th>
+                    <th>Nombre Apellido</th>
+                    <th>Email</th>
+                    <th>Localidad</th>
+                    <th>Género</th>
+                    <th>Password</th>
+                    <th>Foto Usuario</th>
+                </tr>
+            </table>
+        </div>
+        <div class="tbl-listado fadeIn" id="tabla-voluntarios">
+            <table>
+                <tr>
+                    <th>ID Voluntario</th>
+                    <th>Asignación</th>
+                    <th>Tarea</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- <footer class="footer">
+          <small>Copyright 2024</small>
+        </footer> -->
+
+    <footer id="footer">
+        <p>Derechos reservados © 2024</p>
+        <p>Terminos y condiciones</p>
+        <a href="administracion.html">Administración</a>
+        <p>Soporte</p>
+    </footer>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="js/listas.js"></script>
+</body>
+
+</html>

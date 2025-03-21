@@ -1,0 +1,289 @@
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
+/* nos permite traer los iconos de la lista */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Varela Round", sans-serif;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+/* backdrop-filter: blur(10px); */
+
+/* .main {
+  margin: 0.5em;
+  margin: 0;
+  padding: 50px;
+  min-height: 100vh;
+  background-image: url(/img/fondo-formadopcion.webp);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.main__title {
+  text-align: center;
+  margin-bottom: 0.5em;
+  color: whitesmoke;
+} */
+
+/* --------------------------------------------------- */
+
+/* botones listados */
+
+/* #opciones-servicios {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: hidden;
+}
+#opciones-servicios.visible {
+    opacity: 1;
+    visibility: visible;
+} */
+
+.btn-listados {
+    display: flex;
+    justify-content: end;
+    /* border-bottom: 1px #d53e4b solid; */
+    padding: 5px 0;
+    background-color: #d53e4b;
+}
+
+.btn-listados input {
+    background-color: #d53e4b;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.btn-listados input:hover {
+    background-color: #f8c8cc;
+    color: #d53e4b;
+    transition: all 0.5s;
+}
+
+.botones-listado {
+    display: flex;
+    margin-top: 20px;
+}
+.botones-listado input{
+    cursor: pointer;
+}
+.busqueda{
+    margin-left: 3px;
+}
+#buscar-id,
+.btn-abm input {
+    background-color: #d53e4b;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+#numero-id {
+    background-color: #fff;
+    border: 1px #d53e4b solid;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: auto;
+    outline: none;
+}
+.btn-abm {
+    margin-left: 30px;
+}
+#buscar-id:hover,
+.btn-abm input:hover{
+    background-color: #f8c8cc;
+    transition: all 0.5s;
+}
+
+.tbl-listado {
+    margin: 10px 10px;
+    text-align: center;
+    /* display: none; */
+}
+
+th {
+    background-color: #f8c8cc;
+    padding: 15px 40px;
+}
+
+td {
+    border: 1px #ece7e6 solid;
+    border-radius: 3px;
+    padding: 10px;
+}
+button.btn-eliminar,
+button.btn-modificar{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    padding: 20px;
+}
+button.btn-eliminar{
+    background-image: url('/img/iconeliminar.ico');
+}
+button.btn-modificar{
+    background-image: url('/img/iconmodificar.ico');
+    margin-right: 10px;
+}
+button.btn-eliminar:hover,
+button.btn-modificar:hover {
+    background-color: transparent;
+}
+
+/* para transicion de tablas */
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 0.1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* modal */
+.modal{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #111111bd;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+    z-index: 1;
+}
+.span-cerrar{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+.modal__close{
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: #f8c8cc;
+    color: #d53e4b;
+    cursor: pointer;
+    padding: 0 8px;
+    justify-items: center;
+    border-radius: 5px;
+}
+.modal__close:hover {
+    background-color: #d53e4b;
+    color: #f8c8cc;
+    transition: 0.3s;
+}
+.modal--show{
+    opacity: 1;
+    pointer-events: unset;
+    transition: opacity .3s;
+}
+.modal__container{
+    border: 1px #d53e4b solid;
+    border-radius: 8px;
+    margin: auto;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    background-color: #fff;
+    padding: 3em 2.5em 2em;
+}
+.modal__container {
+    position: relative; /* Para que la "X" tenga una posición relativa al contenedor */
+}
+
+.modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 9999; /* Asegura que esté por encima del contenido del modal */
+}
+
+.div-btncrear {
+    text-align: center; /* Para centrar el botón "Crear" */
+    margin-top: 20px; /* Espacio entre el formulario y el botón "Crear" */
+}
+
+.modal h2{
+    background-color: #f8c8cc;
+    color: #d53e4b;
+    text-align: center;
+    padding: 10px 0;
+}
+.modal__form{
+    padding: 10px 25px;
+}
+.modal__group{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal__group label{
+    margin-right: 10px;
+}
+.modal__group input{
+    border: 1px #d53e4b solid;
+    border-radius: 5px;
+    color: #817576;
+    padding: 10px;
+    outline: none;
+}
+#numero-id:focus,
+.modal__group input:focus{
+    border: 1px #f8c8cc solid;
+    transition: .3s;
+}
+.div-btncrear{
+    display: flex;
+    justify-content: center;
+}
+.btn__crear{
+    background-color: #f8c8cc;
+    color: #d53e4b;
+    font-weight: bold;
+    border: none;
+    margin-top: 30px;
+    padding: 10px 60px;
+    transition: background-color .3s;
+}
+.btn__crear:hover{
+    background-color: #d53e4b;
+    color: #f8c8cc;
+}
+
+input::placeholder{
+    color: #817576;
+}
+.footer-listados{
+    position: absolute;
+}
+
+/* --------------------------------------------------- */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
