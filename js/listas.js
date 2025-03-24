@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const openModal = document.querySelector('.crear-abm');
+    const openModal = document.querySelector('.agregar-abm');
     const modal = document.querySelector('.modal');
     const closeModal = document.querySelector('.modal__close');
     const tblListado = document.querySelector('.tbl-listado table');
     const btnBuscar = document.querySelector('#buscar-id');
     const btnEliminar = document.querySelector('#eliminar');
-    let adopciones = []; // Array para almacenar los vehículos
+    let animales = []; // Array para almacenar los animales
 
     // Llamar a la función para inicializar la tabla
     //crearTablaListado();
@@ -20,33 +20,33 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.classList.remove('modal--show');
     });
 
-    const btnCrear = document.querySelector('.btn__crear');
-    btnCrear.addEventListener('click', (e) => {
+    const btnAgregar = document.querySelector('.btn__agregar');
+    btnAgregar.addEventListener('click', (e) => {
         e.preventDefault();
         // Validaciones de los campos
-        const id_usuario = document.querySelector('#id_usuario').value;
-        const id_animal = document.querySelector('#id_animal').value;
-        const telefono = document.querySelector('#telefono').value;
-        const direccion = document.querySelector('#direccion').value;
-        const fecha_adopcion = document.querySelector('#fecha_adopcion').value;
+        const nombre_animal = document.querySelector('#nombre_animal').value;
+        const especie = document.querySelector('#especie').value;
+        const edad = document.querySelector('#edad').value;
+        const descripcion = document.querySelector('#descripcion').value;
+        const foto_animal = document.querySelector('#foto_animal').value;
 
         //Paso los datos a una funcion que me valida los datos
-        const validar = validarDatosAdopciones(id_usuario, id_animal, telefono, direccion, fecha_adopcion);
-        //Si el valor es TRUE me agrega el vehiculo
+        const validar = validarDatosAnimales(nombre_animal, especie, edad, descripcion, foto_animal);
+        //Si el valor es TRUE me agrega el animal
         if (validar == true) {
-            // Crear el objeto de vehículo
-            const id_adopcion = adopciones.length + 1; // Generar un ID autoincremental
-            const nuevaAdopcion = {
-                id_adopcion: id_adopcion,
-                id_usuario: id_usuario,
+            // Crear el objeto de animal
+            const id_animal = animales.length + 1; // Generar un ID autoincremental
+            const nuevoAnimal = {
                 id_animal: id_animal,
-                telefono: parseInt(telefono),
-                direccion: direccion,
-                fecha_adopcion: fecha_adopcion,
+                nombre_animal: nombre_animal,
+                especie: especie,
+                edad: parseInt(edad),
+                descripcion: descripcion,
+                foto_animal: foto_animal
             };
 
-            // Agregar el nuevo vehículo al array
-            adopciones.push(nuevaAdopcion);
+            // Agregar el nuevo animal al array
+            animales.push(nuevoAnimal);
 
             // Actualizar la tabla
             actualizarTabla();
@@ -60,31 +60,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    // Función para actualizar la tabla con los datos de vehículos
+    // Función para actualizar la tabla con los datos de animales
     function actualizarTabla() {
         // Limpiar la tabla
         tblListado.innerHTML = `
             <tr>
-                <th>ID Adopción</th>
-                <th>ID Usuario</th>
                 <th>ID Animal</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Fecha Adopción</th>
+                <th>Nombre Animal</th>
+                <th>Especie</th>
+                <th>Edad</th>
+                <th>Descripción</th>
+                <th>Foto Animal</th>
             </tr>
         `;
 
-        // Agregar cada vehículo a la tabla
-        adopciones.forEach(adopcion => {
+        // Agregar cada animal a la tabla
+        animales.forEach(animal => {
             tblListado.innerHTML += `
                 <tr>
-                    <td>${adopcion.id_adopcion}</td>
-                    <td>${adopcion.id_usuario}</td>
-                    <td>${adopcion.id_animal}</td>
-                    <td>${adopcion.telefono}</td>
-                    <td>${adopcion.direccion}</td>
-                    <td>${adopcion.fecha_adopcion}</td>
-                    <td><button class="btn-modificar" data-id="${adopcion.id_adopcion}"></button><button class="btn-eliminar" data-id="${adopcion.id_adopcion}"></button></td>
+                    <td>${animal.id_animal}</td>
+                    <td>${animal.nombre_animal}</td>
+                    <td>${animal.especie}</td>
+                    <td>${animal.edad}</td>
+                    <td>${animal.descripcion}</td>
+                    <td>${animal.foto_animal}</td>
+                    <td><button class="btn-modificar" data-id="${animal.id_animal}"></button><button class="btn-eliminar" data-id="${animal.id_animal}"></button></td>
                 </tr>
             `;
         });
@@ -92,57 +92,57 @@ document.addEventListener('DOMContentLoaded', function () {
         // Agregar event listener a los botones de modificar
         document.querySelectorAll('.btn-modificar').forEach(button => {
             button.addEventListener('click', (e) => {
-                const id = parseInt(e.target.getAttribute('data-id'));
-                cargarAdopcionParaModificar(id);
+                const id_animal = parseInt(e.target.getAttribute('data-id'));
+                cargarAnimalParaModificar(id_animal);
             });
         });
 
         // Agregar el event listener a los botones de eliminar
         document.querySelectorAll('.btn-eliminar').forEach(button => {
             button.addEventListener('click', (e) => {
-                const id = parseInt(e.target.getAttribute('data-id'));
-                eliminarAdopcion(id);
+                const id_animal = parseInt(e.target.getAttribute('data-id'));
+                eliminarAnimal(id_animal);
             });
         });
     }
 
-    function cargarAdopcionParaModificar(id_adopcion) {
-        const adopcion = adopciones.find(adop => adop.id_adopcion === id_adopcion);
-        if (adopcion) {
-            document.querySelector('#id_usuario').value = adopcion.id_usuario;
-            document.querySelector('#id_animal').value = adopcion.id_animal;
-            document.querySelector('#telefono').value = adopcion.telefono;
-            document.querySelector('#direccion').value = adopcion.direccion;
-            document.querySelector('#fecha_adopcion').value = adopcion.fecha_adopcion;
+    function cargarAnimalParaModificar(id_animal) {
+        const animal = animales.find(ani => ani.id_animal === id_animal);
+        if (animal) {
+            document.querySelector('#nombre_animal').value = animal.nombre_animal;
+            document.querySelector('#especie').value = animal.especie;
+            document.querySelector('#edad').value = animal.edad;
+            document.querySelector('#descripcion').value = animal.descripcion;
+            document.querySelector('#foto_animal').value = animal.foto_animal;
 
             // Abrir el modal
             modal.classList.add('modal--show');
 
             // Cambiar el texto del botón crear por "Guardar cambios"
-            const btnCrear = document.querySelector('.btn__crear');
-            btnCrear.textContent = 'Guardar cambios';
+            const btnAgregar = document.querySelector('.btn__agregar');
+            btnAgregar.textContent = 'Guardar cambios';
 
             // Remover event listeners anteriores para evitar múltiples listeners
-            btnCrear.replaceWith(btnCrear.cloneNode(true));
-            const newBtnCrear = document.querySelector('.btn__crear');
+            btnAgregar.replaceWith(btnAgregar.cloneNode(true));
+            const newBtnAgregar = document.querySelector('.btn__agregar');
 
-            newBtnCrear.addEventListener('click', (e) => {
+            newBtnAgregar.addEventListener('click', (e) => {
                 e.preventDefault();
-                guardarCambios(id);
+                guardarCambios(id_animal);
             });
         }
     }
 
-    function guardarCambios(id_adopcion) {
+    function guardarCambios(id_animal) {
         // Obtener los datos modificados del formulario
-        const id_usuario = document.querySelector('#id_usuario').value;
-        const id_animal = document.querySelector('#id_animal').value;
-        const telefono = document.querySelector('#telefono').value;
-        const direccion = document.querySelector('#direccion').value;
-        const fecha_adopcion = document.querySelector('#fecha_adopcion').value;
+        const nombre_animal = document.querySelector('#nombre_animal').value;
+        const especie = document.querySelector('#especie').value;
+        const edad = document.querySelector('#edad').value;
+        const descripcion = document.querySelector('#descripcion').value;
+        const foto_animal = document.querySelector('#foto_animal').value;
 
         //Paso los datos a una funcion que me valida los datos
-        const validar = validarDatosAdopciones(id_usuario, id_animal, telefono, direccion, fecha_adopcion);
+        const validar = validarDatosAnimales(nombre_animal, especie, edad, descripcion, foto_animal);
     
         if (validar) {
             // Mostrar confirmación con swal
@@ -157,14 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 cancelButtonText: "No"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Actualizar el vehículo en el array
-                    const adopcion = adopciones.find(adop => adop.id_adopcion === id_adopcion);
-                    if (adopcion) {
-                        adopcion.id_usuario = id_usuario;
-                        adopcion.id_animal = id_animal;
-                        adopcion.telefono = parseInt(telefono);
-                        adopcion.direccion = direccion;
-                        adopcion.fecha_adopcion = fecha_adopcion;
+                    // Actualizar el animal en el array
+                    const animal = animales.find(ani => ani.id_animal === id_animal);
+                    if (animal) {
+                        animal.nombre_animal = nombre_animal;
+                        animal.especie = especie;
+                        animal.edad = parseInt(edad);
+                        animal.descripcion = descripcion;
+                        animal.foto_animal = foto_animal;
     
                         // Actualizar la tabla
                         actualizarTabla();
@@ -175,9 +175,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Cerrar el modal
                         modal.classList.remove('modal--show');
     
-                        // Restaurar el texto del botón a "Crear"
-                        const btnCrear = document.querySelector('.btn__crear');
-                        btnCrear.textContent = 'Crear';
+                        // Restaurar el texto del botón a "Agregar"
+                        const btnAgregar = document.querySelector('.btn__agregar');
+                        btnAgregar.textContent = 'Agregar';
                     }
                 }
             });
@@ -185,12 +185,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
 
-    // Función para eliminar un vehículo
-    function eliminarAdopcion(id_adopcion) {
+    // Función para eliminar un animal
+    function eliminarAnimal(id_animal) {
         // Mostrar confirmación con swal
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "¿Quieres eliminar este vehículo?",
+            text: "¿Quieres eliminar este animal?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#ffbe70",
@@ -199,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function () {
             cancelButtonText: "No, cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                // Eliminar el vehículo del array
-                adopciones = adopciones.filter(adopcion => adopcion.id_adopcion !== id_adopcion);
+                // Eliminar el animal del array
+                animales = animales.filter(animal => animal.id_animal !== id_animal);
     
                 // Actualizar la tabla
                 actualizarTabla();
@@ -214,11 +214,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para limpiar los campos del formulario
     function limpiarCampos() {
-        document.querySelector('#id_usuario').value = '';
-        document.querySelector('#id_animal').value = '';
-        document.querySelector('#telefono').value = '';
-        document.querySelector('#direccion').value = '';
-        document.querySelector('#fecha_adopcion').value = '';
+        document.querySelector('#nombre_animal').value = '';
+        document.querySelector('#especie').value = '';
+        document.querySelector('#edad').value = '';
+        document.querySelector('#descripcion').value = '';
+        document.querySelector('#foto_animal').value = '';
     }
 
     //Buscar por ID --> si es distinto a vacio
@@ -226,59 +226,59 @@ document.addEventListener('DOMContentLoaded', function () {
         const idABuscar = document.querySelector('#numero-id').value.trim();
 
         if (idABuscar !== '') {
-            const adopcionEncontrada = adopciones.find(adopcion => adopcion.id_adopcion === parseInt(idABuscar));
-            if (adopcionEncontrada) {
-                mostrarAdopcionEncontrada(adopcionEncontrada);
+            const animalEncontrado = animales.find(animal => animal.id_animal === parseInt(idABuscar));
+            if (animalEncontrado) {
+                mostrarAnimalEncontrado(animalEncontrado);
             } else {
-                mostrarError('Adopción no encontrada.');
+                mostrarError('Animal no encontrado');
             }
         } else {
             mostrarError('Por favor, ingrese un ID para buscar.');
         }
     });
 
-    function mostrarAdopcionEncontrada(adopcionEncontrada) {
+    function mostrarAnimalEncontrado(animalEncontrado) {
         Swal.fire({
             icon: 'success',
-            title: 'Adopción encontrada.',
+            title: 'Animal encontrado',
             html: `
-                <b>ID Adopción:</b> ${adopcionEncontrada.id_adopcion}<br>
-                <b>ID Usuario:</b> ${adopcionEncontrada.id_usuario}<br>
-                <b>ID Animal:</b> ${adopcionEncontrada.id_animal}<br>
-                <b>Teléfono:</b> ${adopcionEncontrada.telefono}<br>
-                <b>Dirección:</b> ${adopcionEncontrada.direccion}<br>
-                <b>Fecha Adopción:</b> ${adopcionEncontrada.fecha_adopcion}<br>
+                <b>ID Animal:</b> ${animalEncontrado.id_animal}<br>
+                <b>Nombre Animal:</b> ${animalEncontrado.nombre_animal}<br>
+                <b>Especie:</b> ${animalEncontrado.especie}<br>
+                <b>Edad:</b> ${animalEncontrado.edad}<br>
+                <b>Descripción:</b> ${animalEncontrado.descripcion}<br>
+                <b>Foto Animal:</b> ${animalEncontrado.foto_animal}<br>
             `
         });
     }
-    function validarDatosAdopciones(id_usuario, id_animal, telefono, direccion, fecha_adopcion) {
-        if (id_usuario === '' || id_animal === '' || telefono === '' || direccion === '' || fecha_adopcion === '') {
+    function validarDatosAnimales(nombre_animal, especie, edad, descripcion, foto_animal) {
+        if (nombre_animal === '' || especie === '' || edad === '' || descripcion === '' || foto_animal === '') {
             mostrarError('Por favor, complete todos los campos.');
             return false;
         }
 
-        if (!/^[a-zA-Z0-9]{1,6}$/.test(id_usuario)) { //ARREGLAR
-            mostrarError('La matrícula debe contener hasta 6 caracteres alfanuméricos.');
+        if (nombre_animal.length > 10) {
+            mostrarError('El nombre debe contener hasta 10 caracteres.');
             return false;
         }
 
-        if (!/^[a-zA-Z\s]{1,8}$/.test(id_animal)) { //ARREGLAR
-            mostrarError('El grupo debe contener hasta 8 caracteres y solo letras.');
+        if (especie.length > 15) {
+            mostrarError('La nombre de especie debe contener hasta 8 caracteres.');
             return false;
         }
 
-        if (telefono.length > 10) {
-            mostrarError('El teléfono debe contener hasta 10 números.');
+        if (isNaN(edad) || edad < 0 || edad > 18) {
+            mostrarError('La edad debe ser un número entre 0 y 18.');
             return false;
         }
 
-        if (!/^[a-zA-Z0-9]{1,40}$/.test(direccion)) {
-            mostrarError('La dirección debe contener hasta 40 caracteres alfanuméricos.');
+        if (descripcion.length > 255) {  //CAMBIAR EL TIPO DE ESTE ATRIBUTO DE TXT A TINYTEXT
+            mostrarError('La descripción debe contener hasta 255 caracteres.');
             return false;
         }
 
-        if (!/^[a-zA-Z\s]{1,12}$/.test(fecha_adopcion)) { //ARREGLAR
-            mostrarError('La marca debe contener hasta 12 caracteres y solo letras.');
+        if (foto_animal.length > 100) {
+            mostrarError('La foto del animal............... .');
             return false;
         }
 
@@ -295,96 +295,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
-    // Para el desplazamiento del menú de tablas cuando hago click en el botón Servicios
-    // document.getElementById('btn-servicios').addEventListener('click', function (event) {
-    //     event.preventDefault();
-    //     var opciones = document.getElementById('opciones-servicios');
-    //     if (!opciones.classList.contains('visible')) {
-    //         opciones.style.display = 'flex';
-    //         setTimeout(function () {
-    //             opciones.classList.add('visible');
-    //         }, 10); // Pequeño retraso para permitir el cambio de display antes de la transición
-    //     } else {
-    //         opciones.classList.remove('visible');
-    //         setTimeout(function () {
-    //             opciones.style.display = 'none';
-    //         }, 500); // Esperar a que la transición termine antes de ocultar
-    //     }
-    // });
-
     // Funciones para mostrar diferentes tablas
     function mostrarAdopciones() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
         document.getElementById('tabla-adopciones').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Adopción</th>
-                <th>ID Usuario</th>
-                <th>ID Animal</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Fecha Adopción</th>
-            </tr>
-        </table>
-    `;
-    }
-
-    function mostrarAnimales() {
-        document.querySelectorAll('.tbl-listado').forEach(tabla => {
-            tabla.style.display = 'none';
-        });
-        document.getElementById('tabla-animales').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Animal</th>
-                <th>Nombre Animal</th>
-                <th>Especie</th>
-                <th>Edad</th>
-                <th>Descripción</th>
-                <th>Foto Animal</th>
-            </tr>
-        </table>
-    `;
-    }
-
-    function mostrarArticulos() {
-        document.querySelectorAll('.tbl-listado').forEach(tabla => {
-            tabla.style.display = 'none';
-        });
-        document.getElementById('tabla-articulos').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Artículo</th>
-                <th>Nombre Artículo</th>
-                <th>Detalles</th>
-            </tr>
-        </table>
-    `;
-    }
-    document.getElementById('btn-articulos').addEventListener('click', mostrarArticulos);
-
-    function mostrarDonaciones() {
-        document.querySelectorAll('.tbl-listado').forEach(tabla => {
-            tabla.style.display = 'none';
-        });
-        document.getElementById('tabla-donaciones').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Donación</th>
-                <th>ID Usuario</th>
-                <th>ID Artículo</th>
-                <th>Fecha Donación</th>
-            </tr>
-            <!-- Agrega aquí las filas de la tabla -->
-        </table>
-    `;
     }
 
     function mostrarUsuarios() {
@@ -392,65 +308,65 @@ document.addEventListener('DOMContentLoaded', function () {
             tabla.style.display = 'none';
         });
         document.getElementById('tabla-usuarios').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Usuario</th>
-                <th>Nombre Apellido</th>
-                <th>Email</th>
-                <th>Localidad</th>
-                <th>Género</th>
-                <th>Password</th>
-                <th>Foto Usuario</th>
-            </tr>
-        </table>
-    `;
     }
-    document.getElementById('btn-usuarios').addEventListener('click', mostrarUsuarios);
+
+    function mostrarArticulos() {
+        document.querySelectorAll('.tbl-listado').forEach(tabla => {
+            tabla.style.display = 'none';
+        });
+        document.getElementById('tabla-articulos').style.display = 'block';
+    }
+    document.getElementById('btn-articulos').addEventListener('click', mostrarArticulos);
+
+    function mostrarAnimales() {
+        document.querySelectorAll('.tbl-listado').forEach(tabla => {
+            tabla.style.display = 'none';
+        });
+        document.getElementById('tabla-animales').style.display = 'block';
+    }
+
+    function mostrarDonaciones() {
+        document.querySelectorAll('.tbl-listado').forEach(tabla => {
+            tabla.style.display = 'none';
+        });
+        document.getElementById('tabla-donaciones').style.display = 'block';
+    }
+    document.getElementById('btn-donaciones').addEventListener('click', mostrarDonaciones);
 
     function mostrarVoluntarios() {
         document.querySelectorAll('.tbl-listado').forEach(tabla => {
             tabla.style.display = 'none';
         });
         document.getElementById('tabla-voluntarios').style.display = 'block';
-        contenidoDinamico.innerHTML = `
-        <table>
-            <tr>
-                <th>ID Voluntario</th>
-                <th>Asignación</th>
-                <th>Tarea</th>
-            </tr>
-        </table>
-    `;
     }
     document.getElementById('btn-voluntarios').addEventListener('click', mostrarVoluntarios);
 
     // Event listeners para los botones
-    document.getElementById('btn-adopciones').addEventListener('click', mostrarAdopciones);
     document.getElementById('btn-animales').addEventListener('click', mostrarAnimales);
+    document.getElementById('btn-adopciones').addEventListener('click', mostrarAdopciones);
+    document.getElementById('btn-usuarios').addEventListener('click', mostrarUsuarios);
     document.getElementById('btn-articulos').addEventListener('click', mostrarArticulos);
     document.getElementById('btn-donaciones').addEventListener('click', mostrarDonaciones);
-    document.getElementById('btn-usuarios').addEventListener('click', mostrarUsuarios);
     document.getElementById('btn-voluntarios').addEventListener('click', mostrarVoluntarios);
 
-    // // Para consultar antes de Cerrar Sesión
-    // const btnCerrarSesion = document.querySelector('a[href="/registro.html"]');
-    // btnCerrarSesion.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    //     Swal.fire({
-    //         title: '¿Cerrar sesión?',
-    //         text: '¿Estás seguro de que quieres cerrar sesión?',
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#ffbe70',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Sí, cerrar sesión',
-    //         cancelButtonText: 'Cancelar'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             window.location.href = "/index.html";
-    //         }
-    //     });
-    // });
+    // Para consultar antes de Cerrar Sesión
+    const btnCerrarSesion = document.querySelector('a[href="../login.html"]');
+    btnCerrarSesion.addEventListener('click', function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Cerrar sesión?',
+            text: '¿Estás seguro de que quieres cerrar sesión?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ffbe70',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../index.html";
+            }
+        });
+    });
     
 });

@@ -7,7 +7,7 @@
     <title>Listado de Mascotas</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/listas.css">
-    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="/image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
@@ -22,78 +22,31 @@
         <nav class="menu">
             <a href="../index.html">Home</a>
             <a href="listas.html">Listado</a>
-            <a href="../login.html">Iniciar Sesión</a>
+            <a href="../login.html">Cerrar Sesión</a>
             <label for="check" class="esconder-menu">&#215</label>
         </nav>
     </header>
 
-    <h1 class="main__title">Listas</h1>
-    <div class="btn-listados" id="opciones-servicios">
-        <input type="button" value="Adopciones" id="btn-adopciones">
-        <input type="button" value="Animales" id="btn-animales">
-        <input type="button" value="Artículos" id="btn-articulos">
-        <input type="button" value="Donaciones" id="btn-donaciones">
-        <input type="button" value="Usuarios" id="btn-usuarios">
-        <input type="button" value="Voluntarios" id="btn-voluntarios">
-    </div>
-    <div class="botones-listado">
-        <div class="busqueda">
-            <input type="button" value="Buscar:" id="buscar-id">
-            <input type="text" name="numero-id" id="numero-id" placeholder="ID">
+    <main id="main-listas">
+        <div class="btn-listados">
+            <input type="button" value="Animales" id="btn-animales">
+            <input type="button" value="Adopciones" id="btn-adopciones">
+            <input type="button" value="Usuarios" id="btn-usuarios">
+            <input type="button" value="Artículos" id="btn-articulos">
+            <input type="button" value="Donaciones" id="btn-donaciones">
+            <input type="button" value="Voluntarios" id="btn-voluntarios">
         </div>
-        <div class="btn-abm">
-            <input type="button" value="Crear" class="crear-abm">
-        </div>
-    </div>
 
-    <div class="tbl-listado fadeIn" id="tabla-adopciones">
-        <table>
-            <tr>
-                <th>ID Adopción</th>
-                <th>ID Usuario</th>
-                <th>ID Animal</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Fecha Adopción</th>
-            </tr>
-        </table>
-    </div>
-
-    <section class="modal">
-        <div class="modal__container">
-            <div class="span-cerrar">
-                <span class="modal__close">&times;</span>
+        <div class="botones-listado">
+            <div class="busqueda">
+                <input type="button" value="Buscar:" id="buscar-id">
+                <input type="text" name="numero-id" id="numero-id" placeholder="ID">
             </div>
-            <h2>Nueva Adopción</h2>
-            <form action="" class="modal__form">
-                <div class="modal__group">
-                    <label for="">ID Usuario:</label>
-                    <input type="text" id="id_usuario">
-                </div>
-                <div class="modal__group">
-                    <label for="">ID Animal:</label>
-                    <input type="text" id="id_animal">
-                </div>
-                <div class="modal__group">
-                    <label for="">Teléfono:</label>
-                    <input type="text" id="telefono">
-                </div>
-                <div class="modal__group">
-                    <label for="">Dirección:</label>
-                    <input type="text" id="direccion">
-                </div>
-                <div class="modal__group">
-                    <label for="">Fecha Adopción:</label>
-                    <input type="text" id="fecha_adopcion">
-                </div>
-                <div class="div-btncrear">
-                    <button class="btn__crear">Crear</button>
-                </div>
-            </form>
+            <div class="btn-abm">
+                <input type="button" value="Agregar" class="agregar-abm">
+            </div>
         </div>
-    </section>
-    
-    <div id="contenido-dinamico" class="contenido-dinamico">
+
         <div class="tbl-listado fadeIn" id="tabla-animales">
             <table>
                 <tr>
@@ -104,11 +57,101 @@
                     <th>Descripción</th>
                     <th>Foto Animal</th>
                 </tr>
-                <!-- <tr>
+            </table>
+        </div>
+
+        <section class="modal">
+            <div class="modal__container">
+                <div class="span-cerrar">
+                    <span class="modal__close">&times;</span>
+                </div>
+                <h2>Nuevo Animal</h2>
+                <form action="" class="modal__form">
+                    <div class="modal__group">
+                        <label for="">Nombre del Animal:</label>
+                        <input type="text" id="nombre_animal">
+                    </div>
+                    <div class="modal__group">
+                        <label for="">Especie:</label>
+                        <input type="text" id="especie">
+                    </div>
+                    <div class="modal__group">
+                        <label for="">Edad:</label>
+                        <input type="text" id="edad">
+                    </div>
+                    <div class="modal__group">
+                        <label for="">Descripción:</label>
+                        <input type="text" id="descripcion">
+                    </div>
+                    <div class="modal__group">
+                        <label for="">Foto del Animal:</label>
+                        <input type="text" id="foto_animal">
+                    </div>
+                    <div class="div-btnagregar">
+                        <button class="btn__agregar">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <div class="tbl-listado fadeIn" id="tabla-adopciones">
+            <table>
+                <tr>
+                    <th>ID Adopción</th>
+                    <th>ID Usuario</th>
+                    <th>ID Animal</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Fecha Adopción</th>
+                </tr>
+                <tr>
                     <td>1</td>
                     <td>8 días</td>
                     <td>USD 150</td>
-                </tr> -->
+                    <td>USD 150</td>
+                    <td>USD 150</td>
+                    <td>USD 150</td>
+                </tr>
+            </table>
+        </div>
+        <div class="tbl-listado fadeIn" id="tabla-usuarios">
+            <table>
+                <tr>
+                    <th>ID Usuario</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Email</th>
+                    <th>Localidad</th>
+                    <th>Género</th>
+                    <th>Password</th>
+                    <th>Foto Usuario</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Fernando</td>
+                    <td>34567891</td>
+                    <td>Av. Corrientes 2000</td>
+                    <td>1123456789</td>
+                    <td>30</td>
+                    <td>Tarjeta de Débito</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Graciela</td>
+                    <td>2347283</td>
+                    <td>Av. La Plata 3300</td>
+                    <td>1126456789</td>
+                    <td>42</td>
+                    <td>Tarjeta de Débito</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>María</td>
+                    <td>34567891</td>
+                    <td>Florida 1800</td>
+                    <td>1165433789</td>
+                    <td>28</td>
+                    <td>Tarjeta de Crédito</td>
+                </tr>
             </table>
         </div>
         <div class="tbl-listado fadeIn" id="tabla-articulos">
@@ -117,6 +160,21 @@
                     <th>ID Artículo</th>
                     <th>Nombre Artículo</th>
                     <th>Detalles</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Av. Las Heras</td>
+                    <td>1234</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Av. Independecia</td>
+                    <td>1789</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Juan B. Justo</td>
+                    <td>5678</td>
                 </tr>
             </table>
         </div>
@@ -128,18 +186,17 @@
                     <th>ID Artículo</th>
                     <th>Fecha Donación</th>
                 </tr>
-            </table>
-        </div>
-        <div class="tbl-listado fadeIn" id="tabla-usuarios">
-            <table>
                 <tr>
-                    <th>ID Usuario</th>
-                    <th>Nombre Apellido</th>
-                    <th>Email</th>
-                    <th>Localidad</th>
-                    <th>Género</th>
-                    <th>Password</th>
-                    <th>Foto Usuario</th>
+                    <td>1</td>
+                    <td>Por trabajo</td>
+                    <td>1</td>
+                    <td>12/6/2024</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Por vacaciones</td>
+                    <td>2</td>
+                    <td>12/6/2024</td>
                 </tr>
             </table>
         </div>
@@ -150,9 +207,24 @@
                     <th>Asignación</th>
                     <th>Tarea</th>
                 </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Devolución con demora</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Cancelación</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>Devolución con demora</td>
+                </tr>
             </table>
         </div>
-    </div>
+    </main>
 
     <footer id="footer">
         <p>Derechos reservados © 2024</p>
@@ -160,9 +232,9 @@
         <a href="listas.html">Administración</a>
         <p>Soporte</p>
     </footer>
-    </footer>
-    <script src="js/script.js"></script>
-    <script src="js/listas.js"></script>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/listas.js"></script>
 </body>
 
 </html>
