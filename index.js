@@ -6,6 +6,7 @@ require("dotenv").config();
 // console.log("JWT_EXPIRATION:", process.env.JWT_EXPIRATION);
 
 const express = require("express");
+const path = require("path");
 const app = express();
 
 app.use(express.json());
@@ -35,23 +36,49 @@ app.use("/auth", authRouter);  // /registro
 const usuariosRouter = require('./routers/usuarios.router');
 app.use('/login', usuariosRouter);
 
+
+
+// Servir archivos estáticos desde la carpeta PAGES
+app.use(express.static(path.resolve(__dirname )));
+
+// Ruta principal del proyecto
 app.get("/", (req, res) => {
-    res.end("Hola Huellitas!");
+    res.sendFile(path.resolve(__dirname,'pages',  'index.html'));
 });
-// Esta es la ruta principal del proyecto "/"
 
-// // Autenticacion
-// import {methods as authentication} from "./controllers/auth.controller.js";
+// Definir otras rutas para tus archivos HTML
+app.get("/nosotros", (req, res) => {
+    res.sendFile(path.resolve(__dirname,'pages', 'nosotros.html'));
+});
 
-// // Autorizacion
-// import {methods as authorization} from "./middleware/authorization.js";
+app.get("/adopta", (req, res) => {
+    res.sendFile(path.resolve(__dirname,'pages', 'adopta.html'));
+});
 
-// // Rutas
-// app.get("/", authorization.soloPublico, (req,res) => res.sendFile(__dirname + "/login.html"));
-// app.get("/registro", authorization.soloPublico, (req,res) => res.sendFile(__dirname + "/register.html"));
-// app.get("/admin", authorization.soloAdmin, (req,res) => res.sendFile(__dirname + "/admin/admin.html"));
-// app.post("/api/login",authentication.login);
-// app.post("/api/register",authentication.register);
+app.get("/contacto", (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'contacto.html'));
+});
+
+app.get("/donar", (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'donar.html'));
+});
+
+app.get("/login", (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'login.html'));
+});
+app.get("/admin", (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'admin.html'));
+});
+
+// Ruta comodín para servir cualquier archivo HTML desde la carpeta PAGES
+app.get('/*', (req, res) => {
+    const filePath = path.resolve(__dirname, 'pages', req.params[0] + '.html');
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).send('Página no encontrada');
+        }
+    });
+});
 
 // const PORT = 3000;
 const PORT = process.env.PORT || 3001;
