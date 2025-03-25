@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btn-voluntarios').addEventListener('click', mostrarVoluntarios);
 
     // Para consultar antes de Cerrar Sesión
-    const btnCerrarSesion = document.querySelector('a[href="../login.html"]');
+    const btnCerrarSesion = document.querySelector('a[href="../"]');
     btnCerrarSesion.addEventListener('click', function (e) {
         e.preventDefault();
         Swal.fire({
