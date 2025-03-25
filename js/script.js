@@ -1,4 +1,4 @@
-let header = '<a href="index.html" class="logo"><img id="logo" src="/img/logo.png" alt="huellitas-de-amor"></a><input type="checkbox" id="check"><label for="check" class="mostrar-menu">&#8801</label><nav class="menu"><a href="index.html">Home</a><a href="nosotros.html">Nosotros</a><a href="adopta.html">Adopta</a><a href="contacto.html">Contacto</a><a href="donar.html">Donar</a><a href="login.html">Iniciar Sesión</a><label for="check" class="esconder-menu">&#215</label></nav>';
+let header = '<a href="/" class="logo"><img id="logo" src="/img/logo.png" alt="huellitas-de-amor"></a><input type="checkbox" id="check"><label for="check" class="mostrar-menu">&#8801</label><nav class="menu"><a href="/">Home</a><a href="/nosotros">Nosotros</a><a href="/adopta">Adopta</a><a href="/contacto">Contacto</a><a href="/donar">Donar</a><a href="/loginsesion">Iniciar Sesión</a><label for="check" class="esconder-menu">&#215</label></nav>';
 document.getElementById('header').innerHTML = header;
 
 //<a href="listado.html">Listado</a>

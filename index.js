@@ -63,16 +63,16 @@ app.get("/donar", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'donar.html'));
 });
 
-app.get("/login", (req, res) => {
+app.get("/loginsesion", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'login.html'));
 });
 app.get("/admin", (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'pages', 'admin.html'));
+    res.sendFile(path.resolve(__dirname, 'pages','admin', 'listas.html'));
 });
 
 // Ruta comodín para servir cualquier archivo HTML desde la carpeta PAGES
-app.get('/*', (req, res) => {
-    const filePath = path.resolve(__dirname, 'pages', req.params[0] + '.html');
+app.get('/:page', (req, res) => {
+    const filePath = path.resolve(__dirname, 'pages', req.params.page + '.html');
     res.sendFile(filePath, (err) => {
         if (err) {
             res.status(404).send('Página no encontrada');
