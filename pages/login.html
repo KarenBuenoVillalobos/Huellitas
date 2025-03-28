@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,14 @@
     <link rel="stylesheet" href="/css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
     <header id="header"></header>
-    
+
     <main class="main-login-registro">
         <div class="container">
             <div class="container-form">
@@ -25,7 +29,7 @@
                     </div>
                     <div class="container-input">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Contraseña">
                     </div>
                     <a href="#">¿Olvidaste tu contraseña?</a>
                     <button class="button">INICIAR SESIÓN</button>
@@ -34,18 +38,37 @@
             <div class="container-form">
                 <form class="sign-up">
                     <h2>Registrarse</h2>
-                    <span>Use su correo electrónico para registrarse</span>
+                    <!-- <span>Ingrese sus datos para registrarse</span> -->
                     <div class="container-input">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" placeholder="Nombre">
+                        <input type="text" id="nombre_apellido" placeholder="Nombre y Apellido">
                     </div>
                     <div class="container-input">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" placeholder="Email">
+                        <input type="text" id="email" placeholder="Email">
+                    </div>
+                    <select class="container-input">
+                        <option value="">CABA</option>
+                        <option value="">Zona Norte</option>
+                        <option value="">Zona Sur</option>
+                        <option value="">Zona Este</option>
+                        <option value="">Zona Oeste</option>
+                    </select>
+                    <div>
+                        <input type="radio" name="opcion" value="opcion1"> F
+                        <input type="radio" name="opcion" value="opcion2"> M
+                        <input type="radio" name="opcion" value="opcion3"> Otro
                     </div>
                     <div class="container-input">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Contraseña">
+                    </div>
+                    <div class="container-input">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder="Confirme contraseña">
+                    </div>
+                    <div>
+                        <input type="file" id="foto_usuario" name="foto_usuario">
                     </div>
                     <button class="button">REGISTRARSE</button>
                 </form>
@@ -60,7 +83,7 @@
                     <h3>¡Hola!</h3>
                     <p>Regístrese con sus datos personales</p>
                     <button class="button" id="btn-sign-in">Iniciar Sesión</button>
-                </div>            
+                </div>
             </div>
         </div>
     </main>
@@ -71,4 +94,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
