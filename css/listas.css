@@ -253,3 +253,15 @@ input::placeholder{
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 768px) { 
+  .btn-listados{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 20px;
+    margin-right: 0;
+  }
+}
+@media screen and (max-width: 576px){
+
+}
