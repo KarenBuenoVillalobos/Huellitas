@@ -12,7 +12,16 @@ const db = require("../db/db");
 
 // Para todos las donaciones
 const allDonacion = (req, res) => {
-    const sql = "SELECT * FROM donaciones";
+    const sql = `
+    SELECT 
+        donaciones.id_donacion,
+        usuarios.nombre_apellido AS nombre_usuario,
+        articulos.nombre_articulo AS nombre_articulo,
+        donaciones.fecha_donacion
+    FROM donaciones
+    INNER JOIN usuarios ON donaciones.id_usuario = usuarios.id_usuario
+    INNER JOIN articulos ON donaciones.id_articulo = articulos.id_articulo
+`;
     db.query(sql, (error, rows) => {
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -24,7 +33,17 @@ const allDonacion = (req, res) => {
 // Para una donación
 const showDonacion = (req, res) => {
     const {id_donacion} = req.params;
-    const sql = "SELECT * FROM donaciones WHERE id_donacion = ?";
+    const sql = `
+        SELECT 
+            donaciones.id_donacion,
+            usuarios.nombre_apellido AS nombre_usuario,
+            articulos.nombre_articulo AS nombre_articulo,
+            donaciones.fecha_donacion
+        FROM donaciones
+        INNER JOIN usuarios ON donaciones.id_usuario = usuarios.id_usuario
+        INNER JOIN articulos ON donaciones.id_articulo = articulos.id_articulo
+        WHERE donaciones.id_donacion = ?
+    `;
     db.query(sql,[id_donacion], (error, rows) => {
         console.log(rows);
         if(error){

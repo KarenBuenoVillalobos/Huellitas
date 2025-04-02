@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2025 a las 00:22:05
+-- Tiempo de generación: 02-04-2025 a las 21:18:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -45,7 +45,10 @@ INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, 
 (7, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
 (9, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
 (12, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(13, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07');
+(13, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
+(14, 1, 2, '123456789', 'Calle Falsa 123', '2025-04-02'),
+(15, 3, 2, '987654321', 'Avenida Siempre Viva 742', '2025-04-10'),
+(17, 5, 2, '987654321', 'Avenida Siempre Viva 742', '2025-04-10');
 
 -- --------------------------------------------------------
 
@@ -55,8 +58,8 @@ INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, 
 
 CREATE TABLE `animales` (
   `id_animal` int(11) NOT NULL,
+  `id_especie` int(11) NOT NULL,
   `nombre_animal` varchar(10) NOT NULL,
-  `especie` varchar(15) NOT NULL,
   `edad` int(11) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `foto_animal` varchar(100) DEFAULT NULL
@@ -66,13 +69,14 @@ CREATE TABLE `animales` (
 -- Volcado de datos para la tabla `animales`
 --
 
-INSERT INTO `animales` (`id_animal`, `nombre_animal`, `especie`, `edad`, `descripcion`, `foto_animal`) VALUES
-(1, 'Kiwi', 'Gato', 1, 'Muy tierna y tranquila, color negro y blanco.', ''),
-(2, 'Abi', 'Gato', 10, 'Muy tierna y tranquila, color negro y blanco.', '1731345882515.jpeg'),
-(4, 'Kayla', 'Gato', 12, 'Muy tierna y tranquila, color negro y blanco.', '1731346669311.jpeg'),
-(5, 'Amapola', 'Gato', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731346741080.jpeg'),
-(6, 'Kayla', 'Gato', 12, 'Muy gris y mala', '1731350987588.jpeg'),
-(7, 'Nucita', 'Gato', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731350928892.jpeg');
+INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `descripcion`, `foto_animal`) VALUES
+(1, 2, 'Kiwi', 1, 'Muy tierna y tranquila, color negro y blanco.', ''),
+(2, 1, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1731345882515.jpeg'),
+(4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1731346669311.jpeg'),
+(5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731346741080.jpeg'),
+(6, 2, 'Kayla', 12, 'Muy gris y mala', '1731350987588.jpeg'),
+(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731350928892.jpeg'),
+(8, 2, 'Barto', 3, 'Un gato muy amigable y dormilon', '1743617801190.jpg');
 
 -- --------------------------------------------------------
 
@@ -94,6 +98,28 @@ INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `detalles`) VALUES
 (1, 'Manta', '3m x 3m, color violeta'),
 (2, 'Pipeta', 'Para gatos adultos'),
 (3, 'Collar', 'Color verde');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignaciones`
+--
+
+CREATE TABLE `asignaciones` (
+  `id_asignacion` int(11) NOT NULL,
+  `nombre_asignacion` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `asignaciones`
+--
+
+INSERT INTO `asignaciones` (`id_asignacion`, `nombre_asignacion`) VALUES
+(1, 'Rescatista'),
+(2, 'Veterinario'),
+(3, 'Hogar Temporario'),
+(4, 'Cuidado de animales'),
+(5, 'Limpieza de refugio');
 
 -- --------------------------------------------------------
 
@@ -120,6 +146,28 @@ INSERT INTO `donaciones` (`id_donacion`, `id_usuario`, `id_articulo`, `fecha_don
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `especies`
+--
+
+CREATE TABLE `especies` (
+  `id_especie` int(11) NOT NULL,
+  `nombre_especie` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `especies`
+--
+
+INSERT INTO `especies` (`id_especie`, `nombre_especie`) VALUES
+(1, 'Perro'),
+(2, 'Gato'),
+(3, 'Conejo'),
+(4, 'Ave'),
+(5, 'Pez');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -140,8 +188,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `localidad`, `genero`, `password`, `foto_usuario`) VALUES
 (1, 'Prueba', 'prueba@gmail.com', 'CABA', 'F', '$2a$08$IdMfefp8', '1731199351887.jpg'),
 (2, 'Katty', 'katty@gmail.com', 'CABA', 'F', '$2a$08$qH8NCbgv', '1731199734959.jpg'),
-(3, 'Amy', 'amy@gmail.com', 'Zona Norte', 'F', 'Prueba123', '1731352177923.jpg'),
-(5, 'Usuario Prueba', 'usuario1@gmail.com', 'CABA', 'M', '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg');
+(3, 'Juan Pérez', 'amy@gmail.com', 'Zona Norte', 'F', 'Prueba123', '1731352177923.jpg'),
+(5, 'Leonel Girett', 'usuario1@gmail.com', 'CABA', 'M', '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg');
 
 -- --------------------------------------------------------
 
@@ -151,18 +199,18 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `localidad`, `
 
 CREATE TABLE `voluntarios` (
   `id_voluntario` int(11) NOT NULL,
-  `asignacion` varchar(20) NOT NULL,
-  `tarea` text NOT NULL
+  `tarea` text NOT NULL,
+  `id_asignacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `voluntarios`
 --
 
-INSERT INTO `voluntarios` (`id_voluntario`, `asignacion`, `tarea`) VALUES
-(1, 'Rescatista', 'Por zona sur, lleva jaulas y mantas.'),
-(2, 'Veterinario', 'Por zona sur, lleva botiquin de primeros auxilios.'),
-(3, 'Transito', 'Cuida a bebes encontrados hasta que puedan encontrar dueño.');
+INSERT INTO `voluntarios` (`id_voluntario`, `tarea`, `id_asignacion`) VALUES
+(1, 'Por zona sur, lleva jaulas y mantas.', 1),
+(2, 'Por zona sur, lleva botiquin de primeros auxilios.', 1),
+(3, 'Cuida a bebes encontrados hasta que puedan encontrar dueño.', 2);
 
 --
 -- Índices para tablas volcadas
@@ -180,7 +228,8 @@ ALTER TABLE `adopciones`
 -- Indices de la tabla `animales`
 --
 ALTER TABLE `animales`
-  ADD PRIMARY KEY (`id_animal`);
+  ADD PRIMARY KEY (`id_animal`),
+  ADD KEY `fk_animal_especie` (`id_especie`);
 
 --
 -- Indices de la tabla `articulos`
@@ -189,12 +238,24 @@ ALTER TABLE `articulos`
   ADD PRIMARY KEY (`id_articulo`);
 
 --
+-- Indices de la tabla `asignaciones`
+--
+ALTER TABLE `asignaciones`
+  ADD PRIMARY KEY (`id_asignacion`);
+
+--
 -- Indices de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
   ADD PRIMARY KEY (`id_donacion`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_articulo` (`id_articulo`);
+
+--
+-- Indices de la tabla `especies`
+--
+ALTER TABLE `especies`
+  ADD PRIMARY KEY (`id_especie`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -207,7 +268,8 @@ ALTER TABLE `usuarios`
 -- Indices de la tabla `voluntarios`
 --
 ALTER TABLE `voluntarios`
-  ADD PRIMARY KEY (`id_voluntario`);
+  ADD PRIMARY KEY (`id_voluntario`),
+  ADD KEY `fk_voluntarios_asignaciones` (`id_asignacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -217,13 +279,13 @@ ALTER TABLE `voluntarios`
 -- AUTO_INCREMENT de la tabla `adopciones`
 --
 ALTER TABLE `adopciones`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `animales`
 --
 ALTER TABLE `animales`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
@@ -232,10 +294,22 @@ ALTER TABLE `articulos`
   MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `asignaciones`
+--
+ALTER TABLE `asignaciones`
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
   MODIFY `id_donacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `especies`
+--
+ALTER TABLE `especies`
+  MODIFY `id_especie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -261,11 +335,23 @@ ALTER TABLE `adopciones`
   ADD CONSTRAINT `adopciones_ibfk_2` FOREIGN KEY (`id_animal`) REFERENCES `animales` (`id_animal`);
 
 --
+-- Filtros para la tabla `animales`
+--
+ALTER TABLE `animales`
+  ADD CONSTRAINT `fk_animal_especie` FOREIGN KEY (`id_especie`) REFERENCES `especies` (`id_especie`);
+
+--
 -- Filtros para la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
   ADD CONSTRAINT `donaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `donaciones_ibfk_2` FOREIGN KEY (`id_articulo`) REFERENCES `articulos` (`id_articulo`);
+
+--
+-- Filtros para la tabla `voluntarios`
+--
+ALTER TABLE `voluntarios`
+  ADD CONSTRAINT `fk_voluntarios_asignaciones` FOREIGN KEY (`id_asignacion`) REFERENCES `asignaciones` (`id_asignacion`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
