@@ -14,7 +14,17 @@ const db = require("../db/db");
 
 // Para todos los animales
 const allAnimal = (req, res) => {
-    const sql = "SELECT * FROM animales";
+    const sql = `
+        SELECT 
+            animales.id_animal,
+            animales.nombre_animal,
+            especies.nombre_especie AS especie,
+            animales.edad,
+            animales.descripcion,
+            animales.foto_animal
+        FROM animales
+        INNER JOIN especies ON animales.id_especie = especies.id_especie
+    `;
     db.query(sql, (error, rows) => {
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -26,7 +36,18 @@ const allAnimal = (req, res) => {
 // Para un animal
 const showAnimal = (req, res) => {
     const {id_animal} = req.params;
-    const sql = "SELECT * FROM animales WHERE id_animal = ?";
+    const sql = `
+    SELECT 
+        animales.id_animal,
+        animales.nombre_animal,
+        especies.nombre_especie AS especie,
+        animales.edad,
+        animales.descripcion,
+        animales.foto_animal
+    FROM animales
+    INNER JOIN especies ON animales.id_especie = especies.id_especie
+    WHERE animales.id_animal = ?
+`;
     db.query(sql,[id_animal], (error, rows) => {
         console.log(rows);
         if(error){
@@ -43,7 +64,18 @@ const showAnimal = (req, res) => {
 const showAnimalName = (req, res) => {
     const {nombre_animal} = req.params;
     console.log(nombre_animal)
-    const sql = "SELECT * FROM animales WHERE nombre_animal = ?";
+    const sql = `
+        SELECT 
+            animales.id_animal,
+            animales.nombre_animal,
+            especies.nombre_especie AS especie,
+            animales.edad,
+            animales.descripcion,
+            animales.foto_animal
+        FROM animales
+        INNER JOIN especies ON animales.id_especie = especies.id_especie
+        WHERE animales.nombre_animal = ?
+    `;
     db.query(sql,[nombre_animal], (error, rows) => {
         console.log(rows);
         if(error){
@@ -66,11 +98,14 @@ const insertAnimal = (req, res) => {
         imageName = req.file.filename;
     };
 
-    const {nombre_animal, especie, edad, descripcion} = req.body;
+    const { nombre_animal, id_especie, edad, descripcion } = req.body;
 
-    const sql = "INSERT INTO animales (nombre_animal, especie, edad, descripcion, foto_animal) VALUES (?,?,?,?,?)";
+    const sql = `
+        INSERT INTO animales (nombre_animal, id_especie, edad, descripcion, foto_animal) 
+        VALUES (?, ?, ?, ?, ?)
+    `;
 
-    db.query(sql,[nombre_animal, especie, edad, descripcion, imageName], (error, result) => {
+    db.query(sql, [nombre_animal, id_especie, edad, descripcion, imageName], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -90,10 +125,21 @@ const updateAnimal = (req, res) => {
         imageName = req.file.filename;
     };
 
-    const {id_animal} = req.params;
-    const {nombre_animal, especie, edad, descripcion} = req.body;
-    const sql ="UPDATE animales SET nombre_animal = ?, especie = ?, edad = ?, descripcion = ?, foto_animal = ? WHERE id_animal = ?";
-    db.query(sql,[nombre_animal, especie, edad, descripcion, imageName, id_animal], (error, result) => {
+    const { id_animal } = req.params;
+    const { nombre_animal, id_especie, edad, descripcion } = req.body;
+
+    const sql = `
+        UPDATE animales 
+        SET 
+            nombre_animal = ?, 
+            id_especie = ?, 
+            edad = ?, 
+            descripcion = ?, 
+            foto_animal = ? 
+        WHERE id_animal = ?
+    `;
+
+    db.query(sql, [nombre_animal, id_especie, edad, descripcion, imageName, id_animal], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});

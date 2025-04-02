@@ -26,7 +26,19 @@ const allAdopcion = (req, res) => {
 // Para una adopcion
 const showAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
-    const sql = "SELECT * FROM adopciones WHERE id_animal = ?";
+    const sql = `
+         SELECT 
+            adopciones.id_adopcion,
+            usuarios.nombre_apellido AS nombre_usuario,
+            animales.nombre_animal AS nombre_animal,
+            adopciones.telefono,
+            adopciones.direccion,
+            adopciones.fecha_adopcion
+        FROM adopciones
+        INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
+        INNER JOIN animales ON adopciones.id_animal = animales.id_animal
+        WHERE adopciones.id_adopcion = ?
+    `;
     db.query(sql,[id_adopcion], (error, rows) => {
         console.log(rows);
         if(error){
@@ -58,9 +70,20 @@ const insertAdopcion = (req, res) => {
 //// METODO PUT  ////
 const updateAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
-    const {id_usuario, id_animal, telefono, direccion, fecha_adopcion} = req.body;
-    const sql ="UPDATE adopciones SET id_usuario = ?, id_animal = ?, telefono = ?, direccion = ?, fecha_adopcion = ? WHERE id_adopcion = ?";
-    db.query(sql,[id_usuario, id_animal, telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
+    const {nombre_usuario, nombre_animal, telefono, direccion, fecha_adopcion} = req.body;
+    const sql = `
+    UPDATE adopciones
+    INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
+    INNER JOIN animales ON adopciones.id_animal = animales.id_animal
+    SET 
+        usuarios.nombre_apellido = ?,
+        animales.nombre_animal = ?,
+        adopciones.telefono = ?,
+        adopciones.direccion = ?,
+        adopciones.fecha_adopcion = ?
+    WHERE adopciones.id_adopcion = ?
+`;
+    db.query(sql,[nombre_usuario, nombre_animal, telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
