@@ -38,17 +38,19 @@ const upload = multer({
 
 const controller = require("../controllers/animales.controller");
 
+
 //// METODO GET  /////
+// Ruta para obtener las especies
+router.get('/especies', controller.getEspecies);
+
+//// METODO POST  ////
+router.post('/', upload.single('foto_animal'), controller.insertAnimal); //upload.single('imagen')
 
 // Para todos los productos
 router.get('/', controller.allAnimal);
 
-// Para un producto
 router.get('/:id_animal', controller.showAnimal);
 router.get('/nombre/:nombre_animal', controller.showAnimalName);
-
-//// METODO POST  ////
-router.post('/', upload.single('foto_animal'), controller.insertAnimal); //upload.single('imagen')
 
 //// METODO PUT  ////
 router.put('/:id_animal', upload.single('foto_animal'), controller.updateAnimal);

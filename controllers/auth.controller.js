@@ -16,16 +16,6 @@ const register = (req, res) => {
 
     const { nombre_apellido, email, localidad, genero, password } = req.body;
 
-    // const nombre_apellido = document.getElementById("nombre_apellido").value;
-    // const email = document.getElementById("email").value;
-    // const localidad = document.getElementById("localidad").value;
-    // const genero = document.querySelector('input[name="genero"]:checked')?.nextElementSibling.textContent;
-    // const password = document.getElementById("password").value;
-    // const confirmPassword = document.getElementById("confirmPassword").value;
-    // const foto_usuario = document.getElementById("foto_usuario").value;
-
-    // const foto_usuario = document.getElementById("foto_usuario").files[0];
-
     // Verificar si el usuario ya existe
     db.query('SELECT * FROM usuarios WHERE email = ?', [email], (error, results) => {
         if (error) {

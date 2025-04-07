@@ -1,17 +1,13 @@
 // Archivo de entrada (enterpoint)
 
 require("dotenv").config();
-// console.log("SECRET_KEY:", process.env.SECRET_KEY);
-// console.log("JWT_SECRET:", process.env.JWT_SECRET);
-// console.log("JWT_EXPIRATION:", process.env.JWT_EXPIRATION);
 
 const express = require("express");
 const path = require("path");
 const app = express();
 
 app.use(express.json());
-//en el cuerpo de la peticion viene un json, lo transformo en un obj JS y
-//de esta manera lo puedo utilizar
+
 
 const adopcionesRouter = require('./routers/adopciones.router');
 app.use('/adopciones', adopcionesRouter);
@@ -36,6 +32,8 @@ app.use("/auth", authRouter);  // /registro
 const usuariosRouter = require('./routers/usuarios.router');
 app.use('/login', usuariosRouter);
 
+//const especiesRouter = require('./routers/especies.router');
+//app.use('/especies', especiesRouter);
 
 
 // Servir archivos estáticos desde la carpeta PAGES
@@ -68,6 +66,15 @@ app.get("/loginsesion", (req, res) => {
 });
 app.get("/admin", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'pages','admin', 'listas.html'));
+});
+
+/*app.get("/especie",(req,res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'especies.html'));
+});
+*/
+
+app.get("/formulario-animales",(req,res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'animales.html'));
 });
 
 // Ruta comodín para servir cualquier archivo HTML desde la carpeta PAGES
