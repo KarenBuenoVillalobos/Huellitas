@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2025 a las 21:18:09
+-- Tiempo de generación: 07-04-2025 a las 02:27:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -76,7 +76,13 @@ INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `des
 (5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731346741080.jpeg'),
 (6, 2, 'Kayla', 12, 'Muy gris y mala', '1731350987588.jpeg'),
 (7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731350928892.jpeg'),
-(8, 2, 'Barto', 3, 'Un gato muy amigable y dormilon', '1743617801190.jpg');
+(8, 2, 'Barto', 3, 'Un gato muy amigable y dormilon', '1743617801190.jpg'),
+(9, 1, 'perrito', 23, 'asd', '1743979456115.jpeg'),
+(10, 3, 'perrito 2', 12, 'asd', '1743979605048.jpeg'),
+(11, 1, 'perrito 3', 1, 'Probando ahora', '1743982089342.jpeg'),
+(12, 3, 'perrito 3', 43, 'asdasda', '1743984454708.jpeg'),
+(13, 1, 'perrito 4', 1, 'qwe', '1743984484455.jpeg'),
+(14, 2, 'perrito 5', 50, 'animal nuevo', '1743985035691.jpeg');
 
 -- --------------------------------------------------------
 
@@ -163,7 +169,11 @@ INSERT INTO `especies` (`id_especie`, `nombre_especie`) VALUES
 (2, 'Gato'),
 (3, 'Conejo'),
 (4, 'Ave'),
-(5, 'Pez');
+(5, 'Pez'),
+(6, 'Pajaro'),
+(7, 'funciona'),
+(8, 'prueba'),
+(9, 'prueba');
 
 -- --------------------------------------------------------
 
@@ -177,7 +187,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(30) NOT NULL,
   `localidad` varchar(10) DEFAULT NULL,
   `genero` varchar(4) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `foto_usuario` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -189,7 +199,9 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `localidad`, `
 (1, 'Prueba', 'prueba@gmail.com', 'CABA', 'F', '$2a$08$IdMfefp8', '1731199351887.jpg'),
 (2, 'Katty', 'katty@gmail.com', 'CABA', 'F', '$2a$08$qH8NCbgv', '1731199734959.jpg'),
 (3, 'Juan Pérez', 'amy@gmail.com', 'Zona Norte', 'F', 'Prueba123', '1731352177923.jpg'),
-(5, 'Leonel Girett', 'usuario1@gmail.com', 'CABA', 'M', '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg');
+(5, 'Leonel Girett', 'usuario1@gmail.com', 'CABA', 'M', '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg'),
+(6, 'asd', 'adas@prueba.com', 'zona sur', 'm', '$2a$08$q7TcbGG/J139l', '1743970208243.jpg'),
+(7, 'Leonel1', 'nuevo@prueba.com', 'zona sur', 'M', '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg');
 
 -- --------------------------------------------------------
 
@@ -285,7 +297,7 @@ ALTER TABLE `adopciones`
 -- AUTO_INCREMENT de la tabla `animales`
 --
 ALTER TABLE `animales`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
@@ -309,13 +321,13 @@ ALTER TABLE `donaciones`
 -- AUTO_INCREMENT de la tabla `especies`
 --
 ALTER TABLE `especies`
-  MODIFY `id_especie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_especie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `voluntarios`
