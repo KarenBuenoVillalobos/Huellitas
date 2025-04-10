@@ -1,5 +1,5 @@
  // Llenar el combobox de especies
- const loadEspecies = async () => {
+const loadEspecies = async () => {
     try {
         const response = await fetch('/animales/especies'); // Endpoint para obtener las especies
         if (!response.ok) {
