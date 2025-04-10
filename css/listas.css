@@ -8,244 +8,81 @@
   font-family: "Varela Round", sans-serif;
 }
 
-#main-listas {
+#main-listas { /*,.container-animales,*/
   height: 80vh;
-}
-
-/* --------------------------------------------------- */
-.btn-listados {
-  display: flex;
-  justify-content: end;
-  /* border-bottom: 1px #d53e4b solid; */
-  padding: 5px 0;
-  background-color: #aec966;
-}
-
-.btn-listados input {
-  background-color: #76b43c;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1em;
-  border: none;
-  padding: 10px 20px;
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-.btn-listados input:hover {
-  background-color: #d6db8b;
-  color: #d5943e;
-  transition: all 0.5s;
-}
-
-.botones-listado {
-  display: flex;
-  margin-top: 20px;
-}
-.botones-listado input{
-  cursor: pointer;
-}
-.busqueda{
-  margin-left: 3px;
-}
-#buscar-id,
-.btn-abm input {
-  background-color: #d65c66;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-}
-#numero-id {
-  background-color: #fff;
-  border: 1px #d53e4b solid;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: auto;
-  outline: none;
-}
-.btn-abm {
-  margin-left: 30px;
-}
-#buscar-id:hover,
-.btn-abm input:hover{
-  background-color: #f8c8cc;
-  transition: all 0.5s;
-}
-
-.tbl-listado {
-  margin: 10px 10px;
-  text-align: center;
-  display: none;
-}
-
-th {
-  background-color: #f8c8cc;
-  padding: 15px 40px;
-}
-
-td {
-  border: 1px #ece7e6 solid;
-  border-radius: 3px;
-  padding: 10px;
-}
-button.btn-eliminar,
-button.btn-modificar{
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  border: none;
-  padding: 20px;
-  cursor: pointer;
-}
-button.btn-eliminar{
-  background-image: url('/img/iconeliminar.ico');
-}
-button.btn-modificar{
-  background-image: url('/img/iconmodificar.ico');
-  margin-right: 10px;
-}
-button.btn-eliminar:hover,
-button.btn-modificar:hover {
-  background-color: transparent;
-}
-
-/* para transicion de tablas */
-.fadeIn {
-  animation-name: fadeIn;
-  animation-duration: 0.1s;
-}
-
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-  }
-  to {
-      opacity: 1;
-  }
-}
-
-/* modal */
-.modal{
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #111111bd;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s;
-  z-index: 1;
-}
-.span-cerrar{
-  display: flex;
-  justify-content: end;
-  margin-bottom: 10px;
-}
-.modal__close{
-  font-weight: bold;
-  font-size: 1.5em;
-  background-color: #f8c8cc;
-  color: #d53e4b;
-  cursor: pointer;
-  padding: 0 8px;
-  justify-items: center;
-  border-radius: 5px;
-}
-.modal__close:hover {
-  background-color: #d53e4b;
-  color: #f8c8cc;
-  transition: 0.3s;
-}
-.modal--show{
-  opacity: 1;
-  pointer-events: unset;
-  transition: opacity .3s;
-}
-.modal__container{
-  border: 1px #d53e4b solid;
-  border-radius: 8px;
-  margin: auto;
-  width: 90%;
-  max-width: 600px;
-  max-height: 90%;
-  background-color: #fff;
-  padding: 3em 2.5em 2em;
-}
-.modal__container {
-  position: relative; /* Para que la "X" tenga una posición relativa al contenedor */
-}
-
-.modal__close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 9999; /* Asegura que esté por encima del contenido del modal */
-}
-
-.div-btnagregar {
-  text-align: center; /* Para centrar el botón "Agregar" */
-  margin-top: 20px; /* Espacio entre el formulario y el botón "Agregar" */
-}
-
-.modal h2{
-  background-color: #f8c8cc;
-  color: #d53e4b;
-  text-align: center;
-  padding: 10px 0;
-}
-.modal__form{
-  padding: 10px 25px;
-}
-.modal__group{
-  margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.modal__group label{
-  margin-right: 10px;
-}
-.modal__group input{
-  border: 1px #d53e4b solid;
-  border-radius: 5px;
-  color: #817576;
-  padding: 10px;
-  outline: none;
-}
-#numero-id:focus,
-.modal__group input:focus{
-  border: 1px #f8c8cc solid;
-  transition: .3s;
-}
-.div-btnagregar{
+  /* max-height: 100vh; */
   display: flex;
   justify-content: center;
-}
-.btn__agregar{
-  background-color: #f8c8cc;
-  color: #d53e4b;
-  font-weight: bold;
-  border: none;
-  margin-top: 30px;
-  padding: 10px 60px;
-  transition: background-color .3s;
-}
-.btn__agregar:hover{
-  background-color: #d53e4b;
-  color: #f8c8cc;
+  align-items: center;
 }
 
-input::placeholder{
-  color: #817576;
+/* -----------------Listas buttons-------------------- */
+.container-listas{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  height: 600px;
+  border-radius: 10px;
+  background-color: burlywood;
+}
+.container-listas a{
+  background-color: antiquewhite;
+  width: 400px;
+  text-align: center;
+  text-decoration: none;
+  padding: 20px 0;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  color: grey;
+}
+.container-listas a:hover{
+  background-color: #f0e68c;
+  transition: all 0.3s ease-in-out;
 }
 
+/*-------------Animales---------------- */
+.container-animales{
+  height: 90vh;
+  /* max-height: 120vh; */
+  display: flex;
+}
+.container-animales label,
+.container-animales input,
+.container-animales select,
+.container-animales textarea{
+  display: block;
+  width: 300px;
+  padding: 5px 0;
+  margin-bottom: 5px;
+}
+.container-animales button{
+  width: 100px;
+  padding: 5px;
+  margin-top: 10px;
+}
+.container-animales h1,
+.container-animales h2{
+  margin-bottom: 20px;
+}
+.animal-form,
+.animal-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background-color: #f0e68c;
+}
+.animal-list{
+  /* justify-content: start; */
+  background-color: antiquewhite;
+}
+/* .animal-list button{
+  width: 100px;
+  padding: 5px;
+} */
 /* --------------------------------------------------- */
 
 .footer {
@@ -255,12 +92,7 @@ input::placeholder{
 }
 
 @media (max-width: 768px) { 
-  .btn-listados{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px 20px;
-    margin-right: 0;
-  }
+
 }
 @media screen and (max-width: 576px){
 
