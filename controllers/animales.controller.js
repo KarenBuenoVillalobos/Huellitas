@@ -80,6 +80,7 @@ const showAnimal = (req, res) => {
     SELECT 
         animales.id_animal,
         animales.nombre_animal,
+        animales.id_especie, -- Agregar el id_especie aquí
         especies.nombre_especie AS especie,
         animales.edad,
         animales.descripcion,
