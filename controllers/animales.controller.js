@@ -102,8 +102,8 @@ const showAnimal = (req, res) => {
 };
 
 const showAnimalName = (req, res) => {
-    const {nombre_animal} = req.params;
-    console.log(nombre_animal)
+    const { nombre_animal } = req.params;
+    console.log(nombre_animal);
     const sql = `
         SELECT 
             animales.id_animal,
@@ -114,19 +114,18 @@ const showAnimalName = (req, res) => {
             animales.foto_animal
         FROM animales
         INNER JOIN especies ON animales.id_especie = especies.id_especie
-        WHERE animales.nombre_animal = ?
+        WHERE animales.nombre_animal LIKE ?
     `;
-    db.query(sql,[nombre_animal], (error, rows) => {
+    db.query(sql, [`%${nombre_animal}%`], (error, rows) => {
         console.log(rows);
-        if(error){
-            return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
         }
-        if(rows.length == 0){
-            return res.status(404).send({error : "ERROR: No existe el animal buscado."});
-        };
-        res.json(rows[0]); 
-        // me muestra el elemento en la posicion cero si existe.
-    }); 
+        if (rows.length === 0) {
+            return res.status(404).send({ error: "ERROR: No existe el animal buscado." });
+        }
+        res.json(rows); // Devuelve todos los resultados
+    });
 };
 
 

@@ -34,6 +34,7 @@
     </form>
     
     <h2>Lista de Animales</h2>
+    <input type="text" id="buscador" placeholder="Buscar por nombre..." style="margin-bottom: 10px;">
     <button id="verTablas">Ver Tablas</button>
     <table id="tablaAnimales" border="1" style="margin-top: 20px; display: none;">
         <thead>
@@ -50,6 +51,40 @@
             <!-- Aquí se llenarán los datos dinámicamente -->
         </tbody>
     </table>
+
+        <!-- Modal para editar un animal -->
+    <div id="modalEditar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);">
+        <div style="background-color: white; margin: 10% auto; padding: 20px; width: 50%; border-radius: 10px;">
+            <h2>Editar Animal</h2>
+            <form id="editarForm">
+                <input type="hidden" id="editar_id_animal" name="id_animal">
+                <label for="editar_nombre_animal">Nombre del Animal:</label>
+                <input type="text" id="editar_nombre_animal" name="nombre_animal" required>
+                <br><br>
+
+                <label for="editar_id_especie">Especie:</label>
+                <select id="editar_id_especie" name="id_especie" required>
+                    <option value="">Seleccione una especie</option>
+                </select>
+                <br><br>
+
+                <label for="editar_edad">Edad:</label>
+                <input type="number" id="editar_edad" name="edad" required>
+                <br><br>
+
+                <label for="editar_descripcion">Descripción:</label>
+                <textarea id="editar_descripcion" name="descripcion" required></textarea>
+                <br><br>
+
+                <label for="editar_foto_animal">Nueva Foto del Animal:</label>
+                <input type="file" id="editar_foto_animal" name="foto_animal">
+                <br><br>
+
+                <button type="submit">Guardar Cambios</button>
+                <button type="button" id="cerrarModal">Cancelar</button>
+            </form>
+        </div>
+    </div>
 
     <script src="/js/animal.js"></script>
 </body>
