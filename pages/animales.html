@@ -57,6 +57,9 @@
             <div style="background-color: white; margin: 10% auto; padding: 20px; width: 50%; border-radius: 10px;">
                 <h2>Editar Animal</h2>
                 <form id="editarForm">
+                    <!-- Imagen actual posicionada arriba a la derecha -->
+                    <img id="editar_imagen_preview" src="" alt="Imagen del animal"
+                    style="position: absolute; top: 20px; right: 20px; max-width: 150px; max-height: 150px; border: 1px solid #ccc; border-radius: 5px; display: none;">
                     <input type="hidden" id="editar_id_animal" name="id_animal">
                     <label for="editar_nombre_animal">Nombre del Animal:</label>
                     <input type="text" id="editar_nombre_animal" name="nombre_animal" required>
@@ -76,9 +79,9 @@
                     <textarea id="editar_descripcion" name="descripcion" required></textarea>
                     <br><br>
 
-                    <label for="editar_foto_animal">Nueva Foto del Animal:</label>
+                    <!-- Subir nueva imagen -->
+                    <label for="editar_foto_animal">Nueva imagen:</label>
                     <input type="file" id="editar_foto_animal" name="foto_animal">
-                    <br><br>
 
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" id="cerrarModal">Cancelar</button>

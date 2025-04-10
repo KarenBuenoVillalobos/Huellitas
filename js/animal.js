@@ -98,12 +98,17 @@ const editarAnimal = async (id_animal) => {
         // Llenar el formulario del modal con los datos del animal
         document.getElementById('editar_id_animal').value = animal.id_animal;
         document.getElementById('editar_nombre_animal').value = animal.nombre_animal;
-        document.getElementById('editar_id_especie').value = animal.id_especie;
         document.getElementById('editar_edad').value = animal.edad;
         document.getElementById('editar_descripcion').value = animal.descripcion;
 
-        // Mostrar el modal
-        document.getElementById('modalEditar').style.display = 'block';
+        // Mostrar la imagen actual del animal
+        const imgElement = document.getElementById('editar_imagen_preview');
+        if (animal.foto_animal) {
+            imgElement.src = `/uploads/${animal.foto_animal}`; // Ruta de la imagen
+            imgElement.style.display = 'block'; // Asegurarse de que la imagen sea visible
+        } else {
+            imgElement.style.display = 'none'; // Ocultar si no hay imagen
+        }
 
         // Cargar las especies en el combobox del modal
         const especiesResponse = await fetch('/animales/especies');
@@ -112,7 +117,7 @@ const editarAnimal = async (id_animal) => {
         }
         const especies = await especiesResponse.json();
         const selectEspecie = document.getElementById('editar_id_especie');
-        selectEspecie.innerHTML = '<option value="">Seleccione una especie</option>';
+        selectEspecie.innerHTML = ''; // Limpiar el contenido del select
         especies.forEach(especie => {
             const option = document.createElement('option');
             option.value = especie.id_especie;
@@ -122,6 +127,9 @@ const editarAnimal = async (id_animal) => {
             }
             selectEspecie.appendChild(option);
         });
+
+        // Mostrar el modal
+        document.getElementById('modalEditar').style.display = 'block';
     } catch (error) {
         console.error('Error al cargar los datos del animal:', error);
     }

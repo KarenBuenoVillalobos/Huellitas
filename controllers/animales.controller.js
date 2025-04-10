@@ -9,6 +9,7 @@
 // imagen
 
 const db = require("../db/db");
+const fs = require('fs');
 
 //// METODO GET  /////
 
@@ -135,37 +136,63 @@ const updateAnimal = (req, res) => {
     console.log(req.file);
     let imageName = "";
 
-    if(req.file){
-        imageName = req.file.filename;
-    };
+    if (req.file) {
+        imageName = req.file.filename; // Si se sube una nueva imagen, se usa el nuevo nombre
+    }
 
     const { id_animal } = req.params;
     const { nombre_animal, id_especie, edad, descripcion } = req.body;
 
-    const sql = `
-        UPDATE animales 
-        SET 
-            nombre_animal = ?, 
-            id_especie = ?, 
-            edad = ?, 
-            descripcion = ?, 
-            foto_animal = ? 
-        WHERE id_animal = ?
-    `;
-
-    db.query(sql, [nombre_animal, id_especie, edad, descripcion, imageName, id_animal], (error, result) => {
-        console.log(result);
-        if(error){
-            return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
+    // Obtener la imagen actual del animal
+    const getImageSql = `SELECT foto_animal FROM animales WHERE id_animal = ?`;
+    db.query(getImageSql, [id_animal], (error, rows) => {
+        if (error) {
+            return res.status(500).json({ error: "ERROR: No se pudo obtener la imagen actual." });
         }
-        if(result.affectedRows == 0){
-            return res.status(404).send({error : "ERROR: El animal a modificar no existe."});
-        };
-        
-        const animal = {...req.body, ...req.params}; // ... reconstruir el objeto del body
 
-        res.json(animal); // mostrar el elmento que existe
-    });     
+        const currentImage = rows[0]?.foto_animal;
+
+        // Si no se sube una nueva imagen, usar la imagen actual
+        if (!req.file) {
+            imageName = currentImage;
+        }
+
+        // Eliminar la imagen anterior si existe y se subió una nueva
+        if (currentImage && req.file) {
+            const imagePath = `uploads/${currentImage}`;
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error("Error al eliminar la imagen anterior:", err);
+                } else {
+                    console.log("Imagen anterior eliminada:", imagePath);
+                }
+            });
+        }
+
+        // Actualizar los datos del animal en la base de datos
+        const updateSql = `
+            UPDATE animales 
+            SET 
+                nombre_animal = ?, 
+                id_especie = ?, 
+                edad = ?, 
+                descripcion = ?, 
+                foto_animal = ? 
+            WHERE id_animal = ?
+        `;
+
+        db.query(updateSql, [nombre_animal, id_especie, edad, descripcion, imageName, id_animal], (error, result) => {
+            if (error) {
+                return res.status(500).json({ error: "ERROR: No se pudo actualizar el animal." });
+            }
+            if (result.affectedRows === 0) {
+                return res.status(404).send({ error: "ERROR: El animal a modificar no existe." });
+            }
+
+            const animal = { ...req.body, id_animal, foto_animal: imageName }; // Reconstruir el objeto del body
+            res.json(animal);
+        });
+    });
 };
 
 
