@@ -62,6 +62,7 @@ verTablasButton.addEventListener('click', async () => {
         const tbody = tabla.querySelector('tbody');
         tbody.innerHTML = ''; // Limpiar la tabla antes de llenarla
 
+        //corregir esto
         animales.forEach(animal => {
             const row = document.createElement('tr');
             row.innerHTML = `
