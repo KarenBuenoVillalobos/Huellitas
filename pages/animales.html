@@ -13,28 +13,35 @@
     <header id="header"></header>
 
     <main class="container-animales">
-        <form class="animal-form" id="animalForm" enctype="multipart/form-data" method="POST" action="/animales">
-            <h1>Registrar Animal</h1>
-            <label for="nombre_animal">Nombre del Animal:</label>
-            <input type="text" id="nombre_animal" name="nombre_animal" required>
-            <label for="id_especie">Especie:</label>
-            <select id="id_especie" name="id_especie" required>
-                <option value="">Seleccione una especie</option>
-            </select>
-            <label for="edad">Edad:</label>
-            <input type="number" id="edad" name="edad" required>
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" required></textarea>
-            <label for="foto_animal">Foto del Animal:</label>
-            <input type="file" id="foto_animal" name="foto_animal">
-            <button type="submit">Registrar Animal</button>
-        </form>
+        <div class="animal-form" >
+            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/animales">
+                <h1>AÑADIR MASCOTA</h1>
+                <label for="nombre_animal">Nombre del Animal:</label>
+                <input type="text" id="nombre_animal" name="nombre_animal" required>
+                <label for="id_especie">Especie:</label>
+                <select id="id_especie" name="id_especie" required>
+                    <option value="">Seleccione una especie</option>
+                </select>
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" required>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+                <label for="foto_animal">Foto del Animal:</label>
+                <div class="foto-container">
+                    <img src="/img/icon-upload.svg" alt="icon-upload">
+                    <label for="foto_animal">Subir foto
+                        <input type="file" id="foto_animal" name="foto_animal">
+                    </label>
+                </div>
+                <button type="submit">Registrar Animal</button>
+            </form>
+        </div>
 
         <div class="animal-list">
             <h2>Lista de Animales</h2>
-            <input type="text" id="buscador" placeholder="Buscar por nombre..." style="margin-bottom: 10px;">
+            <input type="text" id="buscador" placeholder="Buscar por nombre...">
             <button id="verTablas">Ver Tablas</button>
-            <table id="tablaAnimales" border="1" style="margin-top: 20px; display: none;">
+            <table id="tablaAnimales">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -52,9 +59,8 @@
         </div>
 
         <!-- Modal para editar un animal -->
-        <div id="modalEditar"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);">
-            <div style="background-color: white; margin: 10% auto; padding: 20px; width: 50%; border-radius: 10px;">
+        <div id="modalEditar" class="modal-container">
+            <div class="modal-editar">
                 <h2>Editar Animal</h2>
                 <form id="editarForm">
                     <!-- Imagen actual posicionada arriba a la derecha -->
@@ -63,14 +69,10 @@
                     <input type="hidden" id="editar_id_animal" name="id_animal">
                     <label for="editar_nombre_animal">Nombre del Animal:</label>
                     <input type="text" id="editar_nombre_animal" name="nombre_animal" required>
-                    <br><br>
-
                     <label for="editar_id_especie">Especie:</label>
                     <select id="editar_id_especie" name="id_especie" required>
                         <option value="">Seleccione una especie</option>
                     </select>
-                    <br><br>
-
                     <label for="editar_edad">Edad:</label>
                     <input type="number" id="editar_edad" name="edad" required>
                     <br><br>

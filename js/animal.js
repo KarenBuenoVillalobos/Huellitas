@@ -1,4 +1,9 @@
- // Llenar el combobox de especies
+document.getElementById('foto_animal').addEventListener('change', function () {
+    const fileName = this.files[0]?.name || "Subir archivo";
+    document.querySelector('.foto-container').textContent = fileName;
+});
+
+// Llenar el combobox de especies
  const loadEspecies = async () => {
     try {
         const response = await fetch('/animales/especies'); // Endpoint para obtener las especies
