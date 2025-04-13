@@ -308,6 +308,30 @@
   background-color: #e86a6a;
   transition: all 0.3s ease-in-out;
 }
+
+/* -----------------Paginacion-------------------- */
+.paginacion{
+  margin-top: 10px;
+}
+.paginacion span{
+  margin: 0 10px;
+}
+.paginacion button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #b3d9ff;
+  background-color: #c5e4f8;
+  border-radius: 5px;
+  /* color: #003366; */
+  transition: background-color 0.3s ease;
+}
+.paginacion button:hover {
+  background-color: #b3d9ff;
+}
+.paginacion button:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
 /* --------------------------------------------------- */
 
 .footer {

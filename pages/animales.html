@@ -61,6 +61,31 @@
                     <!-- Aquí se llenarán los datos dinámicamente -->
                 </tbody>
             </table>
+            <div class="tabla-container">
+                <table id="tablaAnimales">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Especie</th>
+                            <th>Edad</th>
+                            <th>Descripción</th>
+                            <th>Foto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se llenarán dinámicamente -->
+                    </tbody>
+                </table>
+
+                <div class="paginacion">
+                    <button id="prevPage" disabled>&laquo; Anterior</button>
+                    <span id="pageInfo">1</span>
+                    <button id="nextPage">Siguiente &raquo;</button>
+                </div>
+                
+            </div>
         </div>
 
         <!-- Modal para editar un animal -->
@@ -85,7 +110,7 @@
                     <label for="editar_foto_animal">Foto nueva:</label>
                     <div class="foto-nueva-container">
                         <img src="/img/icon-upload.svg" alt="icon-upload">
-                        <label for="editar_foto_animal">Subir foto
+                        <label for="editar_foto_animal">Subir nueva foto
                             <input type="file" id="editar_foto_animal" name="foto_animal">
                         </label>
                     </div>
