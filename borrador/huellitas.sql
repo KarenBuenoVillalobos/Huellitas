@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-04-2025 a las 02:27:34
+-- Tiempo de generación: 14-04-2025 a las 01:55:13
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -70,19 +70,12 @@ CREATE TABLE `animales` (
 --
 
 INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `descripcion`, `foto_animal`) VALUES
-(1, 2, 'Kiwi', 1, 'Muy tierna y tranquila, color negro y blanco.', ''),
-(2, 1, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1731345882515.jpeg'),
-(4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1731346669311.jpeg'),
-(5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731346741080.jpeg'),
-(6, 2, 'Kayla', 12, 'Muy gris y mala', '1731350987588.jpeg'),
-(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1731350928892.jpeg'),
-(8, 2, 'Barto', 3, 'Un gato muy amigable y dormilon', '1743617801190.jpg'),
-(9, 1, 'perrito', 23, 'asd', '1743979456115.jpeg'),
-(10, 3, 'perrito 2', 12, 'asd', '1743979605048.jpeg'),
-(11, 1, 'perrito 3', 1, 'Probando ahora', '1743982089342.jpeg'),
-(12, 3, 'perrito 3', 43, 'asdasda', '1743984454708.jpeg'),
-(13, 1, 'perrito 4', 1, 'qwe', '1743984484455.jpeg'),
-(14, 2, 'perrito 5', 50, 'animal nuevo', '1743985035691.jpeg');
+(2, 2, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1744587833000.jpg'),
+(4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1744559156414.jfif'),
+(5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
+(6, 2, 'Kayla', 12, 'Muy gris y mala', '1744585885879.jfif'),
+(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744586912719.jfif'),
+(40, 2, 'River plat', 14, 'seeee', '1744588287676.jpg');
 
 -- --------------------------------------------------------
 
@@ -297,7 +290,7 @@ ALTER TABLE `adopciones`
 -- AUTO_INCREMENT de la tabla `animales`
 --
 ALTER TABLE `animales`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
