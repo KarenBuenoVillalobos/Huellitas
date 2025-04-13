@@ -13,7 +13,7 @@
     <header id="header"></header>
 
     <main class="container-animales">
-        <div class="animal-form" >
+        <div class="animal-form">
             <form id="animalForm" enctype="multipart/form-data" method="POST" action="/animales">
                 <h1>AÑADIR MASCOTA</h1>
                 <label for="nombre_animal">Nombre del Animal:</label>
@@ -37,10 +37,14 @@
             </form>
         </div>
 
-        <div class="animal-list">
-            <h2>Lista de Animales</h2>
-            <input type="text" id="buscador" placeholder="Buscar por nombre...">
-            <button id="verTablas">Ver Tablas</button>
+        <div class="container-lista-animales">
+            <div class="animal-list">
+                <h2>Lista de Animales</h2>
+                <div class="buscador-container">
+                    <input type="text" id="buscador" placeholder="Buscar por nombre...">
+                    <button id="verTablas">Ver Tablas</button>
+                </div>
+            </div>
             <table id="tablaAnimales">
                 <thead>
                     <tr>
@@ -50,6 +54,7 @@
                         <th>Edad</th>
                         <th>Descripción</th>
                         <th>Foto</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,8 +69,7 @@
                 <h2>Editar Animal</h2>
                 <form id="editarForm">
                     <!-- Imagen actual posicionada arriba a la derecha -->
-                    <img id="editar_imagen_preview" src="" alt="Imagen del animal"
-                    style="position: absolute; top: 20px; right: 20px; max-width: 150px; max-height: 150px; border: 1px solid #ccc; border-radius: 5px; display: none;">
+                    <img id="editar_imagen_preview" src="" alt="Imagen del animal">
                     <input type="hidden" id="editar_id_animal" name="id_animal">
                     <label for="editar_nombre_animal">Nombre del Animal:</label>
                     <input type="text" id="editar_nombre_animal" name="nombre_animal" required>
@@ -75,24 +79,22 @@
                     </select>
                     <label for="editar_edad">Edad:</label>
                     <input type="number" id="editar_edad" name="edad" required>
-                    <br><br>
-
                     <label for="editar_descripcion">Descripción:</label>
                     <textarea id="editar_descripcion" name="descripcion" required></textarea>
-                    <br><br>
-
                     <!-- Subir nueva imagen -->
-                    <label for="editar_foto_animal">Nueva imagen:</label>
-                    <input type="file" id="editar_foto_animal" name="foto_animal">
-
+                    <label for="editar_foto_animal">Foto nueva:</label>
+                    <div class="foto-nueva-container">
+                        <img src="/img/icon-upload.svg" alt="icon-upload">
+                        <label for="editar_foto_animal">Subir foto
+                            <input type="file" id="editar_foto_animal" name="foto_animal">
+                        </label>
+                    </div>
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" id="cerrarModal">Cancelar</button>
                 </form>
             </div>
         </div>
     </main>
-
-
 
     <footer id="footer"></footer>
 

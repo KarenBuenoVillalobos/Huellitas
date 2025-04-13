@@ -78,8 +78,8 @@ verTablasButton.addEventListener('click', async () => {
                 <td>${animal.descripcion}</td>
                 <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="50"></td>
                 <td>
-                    <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
                     <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})">Editar</button>
+                    <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
                 </td>
             `;
             tbody.appendChild(row);
