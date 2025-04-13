@@ -9,6 +9,7 @@
 // imagen
 
 const db = require("../db/db");
+const path = require('path');
 const fs = require('fs');
 
 //// METODO GET  /////
@@ -198,18 +199,47 @@ const updateAnimal = (req, res) => {
 
 //// METODO DELETE ////
 const deleteAnimal = (req, res) => {
-    const {id_animal} = req.params;
-    const sql = "DELETE FROM animales WHERE id_animal = ?";
-    db.query(sql,[id_animal], (error, result) => {
-        console.log(result);
-        if(error){
-            return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
+    const { id_animal } = req.params;
+
+    // Obtener el nombre del archivo de la imagen del animal
+    const getImageSql = `SELECT foto_animal FROM animales WHERE id_animal = ?`;
+    db.query(getImageSql, [id_animal], (error, rows) => {
+        if (error) {
+            return res.status(500).json({ error: "ERROR: No se pudo obtener la imagen del animal." });
         }
-        if(result.affectedRows == 0){
-            return res.status(404).send({error : "ERROR: El animal a borrar no existe."});
-        };
-        res.json({mensaje : "Animal Borrado"});
-    }); 
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: "ERROR: El animal no existe." });
+        }
+
+        const imageName = rows[0].foto_animal;
+
+        // Eliminar el archivo de la carpeta uploads
+        if (imageName) {
+            const imagePath = path.join(__dirname, '../uploads', imageName);
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error("Error al eliminar la imagen:", err);
+                } else {
+                    console.log("Imagen eliminada:", imagePath);
+                }
+            });
+        }
+
+        // Eliminar el registro de la base de datos
+        const deleteSql = `DELETE FROM animales WHERE id_animal = ?`;
+        db.query(deleteSql, [id_animal], (error, result) => {
+            if (error) {
+                return res.status(500).json({ error: "ERROR: No se pudo eliminar el animal." });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ error: "ERROR: El animal no existe." });
+            }
+
+            res.json({ mensaje: "Animal eliminado con éxito." });
+        });
+    });
 };
 
 

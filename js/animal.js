@@ -247,10 +247,12 @@
 // });
 
 //CODIGO COMPLETO REFACTORIZADO (CON PAGINACION)
-document.getElementById('foto_animal').addEventListener('change', function () {
-    const fileName = this.files[0]?.name || "Subir archivo";
-    document.querySelector('.foto-container').textContent = fileName;
-});
+/*document.getElementById('foto_animal').addEventListener('change', function () {
+    const fileNameDisplay = document.getElementById('fileNameDisplay');
+    if (fileNameDisplay) {
+        fileNameDisplay.textContent = this.files[0]?.name || 'No se seleccionó ningún archivo';
+    }
+});*/
 
 // Llenar el combobox de especies
 const loadEspecies = async () => {
@@ -296,6 +298,16 @@ form.addEventListener('submit', async (event) => {
 
         alert('Animal registrado con éxito');
         form.reset();
+
+        // Limpia el contenido del span y el campo de archivo
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (fileNameDisplay) {
+            fileNameDisplay.textContent = ''; // Limpia el texto del span
+        }
+        const fileInput = document.getElementById('foto_animal');
+        if (fileInput) {
+            fileInput.value = ''; // Limpia el valor del input file
+        }
     } catch (error) {
         console.error('Error al registrar el animal:', error);
         alert('Error al registrar el animal. Intente más tarde.');

@@ -136,6 +136,41 @@
 .foto-nueva-container input[type="file"]{
   display: none;
 }
+/* Estilo moderno para el input de tipo file quedaria modificar a gusto de cada uno */
+input[type="file"] {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  background-color: #f9f9f9;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="file"]:hover {
+  background-color: #f1f1f1;
+  border-color: #888;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #a8d5ba;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #8cc6a3;
+}
+
 .container-animales button{
   border-radius: 10px;
   cursor: pointer;
