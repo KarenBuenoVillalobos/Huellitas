@@ -17,6 +17,10 @@
 }
 
 /* -----------------Listas buttons-------------------- */
+#atras{
+  position: absolute;
+  margin: 35px 0 0 45px;
+}
 .container-listas{
   display: flex;
   flex-direction: column;
@@ -25,17 +29,72 @@
   width: 800px;
   height: 600px;
   border-radius: 10px;
-  background-color: burlywood;
+  background-color: #fff8f5;
 }
 .container-listas a{
-  background-color: antiquewhite;
   width: 400px;
   text-align: center;
   text-decoration: none;
+  font-weight: 600;
   padding: 20px 0;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
-  color: grey;
+}
+#btn-animales{
+  background-color: #f9afaf;
+  border: 1px solid #ffdada;
+  color: #6b2b2b;
+}
+#btn-animales:hover{
+  background-color: #e58989;
+  transition: all 0.3s ease-in-out;
+}
+#btn-adopciones{
+  background-color: #b6e2d3;
+  border: 1px solid #ddf1ea;
+  color: #3b5f54;
+}
+#btn-adopciones:hover{
+  background-color: #94d3be;
+  transition: all 0.3s ease-in-out;
+}
+#btn-usuarios{
+  background-color: #d6c7f7;
+  border: 1px solid #e9e1fb;
+  color: #5f4b8b;
+}
+#btn-usuarios:hover{
+  background-color: #a78ee0;
+  background-color: #bfa5f0;
+  transition: all 0.3s ease-in-out;
+}
+#btn-articulos{
+  background-color: #bbdff6;
+  border: 1px solid #d9edfb;
+  color: #2f4f6b;
+}
+#btn-articulos:hover{
+  background-color: #8bb8d6;
+  background-color: #a0d0f3;
+  transition: all 0.3s ease-in-out;
+}
+#btn-donaciones{
+  background-color: #ffe0b2;
+  border: 1px solid #fff1d6;
+  color: #6b4b2b;
+}
+#btn-donaciones:hover{
+  background-color: #ffd38a;
+  transition: all 0.3s ease-in-out;
+}
+#btn-voluntarios{
+  background-color: #f7c9e3;
+  border: 1px solid #fce4f0;
+  color: #6a3d57;
+}
+#btn-voluntarios:hover{
+  background-color: #f3a9d3;
+  transition: all 0.3s ease-in-out;
 }
 .container-listas a:hover{
   background-color: #f0e68c;
@@ -81,38 +140,37 @@
   width: 300px;
   padding: 10px 0;
   border-radius: 5px;
-  color: #655047;
-}
-.container-animales input,
-.container-animales select,
-.container-animales textarea{
   background-color: #fffdfc;
-  border: 2px solid #f3cfcf;
+  color: #655047;
   padding-left: 10px;
+}
+.animal-form input,
+.animal-form select,
+.animal-form textarea{
+  border: 2px solid #f3cfcf;
 }
 .container-animales label{
   padding-left: 2px;
+  background-color: transparent;
 }
-.container-animales select {
+.animal-form select {
   border: 2px solid #f3cfcf;
-  /* padding: 10px; */
-  /* font-size: 14px; */
   /* appearance: none; */
 }
 .container-animales option{
   background-color: #fffdfc;
   color: #655047;
 }
-.container-animales option:hover{
+/* .container-animales option:hover{
   background-color: #fcd0be;
-}
-.container-animales input:focus,
-.container-animales select:focus,
-.container-animales textarea:focus{
+} */
+.animal-form input:focus,
+.animal-form select:focus,
+.animal-form textarea:focus{
   outline: none;
   border: 2px solid #ebc1c1;
 }
-.foto-container,
+/* .foto-container,
 .foto-nueva-container{
   border: 3px dashed #dcdcdc;
   border-radius: 15px;
@@ -135,15 +193,11 @@
 .foto-container input[type="file"],
 .foto-nueva-container input[type="file"]{
   display: none;
-}
+} */
 /* Estilo moderno para el input de tipo file quedaria modificar a gusto de cada uno */
-input[type="file"] {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  padding: 10px;
+.animal-form input[type="file"],
+.modal-editar input[type="file"]{
   font-size: 14px;
-  color: #555;
   background-color: #f9f9f9;
   border: 2px dashed #ccc;
   border-radius: 10px;
@@ -151,12 +205,14 @@ input[type="file"] {
   transition: all 0.3s ease-in-out;
 }
 
-input[type="file"]:hover {
-  background-color: #f1f1f1;
-  border-color: #888;
+.animal-form[type="file"]:hover,
+.modal-editar[type="file"]:hover{
+  background-color: #fafafa;
+  border-color: #b3b3b3;
 }
 
-input[type="file"]::-webkit-file-upload-button {
+.animal-form input[type="file"]::-webkit-file-upload-button,
+.modal-editar input[type="file"]::-webkit-file-upload-button {
   background-color: #a8d5ba;
   color: #fff;
   border: none;
@@ -166,8 +222,8 @@ input[type="file"]::-webkit-file-upload-button {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
-
-input[type="file"]::-webkit-file-upload-button:hover {
+.animal-form input[type="file"]::-webkit-file-upload-button:hover,
+.modal-editar input[type="file"]::-webkit-file-upload-button:hover {
   background-color: #8cc6a3;
 }
 
@@ -178,7 +234,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 }
 .animal-form button{
   color: #ffffff; 
-  margin: 10px 0 30px;
+  margin: 20px 0 30px;
   padding: 15px;
   font-size: large;
   border: 1px solid #d3ebdd;
@@ -198,7 +254,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 .animal-list{
   justify-content: center;
   align-items: center;
-  border: 2px solid #ebddcd;
+  border: 2px solid #a0d0f3;
   border-radius: 10px;
   width: 500px;
 }
@@ -213,6 +269,13 @@ input[type="file"]::-webkit-file-upload-button:hover {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+}
+.buscador-container input{
+  border: 2px solid #bbdff6;
+}
+.buscador-container input:focus{
+  outline: none;
+  border: 2px solid #a2cbe7;
 }
 .buscador-container button{
   padding: 10px 15px;
@@ -298,6 +361,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #fcf2e3;
 }
 .modal-editar{
   margin: 30px auto auto;
@@ -313,16 +377,35 @@ input[type="file"]::-webkit-file-upload-button:hover {
   padding: 20px 0;
   text-align: center;
 }
+.modal-editar input,
+.modal-editar select,
+.modal-editar textarea{
+  border: 2px solid #f5e3b4;
+  color: #655047;
+}
+.modal-editar option{
+  background-color: #fffdfc;
+  color: #655047;
+}
+.modal-editar input:focus,
+.modal-editar select:focus,
+.modal-editar textarea:focus{
+  outline: none;
+  border: 2px solid #f8d388;
+}
+.modal-editar input[type="file"]:focus{
+  border: 2px dashed #ccc;
+}
 .modal-editar img {
   max-width: 100%; /* La imagen no será más ancha que el contenedor */
   max-height: 180px; /* Limita la altura máxima */
   object-fit: contain; /* Ajusta la imagen para que no se deforme */
   border-radius: 5px;
-  margin: 10px 0;
+  margin: 20px 0 10px;
 }
 #editarForm button[type="submit"]{
   margin: 10px 0;
-  padding: 10px 15px;
+  padding: 15px;
   font-size: medium;
   color: #ffffff;
   border: 1px solid #d3ebdd;
@@ -337,6 +420,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
   background-color: #eea7a7;
   border: 1px solid #f4b3b3;
   color: #ffffff;
+  font-size: 15px;
   transition: all 0.3s ease-in-out;
 }
 #cerrarModal:hover{
@@ -346,7 +430,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 /* -----------------Paginacion-------------------- */
 .paginacion{
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .paginacion span{
   margin: 0 10px;
