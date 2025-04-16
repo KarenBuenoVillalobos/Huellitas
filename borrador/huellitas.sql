@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-04-2025 a las 01:55:13
+-- Tiempo de generación: 17-04-2025 a las 01:21:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -59,7 +59,7 @@ INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, 
 CREATE TABLE `animales` (
   `id_animal` int(11) NOT NULL,
   `id_especie` int(11) NOT NULL,
-  `nombre_animal` varchar(10) NOT NULL,
+  `nombre_animal` varchar(15) NOT NULL,
   `edad` int(11) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `foto_animal` varchar(100) DEFAULT NULL
@@ -75,7 +75,10 @@ INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `des
 (5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
 (6, 2, 'Kayla', 12, 'Muy gris y mala', '1744585885879.jfif'),
 (7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744586912719.jfif'),
-(40, 2, 'River plat', 14, 'seeee', '1744588287676.jpg');
+(40, 2, 'River plat', 14, 'seeee', '1744588287676.jpg'),
+(41, 2, 'gatito de ', 10, 'asd', '1744589428545.jpg'),
+(42, 2, 'gatito de prueb', 2, 'asd', '1744589715989.webp'),
+(43, 2, 'Nucita', 3, 'afgsdf', '1744845603819.jpg');
 
 -- --------------------------------------------------------
 
@@ -101,28 +104,6 @@ INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `detalles`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `asignaciones`
---
-
-CREATE TABLE `asignaciones` (
-  `id_asignacion` int(11) NOT NULL,
-  `nombre_asignacion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `asignaciones`
---
-
-INSERT INTO `asignaciones` (`id_asignacion`, `nombre_asignacion`) VALUES
-(1, 'Rescatista'),
-(2, 'Veterinario'),
-(3, 'Hogar Temporario'),
-(4, 'Cuidado de animales'),
-(5, 'Limpieza de refugio');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `donaciones`
 --
 
@@ -141,32 +122,6 @@ INSERT INTO `donaciones` (`id_donacion`, `id_usuario`, `id_articulo`, `fecha_don
 (3, 2, 3, '2020-03-07'),
 (6, 1, 3, '2024-03-07'),
 (7, 2, 2, '2020-03-07');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `especies`
---
-
-CREATE TABLE `especies` (
-  `id_especie` int(11) NOT NULL,
-  `nombre_especie` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `especies`
---
-
-INSERT INTO `especies` (`id_especie`, `nombre_especie`) VALUES
-(1, 'Perro'),
-(2, 'Gato'),
-(3, 'Conejo'),
-(4, 'Ave'),
-(5, 'Pez'),
-(6, 'Pajaro'),
-(7, 'funciona'),
-(8, 'prueba'),
-(9, 'prueba');
 
 -- --------------------------------------------------------
 
@@ -243,24 +198,12 @@ ALTER TABLE `articulos`
   ADD PRIMARY KEY (`id_articulo`);
 
 --
--- Indices de la tabla `asignaciones`
---
-ALTER TABLE `asignaciones`
-  ADD PRIMARY KEY (`id_asignacion`);
-
---
 -- Indices de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
   ADD PRIMARY KEY (`id_donacion`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_articulo` (`id_articulo`);
-
---
--- Indices de la tabla `especies`
---
-ALTER TABLE `especies`
-  ADD PRIMARY KEY (`id_especie`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -290,7 +233,7 @@ ALTER TABLE `adopciones`
 -- AUTO_INCREMENT de la tabla `animales`
 --
 ALTER TABLE `animales`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
@@ -299,22 +242,10 @@ ALTER TABLE `articulos`
   MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `asignaciones`
---
-ALTER TABLE `asignaciones`
-  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- AUTO_INCREMENT de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
   MODIFY `id_donacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `especies`
---
-ALTER TABLE `especies`
-  MODIFY `id_especie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
