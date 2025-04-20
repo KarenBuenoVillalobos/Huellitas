@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2025 a las 01:21:11
+-- Tiempo de generación: 20-04-2025 a las 23:45:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -74,11 +74,7 @@ INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `des
 (4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1744559156414.jfif'),
 (5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
 (6, 2, 'Kayla', 12, 'Muy gris y mala', '1744585885879.jfif'),
-(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744586912719.jfif'),
-(40, 2, 'River plat', 14, 'seeee', '1744588287676.jpg'),
-(41, 2, 'gatito de ', 10, 'asd', '1744589428545.jpg'),
-(42, 2, 'gatito de prueb', 2, 'asd', '1744589715989.webp'),
-(43, 2, 'Nucita', 3, 'afgsdf', '1744845603819.jpg');
+(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744586912719.jfif');
 
 -- --------------------------------------------------------
 
