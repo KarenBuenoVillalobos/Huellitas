@@ -122,6 +122,52 @@ INSERT INTO `donaciones` (`id_donacion`, `id_usuario`, `id_articulo`, `fecha_don
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `especies`
+--
+
+CREATE TABLE `especies` (
+  `id_especie` int(11) NOT NULL,
+  `nombre_especie` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `especies`
+--
+
+INSERT INTO `especies` (`id_especie`, `nombre_especie`) VALUES
+(1, 'Perro'),
+(2, 'Gato'),
+(3, 'Conejo'),
+(4, 'Ave'),
+(5, 'Pez'),
+(6, 'Pajaro'),
+(7, 'funciona'),
+(8, 'prueba');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `especies`
+--
+ALTER TABLE `especies`
+  ADD PRIMARY KEY (`id_especie`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `especies`
+--
+ALTER TABLE `especies`
+  MODIFY `id_especie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
