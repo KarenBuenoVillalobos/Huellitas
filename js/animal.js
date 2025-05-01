@@ -1,258 +1,3 @@
-// document.getElementById('foto_animal').addEventListener('change', function () {
-//     const fileName = this.files[0]?.name || "Subir archivo";
-//     document.querySelector('.foto-container').textContent = fileName;
-// });
-
-// // Llenar el combobox de especies
-//  const loadEspecies = async () => {
-//     try {
-//         const response = await fetch('/animales/especies'); // Endpoint para obtener las especies
-//         if (!response.ok) {
-//             throw new Error('Error al obtener las especies');
-//         }
-//         const especies = await response.json();
-
-//         const selectEspecie = document.getElementById('id_especie');
-//         especies.forEach(especie => {
-//             const option = document.createElement('option');
-//             option.value = especie.id_especie;
-//             option.textContent = especie.nombre_especie;
-//             selectEspecie.appendChild(option);
-//         });
-//     } catch (error) {
-//         console.error('Error al cargar las especies:', error);
-//     }
-// };
-
-// document.addEventListener('DOMContentLoaded', loadEspecies);
-
-// // Manejar el envío del formulario
-// const form = document.getElementById('animalForm');
-// form.addEventListener('submit', async (event) => {
-//     event.preventDefault();
-
-//     const formData = new FormData(form);
-
-//     try {
-//         const response = await fetch('/animales', {
-//             method: 'POST',
-//             body: formData
-//         });
-
-//         if (!response.ok) {
-//             const errorData = await response.json();
-//             alert(`Error: ${errorData.error}`);
-//             return;
-//         }
-
-//         alert('Animal registrado con éxito');
-//         form.reset();
-//     } catch (error) {
-//         console.error('Error al registrar el animal:', error);
-//         alert('Error al registrar el animal. Intente más tarde.');
-//     }
-// });
-
-// // Manejar el botón "Ver Tablas"
-// const verTablasButton = document.getElementById('verTablas');
-// verTablasButton.addEventListener('click', async () => {
-//     try {
-//         const response = await fetch('/animales'); // Endpoint para obtener los animales
-//         if (!response.ok) {
-//             throw new Error('Error al obtener los animales');
-//         }
-//         const animales = await response.json();
-
-//         const tabla = document.getElementById('tablaAnimales');
-//         const tbody = tabla.querySelector('tbody');
-//         tbody.innerHTML = ''; // Limpiar la tabla antes de llenarla
-
-//         //corregir esto
-//         animales.forEach(animal => {
-//             const row = document.createElement('tr');
-//             row.innerHTML = `
-//                 <td>${animal.id_animal}</td>
-//                 <td>${animal.nombre_animal}</td>
-//                 <td>${animal.nombre_especie}</td>
-//                 <td>${animal.edad}</td>
-//                 <td>${animal.descripcion}</td>
-//                 <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="50"></td>
-//                 <td>
-//                     <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})">Editar</button>
-//                     <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
-//                 </td>
-//             `;
-//             tbody.appendChild(row);
-//         });
-
-//         tabla.style.display = 'table'; // Mostrar la tabla
-//     } catch (error) {
-//         console.error('Error al cargar los animales:', error);
-//     }
-// });
-
-// // Función para abrir el modal y cargar los datos del animal
-// const editarAnimal = async (id_animal) => {
-//     try {
-//         // Obtener los datos del animal desde el servidor
-//         const response = await fetch(`/animales/${id_animal}`);
-//         if (!response.ok) {
-//             throw new Error('Error al obtener los datos del animal');
-//         }
-//         const animal = await response.json();
-
-//         // Llenar el formulario del modal con los datos del animal
-//         document.getElementById('editar_id_animal').value = animal.id_animal;
-//         document.getElementById('editar_nombre_animal').value = animal.nombre_animal;
-//         document.getElementById('editar_edad').value = animal.edad;
-//         document.getElementById('editar_descripcion').value = animal.descripcion;
-
-//         // Mostrar la imagen actual del animal
-//         const imgElement = document.getElementById('editar_imagen_preview');
-//         if (animal.foto_animal) {
-//             imgElement.src = `/uploads/${animal.foto_animal}`; // Ruta de la imagen
-//             imgElement.style.display = 'block'; // Asegurarse de que la imagen sea visible
-//         } else {
-//             imgElement.style.display = 'none'; // Ocultar si no hay imagen
-//         }
-
-//         // Cargar las especies en el combobox del modal
-//         const especiesResponse = await fetch('/animales/especies');
-//         if (!especiesResponse.ok) {
-//             throw new Error('Error al obtener las especies');
-//         }
-//         const especies = await especiesResponse.json();
-//         const selectEspecie = document.getElementById('editar_id_especie');
-//         selectEspecie.innerHTML = ''; // Limpiar el contenido del select
-//         especies.forEach(especie => {
-//             const option = document.createElement('option');
-//             option.value = especie.id_especie;
-//             option.textContent = especie.nombre_especie;
-//             if (especie.id_especie === animal.id_especie) {
-//                 option.selected = true;
-//             }
-//             selectEspecie.appendChild(option);
-//         });
-
-//         // Mostrar el modal
-//         document.getElementById('modalEditar').style.display = 'block';
-//     } catch (error) {
-//         console.error('Error al cargar los datos del animal:', error);
-//     }
-// };
-
-// // Manejar el envío del formulario de edición
-// const editarForm = document.getElementById('editarForm');
-// editarForm.addEventListener('submit', async (event) => {
-//     event.preventDefault();
-
-//     const id_animal = document.getElementById('editar_id_animal').value;
-//     const formData = new FormData(editarForm);
-
-//     try {
-//         const response = await fetch(`/animales/${id_animal}`, {
-//             method: 'PUT',
-//             body: formData, // Enviar los datos como FormData para incluir la imagen
-//         });
-
-//         if (!response.ok) {
-//             throw new Error('Error al actualizar el animal');
-//         }
-
-//         alert('Animal actualizado con éxito');
-//         document.getElementById('modalEditar').style.display = 'none'; // Cerrar el modal
-//         verTablasButton.click(); // Recargar la tabla
-//     } catch (error) {
-//         console.error('Error al actualizar el animal:', error);
-//     }
-// });
-
-// // Manejar el cierre del modal
-// document.getElementById('cerrarModal').addEventListener('click', () => {
-//     document.getElementById('modalEditar').style.display = 'none';
-// });
-
-// // Función para eliminar un animal
-// const eliminarAnimal = async (id_animal) => {
-//     if (confirm('¿Estás seguro de que deseas eliminar este animal?')) {
-//         try {
-//             const response = await fetch(`/animales/${id_animal}`, {
-//                 method: 'DELETE',
-//             });
-
-//             if (!response.ok) {
-//                 throw new Error('Error al eliminar el animal');
-//             }
-
-//             alert('Animal eliminado con éxito');
-//             verTablasButton.click(); // Recargar la tabla
-//         } catch (error) {
-//             console.error('Error al eliminar el animal:', error);
-//             alert('Error al eliminar el animal. Intente más tarde.');
-//         }
-//     }
-// };
-
-// // Función para buscar animales por nombre, falta arreglar que muestre por especie jaja
-// const buscarAnimal = async (nombre) => {
-//     try {
-//         const response = await fetch(`/animales/nombre/${nombre}`);
-//         if (!response.ok) {
-//             throw new Error('Error al buscar el animal');
-//         }
-//         const animales = await response.json();
-
-//         // Actualizar la tabla con los resultados
-//         const tabla = document.getElementById('tablaAnimales');
-//         const tbody = tabla.querySelector('tbody');
-//         tbody.innerHTML = ''; // Limpiar la tabla antes de llenarla
-
-//         //Podria optimizarse con un map
-//         // Llenar la tabla con los resultados con tiempo lo mejoro
-//         animales.forEach(animal => {
-//             const row = document.createElement('tr');
-//             row.innerHTML = `
-//                 <td>${animal.id_animal}</td>
-//                 <td>${animal.nombre_animal}</td>
-//                 <td>${animal.especie}</td>
-//                 <td>${animal.edad}</td>
-//                 <td>${animal.descripcion}</td>
-//                 <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="50"></td>
-//                 <td>
-//                     <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
-//                     <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})">Editar</button>
-//                 </td>
-//             `;
-//             tbody.appendChild(row);
-//         });
-
-//         tabla.style.display = 'table'; // Mostrar la tabla
-//     } catch (error) {
-//         console.error('Error al buscar el animal:', error);
-//         const tabla = document.getElementById('tablaAnimales');
-//         const tbody = tabla.querySelector('tbody');
-//         tbody.innerHTML = '<tr><td colspan="7">No se encontraron resultados</td></tr>';
-//     }
-// };
-
-// // Manejar el evento de búsqueda
-// const buscador = document.getElementById('buscador');
-// buscador.addEventListener('input', (event) => {
-//     const nombre = event.target.value.trim();
-//     if (nombre === '') {
-//         verTablasButton.click(); // Mostrar todos los animales si el buscador está vacío
-//     } else {
-//         buscarAnimal(nombre); // Buscar coincidencias
-//     }
-// });
-
-//CODIGO COMPLETO REFACTORIZADO (CON PAGINACION)
-/*document.getElementById('foto_animal').addEventListener('change', function () {
-    const fileNameDisplay = document.getElementById('fileNameDisplay');
-    if (fileNameDisplay) {
-        fileNameDisplay.textContent = this.files[0]?.name || 'No se seleccionó ningún archivo';
-    }
-});*/
 
 // Llenar el combobox de especies
 const loadEspecies = async () => {
@@ -276,7 +21,7 @@ const loadEspecies = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', loadEspecies);
-
+/*
 // Manejar el envío del formulario
 const form = document.getElementById('animalForm');
 form.addEventListener('submit', async (event) => {
@@ -311,6 +56,60 @@ form.addEventListener('submit', async (event) => {
     } catch (error) {
         console.error('Error al registrar el animal:', error);
         alert('Error al registrar el animal. Intente más tarde.');
+    }
+});*/
+// Manejar el envío del formulario
+const form = document.getElementById('animalForm');
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Llamar a la función de validación
+    if (!validarFormulario()) {
+        return; // Detener el envío si hay errores
+    }
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch('/animales', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: errorData.error || "Error al registrar el animal.",
+            });
+            return;
+        }
+
+        Swal.fire({
+            icon: "success",
+            title: "Éxito",
+            text: "Animal registrado con éxito.",
+        });
+
+        form.reset();
+
+        // Limpia el contenido del span y el campo de archivo
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (fileNameDisplay) {
+            fileNameDisplay.textContent = ''; // Limpia el texto del span
+        }
+        const fileInput = document.getElementById('foto_animal');
+        if (fileInput) {
+            fileInput.value = ''; // Limpia el valor del input file
+        }
+    } catch (error) {
+        console.error('Error al registrar el animal:', error);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Error al registrar el animal. Intente más tarde.",
+        });
     }
 });
 
@@ -351,7 +150,7 @@ verTablasButton.addEventListener('click', async () => {
         console.error('Error al cargar los animales:', error);
     }
 });
-
+/*
 // Manejar el envío del formulario de edición
 const editarForm = document.getElementById('editarForm');
 editarForm.addEventListener('submit', async (event) => {
@@ -375,6 +174,47 @@ editarForm.addEventListener('submit', async (event) => {
         verTablasButton.click(); // Recargar la tabla
     } catch (error) {
         console.error('Error al actualizar el animal:', error);
+    }
+});*/
+
+// Manejar el envío del formulario de edición
+const editarForm = document.getElementById('editarForm');
+editarForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Llamar a la función de validación
+    if (!validarFormularioEdicion()) {
+        return; // Detener el envío si hay errores
+    }
+
+    const id_animal = document.getElementById('editar_id_animal').value;
+    const formData = new FormData(editarForm);
+
+    try {
+        const response = await fetch(`/animales/${id_animal}`, {
+            method: 'PUT',
+            body: formData, // Enviar los datos como FormData para incluir la imagen
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al actualizar el animal');
+        }
+
+        Swal.fire({
+            icon: "success",
+            title: "Éxito",
+            text: "Animal actualizado con éxito.",
+        });
+
+        document.getElementById('modalEditar').style.display = 'none'; // Cerrar el modal
+        verTablasButton.click(); // Recargar la tabla
+    } catch (error) {
+        console.error('Error al actualizar el animal:', error);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Error al actualizar el animal. Intente más tarde.",
+        });
     }
 });
 
@@ -567,7 +407,20 @@ const editarAnimal = async (id_animal) => {
 
 // Función para eliminar un animal
 const eliminarAnimal = async (id_animal) => {
-    if (confirm('¿Estás seguro de que deseas eliminar este animal?')) {
+    const confirmacion = await Swal.fire({
+        icon: "warning",
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer.",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+        customClass: {
+            confirmButton: "btn btn-danger",
+            cancelButton: "btn btn-secondary",
+        },
+    });
+
+    if (confirmacion.isConfirmed) {
         try {
             const response = await fetch(`/animales/${id_animal}`, {
                 method: 'DELETE',
@@ -577,12 +430,87 @@ const eliminarAnimal = async (id_animal) => {
                 throw new Error('Error al eliminar el animal');
             }
 
-            alert('Animal eliminado con éxito');
-            verTablasButton.click(); // Recargar la tabla
+            Swal.fire({
+                icon: "success",
+                title: "Eliminado",
+                text: "Animal eliminado con éxito.",
+            });
 
+            verTablasButton.click(); // Recargar la tabla
         } catch (error) {
             console.error('Error al eliminar el animal:', error);
-            alert('Error al eliminar el animal. Intente más tarde.');
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Error al eliminar el animal. Intente más tarde.",
+            });
         }
     }
+};
+
+// Función para validar el formulario
+const validarFormulario = () => {
+    const nombre = document.getElementById('nombre_animal').value.trim();
+    const especie = document.getElementById('id_especie').value;
+    const edad = document.getElementById('edad').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+
+    // Validaciones con SweetAlert
+    const nombreRegex = /^[a-zA-Z\s]+$/; // Solo permite letras y espacios
+    // Validación del nombre
+    if (!nombre) {
+        Swal.fire({
+            icon: "error",
+            title: "Campo requerido",
+            text: "El nombre no puede estar en blanco. Por favor, ingresa un nombre.",
+        });
+        return false;
+    }
+
+    if (!nombreRegex.test(nombre)) {
+        Swal.fire({
+            icon: "error",
+            title: "Nombre inválido",
+            text: "El nombre solo puede contener letras y espacios. No se permiten números ni caracteres especiales.",
+        });
+        return false;
+    }
+
+    if (nombre.length < 3 || nombre.length > 15) {
+        Swal.fire({
+            icon: "error",
+            title: "Longitud inválida",
+            text: "El nombre debe tener entre 3 y 15 caracteres.",
+        });
+        return false;
+    }
+
+    if (!especie || especie === "") {
+        Swal.fire({
+            icon: "error",
+            title: "Campo requerido",
+            text: "Por favor, selecciona una especie.",
+        });
+        return false;
+    }
+    const regex = /^[0-9]+$/;
+    if (!edad || !regex.test(edad) || edad < 1 || edad >= 100) {
+        Swal.fire({
+            icon: "error",
+            title: "Edad inválida",
+            text: "Por favor, ingresa una edad válida (entre 1 y 100, solo números).",
+        });
+        return false;
+    }
+
+    if (!descripcion) {
+        Swal.fire({
+            icon: "error",
+            title: "Campo requerido",
+            text: "Por favor, ingresa una descripción.",
+        });
+        return false;
+    }
+
+    return true; // Todo está correcto
 };
