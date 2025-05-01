@@ -1,4 +1,3 @@
-
 // Llenar el combobox de especies
 const loadEspecies = async () => {
     try {
@@ -21,43 +20,7 @@ const loadEspecies = async () => {
 };
 
 document.addEventListener('DOMContentLoaded', loadEspecies);
-/*
-// Manejar el envío del formulario
-const form = document.getElementById('animalForm');
-form.addEventListener('submit', async (event) => {
-    event.preventDefault();
 
-    const formData = new FormData(form);
-
-    try {
-        const response = await fetch('/animales', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            alert(`Error: ${errorData.error}`);
-            return;
-        }
-
-        alert('Animal registrado con éxito');
-        form.reset();
-
-        // Limpia el contenido del span y el campo de archivo
-        const fileNameDisplay = document.getElementById('fileNameDisplay');
-        if (fileNameDisplay) {
-            fileNameDisplay.textContent = ''; // Limpia el texto del span
-        }
-        const fileInput = document.getElementById('foto_animal');
-        if (fileInput) {
-            fileInput.value = ''; // Limpia el valor del input file
-        }
-    } catch (error) {
-        console.error('Error al registrar el animal:', error);
-        alert('Error al registrar el animal. Intente más tarde.');
-    }
-});*/
 // Manejar el envío del formulario
 const form = document.getElementById('animalForm');
 form.addEventListener('submit', async (event) => {
@@ -150,40 +113,13 @@ verTablasButton.addEventListener('click', async () => {
         console.error('Error al cargar los animales:', error);
     }
 });
-/*
 // Manejar el envío del formulario de edición
 const editarForm = document.getElementById('editarForm');
 editarForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const id_animal = document.getElementById('editar_id_animal').value;
-    const formData = new FormData(editarForm);
-
-    try {
-        const response = await fetch(`/animales/${id_animal}`, {
-            method: 'PUT',
-            body: formData, // Enviar los datos como FormData para incluir la imagen
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al actualizar el animal');
-        }
-
-        alert('Animal actualizado con éxito');
-        document.getElementById('modalEditar').style.display = 'none'; // Cerrar el modal
-        verTablasButton.click(); // Recargar la tabla
-    } catch (error) {
-        console.error('Error al actualizar el animal:', error);
-    }
-});*/
-
-// Manejar el envío del formulario de edición
-const editarForm = document.getElementById('editarForm');
-editarForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    // Llamar a la función de validación
-    if (!validarFormularioEdicion()) {
+    // Llamar a la función de validación con el parámetro esEdicion = true
+    if (!validarFormulario(true)) {
         return; // Detener el envío si hay errores
     }
 
@@ -449,15 +385,16 @@ const eliminarAnimal = async (id_animal) => {
 };
 
 // Función para validar el formulario
-const validarFormulario = () => {
-    const nombre = document.getElementById('nombre_animal').value.trim();
-    const especie = document.getElementById('id_especie').value;
-    const edad = document.getElementById('edad').value.trim();
-    const descripcion = document.getElementById('descripcion').value.trim();
+const validarFormulario = (esEdicion = false ) => {
+    const nombre = document.getElementById(esEdicion ? 'editar_nombre_animal' : 'nombre_animal').value.trim();
+    const especie = document.getElementById(esEdicion ? 'editar_id_especie' : 'id_especie').value;
+    const edad = document.getElementById(esEdicion ? 'editar_edad' : 'edad').value.trim();
+    const descripcion = document.getElementById(esEdicion ? 'editar_descripcion' : 'descripcion').value.trim();
+    const foto = document.getElementById(esEdicion ? 'editar_foto_animal' : 'foto_animal');
 
     // Validaciones con SweetAlert
     const nombreRegex = /^[a-zA-Z\s]+$/; // Solo permite letras y espacios
-    // Validación del nombre
+    // Validación del nombre, especie, eddad, descripción y foto.
     if (!nombre) {
         Swal.fire({
             icon: "error",
@@ -511,6 +448,13 @@ const validarFormulario = () => {
         });
         return false;
     }
-
-    return true; // Todo está correcto
+    if (descripcion.length > 50) {
+        Swal.fire({
+            icon: "error",
+            title: "Descripción demasiado larga",
+            text: "La descripción no puede exceder los 50 caracteres.",
+        });
+        return false;
+    }
+    return true;
 };
