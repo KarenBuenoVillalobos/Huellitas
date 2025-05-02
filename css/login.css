@@ -69,10 +69,12 @@
     border-radius: 40px;
     border: 1px solid #85cebd;
     padding: 5px;
+    margin-left: 20px;
     cursor: pointer;
 }
 .container-radiobtn [type="radio"]:checked{
     background-color: #3AB397;
+    border: 1px solid white;
 }
 .container-file{
     margin: 5px 0 15px 5px;

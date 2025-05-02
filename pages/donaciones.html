@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Donaciones</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/listas.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main class="container-animales"> <!-- EDITAR EL CLASS DE ESTE DIV 1/4-->
+        <a href="/admin" id="atras">
+            <img src="/img/icon-atras.png" alt="atrás">
+        </a>
+        <div class="animal-form"> <!-- EDITAR EL CLASS DE ESTE DIV 2/4 -->
+            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/donaciones">
+                <h1>AÑADIR DONACIÓN</h1>
+                <label for="nombre_apellido">Nombre del Donador:</label>
+                <input type="text" id="nombre_apellido" name="nombre_apellido">
+                <label for="nombre_articulo">Nombre del Artículo:</label>
+                <select id="nombre_articulo" name="nombre_articulo">
+                    <option value="">Seleccione el artículo</option>
+                </select>
+                <label for="fecha_donacion">Fecha de Donación:</label>
+                <input type="date" id="fecha_donacion" name="fecha_donacion">
+
+                <button type="submit">Registrar Donación</button>
+            </form>
+        </div>
+
+        <div class="container-lista-animales">  <!-- EDITAR EL CLASS DE ESTE DIV 3/4-->
+            <div class="animal-list">   <!-- EDITAR EL CLASS DE ESTE DIV 4/4-->
+                <h2>Lista de Donaciones</h2>
+                <div class="buscador-container">
+                    <input type="text" id="buscador" placeholder="Buscar por nombre...">
+                    <button id="verTablas">Ver Tablas</button> <!-- NO EDITAR ID PERO TENER EN CUENTA-->
+                </div>
+            </div>
+            <table id="tablaDonaciones">
+                <thead>
+                    <tr>
+                        <th>Nombre Donador</th>
+                        <th>Nombre Artículo</th>
+                        <th>Fecha de Donación</th>
+                        <th></th> <!-- Columna vacía para el botón de editar y borrar -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se llenarán los datos dinámicamente -->
+                </tbody>
+            </table>
+            <div class="tabla-container">
+                <table id="tablaDonaciones">
+                    <thead>
+                        <tr>
+                            <th>Nombre Donador</th>
+                            <th>Nombre Artículo</th>
+                            <th>Fecha de Donación</th>
+                            <th></th> <!-- Columna vacía para el botón de editar y borrar -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se llenarán dinámicamente -->
+                    </tbody>
+                </table>
+
+                <div class="paginacion">
+                    <button id="prevPage" disabled>&laquo; Anterior</button>
+                    <span id="pageInfo">1</span>
+                    <button id="nextPage">Siguiente &raquo;</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Modal para editar una donación -->
+        <div id="modalEditar" class="modal-container">
+            <div class="modal-editar">
+                <h2>Editar Donación</h2>
+                <form id="editarForm">
+                    <label for="editar_nombre_apellido">Nombre del Donador:</label>
+                    <input type="text" id="editar_nombre_apellido" name="nombre_apellido">
+                    <label for="editar_nombre_articulo">Nombre del Artículo:</label>
+                    <select id="editar_nombre_articulo" name="nombre_articulo">
+                        <option value="">Seleccione el artículo</option>
+                    </select>
+                    <label for="editar_fecha_donacion">Fecha de donación:</label>
+                    <input type="date" name="editar_fecha_donacion" id="fecha_donacion">
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" id="cerrarModal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/animal.js"></script>
+</body>
+
+</html>

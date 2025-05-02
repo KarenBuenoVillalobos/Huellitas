@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Adopciones</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/listas.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main class="container-animales"> <!-- EDITAR EL CLASS DE ESTE DIV 1/4-->
+        <a href="/admin" id="atras">
+            <img src="/img/icon-atras.png" alt="atrás">
+        </a>
+        <div class="animal-form"> <!-- EDITAR EL CLASS DE ESTE DIV 2/4 -->
+            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/adopciones">
+                <h1>REGISTRAR ADOPCIÓN</h1>
+                <label for="nombre_apellido">Nombre del Adoptante:</label>
+                <input type="text" id="nombre_apellido" name="nombre_apellido">
+                <label for="nombre_animal">Nombre del Animal:</label>
+                <select id="nombre_animal" name="nombre_animal">
+                    <option value="">Seleccione el animalito</option>
+                </select>
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion">
+                <label for="fecha_adopcion">Fecha de adopción:</label>
+                <input type="date" name="fecha_adopcion" id="fecha_adopcion">
+
+                <button type="submit">Registrar Adopción</button>
+            </form>
+        </div>
+
+        <div class="container-lista-animales">  <!-- EDITAR EL CLASS DE ESTE DIV 3/4-->
+            <div class="animal-list">   <!-- EDITAR EL CLASS DE ESTE DIV 4/4-->
+                <h2>Lista de Adopciones</h2>
+                <div class="buscador-container">
+                    <input type="text" id="buscador" placeholder="Buscar por nombre...">
+                    <button id="verTablas">Ver Tablas</button> <!-- NO EDITAR ID PERO TENER EN CUENTA-->
+                </div>
+            </div>
+            <table id="tablaAdopciones">
+                <thead>
+                    <tr>
+                        <th>Nombre Adoptante</th>
+                        <th>Nombre Animal</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th> <!-- Domicilio -->
+                        <th>Fecha de visita</th> <!-- Fecha de adopcion -->
+                        <th></th> <!-- Columna vacía para el botón de editar y borrar -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se llenarán los datos dinámicamente -->
+                </tbody>
+            </table>
+            <div class="tabla-container">
+                <table id="tablaAdopciones">
+                    <thead>
+                        <tr>
+                            <th>Nombre Adoptante</th>
+                            <th>Nombre Animal</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th> <!-- Domicilio -->
+                            <th>Fecha de visita</th> <!-- Fecha de adopcion -->
+                            <th></th> <!-- Columna vacía para el botón de editar y borrar -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se llenarán dinámicamente -->
+                    </tbody>
+                </table>
+
+                <div class="paginacion">
+                    <button id="prevPage" disabled>&laquo; Anterior</button>
+                    <span id="pageInfo">1</span>
+                    <button id="nextPage">Siguiente &raquo;</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Modal para editar una adopción -->
+        <div id="modalEditar" class="modal-container">
+            <div class="modal-editar">
+                <h2>Editar Adopción</h2>
+                <form id="editarForm">
+                    <label for="editar_nombre_apellido">Nombre del Adoptante:</label>
+                    <input type="text" id="editar_nombre_apellido" name="nombre_apellido">
+                    <label for="editar_nombre_animal">Nombre del Animal:</label>
+                    <select id="editar_nombre_animal" name="nombre_animal">
+                        <option value="">Seleccione el animalito</option>
+                    </select>
+                    <label for="editar_telefono">Teléfono:</label>
+                    <input type="text" id="editar_telefono" name="telefono">
+                    <label for="editar_direccion">Dirección:</label>
+                    <input type="text" name="editar_direccion" id="direccion">
+                    <label for="editar_fecha_adopcion">Fecha de adopción:</label>
+                    <input type="date" name="editar_fecha_adopcion" id="fecha_adopcion">
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" id="cerrarModal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/animal.js"></script>
+</body>
+
+</html>

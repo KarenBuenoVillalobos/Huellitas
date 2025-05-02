@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Voluntarios</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/listas.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main class="container-animales"> <!-- EDITAR EL CLASS DE ESTE DIV 1/4-->
+        <a href="/admin" id="atras">
+            <img src="/img/icon-atras.png" alt="atrás">
+        </a>
+        <div class="animal-form"> <!-- EDITAR EL CLASS DE ESTE DIV 2/4 -->
+            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/voluntarios">
+                <h1>AÑADIR VOLUNTARIO</h1>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email">
+                <label for="id_asignacion">Asignación:</label>
+                <select id="id_asignacion" name="id_asignacion">
+                    <option value="">Seleccione el área de interés</option>
+                </select>
+                <label for="tarea">Tarea:</label>
+                <input type="text" id="tarea" name="tarea">
+
+                <button type="submit">Registrar Voluntario</button>
+            </form>
+        </div>
+
+        <div class="container-lista-animales">  <!-- EDITAR EL CLASS DE ESTE DIV 3/4-->
+            <div class="animal-list">   <!-- EDITAR EL CLASS DE ESTE DIV 4/4-->
+                <h2>Lista de Voluntarios</h2>
+                <div class="buscador-container">
+                    <input type="text" id="buscador" placeholder="Buscar por nombre...">
+                    <button id="verTablas">Ver Tablas</button> <!-- NO EDITAR ID PERO TENER EN CUENTA-->
+                </div>
+            </div>
+            <table id="tablaVoluntarios">
+                <thead>
+                    <tr>
+                        <th>Nombre Voluntario</th>
+                        <th>Correo electrónico</th>
+                        <th>Asignación</th>
+                        <th>Tarea</th>
+                        <th></th> <!-- Columna vacía para el botón de editar y borrar -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se llenarán los datos dinámicamente -->
+                </tbody>
+            </table>
+            <div class="tabla-container">
+                <table id="tablaVoluntarios">
+                    <thead>
+                        <tr>
+                            <th>Nombre Voluntario</th>
+                            <th>Correo electrónico</th>
+                            <th>Asignación</th>
+                            <th>Tarea</th>
+                            <th></th> <!-- Columna vacía para el botón de editar y borrar -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se llenarán dinámicamente -->
+                    </tbody>
+                </table>
+
+                <div class="paginacion">
+                    <button id="prevPage" disabled>&laquo; Anterior</button>
+                    <span id="pageInfo">1</span>
+                    <button id="nextPage">Siguiente &raquo;</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Modal para editar un voluntario -->
+        <div id="modalEditar" class="modal-container">
+            <div class="modal-editar">
+                <h2>Editar Voluntario</h2>
+                <form id="editarForm">
+                    <label for="nombre_apellido">Nombre del Voluntario:</label>
+                    <input type="text" id="nombre_apellido" name="nombre_apellido">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="text" id="email" name="email">
+                    <label for="editar_asignacion">Asignación:</label>
+                    <select id="editar_asignacion" name="id_asignacion">
+                        <option value="">Seleccione área de interés</option>
+                    </select>
+                    <label for="editar_tarea">Tarea:</label>
+                    <input type="text" name="editar_tarea" id="tarea">
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" id="cerrarModal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/animal.js"></script>
+</body>
+
+</html>

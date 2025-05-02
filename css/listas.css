@@ -96,10 +96,6 @@
   background-color: #f3a9d3;
   transition: all 0.3s ease-in-out;
 }
-.container-listas a:hover{
-  background-color: #f0e68c;
-  transition: all 0.3s ease-in-out;
-}
 
 /*-------------Animales---------------- */
 .container-animales{
@@ -170,29 +166,6 @@
   outline: none;
   border: 2px solid #ebc1c1;
 }
-/* .foto-nueva-container{
-  border: 3px dashed #dcdcdc;
-  border-radius: 15px;
-  width: 300px;
-  padding: 30px 0;
-  text-align: center;
-  margin-bottom: 10px;
-  background-color: #fffdfb;
-  cursor: pointer;
-}
-.foto-container label,
-.foto-nueva-container label{
-  display: block;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 0;
-  color: #807460;
-  font-weight: 600;
-}
-.foto-container input[type="file"],
-.foto-nueva-container input[type="file"]{
-  display: none;
-} */
 
 /* Estilo moderno para el input de tipo file quedaria modificar a gusto de cada uno */
 .animal-form input[type="file"],
@@ -234,7 +207,7 @@
 }
 .animal-form button{
   color: #ffffff; 
-  margin: 20px 0 30px;
+  margin: 25px 0 30px;
   padding: 15px;
   font-size: large;
   border: 1px solid #d3ebdd;

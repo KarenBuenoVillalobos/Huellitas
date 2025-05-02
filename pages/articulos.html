@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Artículos</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/listas.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main class="container-animales">
+        <a href="/admin" id="atras">
+            <img src="/img/icon-atras.png" alt="atrás">
+        </a>
+        <div class="animal-form">
+            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/articulos">
+                <h1>AÑADIR ARTÍCULO</h1>
+                <label for="nombre_articulo">Nombre del Artículo:</label>
+                <input type="text" id="nombre_articulo" name="nombre_articulo">
+                <label for="detalles">Detalles:</label>
+                <textarea type="text" id="detalles" name="detalles"></textarea>
+                
+                <button type="submit">Añadir Artículo</button>
+            </form>
+        </div>
+
+        <div class="container-lista-animales">
+            <div class="animal-list">
+                <h2>Lista de Artículos</h2>
+                <div class="buscador-container">
+                    <input type="text" id="buscador" placeholder="Buscar por nombre...">
+                    <button id="verTablas">Ver Tablas</button>
+                </div>
+            </div>
+            <table id="tablaArticulos">
+                <thead>
+                    <tr>
+                        <th>Nombre Artículo</th>
+                        <th>Detalles</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se llenarán los datos dinámicamente -->
+                </tbody>
+            </table>
+            <div class="tabla-container">
+                <table id="tablaArticulos">
+                    <thead>
+                        <tr>
+                            <th>Nombre Artículo</th>
+                            <th>Detalles</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las filas se llenarán dinámicamente -->
+                    </tbody>
+                </table>
+
+                <div class="paginacion">
+                    <button id="prevPage" disabled>&laquo; Anterior</button>
+                    <span id="pageInfo">1</span>
+                    <button id="nextPage">Siguiente &raquo;</button>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Modal para editar un artículo -->
+        <div id="modalEditar" class="modal-container">
+            <div class="modal-editar">
+                <h2>Editar Artículo</h2>
+                <form id="editarForm">
+                    <label for="editar_nombre_articulo">Nombre del Artículo:</label>
+                    <input type="text" id="editar_nombre_articulo" name="nombre_articulo">
+                    <label for="editar_detalles">Detalles:</label>
+                    <textarea id="editar_detalles" name="detalles"></textarea>
+
+                    <button type="submit">Guardar Cambios</button>
+                    <button type="button" id="cerrarModal">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/animal.js"></script>
+</body>
+
+</html>
