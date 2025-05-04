@@ -11,6 +11,19 @@ document.getElementById('footer').innerHTML = footer;
 
 //-----------------------------------------------
 
+/* POPUP */
+
+function togglePopup(element) {
+  const popup = element.closest('.foto-huellita').querySelector('.popup');
+  if (popup.style.display === 'none' || popup.style.display === '') {
+      popup.style.display = 'block'; // Muestra el popup
+  } else {
+      popup.style.display = 'none'; // Oculta el popup
+  }
+}
+
+//-----------------------------------------------
+
 /* LOGIN / REGISTRO */
 
 const container = document.querySelector(".container");
