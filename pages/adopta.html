@@ -32,7 +32,7 @@
                     ¡Explora y encuentra a tu compañero de vida peludo hoy mismo!</p>
             </div>
             <section class="list-mascotas">
-                <div class="info-mascota">
+                <!--<div class="info-mascota">
                     <div class="foto-huellita">
                         <img src="/img/burbuja.jpg" alt="Burbuja">
                     </div>
@@ -67,7 +67,7 @@
                         <img src="/img/bombon.jpeg" alt="Bombón">
                     </div>
                     <a href="/pages/form-adopcion.html" class="nombre-huellita">Bombón</a>
-                </div>
+                </div> -->
             </section>
         </article>
     </main>
@@ -79,32 +79,41 @@
                     throw new Error('Error al obtener los animales');
                 }
                 const animales = await response.json();
-
+    
                 const listMascotas = document.querySelector('.list-mascotas');
-                listMascotas.innerHTML = ''; // Limpia el contenido existente
-
+    
+                // Itera sobre los animales y crea los elementos HTML dinámicamente
                 animales.forEach(animal => {
                     const div = document.createElement('div');
                     div.classList.add('info-mascota');
                     div.innerHTML = `
                         <div class="foto-huellita">
+                            <img src="/uploads/${animal.foto_animal}" alt="${animal.nombre_animal}">
                             <div class="icon-info">
                                 <img src="/img/icon-info.png" alt="Información" onclick="togglePopup(this)">
                             </div>
                             <div class="popup" style="display: none;">
-                                <p>Información de la mascota</p>
+                                <p><strong>Nombre:</strong> ${animal.nombre_animal}</p>
+                                <p><strong>Especie:</strong> ${animal.nombre_especie}</p>
+                                <p><strong>Edad:</strong> ${animal.edad} años</p>
+                                <p><strong>Descripción:</strong> ${animal.descripcion}</p>
                                 <button onclick="togglePopup(this)">Cerrar</button>
                             </div>
-                            <img src="/uploads/${animal.foto_animal}" alt="${animal.nombre_animal}">
                         </div>
                         <a href="/pages/form-adopcion.html" class="nombre-huellita">${animal.nombre_animal}</a>
                     `;
-                    listMascotas.appendChild(div);
+                    listMascotas.appendChild(div); // Agrega el nuevo elemento al final
                 });
             } catch (error) {
                 console.error('Error al cargar los animales:', error);
             }
         });
+    
+        // Función para mostrar/ocultar el popup
+        function togglePopup(element) {
+            const popup = element.closest('.foto-huellita').querySelector('.popup');
+            popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+        }
     </script>
 
     <footer id="footer"></footer>
