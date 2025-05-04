@@ -81,8 +81,8 @@ const login = (req, res) => {
                 console.error("Error comparing passwords:", err);
                 return res.status(500).send("Error comparing passwords.");
             }
-console.log(password)
-console.log(usuario.password)
+            console.log(password)
+            console.log(usuario.password)
             if (!passwordIsValid) {
                 return res.status(401).send({ auth: false, token: null });
             }
