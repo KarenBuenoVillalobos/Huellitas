@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2025 a las 00:24:58
+-- Tiempo de generación: 12-05-2025 a las 01:34:45
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -60,9 +60,9 @@ CREATE TABLE `animales` (
   `id_animal` int(11) NOT NULL,
   `id_especie` int(11) NOT NULL,
   `nombre_animal` varchar(15) NOT NULL,
-  `edad` int(11) DEFAULT NULL,
-  `descripcion` varchar(50) DEFAULT NULL,
-  `foto_animal` varchar(100) DEFAULT NULL
+  `edad` int(11) NOT NULL,
+  `descripcion` varchar(50) NOT NULL,
+  `foto_animal` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -71,11 +71,14 @@ CREATE TABLE `animales` (
 
 INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `descripcion`, `foto_animal`) VALUES
 (2, 2, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1744587833000.jpg'),
-(4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1744559156414.jfif'),
+(4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1746207750800.jpg'),
 (5, 1, 'Amapola', 99, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
-(6, 2, 'Kayla', 12, 'Muy gris y mala', '1744585885879.jfif'),
-(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744586912719.jfif'),
-(45, 2, 'validando', 54, 'Modificaciones de las nuevas', '1746122868389.jpg');
+(6, 2, 'Kayla', 12, 'Muy gris y mala', '1746207757956.jfif'),
+(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1746207765791.jfif'),
+(45, 2, 'Mostrando en bd', 15, 'Esperemos que se llegue a mirar', '1746122868389.jpg'),
+(47, 2, 'Bellota', 23, 'asd', '1746658634139.jpg'),
+(48, 2, 'Leonel', 2, 'wqe', '1746658874951.jpg'),
+(49, 2, 'Leonel', 2, 'asd', '1746658891406.jpg');
 
 -- --------------------------------------------------------
 
@@ -148,6 +151,67 @@ INSERT INTO `especies` (`id_especie`, `nombre_especie`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `genero`
+--
+
+CREATE TABLE `genero` (
+  `id_genero` int(11) NOT NULL,
+  `descripcion` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `genero`
+--
+
+INSERT INTO `genero` (`id_genero`, `descripcion`) VALUES
+(1, 'F'),
+(2, 'M'),
+(3, 'Otro');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `localidades`
+--
+
+CREATE TABLE `localidades` (
+  `id_localidad` int(11) NOT NULL,
+  `descripcion` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `localidades`
+--
+
+INSERT INTO `localidades` (`id_localidad`, `descripcion`) VALUES
+(1, 'Zona Sur'),
+(2, 'Zona Norte'),
+(3, 'Zona Oeste'),
+(4, 'Zona Este'),
+(5, 'CABA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id_rol` int(11) NOT NULL,
+  `descripcion` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id_rol`, `descripcion`) VALUES
+(1, 'Admin'),
+(2, 'Usuario');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -155,23 +219,24 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `nombre_apellido` varchar(40) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `localidad` varchar(10) DEFAULT NULL,
-  `genero` varchar(4) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  `foto_usuario` varchar(100) DEFAULT NULL
+  `id_localidad` int(11) NOT NULL,
+  `id_genero` int(11) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `foto_usuario` varchar(250) NOT NULL,
+  `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `localidad`, `genero`, `password`, `foto_usuario`) VALUES
-(1, 'Prueba', 'prueba@gmail.com', 'CABA', 'F', '$2a$08$IdMfefp8', '1731199351887.jpg'),
-(2, 'Katty', 'katty@gmail.com', 'CABA', 'F', '$2a$08$qH8NCbgv', '1731199734959.jpg'),
-(3, 'Juan Pérez', 'amy@gmail.com', 'Zona Norte', 'F', 'Prueba123', '1731352177923.jpg'),
-(5, 'Leonel Girett', 'usuario1@gmail.com', 'CABA', 'M', '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg'),
-(6, 'asd', 'adas@prueba.com', 'zona sur', 'm', '$2a$08$q7TcbGG/J139l', '1743970208243.jpg'),
-(7, 'Leonel1', 'nuevo@prueba.com', 'zona sur', 'M', '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg');
+INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`, `id_genero`, `password`, `foto_usuario`, `id_rol`) VALUES
+(1, 'Probando Modificacion', 'nuevo1@prueba.com', 2, 2, '12345', '1747006336366.jpg', 1),
+(2, 'Katty', 'katty@gmail.com', 1, 2, '$2a$08$qH8NCbgv', '1731199734959.jpg', 1),
+(3, 'Juan Pérez', 'amy@gmail.com', 1, 1, 'Prueba123', '1731352177923.jpg', 2),
+(5, 'Leonel Girett', 'usuario1@gmail.com', 5, 1, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2),
+(6, 'asd', 'adas@prueba.com', 5, 1, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
+(7, 'Leonel1', 'nuevo@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2);
 
 -- --------------------------------------------------------
 
@@ -234,11 +299,31 @@ ALTER TABLE `especies`
   ADD PRIMARY KEY (`id_especie`);
 
 --
+-- Indices de la tabla `genero`
+--
+ALTER TABLE `genero`
+  ADD PRIMARY KEY (`id_genero`);
+
+--
+-- Indices de la tabla `localidades`
+--
+ALTER TABLE `localidades`
+  ADD PRIMARY KEY (`id_localidad`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id_rol`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `fk_localidad` (`id_localidad`),
+  ADD KEY `fk_genero` (`id_genero`);
 
 --
 -- Indices de la tabla `voluntarios`
@@ -261,7 +346,7 @@ ALTER TABLE `adopciones`
 -- AUTO_INCREMENT de la tabla `animales`
 --
 ALTER TABLE `animales`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
@@ -280,6 +365,24 @@ ALTER TABLE `donaciones`
 --
 ALTER TABLE `especies`
   MODIFY `id_especie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `genero`
+--
+ALTER TABLE `genero`
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `localidades`
+--
+ALTER TABLE `localidades`
+  MODIFY `id_localidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -316,6 +419,13 @@ ALTER TABLE `animales`
 ALTER TABLE `donaciones`
   ADD CONSTRAINT `donaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `donaciones_ibfk_2` FOREIGN KEY (`id_articulo`) REFERENCES `articulos` (`id_articulo`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `fk_genero` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id_genero`),
+  ADD CONSTRAINT `fk_localidad` FOREIGN KEY (`id_localidad`) REFERENCES `localidades` (`id_localidad`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
