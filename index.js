@@ -77,6 +77,10 @@ app.get("/formulario-animales",(req,res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'animales.html'));
 });
 
+app.get("/formulario-articulos",(req,res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'articulos.html'));
+});
+
 // Ruta comodín para servir cualquier archivo HTML desde la carpeta PAGES
 app.get('/:page', (req, res) => {
     const filePath = path.resolve(__dirname, 'pages', req.params.page + '.html');

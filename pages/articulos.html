@@ -12,12 +12,12 @@
 <body>
     <header id="header"></header>
 
-    <main class="container-animales">
+    <main class="container-listas">
         <a href="/admin" id="atras">
             <img src="/img/icon-atras.png" alt="atrás">
         </a>
-        <div class="animal-form">
-            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/articulos">
+        <div class="container-form-listas">
+            <form id="articuloForm" method="POST" action="/articulos">
                 <h1>AÑADIR ARTÍCULO</h1>
                 <label for="nombre_articulo">Nombre del Artículo:</label>
                 <input type="text" id="nombre_articulo" name="nombre_articulo">
@@ -28,8 +28,8 @@
             </form>
         </div>
 
-        <div class="container-lista-animales">
-            <div class="animal-list">
+        <div class="container-tabla-listas">
+            <div class="container-busqueda-tablas">
                 <h2>Lista de Artículos</h2>
                 <div class="buscador-container">
                     <input type="text" id="buscador" placeholder="Buscar por nombre...">
@@ -39,7 +39,8 @@
             <table id="tablaArticulos">
                 <thead>
                     <tr>
-                        <th>Nombre Artículo</th>
+                        <th>ID</th>
+                        <th>Artículo</th>
                         <th>Detalles</th>
                         <th></th>
                     </tr>
@@ -52,7 +53,8 @@
                 <table id="tablaArticulos">
                     <thead>
                         <tr>
-                            <th>Nombre Artículo</th>
+                            <th>ID</th>
+                            <th>Artículo</th>
                             <th>Detalles</th>
                             <th></th>
                         </tr>
@@ -76,6 +78,7 @@
             <div class="modal-editar">
                 <h2>Editar Artículo</h2>
                 <form id="editarForm">
+                    <input type="hidden" id="editar_id_articulo" name="id_articulo">
                     <label for="editar_nombre_articulo">Nombre del Artículo:</label>
                     <input type="text" id="editar_nombre_articulo" name="nombre_articulo">
                     <label for="editar_detalles">Detalles:</label>
@@ -92,7 +95,7 @@
 
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/animal.js"></script>
+    <script src="/js/articulo.js"></script>
 </body>
 
 </html>

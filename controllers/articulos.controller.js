@@ -36,10 +36,27 @@ const showArticulo = (req, res) => {
     }); 
 };
 
+const showArticuloName = (req, res) => {
+    const { nombre_articulo } = req.params;
+    console.log(nombre_articulo);
+    const sql = "SELECT * FROM articulos WHERE nombre_articulo LIKE ?";
+    db.query(sql, [`%${nombre_articulo}%`], (error, rows) => {
+        console.log(rows);
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        if (rows.length === 0) {
+            return res.status(404).send({ error: "ERROR: No existe el artículo buscado." });
+        }
+        res.json(rows); // Devuelve todos los resultados
+    });
+};
+
 //// METODO POST  ////
 const insertArticulo = (req, res) => {
     const {nombre_articulo, detalles} = req.body;
     const sql = "INSERT INTO articulos (nombre_articulo, detalles) VALUES (?,?)";
+
     db.query(sql,[nombre_articulo, detalles], (error, result) => {
         console.log(result);
         if(error){
@@ -93,6 +110,7 @@ const deleteArticulo = (req, res) => {
 module.exports = {
     allArticulo,
     showArticulo,
+    showArticuloName,
     insertArticulo,
     updateArticulo,
     deleteArticulo

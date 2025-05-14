@@ -8,7 +8,7 @@
   font-family: "Varela Round", sans-serif;
 }
 
-#main-listas { /*,.container-animales,*/
+.container-abm { /*,.container-animales,*/
   height: 80vh;
   /* max-height: 100vh; */
   display: flex;
@@ -21,7 +21,7 @@
   position: absolute;
   margin: 35px 0 0 45px;
 }
-.container-listas{
+.container-menu-listas{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -31,7 +31,7 @@
   border-radius: 10px;
   background-color: #fff8f5;
 }
-.container-listas a{
+.container-menu-listas a{
   width: 400px;
   text-align: center;
   text-decoration: none;
@@ -98,12 +98,12 @@
 }
 
 /*-------------Animales---------------- */
-.container-animales{
+.container-listas{
   height: 90vh;
   /* max-height: 120vh; */
   display: flex;
 }
-.container-animales h1{
+.container-listas h1{
   width: 500px;
   padding: 35px 0;
   margin-bottom: 20px;
@@ -113,26 +113,26 @@
   background-color: #f48e8e;
   text-align: center;
 }
-.animal-form form{
+.container-form-listas form{
   border: 2px solid #ebddcd;
   border-radius: 10px;
   /* background-color: #fff8f5; */
   background-color: #fff4ef;
 }
-.animal-form,
-.animal-form form{
+.container-form-listas,
+.container-form-listas form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.animal-form{
+.container-form-listas{
   width: 40%;
 }
-.container-animales label,
-.container-animales input,
-.container-animales select,
-.container-animales textarea{
+.container-listas label,
+.container-listas input,
+.container-listas select,
+.container-listas textarea{
   width: 300px;
   padding: 10px 0;
   border-radius: 5px;
@@ -140,35 +140,35 @@
   color: #655047;
   padding-left: 10px;
 }
-.animal-form input,
-.animal-form select,
-.animal-form textarea{
+.container-form-listas input,
+.container-form-listas select,
+.container-form-listas textarea{
   border: 2px solid #f3cfcf;
 }
-.container-animales label{
+.container-listas label{
   padding-left: 2px;
   background-color: transparent;
 }
-.animal-form select {
+.container-form-listas select {
   border: 2px solid #f3cfcf;
   /* appearance: none; */
 }
-.container-animales option{
+.container-listas option{
   background-color: #fffdfc;
   color: #655047;
 }
 /* .container-animales option:hover{
   background-color: #fcd0be;
 } */
-.animal-form input:focus,
-.animal-form select:focus,
-.animal-form textarea:focus{
+.container-form-listas input:focus,
+.container-form-listas select:focus,
+.container-form-listas textarea:focus{
   outline: none;
   border: 2px solid #ebc1c1;
 }
 
 /* Estilo moderno para el input de tipo file quedaria modificar a gusto de cada uno */
-.animal-form input[type="file"],
+.container-form-listas input[type="file"],
 .modal-editar input[type="file"]{
   font-size: 14px;
   background-color: #f9f9f9;
@@ -178,13 +178,13 @@
   transition: all 0.3s ease-in-out;
 }
 
-.animal-form[type="file"]:hover,
+.container-form-listas[type="file"]:hover,
 .modal-editar[type="file"]:hover{
   background-color: #f1f1f1;
   border-color: #888;
 }
 
-.animal-form input[type="file"]::-webkit-file-upload-button,
+.container-form-listas input[type="file"]::-webkit-file-upload-button,
 .modal-editar input[type="file"]::-webkit-file-upload-button {
   background-color: #a8d5ba;
   color: #fff;
@@ -195,17 +195,17 @@
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
-.animal-form input[type="file"]::-webkit-file-upload-button:hover,
+.container-form-listas input[type="file"]::-webkit-file-upload-button:hover,
 .modal-editar input[type="file"]::-webkit-file-upload-button:hover {
   background-color: #8cc6a3;
 }
 
-.container-animales button{
+.container-listas button{
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-.animal-form button{
+.container-form-listas button{
   color: #ffffff; 
   margin: 25px 0 30px;
   padding: 15px;
@@ -213,25 +213,25 @@
   border: 1px solid #d3ebdd;
   background-color: #a8d5ba;
 }
-.animal-form button:hover{
+.container-form-listas button:hover{
   background-color: #8cc6a3;
   transition: all 0.3s ease-in-out;
 }
-.container-lista-animales{
+.container-tabla-listas{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60%;
 }
-.animal-list{
+.container-busqueda-tablas{
   justify-content: center;
   align-items: center;
   border: 2px solid #a0d0f3;
   border-radius: 10px;
   width: 500px;
 }
-.animal-list h2{
+.container-busqueda-tablas h2{
   padding: 20px 0;
   text-align: center;
   border-radius: 10px 10px 0 0;
@@ -263,7 +263,7 @@
   border-color: #8bb8d6;
   color: #ffffff;
 }
-.container-lista-animales table{
+.container-tabla-listas table{
   display: none;
   border-radius: 10px;
   background-color: #fef9ef;
@@ -272,20 +272,20 @@
   border-collapse: collapse;
   margin-top: 20px;
 }
-.container-lista-animales thead{
+.container-tabla-listas thead{
   background-color: #fbead2;
 }
-.container-lista-animales th{
+.container-tabla-listas th{
   color: #655047;
   padding: 10px;
   border-bottom: 2px solid #f0e2cf;
 }
-.container-lista-animales td{
+.container-tabla-listas td{
   color: #655047;
   padding: 10px 20px;
   border-bottom: 2px solid #f0e2cf;
 }
-.container-lista-animales table button{
+.container-tabla-listas table button{
   padding: 10px 15px;
   font-size: medium;
 }

@@ -12,11 +12,11 @@
 <body>
     <header id="header"></header>
 
-    <main class="container-animales">
+    <main class="container-listas">
         <a href="/admin" id="atras">
             <img src="/img/icon-atras.png" alt="atrás">
         </a>
-        <div class="animal-form">
+        <div class="container-form-listas">
             <form id="animalForm" enctype="multipart/form-data" method="POST" action="/animales">
                 <h1>AÑADIR MASCOTA</h1>
                 <label for="nombre_animal">Nombre del Animal:</label>
@@ -31,20 +31,13 @@
                 <textarea id="descripcion" name="descripcion"></textarea>
                 <label for="foto_animal">Foto del Animal:</label>
                 <input type="file" id="foto_animal" name="foto_animal">
-                <!--
-                <div class="foto-container">
-                    <img src="/img/icon-upload.svg" alt="icon-upload">
-                    <label for="foto_animal">Subir foto
-                    </label>
-                </div>
-                -->
-                <!--<span id="fileNameDisplay"></span> Este elemento mostrará el nombre del archivo -->
+                
                 <button type="submit">Registrar Animal</button>
             </form>
         </div>
 
-        <div class="container-lista-animales">
-            <div class="animal-list">
+        <div class="container-tabla-listas">
+            <div class="container-busqueda-tablas">
                 <h2>Lista de Mascotas</h2>
                 <div class="buscador-container">
                     <input type="text" id="buscador" placeholder="Buscar por nombre...">

@@ -26,16 +26,16 @@ function togglePopup(element) {
 
 /* LOGIN / REGISTRO */
 
-const container = document.querySelector(".container");
-const btnSignIn = document.getElementById("btn-sign-in");
-const btnSignUp = document.getElementById("btn-sign-up");
+// const container = document.querySelector(".container");
+// const btnSignIn = document.getElementById("btn-sign-in");
+// const btnSignUp = document.getElementById("btn-sign-up");
 
-btnSignIn.addEventListener('click', () => {
-  container.classList.remove('toggle');
-});
+// btnSignIn.addEventListener('click', () => {
+//   container.classList.remove('toggle');
+// });
 
-btnSignUp.addEventListener('click', () => {
-  container.classList.add('toggle');
-});
+// btnSignUp.addEventListener('click', () => {
+//   container.classList.add('toggle');
+// });
 
 //-----------------------------------------------
