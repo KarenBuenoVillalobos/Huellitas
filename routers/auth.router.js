@@ -38,8 +38,10 @@ const upload = multer({
 
 //// AUTH ////
 const controller = require("../controllers/auth.controller");
-const authMiddleware = require("../middleware/auth.middleware")
+const authMiddleware = require("../middleware/auth.middleware");
 
+//Localidades
+router.get('/localidades', controller.localidades);
 
 //// METODO POST  ////
 router.post('/registro',upload.single('foto_usuario'), controller.register); //upload.single('imagen')

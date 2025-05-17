@@ -3,6 +3,19 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../db/db"); // Importar la conexión a la base de datos
 
+//Localidades
+const localidades = (req, res) => {
+        const sql =`SELECT id_localidad, descripcion FROM localidades`;
+        db.query(sql, (error, rows) => {
+            if (error) {
+                console.error("Error al obtener localidades:", error);
+                return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+            }
+            res.json(rows);
+        });
+};
+
+
 // Función para registrar usuario
 const register = (req, res) => {
 
@@ -99,6 +112,7 @@ const login = (req, res) => {
 };
 
 module.exports = {
+    localidades,
     register,
     login,
 };
