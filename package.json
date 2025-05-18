@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon index.js & npx open http://localhost:3001",
     "watch": "node --watch index.js"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "sweetalert2": "^11.19.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "open": "^10.1.2"
   }
 }

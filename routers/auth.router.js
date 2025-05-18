@@ -18,7 +18,6 @@ const storage = multer.diskStorage({
 
 // const upload = multer({storage:"storage"}); // si son iguales simplemente lo puedo escribir como
 // const upload = multer({storage});
-
 const upload = multer({
     storage,
     fileFilter: (req, file, cb) => {

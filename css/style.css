@@ -300,6 +300,24 @@ iframe {
     color: whitesmoke;
 }
 
+
+/*Imagen para header segun usuario, revisar o mejorar*/
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.user-photo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+    object-fit: cover;
+}
+.user-name {
+    font-weight: bold;
+}
+
 /*RESPONSIVE*/
 @media (max-width: 768px) { /*765*/
     /*BANNER*/

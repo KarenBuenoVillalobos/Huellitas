@@ -1,34 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Mascotas</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/listas.css">
-    <link rel="shortcut icon" href="/img/logo.png" type="/image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
-
 <body>
-    <header id="adminheader">
-        <a href="/" class="logo">
-            <img id="logo" src="/img/logo.png" alt="huellitas-de-amor">
-        </a>
-        <input type="checkbox" id="check">
-        <label for="check" class="mostrar-menu">&#8801</label>
-        <nav class="menu">
-            <a href="/">Home</a>
-            <a href="/listado">Listado</a>
-            <a href="/pages/login.html">Cerrar Sesión</a>
-            <label for="check" class="esconder-menu">&#215</label>
-        </nav>
-    </header>
-    
+    <header id="header"></header>
+
     <main class="container-abm">
-        
         <div class="container-menu-listas">
             <a href="/formulario-animales" id="btn-animales">Listado Mascotas</a>
             <a href="/pages/adopciones.html" id="btn-adopciones">Listado Adopciones</a>
@@ -37,18 +22,29 @@
             <a href="/pages/donaciones.html" id="btn-donaciones">Listado Donaciones</a>
             <a href="/pages/voluntarios.html" id="btn-voluntarios">Listado Voluntarios</a>
         </div>
-        
     </main>
 
     <footer id="footer">
+        <a href="https://www.facebook.com" target="_blank" title="Facebook">
+            <img src="/img/ico-facebook.ico" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com" target="_blank" title="Instagram">
+            <img src="/img/ico-instagram.ico" alt="Instagram">
+        </a>
+        <a href="https://www.whatsapp.com" target="_blank" title="WhatsApp">
+            <img src="/img/ico-whatsapp.ico" alt="WhatsApp">
+        </a>
+        <a href="https://www.twitter.com" target="_blank" title="Twitter">
+            <img src="/img/ico-twitter.ico" alt="Twitter">
+        </a>
+        <a href="https://www.youtube.com" target="_blank" title="Youtube">
+            <img src="/img/ico-youtube.ico" alt="Youtube">
+        </a>
         <p>Derechos reservados © 2024</p>
         <p>Terminos y condiciones</p>
         <a href="/admin">Administración</a>
         <p>Soporte</p>
     </footer>
-
     <script src="/js/script.js"></script>
-    <!--<script src="/js/listas.js"></script>-->
 </body>
-
 </html>

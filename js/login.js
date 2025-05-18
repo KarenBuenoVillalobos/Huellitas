@@ -84,7 +84,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                    const data = await res.json();
                     if (data.auth) {
                         localStorage.setItem('token', data.token);
-                        localStorage.setItem('id_rol', data.id_rol); // guarda el rol
+                        localStorage.setItem('id_rol', data.id_rol);
+                        localStorage.setItem('nombre', data.nombre);
+                        localStorage.setItem('foto', data.foto);
                         alert('¡Inicio de sesión exitoso!');
                         window.location.href = '/';
                     } else {

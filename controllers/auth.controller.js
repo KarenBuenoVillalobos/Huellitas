@@ -121,7 +121,8 @@ const login = (req, res) => {
             });
 
             // Enviar la respuesta con el token
-            res.send({ auth: true, token,id_rol:usuario.id_rol });
+            console.log('usuario.foto_usuario:', usuario.foto_usuario);
+            res.send({ auth: true, token,id_rol:usuario.id_rol,nombre: usuario.nombre_apellido,foto:usuario.foto_usuario});
         });
     });
 };
