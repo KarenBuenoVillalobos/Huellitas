@@ -8,7 +8,7 @@ const path = require("path");
 
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
-        cb(null, 'uploads'); // esta carpeta debe existir en el proyecto (raiz)
+        cb(null, 'uploads/usuario'); // esta carpeta debe existir en el proyecto (raiz)
     },
     filename: (req, file, cb) => {
         console.log(file);
@@ -42,10 +42,12 @@ const authMiddleware = require("../middleware/auth.middleware");
 
 //Localidades
 router.get('/localidades', controller.localidades);
+//Generos
+router.get('/generos', controller.generos);
 
 //// METODO POST  ////
 router.post('/registro',upload.single('foto_usuario'), controller.register); //upload.single('imagen')
-router.post('/login', controller.login);
+router.post('/login',multer().none(), controller.login);
 
 router.get("/protected", authMiddleware, (req, res) => {
     res.status(200).send(`Hola Usuario ${req.userId}`);

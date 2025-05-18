@@ -14,7 +14,17 @@ const localidades = (req, res) => {
             res.json(rows);
         });
 };
-
+//Generos
+const generos = (req, res) => {
+    const sql =`SELECT id_genero, descripcion FROM genero`;
+    db.query(sql, (error, rows) => {
+        if (error) {
+            console.error("Error al obtener generos:", error);
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        res.json(rows);
+    });
+};
 
 // Función para registrar usuario
 const register = (req, res) => {
@@ -23,11 +33,11 @@ const register = (req, res) => {
     let imageName = "";
 
     if(req.file){
-        imageName = req.file.filename;
-        // imageName = document.getElementById("foto_usuario").files[0];
+    imageName = req.file.filename;
     };
 
-    const { nombre_apellido, email, localidad, genero, password } = req.body;
+    // Cambia los nombres de los campos según tu formulario
+    const { nombre_apellido, email, id_localidad, id_genero, password } = req.body;
 
     // Verificar si el usuario ya existe
     db.query('SELECT * FROM usuarios WHERE email = ?', [email], (error, results) => {
@@ -48,24 +58,27 @@ const register = (req, res) => {
             }
 
             // Insertar nuevo usuario en la base de datos
-            db.query('INSERT INTO usuarios (nombre_apellido, email, localidad, genero, password, foto_usuario) VALUES (?, ?, ?, ?, ?, ?)',
-                [nombre_apellido, email, localidad, genero, hash, imageName], (insertError, insertResults) => {
-                if (insertError) {
-                    console.error("Error inserting user:", insertError);
-                    return res.status(500).send("Error registering user");
+            db.query(
+                'INSERT INTO usuarios (nombre_apellido, email, id_localidad, id_genero, password, foto_usuario, id_rol) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                [nombre_apellido, email, id_localidad, id_genero, hash, imageName, 2],
+                (insertError, insertResults) => {
+                    if (insertError) {
+                        console.error("Error inserting user:", insertError);
+                        return res.status(500).send("Error registering user");
+                    }
+
+                    // Obtener el ID del usuario recién creado
+                    const id_usuario = insertResults.insertId;
+
+                    // Generar un token JWT con el ID del usuario
+                    const token = jwt.sign({ id: id_usuario }, process.env.SECRET_KEY, {
+                        expiresIn: "1h",
+                    });
+
+                    // Enviar la respuesta con el token
+                    res.status(201).send({ auth: true, token });
                 }
-
-                // Obtener el ID del usuario recién creado
-                const id_usuario = insertResults.insertId;
-
-                // Generar un token JWT con el ID del usuario
-                const token = jwt.sign({ id: id_usuario }, process.env.SECRET_KEY, {
-                    expiresIn: "1h",
-                });
-
-                // Enviar la respuesta con el token
-                res.status(201).send({ auth: true, token });
-            });
+            );
         });
     });
 };
@@ -87,6 +100,8 @@ const login = (req, res) => {
         }
 
         const usuario = results[0];
+        console.log('Contraseña enviada:', password);
+        console.log('Contraseña en BD:', usuario.password);
 
         // Comparar la contraseña
         bcrypt.compare(password, usuario.password, (err, passwordIsValid) => {
@@ -106,13 +121,14 @@ const login = (req, res) => {
             });
 
             // Enviar la respuesta con el token
-            res.send({ auth: true, token });
+            res.send({ auth: true, token,id_rol:usuario.id_rol });
         });
     });
 };
 
 module.exports = {
     localidades,
+    generos,
     register,
     login,
 };

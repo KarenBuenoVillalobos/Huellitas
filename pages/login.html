@@ -18,53 +18,54 @@
     <main class="main-login-registro">
         <div class="container">
             <div class="container-form">
-                <form class="sign-in">
+                <form class="sign-in" id="form-login" enctype="multipart/form-data" method="POST" action="/auth/">
+                    <input type="hidden" name="action" value="login">
                     <h2>Iniciar Sesión</h2>
                     <span>Use su correo electrónico y contraseña</span>
                     <div class="container-input">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" placeholder="Email">
+                        <input type="text" name="email" placeholder="Email">
                     </div>
                     <div class="container-input">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder="Contraseña">
+                        <input type="password" name="password" placeholder="Contraseña">
                     </div>
                     <a href="#">¿Olvidaste tu contraseña?</a>
                     <button class="button">INICIAR SESIÓN</button>
                 </form>
             </div>
             <div class="container-form">
-                <form class="sign-up">
+                <form class="sign-up" id="form-registro" enctype="multipart/form-data" method="POST" action="/auth/">
                     <h2>Registrarse</h2>
                     <!-- <span>Ingrese sus datos para registrarse</span> -->
                     <div class="container-input">
                         <ion-icon name="person-outline"></ion-icon>
-                        <input type="text" id="nombre_apellido" placeholder="Nombre y Apellido">
+                        <input type="text" id="nombre_apellido" name="nombre_apellido" placeholder="Nombre y Apellido">
                     </div>
                     <div class="container-input">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="text" id="email" placeholder="Email">
+                        <input type="text" id="email" name="email" placeholder="Email">
                     </div>
-                    <select class="container-select" id="select-localidad">
+                    <select class="container-select" id="select-localidad" name="id_localidad">
                         <option value="">Seleccione una localidad</option>
                     </select>
-                    <div class="container-radiobtn">
-                        <input type="radio" name="opcion" value="opcion1"> F
+                    <div class="container-radiobtn" id="container-genero">
+                        <!-- <input type="radio" name="opcion" value="opcion1"> F
                         <input type="radio" name="opcion" value="opcion2"> M
                         <input type="radio" name="opcion" value="opcion3"> Otro
+                        -->
                     </div>
                     <div class="container-input">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder="Contraseña">
+                        <input type="password" name="password" placeholder="Contraseña">
                     </div>
                     <div class="container-input">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder="Confirme contraseña">
+                        <input type="password" name="confirm_password" placeholder="Confirme contraseña">
                     </div>
                     <div class="container-file">
                         <input type="file" id="foto_usuario" name="foto_usuario">
                     </div>
-
                     <button class="button">REGISTRARSE</button>
                 </form>
             </div>
