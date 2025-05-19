@@ -5,14 +5,28 @@
 // asignacion
 
 const db = require("../db/db");
+const { get } = require("../routers/voluntarios.router");
 
 //// METODO GET  /////
+
+// Obtener las asignaciones
+const getAsignaciones = (req, res) => {
+    const sql = `SELECT id_asignacion, nombre_asignacion FROM asignaciones`;
+    db.query(sql, (error, rows) => {
+        if (error) {
+            console.error("Error al obtener las asignaciones:", error);
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        res.json(rows);
+    });
+};
 
 // Para todos los voluntarios
 const allVoluntario = (req, res) => {
     const sql = `
         SELECT 
             voluntarios.id_voluntario,
+            usuarios.email,
             asignaciones.nombre_asignacion AS asignacion,
             voluntarios.tarea
         FROM voluntarios
@@ -119,5 +133,6 @@ module.exports = {
     showVoluntario,
     insertVoluntario,
     updateVoluntario,
-    deleteVoluntario
+    deleteVoluntario,
+    getAsignaciones
 };
