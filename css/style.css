@@ -21,6 +21,10 @@
     width: 50px;
     cursor: pointer;
 }
+.menu {
+    display: flex;
+    align-items: center;
+}
 .menu a {
     color: #fff;
     text-transform: uppercase;
@@ -303,9 +307,9 @@ iframe {
 
 /*Imagen para header segun usuario, revisar o mejorar*/
 .user-info {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 .user-photo {
     width: 32px;
@@ -316,6 +320,10 @@ iframe {
 }
 .user-name {
     font-weight: bold;
+}
+#logout-link {
+    display: inline-flex;
+    align-items: center;
 }
 
 /*RESPONSIVE*/
@@ -345,6 +353,7 @@ iframe {
         display: block;
     }
     .menu {
+        flex-direction: column;
         position: fixed;
         width: 100%;
         height: 100vh;
@@ -358,7 +367,10 @@ iframe {
     }
     .menu a {
         display: block;
-        padding: 20px;
+        padding: 20px 0;
+    }
+    .user-info {
+        margin: 10px 0 0;
     }
     .esconder-menu {
         position: absolute;

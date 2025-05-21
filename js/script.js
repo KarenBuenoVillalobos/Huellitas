@@ -28,8 +28,8 @@ let header = `
     <a href="/donar">Donar</a>
     ${isLogged ? '' : '<a href="/loginsesion">Iniciar Sesión</a>'}
     ${idRol === '1' ? '<a href="/admin" id="admin-link">Lista</a>' : ''}
-    ${isLogged ? '<a href="#" id="logout-link">Cerrar Sesión</a>' : ''}
     ${userInfo}
+    ${isLogged ? '<a href="#" id="logout-link"><img src="/img/icon-logout.png" alt="log-out"></a>' : ''}
     <label for="check" class="esconder-menu">&#215</label>
 </nav>
 `;

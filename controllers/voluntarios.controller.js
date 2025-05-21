@@ -5,7 +5,7 @@
 // asignacion
 
 const db = require("../db/db");
-const { get } = require("../routers/voluntarios.router");
+// const { get } = require("../routers/voluntarios.router");
 
 //// METODO GET  /////
 
