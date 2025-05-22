@@ -99,10 +99,10 @@ verTablasButton.addEventListener('click', async () => {
                 <td>${animal.nombre_especie}</td>
                 <td>${animal.edad}</td>
                 <td>${animal.descripcion}</td>
-                <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="50"></td>
+                <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="60"></td>
                 <td>
-                    <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})">Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
+                    <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                    <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -185,8 +185,8 @@ const buscarAnimal = async (nombre) => {
                 <td>${animal.descripcion}</td>
                 <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="50"></td>
                 <td>
-                <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})">Editar</button>
-                <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
+                <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -240,10 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${animal.nombre_especie}</td>
                 <td>${animal.edad}</td>
                 <td>${animal.descripcion}</td>
-                <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="50"></td>
+                <td><img src="/uploads/${animal.foto_animal}" alt="Foto" width="60"></td>
                 <td>
-                    <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})">Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})">Eliminar</button>
+                    <button class="btn btn-warning" onclick="editarAnimal(${animal.id_animal})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                    <button class="btn btn-danger" onclick="eliminarAnimal(${animal.id_animal})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);

@@ -9,9 +9,7 @@
 }
 
 .container-abm {
-  /*,.container-animales,*/
   height: 80vh;
-  /* max-height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +18,7 @@
 /* -----------------Listas buttons-------------------- */
 #atras {
   position: absolute;
-  margin: 35px 0 0 45px;
+  margin-left: 45px;
 }
 
 .container-menu-listas {
@@ -114,13 +112,15 @@
 
 /*-------------Animales---------------- */
 .container-listas {
-  height: 90vh;
-  /* max-height: 120vh; */
+  /* height: auto; */
+  padding: 50px 0;
+  min-height: 90vh;
   display: flex;
 }
 
 .container-listas h1 {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   padding: 35px 0;
   margin-bottom: 20px;
   border: 1px solid #ffd1d1;
@@ -135,6 +135,8 @@
   border-radius: 10px;
   /* background-color: #fff8f5; */
   background-color: #fff4ef;
+  width: 100%;
+  max-width: 500px;
 }
 
 .container-form-listas,
@@ -143,6 +145,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 0;
 }
 
 .container-form-listas {
@@ -259,7 +262,8 @@
   align-items: center;
   border: 2px solid #a0d0f3;
   border-radius: 10px;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .container-busqueda-tablas h2 {
@@ -322,7 +326,7 @@
 
 .container-tabla-listas td {
   color: #655047;
-  padding: 10px 20px;
+  padding: 8px 15px;
   border-bottom: 2px solid #f0e2cf;
 }
 
@@ -331,27 +335,38 @@
   font-size: medium;
 }
 
+.btn-danger,
+.btn-warning {
+  display: inline-flex;
+}
+
+.btn-danger img,
+.btn-warning img{
+  width: 20px;
+  height: 20px;
+}
+
 .btn-warning {
   background-color: #f9e79f;
   border: 1px solid #f7dc6f;
-  color: #7d6608;
+  /* color: #7d6608; */
 }
 
 .btn-warning:hover {
   background-color: #f7dc6f;
   border-color: #f4d03f;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
 .btn-danger {
   background-color: #f4b3b3;
   border: 1px solid #ffdada;
-  color: #6b2b2b;
+  /* color: #6b2b2b; */
 }
 
 .btn-danger:hover {
   background-color: #e86a6a;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
 .editarForm {
@@ -388,7 +403,8 @@
 .modal-editar {
   margin: 30px auto auto;
   padding-bottom: 20px;
-  width: 30%;
+  width: 100%;
+  max-width: 500px;
   border-radius: 10px;
 }
 
@@ -500,20 +516,118 @@
 }
 
 @media (max-width: 768px) {
+  /*botones del menu de las tablas*/
+  .container-menu-listas {
+    height: 100%;
+  }
+  /*seccion de abm de cada tabla*/
+  #atras {
+    margin: 5px 0 0 30px;
+    left: 0;
+  }
+  #atras img {
+    width: 40px;
+  }
+
+  .container-listas { /*main listas*/
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 30px 0;
+  }
+
+  .container-listas h1 {
+    min-width: 0;
+    width: 100%;
+    padding: 25px 0;
+    margin-bottom: 15px;
+  }
+  .container-listas label,
+  .container-listas input,
+  .container-listas select,
+  .container-listas textarea{
+    padding: 8px;
+  }
+  .container-form-listas {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .container-form-listas button {
+    padding: 10px;
+    margin: 15px 0 15px;
+    font-size: medium;
+  }
+  .container-busqueda-tablas{
+    width: 100%;
+    min-width: 250px;
+  }
+  .container-tabla-listas td {
+    padding: 8px 20px 3px;
+  }
+  .container-tabla-listas table button {
+    padding: 10px;
+    margin-bottom: 5px;
+  }
 
 }
 
 @media screen and (max-width: 576px) {
+
   /*botones de listas*/
-  .container-menu-listas{
-    height: 100%;
-  }
   .container-menu-listas a {
     width: 90%;
   }
-  /*cada una de las listas con sus forms*/
-  .container-listas{
-    display: block;
-    height: 100vh;
+
+  /*seccion de abm de cada tabla*/
+  #atras {
+    display: none;
+  }
+
+  .container-form-listas form {
+    width: 90%;
+  }
+  .container-listas label,
+  .container-listas input,
+  .container-listas select,
+  .container-listas textarea{
+    width: 80%;
+  }
+  .container-busqueda-tablas {
+    width: 400px;
+  }
+  #buscador{
+    max-width: 200px;
+  }
+  .container-busqueda-tablas button{
+    padding: 10px;
+  }
+
+
+  .container-tabla-listas {
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .container-tabla-listas table {
+    font-size: 14px;
+  }
+  .container-tabla-listas th,
+  .container-tabla-listas td {
+    padding: 8px 6px;
+  }
+  .modal-editar {
+    width: 90%;
+  }
+  .modal-editar h2 {
+    padding: 15px 0;
+  }
+  .modal-editar img {
+    max-height: 120px;
+  }
+  #editarForm button[type="submit"] {
+    font-size: 15px;
+    padding: 10px 15px;
+  }
+  #cerrarModal {
+    padding: 8px 12px;
   }
 }

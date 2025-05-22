@@ -69,8 +69,8 @@ verTablasButton.addEventListener('click', async () => {
                 <td>${articulo.nombre_articulo}</td>
                 <td>${articulo.detalles}</td>
                 <td>
-                    <button class="btn btn-warning" onclick="editarArticulo(${articulo.id_articulo})">Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarArticulo(${articulo.id_articulo})">Eliminar</button>
+                    <button class="btn btn-warning" onclick="editarArticulo(${articulo.id_articulo})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                    <button class="btn btn-danger" onclick="eliminarArticulo(${articulo.id_articulo})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -151,8 +151,8 @@ const buscarArticulo = async (nombre) => {
                 <td>${articulo.nombre_articulo}</td>
                 <td>${articulo.detalles}</td>
                 <td>
-                <button class="btn btn-warning" onclick="editarArticulo(${articulo.id_articulo})">Editar</button>
-                <button class="btn btn-danger" onclick="eliminarArticulo(${articulo.id_articulo})">Eliminar</button>
+                <button class="btn btn-warning" onclick="editarArticulo(${articulo.id_articulo})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                <button class="btn btn-danger" onclick="eliminarArticulo(${articulo.id_articulo})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${articulo.nombre_articulo}</td>
                 <td>${articulo.detalles}</td>
                 <td>
-                    <button class="btn btn-warning" onclick="editarArticulo(${articulo.id_articulo})">Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarArticulo(${articulo.id_articulo})">Eliminar</button>
+                    <button class="btn btn-warning" onclick="editarArticulo(${articulo.id_articulo})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                    <button class="btn btn-danger" onclick="eliminarArticulo(${articulo.id_articulo})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);

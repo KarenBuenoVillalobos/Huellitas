@@ -90,8 +90,8 @@ verTablasButton.addEventListener('click', async () => {
                 <td>${voluntario.nombre_asignacion}</td>
                 <td>${voluntario.tarea}</td>
                 <td>
-                    <button class="btn btn-warning" onclick="editarVoluntario(${voluntario.id_voluntario})">Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarVoluntario(${voluntario.id_voluntario})">Eliminar</button>
+                    <button class="btn btn-warning" onclick="editarVoluntario(${voluntario.id_voluntario})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                    <button class="btn btn-danger" onclick="eliminarVoluntario(${voluntario.id_voluntario})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);
@@ -172,8 +172,8 @@ const buscarVoluntario = async (nombre) => {
                 <td>${voluntario.nombre_asignacion}</td>
                 <td>${voluntario.tarea}</td>
                 <td>
-                <button class="btn btn-warning" onclick="editarVoluntario(${voluntario.id_voluntario})">Editar</button>
-                <button class="btn btn-danger" onclick="eliminarVoluntario(${voluntario.id_voluntario})">Eliminar</button>
+                <button class="btn btn-warning" onclick="editarVoluntario(${voluntario.id_voluntario})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                <button class="btn btn-danger" onclick="eliminarVoluntario(${voluntario.id_voluntario})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
                 </td>
             `;
             tbody.appendChild(row);
