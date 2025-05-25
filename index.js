@@ -81,6 +81,10 @@ app.get("/formulario-articulos",(req,res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'articulos.html'));
 });
 
+app.get("/formulario-donaciones",(req,res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'donaciones.html'));
+});
+
 app.get("/formulario-voluntarios",(req,res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'voluntarios.html'));
 });

@@ -7,19 +7,31 @@
 // fecha_donacion
 
 const db = require("../db/db");
+// const { get } = require("../routers/donaciones.router");
 
 //// METODO GET  /////
+
+// Obtener los articulos
+const getArticulos = (req, res) => {
+    const sql = `SELECT id_articulo, nombre_articulo FROM articulos`;
+    db.query(sql, (error, rows) => {
+        if (error) {
+            console.error("Error al obtener los articulos:", error);
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        res.json(rows);
+    });
+};
 
 // Para todos las donaciones
 const allDonacion = (req, res) => {
     const sql = `
     SELECT 
         donaciones.id_donacion,
-        usuarios.nombre_apellido AS nombre_usuario,
+        donaciones.nombre_donador AS nombre_donador,
         articulos.nombre_articulo AS nombre_articulo,
         donaciones.fecha_donacion
     FROM donaciones
-    INNER JOIN usuarios ON donaciones.id_usuario = usuarios.id_usuario
     INNER JOIN articulos ON donaciones.id_articulo = articulos.id_articulo
 `;
     db.query(sql, (error, rows) => {
@@ -36,11 +48,10 @@ const showDonacion = (req, res) => {
     const sql = `
         SELECT 
             donaciones.id_donacion,
-            usuarios.nombre_apellido AS nombre_usuario,
+            donaciones.nombre_donador AS nombre_donador,
             articulos.nombre_articulo AS nombre_articulo,
             donaciones.fecha_donacion
         FROM donaciones
-        INNER JOIN usuarios ON donaciones.id_usuario = usuarios.id_usuario
         INNER JOIN articulos ON donaciones.id_articulo = articulos.id_articulo
         WHERE donaciones.id_donacion = ?
     `;
@@ -57,11 +68,36 @@ const showDonacion = (req, res) => {
     }); 
 };
 
+const showDonadorName = (req, res) => {
+    const { nombre_donador } = req.params;
+    console.log(nombre_donador);
+    const sql = `
+        SELECT 
+            donaciones.id_donacion,
+            donaciones.nombre_donador,
+            articulos.nombre_articulo AS articulo,
+            donaciones.fecha_donacion
+        FROM donaciones
+        INNER JOIN articulos ON donaciones.id_articulo = articulos.id_articulo
+        WHERE donaciones.nombre_donador LIKE ?
+    `;
+    db.query(sql, [`%${nombre_donador}%`], (error, rows) => {
+        console.log(rows);
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        if (rows.length === 0) {
+            return res.status(404).send({ error: "ERROR: No existe el donador buscado." });
+        }
+        res.json(rows); // Devuelve todos los resultados
+    });
+};
+
 //// METODO POST  ////
 const insertDonacion = (req, res) => {
-    const {id_usuario, id_articulo, fecha_donacion} = req.body;
-    const sql = "INSERT INTO donaciones (id_usuario, id_articulo, fecha_donacion) VALUES (?,?,?)";
-    db.query(sql,[id_usuario, id_articulo, fecha_donacion], (error, result) => {
+    const {nombre_donador, id_articulo, fecha_donacion} = req.body;
+    const sql = "INSERT INTO donaciones (nombre_donador, id_articulo, fecha_donacion) VALUES (?,?,?)";
+    db.query(sql,[nombre_donador, id_articulo, fecha_donacion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -75,9 +111,9 @@ const insertDonacion = (req, res) => {
 //// METODO PUT  ////
 const updateDonacion = (req, res) => {
     const {id_donacion} = req.params;
-    const {id_usuario, id_articulo, fecha_donacion} = req.body;
-    const sql ="UPDATE donaciones SET id_usuario = ?, id_articulo = ?, fecha_donacion = ? WHERE id_donacion = ?";
-    db.query(sql,[id_usuario, id_articulo, fecha_donacion, id_donacion], (error, result) => {
+    const {nombre_donador, id_articulo, fecha_donacion} = req.body;
+    const sql ="UPDATE donaciones SET nombre_donador = ?, id_articulo = ?, fecha_donacion = ? WHERE id_donacion = ?";
+    db.query(sql,[nombre_donador, id_articulo, fecha_donacion, id_donacion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -116,5 +152,7 @@ module.exports = {
     showDonacion,
     insertDonacion,
     updateDonacion,
-    deleteDonacion
+    deleteDonacion,
+    getArticulos,
+    showDonadorName
 };

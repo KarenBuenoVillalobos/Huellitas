@@ -46,7 +46,7 @@ router.get('/especies', controller.getEspecies);
 //// METODO POST  ////
 router.post('/', upload.single('foto_animal'), controller.insertAnimal); //upload.single('imagen')
 
-// Para todos los productos
+// Para todos los animales
 router.get('/', controller.allAnimal);
 
 router.get('/:id_animal', controller.showAnimal);

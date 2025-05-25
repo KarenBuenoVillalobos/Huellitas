@@ -17,12 +17,12 @@
             <img src="/img/icon-atras.png" alt="atrás">
         </a>
         <div class="container-form-listas"> <!-- EDITAR EL CLASS DE ESTE DIV 2/4 -->
-            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/donaciones">
+            <form id="donacionForm" enctype="multipart/form-data" method="POST" action="/donaciones">
                 <h1>AÑADIR DONACIÓN</h1>
-                <label for="nombre_apellido">Nombre del Donador:</label>
-                <input type="text" id="nombre_apellido" name="nombre_apellido">
-                <label for="nombre_articulo">Nombre del Artículo:</label>
-                <select id="nombre_articulo" name="nombre_articulo">
+                <label for="nombre_donador">Nombre del Donador:</label>
+                <input type="text" id="nombre_donador" name="nombre_donador">
+                <label for="id_articulo">Nombre del Artículo:</label>
+                <select id="id_articulo" name="id_articulo">
                     <option value="">Seleccione el artículo</option>
                 </select>
                 <label for="fecha_donacion">Fecha de Donación:</label>
@@ -43,6 +43,7 @@
             <table id="tablaDonaciones">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre Donador</th>
                         <th>Nombre Artículo</th>
                         <th>Fecha de Donación</th>
@@ -57,6 +58,7 @@
                 <table id="tablaDonaciones">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre Donador</th>
                             <th>Nombre Artículo</th>
                             <th>Fecha de Donación</th>
@@ -82,14 +84,15 @@
             <div class="modal-editar">
                 <h2>Editar Donación</h2>
                 <form id="editarForm">
-                    <label for="editar_nombre_apellido">Nombre del Donador:</label>
-                    <input type="text" id="editar_nombre_apellido" name="nombre_apellido">
-                    <label for="editar_nombre_articulo">Nombre del Artículo:</label>
-                    <select id="editar_nombre_articulo" name="nombre_articulo">
+                    <input type="hidden" id="editar_id_donacion" name="id_donacion">
+                    <label for="editar_nombre_donador">Nombre del Donador:</label>
+                    <input type="text" id="editar_nombre_donador" name="editar_nombre_donador">
+                    <label for="editar_id_articulo">Nombre del Artículo:</label>
+                    <select id="editar_id_articulo" name="id_articulo">
                         <option value="">Seleccione el artículo</option>
                     </select>
                     <label for="editar_fecha_donacion">Fecha de donación:</label>
-                    <input type="date" name="editar_fecha_donacion" id="fecha_donacion">
+                    <input type="date" name="editar_fecha_donacion" id="editar_fecha_donacion">
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" id="cerrarModal">Cancelar</button>
                 </form>
@@ -101,7 +104,7 @@
 
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/animal.js"></script>
+    <script src="/js/donacion.js"></script>
 </body>
 
 </html>

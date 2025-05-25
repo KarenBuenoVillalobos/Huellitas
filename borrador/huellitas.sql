@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2025 a las 01:34:45
+-- Tiempo de generación: 25-05-2025 a las 02:30:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -104,13 +104,33 @@ INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `detalles`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `asignaciones`
+--
+
+CREATE TABLE `asignaciones` (
+  `id_asignacion` int(11) NOT NULL,
+  `nombre_asignacion` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `asignaciones`
+--
+
+INSERT INTO `asignaciones` (`id_asignacion`, `nombre_asignacion`) VALUES
+(1, 'Rescatista'),
+(2, 'Veterinario'),
+(3, 'Hogar temporal');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `donaciones`
 --
 
 CREATE TABLE `donaciones` (
   `id_donacion` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
   `id_articulo` int(11) NOT NULL,
+  `nombre_donador` varchar(30) NOT NULL,
   `fecha_donacion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,10 +138,10 @@ CREATE TABLE `donaciones` (
 -- Volcado de datos para la tabla `donaciones`
 --
 
-INSERT INTO `donaciones` (`id_donacion`, `id_usuario`, `id_articulo`, `fecha_donacion`) VALUES
-(3, 2, 3, '2020-03-07'),
-(6, 1, 3, '2024-03-07'),
-(7, 2, 2, '2020-03-07');
+INSERT INTO `donaciones` (`id_donacion`, `id_articulo`, `nombre_donador`, `fecha_donacion`) VALUES
+(3, 3, 'Abi', '2020-03-07'),
+(6, 3, 'Magdalena', '2024-03-07'),
+(7, 2, 'Fernando', '2020-03-07');
 
 -- --------------------------------------------------------
 
@@ -236,7 +256,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`
 (3, 'Juan Pérez', 'amy@gmail.com', 1, 1, 'Prueba123', '1731352177923.jpg', 2),
 (5, 'Leonel Girett', 'usuario1@gmail.com', 5, 1, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2),
 (6, 'asd', 'adas@prueba.com', 5, 1, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
-(7, 'Leonel1', 'nuevo@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2);
+(7, 'Leonel1', 'nuevo@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2),
+(8, 'Karen', 'karen@gmail.com', 5, 1, '$2a$08$sXRTUm0SpiQo8ALh7pzlreqvgvyIA0GweU9AhrVs9Qmo8ji89DuIC', '1748130152229.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -246,18 +267,19 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`
 
 CREATE TABLE `voluntarios` (
   `id_voluntario` int(11) NOT NULL,
-  `tarea` text NOT NULL,
-  `id_asignacion` int(11) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `id_asignacion` int(11) NOT NULL,
+  `tarea` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `voluntarios`
 --
 
-INSERT INTO `voluntarios` (`id_voluntario`, `tarea`, `id_asignacion`) VALUES
-(1, 'Por zona sur, lleva jaulas y mantas.', 1),
-(2, 'Por zona sur, lleva botiquin de primeros auxilios.', 1),
-(3, 'Cuida a bebes encontrados hasta que puedan encontrar dueño.', 2);
+INSERT INTO `voluntarios` (`id_voluntario`, `email`, `id_asignacion`, `tarea`) VALUES
+(1, 'voluntario1@gmail.com', 1, 'Por zona sur, lleva jaulas y mantas.'),
+(2, 'voluntario2@gmail.com', 1, 'Por zona sur, lleva botiquin de primeros auxilios.'),
+(3, 'voluntario3@gmail.com', 2, 'Cuida a bebes encontrados hasta que puedan encontrar dueño.');
 
 --
 -- Índices para tablas volcadas
@@ -285,11 +307,16 @@ ALTER TABLE `articulos`
   ADD PRIMARY KEY (`id_articulo`);
 
 --
+-- Indices de la tabla `asignaciones`
+--
+ALTER TABLE `asignaciones`
+  ADD PRIMARY KEY (`id_asignacion`);
+
+--
 -- Indices de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
   ADD PRIMARY KEY (`id_donacion`),
-  ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_articulo` (`id_articulo`);
 
 --
@@ -355,6 +382,12 @@ ALTER TABLE `articulos`
   MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `asignaciones`
+--
+ALTER TABLE `asignaciones`
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
@@ -388,7 +421,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `voluntarios`
@@ -417,7 +450,6 @@ ALTER TABLE `animales`
 -- Filtros para la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
-  ADD CONSTRAINT `donaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
   ADD CONSTRAINT `donaciones_ibfk_2` FOREIGN KEY (`id_articulo`) REFERENCES `articulos` (`id_articulo`);
 
 --
