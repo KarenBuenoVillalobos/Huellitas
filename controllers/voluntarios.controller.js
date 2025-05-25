@@ -26,7 +26,7 @@ const allVoluntario = (req, res) => {
     const sql = `
         SELECT 
             voluntarios.id_voluntario,
-            usuarios.email,
+            voluntarios.email,
             asignaciones.nombre_asignacion AS asignacion,
             voluntarios.tarea
         FROM voluntarios
@@ -46,6 +46,7 @@ const showVoluntario = (req, res) => {
     const sql = `
     SELECT 
         voluntarios.id_voluntario,
+        voluntarios.email,
         asignaciones.nombre_asignacion AS asignacion,
         voluntarios.tarea
     FROM voluntarios
@@ -65,14 +66,40 @@ const showVoluntario = (req, res) => {
     }); 
 };
 
+const showVoluntarioEmail = (req, res) => {
+    const { email } = req.params;
+    console.log(email);
+    const sql = `
+        SELECT 
+            voluntarios.id_voluntario,
+            voluntarios.email,
+            asignaciones.nombre_asignacion AS asignacion,
+            voluntarios.tarea
+        FROM voluntarios
+        INNER JOIN asignaciones ON voluntarios.id_asignacion = asignaciones.id_asignacion
+        WHERE voluntarios.email LIKE ?
+    `;
+    db.query(sql, [`%${email}%`], (error, rows) => {
+        console.log(rows);
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        if (rows.length === 0) {
+            return res.status(404).send({ error: "ERROR: No existe el voluntario buscado." });
+        }
+        res.json(rows); // Devuelve todos los resultados
+    });
+};
+
+
 //// METODO POST  ////
 const insertVoluntario = (req, res) => {
-    const { id_asignacion, tarea } = req.body;
+    const { email, id_asignacion, tarea } = req.body;
     const sql = `
-        INSERT INTO voluntarios (id_asignacion, tarea) 
-        VALUES (?, ?)
+        INSERT INTO voluntarios (email, id_asignacion, tarea) 
+        VALUES (?, ?, ?)
     `;
-    db.query(sql, [id_asignacion, tarea], (error, result) => {
+    db.query(sql, [email, id_asignacion, tarea], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -86,15 +113,16 @@ const insertVoluntario = (req, res) => {
 //// METODO PUT  ////
 const updateVoluntario = (req, res) => {
     const { id_voluntario } = req.params;
-    const { id_asignacion, tarea } = req.body;
+    const { email, id_asignacion, tarea } = req.body;
     const sql = `
         UPDATE voluntarios 
-        SET 
+        SET
+            email = ?,
             id_asignacion = ?, 
             tarea = ? 
         WHERE id_voluntario = ?
     `;
-    db.query(sql, [id_asignacion, tarea, id_voluntario], (error, result) => {
+    db.query(sql, [email, id_asignacion, tarea, id_voluntario], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -134,5 +162,6 @@ module.exports = {
     insertVoluntario,
     updateVoluntario,
     deleteVoluntario,
-    getAsignaciones
+    getAsignaciones,
+    showVoluntarioEmail
 };

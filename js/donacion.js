@@ -68,7 +68,7 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-// Renderizar filas de la tabla con paginación y ordenamiento CAMBIAR A NOMBRE_DONADOR, NO TRAER NOMBRE DE USUARIO
+// Renderizar filas de la tabla con paginación y ordenamiento
 function renderRows() {
     const tabla = document.getElementById('tablaDonaciones');
     const tbody = tabla.querySelector('tbody');

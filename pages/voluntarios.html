@@ -26,7 +26,7 @@
                     <option value="">Seleccione el área de interés</option>
                 </select>
                 <label for="tarea">Tarea:</label>
-                <input type="text" id="tarea" name="tarea">
+                <textarea id="tarea" name="tarea"></textarea>
 
                 <button type="submit">Registrar Voluntario</button>
             </form>
@@ -43,7 +43,7 @@
             <table id="tablaVoluntarios">
                 <thead>
                     <tr>
-                        <th>Nombre Voluntario</th>
+                        <th>ID</th>
                         <th>Correo electrónico</th>
                         <th>Asignación</th>
                         <th>Tarea</th>
@@ -58,7 +58,7 @@
                 <table id="tablaVoluntarios">
                     <thead>
                         <tr>
-                            <th>Nombre Voluntario</th>
+                            <th>ID</th>
                             <th>Correo electrónico</th>
                             <th>Asignación</th>
                             <th>Tarea</th>
@@ -84,16 +84,18 @@
             <div class="modal-editar">
                 <h2>Editar Voluntario</h2>
                 <form id="editarForm">
-                    <label for="nombre_apellido">Nombre del Voluntario:</label>
-                    <input type="text" id="nombre_apellido" name="nombre_apellido">
-                    <label for="email">Correo electrónico:</label>
-                    <input type="text" id="email" name="email">
-                    <label for="editar_asignacion">Asignación:</label>
-                    <select id="editar_asignacion" name="id_asignacion">
+                    <input type="hidden" id="editar_id_voluntario" name="id_voluntario">
+                    <!-- <label for="nombre_apellido">Nombre del Voluntario:</label>
+                    <input type="text" id="nombre_apellido" name="nombre_apellido"> -->
+                    <label for="editar_email">Correo electrónico:</label>
+                    <input type="text" id="editar_email" name="editar_email">
+                    <label for="editar_id_asignacion">Asignación:</label>
+                    <select id="editar_id_asignacion" name="id_asignacion">
                         <option value="">Seleccione área de interés</option>
                     </select>
                     <label for="editar_tarea">Tarea:</label>
-                    <input type="text" name="editar_tarea" id="tarea">
+                    <textarea name="editar_tarea" id="editar_tarea"></textarea>
+                    
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" id="cerrarModal">Cancelar</button>
                 </form>
@@ -105,7 +107,7 @@
 
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/animal.js"></script>
+    <script src="/js/voluntario.js"></script>
 </body>
 
 </html>
