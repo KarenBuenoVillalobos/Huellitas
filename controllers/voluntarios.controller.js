@@ -7,6 +7,9 @@
 const db = require("../db/db");
 // const { get } = require("../routers/voluntarios.router");
 
+//Envio de correos
+const nodemailer = require('nodemailer');
+
 //// METODO GET  /////
 
 // Obtener las asignaciones
