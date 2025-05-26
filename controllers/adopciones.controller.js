@@ -11,10 +11,29 @@
 const db = require("../db/db");
 
 //// METODO GET  /////
+// Obtener los animales
+const getAnimales = (req, res) => {
+    const sql = `SELECT id_animal, nombre_animal FROM animales`;
+    db.query(sql, (error, rows) => {
+        if (error) {
+            console.error("Error al obtener los animales:", error);
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        res.json(rows);
+    });
+};
 
 // Para todos las adopciones
 const allAdopcion = (req, res) => {
-    const sql = "SELECT * FROM adopciones";
+    const sql = `
+        SELECT 
+            adopciones.*,
+            usuarios.nombre_apellido AS nombre_usuario,
+            animales.nombre_animal AS nombre_animal
+        FROM adopciones
+        INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
+        INNER JOIN animales ON adopciones.id_animal = animales.id_animal
+    `;
     db.query(sql, (error, rows) => {
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -52,6 +71,34 @@ const showAdopcion = (req, res) => {
     }); 
 };
 
+const showAdoptanteName = (req, res) => {
+    const { nombre_apellido } = req.params;
+    console.log(nombre_apellido);
+    const sql = `
+        SELECT 
+            adopciones.id_adopcion,
+            usuarios.nombre_apellido AS nombre_apellido,
+            animales.nombre_animal AS nombre_animal,
+            adopciones.telefono,
+            adopciones.direccion,
+            adopciones.fecha_adopcion
+        FROM adopciones
+        INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
+        INNER JOIN animales ON adopciones.id_animal = animales.id_animal
+        WHERE usuarios.nombre_apellido LIKE ?
+    `;
+    db.query(sql, [`%${nombre_apellido}%`], (error, rows) => {
+        console.log(rows);
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        if (rows.length === 0) {
+            return res.status(404).send({ error: "ERROR: No existe el donador buscado." });
+        }
+        res.json(rows); // Devuelve todos los resultados
+    });
+};
+
 //// METODO POST  ////
 const insertAdopcion = (req, res) => {
     const {id_usuario, id_animal, telefono, direccion, fecha_adopcion} = req.body;
@@ -70,20 +117,29 @@ const insertAdopcion = (req, res) => {
 //// METODO PUT  ////
 const updateAdopcion = (req, res) => {
     const {id_adopcion} = req.params;
-    const {nombre_usuario, nombre_animal, telefono, direccion, fecha_adopcion} = req.body;
+    const {id_animal, telefono, direccion, fecha_adopcion} = req.body;
+//     const sql = `
+//     UPDATE adopciones
+//     INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
+//     INNER JOIN animales ON adopciones.id_animal = animales.id_animal
+//     SET 
+//         usuarios.nombre_apellido = ?,
+//         animales.nombre_animal = ?,
+//         adopciones.telefono = ?,
+//         adopciones.direccion = ?,
+//         adopciones.fecha_adopcion = ?
+//     WHERE adopciones.id_adopcion = ?
+// `;
     const sql = `
-    UPDATE adopciones
-    INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
-    INNER JOIN animales ON adopciones.id_animal = animales.id_animal
-    SET 
-        usuarios.nombre_apellido = ?,
-        animales.nombre_animal = ?,
-        adopciones.telefono = ?,
-        adopciones.direccion = ?,
-        adopciones.fecha_adopcion = ?
-    WHERE adopciones.id_adopcion = ?
-`;
-    db.query(sql,[nombre_usuario, nombre_animal, telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
+        UPDATE adopciones
+        SET 
+            id_animal = ?,
+            telefono = ?,
+            direccion = ?,
+            fecha_adopcion = ?
+        WHERE id_adopcion = ?
+    `;
+    db.query(sql,[id_animal, telefono, direccion, fecha_adopcion, id_adopcion], (error, result) => {
         console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
@@ -122,5 +178,7 @@ module.exports = {
     showAdopcion,
     insertAdopcion,
     updateAdopcion,
-    deleteAdopcion
+    deleteAdopcion,
+    getAnimales,
+    showAdoptanteName
 };

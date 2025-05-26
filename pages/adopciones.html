@@ -17,12 +17,12 @@
             <img src="/img/icon-atras.png" alt="atrás">
         </a>
         <div class="container-form-listas"> <!-- EDITAR EL CLASS DE ESTE DIV 2/4 -->
-            <form id="animalForm" enctype="multipart/form-data" method="POST" action="/adopciones">
+            <form id="adopcionForm" enctype="multipart/form-data" method="POST" action="/adopciones">
                 <h1>REGISTRAR ADOPCIÓN</h1>
                 <label for="nombre_apellido">Nombre del Adoptante:</label>
                 <input type="text" id="nombre_apellido" name="nombre_apellido">
-                <label for="nombre_animal">Nombre del Animal:</label>
-                <select id="nombre_animal" name="nombre_animal">
+                <label for="id_animal">Nombre del Animal:</label>
+                <select id="id_animal" name="id_animal">
                     <option value="">Seleccione el animalito</option>
                 </select>
                 <label for="telefono">Teléfono:</label>
@@ -47,6 +47,7 @@
             <table id="tablaAdopciones">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre Adoptante</th>
                         <th>Nombre Animal</th>
                         <th>Teléfono</th>
@@ -63,6 +64,7 @@
                 <table id="tablaAdopciones">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nombre Adoptante</th>
                             <th>Nombre Animal</th>
                             <th>Teléfono</th>
@@ -90,18 +92,20 @@
             <div class="modal-editar">
                 <h2>Editar Adopción</h2>
                 <form id="editarForm">
+                    <input type="hidden" id="editar_id_adopcion" name="editar_id_adopcion">
                     <label for="editar_nombre_apellido">Nombre del Adoptante:</label>
-                    <input type="text" id="editar_nombre_apellido" name="nombre_apellido">
-                    <label for="editar_nombre_animal">Nombre del Animal:</label>
-                    <select id="editar_nombre_animal" name="nombre_animal">
+                    <input type="text" id="editar_nombre_apellido" name="editar_nombre_apellido" readonly>
+                    <label for="editar_id_animal">Nombre del Animal:</label>
+                    <select id="editar_id_animal" name="id_animal">
                         <option value="">Seleccione el animalito</option>
                     </select>
                     <label for="editar_telefono">Teléfono:</label>
-                    <input type="text" id="editar_telefono" name="telefono">
+                    <input type="text" id="editar_telefono" name="editar_telefono">
                     <label for="editar_direccion">Dirección:</label>
-                    <input type="text" name="editar_direccion" id="direccion">
+                    <input type="text" name="editar_direccion" id="editar_direccion">
                     <label for="editar_fecha_adopcion">Fecha de adopción:</label>
-                    <input type="date" name="editar_fecha_adopcion" id="fecha_adopcion">
+                    <input type="date" name="editar_fecha_adopcion" id="editar_fecha_adopcion">
+
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" id="cerrarModal">Cancelar</button>
                 </form>
@@ -113,7 +117,7 @@
 
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/animal.js"></script>
+    <script src="/js/adopcion.js"></script>
 </body>
 
 </html>

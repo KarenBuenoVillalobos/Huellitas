@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 02:30:17
+-- Tiempo de generación: 26-05-2025 a las 22:05:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,14 +41,9 @@ CREATE TABLE `adopciones` (
 --
 
 INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, `direccion`, `fecha_adopcion`) VALUES
-(6, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(7, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(9, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(12, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(13, 1, 2, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(14, 1, 2, '123456789', 'Calle Falsa 123', '2025-04-02'),
-(15, 3, 2, '987654321', 'Avenida Siempre Viva 742', '2025-04-10'),
-(17, 5, 2, '987654321', 'Avenida Siempre Viva 742', '2025-04-10');
+(6, 1, 2, '435346546', 'Urquiza 123', '2025-05-08'),
+(7, 2, 4, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
+(9, 3, 5, '1287681723', 'Av. Corrientes 1231', '2023-03-07');
 
 -- --------------------------------------------------------
 
@@ -73,12 +68,8 @@ INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `des
 (2, 2, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1744587833000.jpg'),
 (4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1746207750800.jpg'),
 (5, 1, 'Amapola', 99, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
-(6, 2, 'Kayla', 12, 'Muy gris y mala', '1746207757956.jfif'),
-(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1746207765791.jfif'),
-(45, 2, 'Mostrando en bd', 15, 'Esperemos que se llegue a mirar', '1746122868389.jpg'),
-(47, 2, 'Bellota', 23, 'asd', '1746658634139.jpg'),
-(48, 2, 'Leonel', 2, 'wqe', '1746658874951.jpg'),
-(49, 2, 'Leonel', 2, 'asd', '1746658891406.jpg');
+(6, 2, 'Callie', 12, 'Muy gris y mala', '1746207757956.jfif'),
+(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1746207765791.jfif');
 
 -- --------------------------------------------------------
 
@@ -141,7 +132,8 @@ CREATE TABLE `donaciones` (
 INSERT INTO `donaciones` (`id_donacion`, `id_articulo`, `nombre_donador`, `fecha_donacion`) VALUES
 (3, 3, 'Abi', '2020-03-07'),
 (6, 3, 'Magdalena', '2024-03-07'),
-(7, 2, 'Fernando', '2020-03-07');
+(7, 2, 'Fernando', '2020-03-07'),
+(8, 2, 'Mariana', '2025-05-25');
 
 -- --------------------------------------------------------
 
@@ -163,10 +155,8 @@ INSERT INTO `especies` (`id_especie`, `nombre_especie`) VALUES
 (2, 'Gato'),
 (3, 'Conejo'),
 (4, 'Ave'),
-(5, 'Pez'),
-(6, 'Pajaro'),
-(7, 'funciona'),
-(8, 'prueba');
+(5, 'Hamster'),
+(6, 'Pajaro');
 
 -- --------------------------------------------------------
 
@@ -251,13 +241,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`, `id_genero`, `password`, `foto_usuario`, `id_rol`) VALUES
-(1, 'Probando Modificacion', 'nuevo1@prueba.com', 2, 2, '12345', '1747006336366.jpg', 1),
-(2, 'Katty', 'katty@gmail.com', 1, 2, '$2a$08$qH8NCbgv', '1731199734959.jpg', 1),
-(3, 'Juan Pérez', 'amy@gmail.com', 1, 1, 'Prueba123', '1731352177923.jpg', 2),
-(5, 'Leonel Girett', 'usuario1@gmail.com', 5, 1, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2),
-(6, 'asd', 'adas@prueba.com', 5, 1, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
-(7, 'Leonel1', 'nuevo@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2),
-(8, 'Karen', 'karen@gmail.com', 5, 1, '$2a$08$sXRTUm0SpiQo8ALh7pzlreqvgvyIA0GweU9AhrVs9Qmo8ji89DuIC', '1748130152229.jpg', 1);
+(1, 'Jorge', 'jorge@prueba.com', 2, 2, '12345', '1747006336366.jpg', 1),
+(2, 'Karen', 'karen@gmail.com', 1, 1, '$2a$08$qH8NCbgv', '1731199734959.jpg', 1),
+(3, 'Juan Pérez', 'juan@gmail.com', 1, 2, 'Prueba123', '1731352177923.jpg', 2),
+(5, 'Leonel Girett', 'leonelg@gmail.com', 5, 2, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2),
+(6, 'Pablo', 'pablo@gmail.com', 5, 2, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
+(7, 'Mariana', 'mariana@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2);
 
 -- --------------------------------------------------------
 
@@ -391,7 +380,7 @@ ALTER TABLE `asignaciones`
 -- AUTO_INCREMENT de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
-  MODIFY `id_donacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_donacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `especies`

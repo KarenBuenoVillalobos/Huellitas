@@ -77,6 +77,10 @@ app.get("/formulario-animales",(req,res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'animales.html'));
 });
 
+app.get("/formulario-adopciones",(req,res) => {
+    res.sendFile(path.resolve(__dirname, 'pages', 'adopciones.html'));
+});
+
 app.get("/formulario-articulos",(req,res) => {
     res.sendFile(path.resolve(__dirname, 'pages', 'articulos.html'));
 });
