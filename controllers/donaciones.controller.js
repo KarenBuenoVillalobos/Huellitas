@@ -49,6 +49,7 @@ const showDonacion = (req, res) => {
         SELECT 
             donaciones.id_donacion,
             donaciones.nombre_donador AS nombre_donador,
+            donaciones.id_articulo,
             articulos.nombre_articulo AS nombre_articulo,
             donaciones.fecha_donacion
         FROM donaciones
@@ -96,6 +97,13 @@ const showDonadorName = (req, res) => {
 //// METODO POST  ////
 const insertDonacion = (req, res) => {
     const {nombre_donador, id_articulo, fecha_donacion} = req.body;
+console.log('BODY DONACION:', req.body);
+
+    // Validación de campos obligatorios
+    if (!nombre_donador || !id_articulo || !fecha_donacion) {
+        return res.status(400).json({ error: "Faltan datos obligatorios para la donación." });
+    }
+
     const sql = "INSERT INTO donaciones (nombre_donador, id_articulo, fecha_donacion) VALUES (?,?,?)";
     db.query(sql,[nombre_donador, id_articulo, fecha_donacion], (error, result) => {
         console.log(result);

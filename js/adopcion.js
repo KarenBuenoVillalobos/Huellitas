@@ -68,14 +68,14 @@ form.addEventListener('submit', async (event) => {
     if (!validarFormulario()) return;
 
     // Tomá los valores de los campos
-    const nombre = document.getElementById('nombre_apellido').value;
+    const nombre_apellido = document.getElementById('nombre_apellido').value;
     const id_animal = document.getElementById('id_animal').value;
     const telefono = document.getElementById('telefono').value;
     const direccion = document.getElementById('direccion').value;
     const fecha_adopcion = document.getElementById('fecha_adopcion').value;
 
     const body = {
-        nombre,
+        nombre_apellido,
         id_animal,
         telefono,
         direccion,

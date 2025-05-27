@@ -142,18 +142,43 @@ const showAnimalName = (req, res) => {
 };
 
 //// METODO POST  ////
+// const insertAdopcion = (req, res) => {
+//     const { id_usuario, id_animal, telefono, direccion, fecha_adopcion } = req.body;
+//     const sql = "INSERT INTO adopciones (id_usuario, id_animal, telefono, direccion, fecha_adopcion) VALUES (?,?,?,?,?)";
+//     db.query(sql, [id_usuario, id_animal, telefono, direccion, fecha_adopcion], (error, result) => {
+//         console.log(result);
+//         if (error) {
+//             return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+//         }
+//         const adopcion = { ...req.body, id: result.insertId }; // ... reconstruir el objeto del body
+//         res.status(201).json(adopcion); // muestra creado con exito el elemento
+//     });
+
+// };
 const insertAdopcion = (req, res) => {
-    const { id_usuario, id_animal, telefono, direccion, fecha_adopcion } = req.body;
-    const sql = "INSERT INTO adopciones (id_usuario, id_animal, telefono, direccion, fecha_adopcion) VALUES (?,?,?,?,?)";
-    db.query(sql, [id_usuario, id_animal, telefono, direccion, fecha_adopcion], (error, result) => {
-        console.log(result);
+    const { nombre_apellido, id_animal, telefono, direccion, fecha_adopcion } = req.body;
+
+    // Buscar usuario por nombre_apellido
+    const buscarUsuario = `SELECT id_usuario FROM usuarios WHERE nombre_apellido = ?`;
+    db.query(buscarUsuario, [nombre_apellido], (error, rows) => {
         if (error) {
             return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
         }
-        const adopcion = { ...req.body, id: result.insertId }; // ... reconstruir el objeto del body
-        res.status(201).json(adopcion); // muestra creado con exito el elemento
-    });
+        if (rows.length === 0) {
+            return res.status(400).json({ error: "El nombre ingresado no está registrado como usuario." });
+        }
+        const id_usuario = rows[0].id_usuario;
 
+        // Insertar la adopción
+        const sql = `INSERT INTO adopciones (id_usuario, id_animal, telefono, direccion, fecha_adopcion) VALUES (?,?,?,?,?)`;
+        db.query(sql, [id_usuario, id_animal, telefono, direccion, fecha_adopcion], (error, result) => {
+            if (error) {
+                return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+            }
+            const adopcion = { ...req.body, id: result.insertId };
+            res.status(201).json(adopcion);
+        });
+    });
 };
 
 //// METODO PUT  ////

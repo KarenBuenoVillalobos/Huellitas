@@ -32,12 +32,23 @@ const form = document.getElementById('donacionForm');
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validarFormulario()) return;
-    const formData = new FormData(form);
+
+    // Toma los valores de los campos
+    const nombre_donador = document.getElementById('nombre_donador').value.trim();
+    const id_articulo = document.getElementById('id_articulo').value;
+    const fecha_donacion = document.getElementById('fecha_donacion').value.trim();
+
+    const body = {
+        nombre_donador,
+        id_articulo,
+        fecha_donacion
+    };
 
     try {
         const response = await fetch('/donaciones', {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {

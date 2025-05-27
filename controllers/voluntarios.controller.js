@@ -50,6 +50,7 @@ const showVoluntario = (req, res) => {
     SELECT 
         voluntarios.id_voluntario,
         voluntarios.email,
+        voluntarios.id_asignacion,
         asignaciones.nombre_asignacion AS asignacion,
         voluntarios.tarea
     FROM voluntarios
