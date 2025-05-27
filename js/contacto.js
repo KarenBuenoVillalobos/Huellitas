@@ -15,18 +15,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error al cargar asignaciones:', error);
     }
 
-    // Enviar el formulario usando FormData
+    // Enviar el formulario usando JSON
     const form = document.querySelector('form.contacto');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formData = new FormData(form);
+        // Validar campos
+        const email = form.email.value.trim();
+        const id_asignacion = form.id_asignacion.value;
+        const tarea = form.tarea.value.trim();
 
-        // Validación simple
-        if (
-            !formData.get('email') ||
-            !formData.get('id_asignacion') ||
-            !formData.get('tarea')
-        ) {
+        if (!email || !id_asignacion || !tarea) {
             alert('Por favor, completa todos los campos.');
             return;
         }
@@ -34,7 +32,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const response = await fetch('/voluntarios', {
                 method: 'POST',
-                body: formData
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, id_asignacion, tarea })
             });
             const data = await response.json();
             if (response.ok) {

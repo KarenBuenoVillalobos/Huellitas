@@ -124,7 +124,8 @@ const insertVoluntario = (req, res) => {
             // Configurar el mensaje
             const mailOptions = {
                 from: process.env.MAIL_USER,
-                to: `${email}`,
+                //`${email}`,
+                to: email,
                 subject: 'Solicitud de voluntariado recibida',
                 html: `
                     <div style="font-family: Arial, sans-serif; color: #222;">

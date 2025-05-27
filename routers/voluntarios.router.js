@@ -4,6 +4,7 @@ const router = express.Router();
 
 const controller = require("../controllers/voluntarios.controller");
 
+
 //// METODO GET  /////
 // Ruta para obtener las asignaciones
 router.get('/asignaciones', controller.getAsignaciones);

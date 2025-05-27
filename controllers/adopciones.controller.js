@@ -46,7 +46,7 @@ const allAdopcion = (req, res) => {
 const showAdopcion = (req, res) => {
     const { id_adopcion } = req.params;
     const sql = `
-         SELECT 
+        SELECT 
             adopciones.id_adopcion,
             usuarios.nombre_apellido AS nombre_usuario,
             animales.nombre_animal AS nombre_animal,
