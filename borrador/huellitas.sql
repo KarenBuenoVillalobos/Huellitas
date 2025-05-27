@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2025 a las 22:05:47
+-- Tiempo de generación: 28-05-2025 a las 00:29:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,9 +41,10 @@ CREATE TABLE `adopciones` (
 --
 
 INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, `direccion`, `fecha_adopcion`) VALUES
-(6, 1, 2, '435346546', 'Urquiza 123', '2025-05-08'),
-(7, 2, 4, '1287681723', 'Av. Corrientes 1231', '2023-03-07'),
-(9, 3, 5, '1287681723', 'Av. Corrientes 1231', '2023-03-07');
+(6, 1, 2, '1135761763', 'Urquiza 123', '2025-05-22'),
+(7, 2, 5, '1187686623', 'Av. Entre Rios 1231', '2025-05-09'),
+(9, 3, 4, '1567681792', 'Av. Corrientes 1231', '2025-05-03'),
+(10, 7, 6, '1512345123', 'Santa Fe 1234', '2025-05-26');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ CREATE TABLE `animales` (
 INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `descripcion`, `foto_animal`) VALUES
 (2, 2, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1744587833000.jpg'),
 (4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1746207750800.jpg'),
-(5, 1, 'Amapola', 99, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
+(5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
 (6, 2, 'Callie', 12, 'Muy gris y mala', '1746207757956.jfif'),
 (7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1746207765791.jfif');
 
@@ -88,9 +89,11 @@ CREATE TABLE `articulos` (
 --
 
 INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `detalles`) VALUES
-(1, 'Manta', '3m x 3m, color violeta'),
-(2, 'Pipeta', 'Para gatos adultos'),
-(3, 'Collar', 'Color verde');
+(1, 'Manta', '3m x 3m, color violeta.'),
+(2, 'Pipeta', 'Para gatos adultos.'),
+(3, 'Collar', 'Color verde.'),
+(5, 'Piedritas', '4 kg'),
+(6, 'Arenero', 'Grande.');
 
 -- --------------------------------------------------------
 
@@ -130,10 +133,12 @@ CREATE TABLE `donaciones` (
 --
 
 INSERT INTO `donaciones` (`id_donacion`, `id_articulo`, `nombre_donador`, `fecha_donacion`) VALUES
-(3, 3, 'Abi', '2020-03-07'),
+(3, 2, 'Luciana', '2025-04-18'),
 (6, 3, 'Magdalena', '2024-03-07'),
-(7, 2, 'Fernando', '2020-03-07'),
-(8, 2, 'Mariana', '2025-05-25');
+(7, 1, 'Fernando', '2025-05-16'),
+(8, 2, 'Mariana', '2025-05-25'),
+(9, 6, 'Andres', '2025-05-27'),
+(10, 5, 'Maria', '2025-05-27');
 
 -- --------------------------------------------------------
 
@@ -241,11 +246,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`, `id_genero`, `password`, `foto_usuario`, `id_rol`) VALUES
-(1, 'Jorge', 'jorge@prueba.com', 2, 2, '12345', '1747006336366.jpg', 1),
+(1, 'Sofia', 'sofia@prueba.com', 2, 2, '12345', '1747006336366.jpg', 1),
 (2, 'Karen', 'karen@gmail.com', 1, 1, '$2a$08$qH8NCbgv', '1731199734959.jpg', 1),
 (3, 'Juan Pérez', 'juan@gmail.com', 1, 2, 'Prueba123', '1731352177923.jpg', 2),
 (5, 'Leonel Girett', 'leonelg@gmail.com', 5, 2, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2),
-(6, 'Pablo', 'pablo@gmail.com', 5, 2, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
+(6, 'Ariel', 'ariel@gmail.com', 5, 2, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
 (7, 'Mariana', 'mariana@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2);
 
 -- --------------------------------------------------------
@@ -266,9 +271,9 @@ CREATE TABLE `voluntarios` (
 --
 
 INSERT INTO `voluntarios` (`id_voluntario`, `email`, `id_asignacion`, `tarea`) VALUES
-(1, 'voluntario1@gmail.com', 1, 'Por zona sur, lleva jaulas y mantas.'),
-(2, 'voluntario2@gmail.com', 1, 'Por zona sur, lleva botiquin de primeros auxilios.'),
-(3, 'voluntario3@gmail.com', 2, 'Cuida a bebes encontrados hasta que puedan encontrar dueño.');
+(1, 'voluntario1@gmail.com', 3, 'Cuidar durante una semana gatitos recien nacidos.'),
+(2, 'voluntario2@gmail.com', 2, 'Por zona sur, lleva botiquin de primeros auxilios.'),
+(3, 'voluntario3@gmail.com', 3, 'Cuida a bebes encontrados hasta que puedan encontrar dueño.');
 
 --
 -- Índices para tablas volcadas
@@ -356,7 +361,7 @@ ALTER TABLE `voluntarios`
 -- AUTO_INCREMENT de la tabla `adopciones`
 --
 ALTER TABLE `adopciones`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `animales`
@@ -368,7 +373,7 @@ ALTER TABLE `animales`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `asignaciones`
@@ -380,7 +385,7 @@ ALTER TABLE `asignaciones`
 -- AUTO_INCREMENT de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
-  MODIFY `id_donacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_donacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `especies`
@@ -416,7 +421,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `voluntarios`
 --
 ALTER TABLE `voluntarios`
-  MODIFY `id_voluntario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_voluntario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
