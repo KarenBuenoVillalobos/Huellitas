@@ -45,7 +45,7 @@ form.addEventListener('submit', async (event) => {
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: errorData.error || "Error al registrar el animal.",
+                text: errorData.error || "Error al registrar la huellita.",
             });
             return;
         }
@@ -53,17 +53,17 @@ form.addEventListener('submit', async (event) => {
         Swal.fire({
             icon: "success",
             title: "Éxito",
-            text: "Animal registrado con éxito.",
+            text: "Huellita registrada con éxito.",
         });
 
         form.reset();
         document.getElementById('verTablas').click(); // Recarga la tabla
     } catch (error) {
-        console.error('Error al registrar el animal:', error);
+        console.error('Error al registrar la huellita:', error);
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Error al registrar el animal. Intente más tarde.",
+            text: "Error al registrar la huellita. Intente más tarde.",
         });
     }
 });
@@ -140,14 +140,14 @@ document.getElementById('nextPage').addEventListener('click', () => {
 document.getElementById('verTablas').addEventListener('click', async () => {
     try {
         const response = await fetch('/animales');
-        if (!response.ok) throw new Error('Error al obtener los animales');
+        if (!response.ok) throw new Error('Error al obtener las huellitas.');
         animales = await response.json();
         totalRows = animales.length;
         currentPage = 1;
         renderRows();
         document.getElementById('tablaAnimales').style.display = 'table';
     } catch (error) {
-        console.error('Error al cargar los animales:', error);
+        console.error('Error al cargar las huellitas:', error);
     }
 });
 
@@ -162,7 +162,7 @@ const buscarAnimal = async (nombre) => {
         renderRows();
         document.getElementById('tablaAnimales').style.display = 'table';
     } catch (error) {
-        console.error('Error al buscar el animal:', error);
+        console.error('Error al buscar la huellita:', error);
         const tabla = document.getElementById('tablaAnimales');
         const tbody = tabla.querySelector('tbody');
         tbody.innerHTML = '<tr><td colspan="7">No se encontraron resultados</td></tr>';
@@ -230,7 +230,7 @@ window.editarAnimal = async (id_animal) => {
         // Mostrar el modal
         document.getElementById('modalEditar').style.display = 'block';
     } catch (error) {
-        console.error('Error al cargar los datos del animal:', error);
+        console.error('Error al cargar los datos de la huellita:', error);
     }
 };
 
@@ -254,7 +254,7 @@ window.eliminarAnimal = async (id_animal) => {
             const response = await fetch(`/animales/${id_animal}`, {
                 method: 'DELETE',
             });
-            if (!response.ok) throw new Error('Error al eliminar el animal');
+            if (!response.ok) throw new Error('Error al eliminar la huellita.');
             Swal.fire({
                 icon: "success",
                 title: "Eliminado",
@@ -262,11 +262,11 @@ window.eliminarAnimal = async (id_animal) => {
             });
             document.getElementById('verTablas').click();
         } catch (error) {
-            console.error('Error al eliminar el animal:', error);
+            console.error('Error al eliminar la huellita:', error);
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Error al eliminar el animal. Intente más tarde.",
+                text: "Error al eliminar la huellita. Intente más tarde.",
             });
         }
     }
@@ -288,11 +288,11 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
             method: 'PUT',
             body: formData,
         });
-        if (!response.ok) throw new Error('Error al actualizar el animal');
+        if (!response.ok) throw new Error('Error al actualizar la huellita.');
         Swal.fire({
             icon: "success",
             title: "Éxito",
-            text: "Animal actualizado con éxito.",
+            text: "Huellita actualizada con éxito.",
         });
         document.getElementById('modalEditar').style.display = 'none';
         document.getElementById('verTablas').click();
@@ -301,7 +301,7 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: "Error al actualizar el animal. Intente más tarde.",
+            text: "Error al actualizar la huellita. Intente más tarde.",
         });
     }
 });

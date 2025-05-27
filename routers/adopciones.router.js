@@ -15,6 +15,7 @@ router.get('/', controller.allAdopcion);
 router.get('/:id_adopcion', controller.showAdopcion);
 router.get('/nombre/:nombre_apellido', controller.showAdoptanteName);
 router.get('/animal/:nombre_animal', controller.showAnimalName);
+// router.get('/animales-disponibles', controller.getAnimalesDisponibles);
 
 //// METODO POST  ////
 router.post('/', controller.insertAdopcion);

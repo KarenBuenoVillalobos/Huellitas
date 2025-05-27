@@ -23,6 +23,21 @@ const getAnimales = (req, res) => {
     });
 };
 
+// // Obtener los animales disponibles para adopción
+// const getAnimalesDisponibles = (req, res) => {
+//     const sql = `
+//         SELECT a.id_animal, a.nombre_animal
+//         FROM animales a
+//         WHERE a.id_animal NOT IN (SELECT id_animal FROM adopciones)
+//     `;
+//     db.query(sql, (error, rows) => {
+//         if (error) {
+//             return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+//         }
+//         res.json(rows);
+//     });
+// };
+
 // Para todos las adopciones
 const allAdopcion = (req, res) => {
     const sql = `
@@ -48,7 +63,8 @@ const showAdopcion = (req, res) => {
     const sql = `
         SELECT 
             adopciones.id_adopcion,
-            usuarios.nombre_apellido AS nombre_usuario,
+            adopciones.id_animal,
+            usuarios.nombre_apellido AS nombre_apellido,
             animales.nombre_animal AS nombre_animal,
             adopciones.telefono,
             adopciones.direccion,
@@ -144,18 +160,6 @@ const insertAdopcion = (req, res) => {
 const updateAdopcion = (req, res) => {
     const { id_adopcion } = req.params;
     const { id_animal, telefono, direccion, fecha_adopcion } = req.body;
-    //     const sql = `
-    //     UPDATE adopciones
-    //     INNER JOIN usuarios ON adopciones.id_usuario = usuarios.id_usuario
-    //     INNER JOIN animales ON adopciones.id_animal = animales.id_animal
-    //     SET 
-    //         usuarios.nombre_apellido = ?,
-    //         animales.nombre_animal = ?,
-    //         adopciones.telefono = ?,
-    //         adopciones.direccion = ?,
-    //         adopciones.fecha_adopcion = ?
-    //     WHERE adopciones.id_adopcion = ?
-    // `;
 
     // Actualizar los datos del animal en la base de datos
     const updateSql = `
@@ -211,4 +215,5 @@ module.exports = {
     getAnimales,
     showAdoptanteName,
     showAnimalName
+    // getAnimalesDisponibles
 };

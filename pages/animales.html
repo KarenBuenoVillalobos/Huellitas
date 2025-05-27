@@ -18,8 +18,8 @@
         </a>
         <div class="container-form-listas">
             <form id="animalForm" enctype="multipart/form-data" method="POST" action="/animales">
-                <h1>AÑADIR MASCOTA</h1>
-                <label for="nombre_animal">Nombre del Animal:</label>
+                <h1>AÑADIR HUELLITA</h1>
+                <label for="nombre_animal">Nombre Huellita:</label>
                 <input type="text" id="nombre_animal" name="nombre_animal">
                 <label for="id_especie">Especie:</label>
                 <select id="id_especie" name="id_especie">
@@ -29,16 +29,16 @@
                 <input type="text" id="edad" name="edad">
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion"></textarea>
-                <label for="foto_animal">Foto del Animal:</label>
+                <label for="foto_animal">Foto Huellita:</label>
                 <input type="file" id="foto_animal" name="foto_animal">
                 
-                <button type="submit">Registrar Animal</button>
+                <button type="submit">Registrar Huellita</button>
             </form>
         </div>
 
         <div class="container-tabla-listas">
             <div class="container-busqueda-tablas">
-                <h2>Lista de Mascotas</h2>
+                <h2>Listado de Huellitas</h2>
                 <div class="buscador-container">
                     <input type="text" id="buscador" placeholder="Buscar por nombre...">
                     <button id="verTablas">Ver Tablas</button>
@@ -90,12 +90,12 @@
         <!-- Modal para editar un animal -->
         <div id="modalEditar" class="modal-container">
             <div class="modal-editar">
-                <h2>Editar Animal</h2>
+                <h2>Editar Huellita</h2>
                 <form id="editarForm">
                     <!-- Imagen actual posicionada arriba a la derecha -->
                     <img id="editar_imagen_preview" src="" alt="Imagen del animal">
                     <input type="hidden" id="editar_id_animal" name="id_animal">
-                    <label for="editar_nombre_animal">Nombre del Animal:</label>
+                    <label for="editar_nombre_animal">Nombre Huellita:</label>
                     <input type="text" id="editar_nombre_animal" name="nombre_animal">
                     <label for="editar_id_especie">Especie:</label>
                     <select id="editar_id_especie" name="id_especie">

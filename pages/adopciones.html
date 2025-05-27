@@ -21,7 +21,7 @@
                 <h1>REGISTRAR ADOPCIÓN</h1>
                 <label for="nombre_apellido">Nombre del Adoptante:</label>
                 <input type="text" id="nombre_apellido" name="nombre_apellido">
-                <label for="id_animal">Nombre del Animal:</label>
+                <label for="id_animal">Nombre Huellita:</label>
                 <select id="id_animal" name="id_animal">
                     <option value="">Seleccione el animalito</option>
                 </select>
@@ -38,9 +38,9 @@
 
         <div class="container-tabla-listas">  <!-- EDITAR EL CLASS DE ESTE DIV 3/4-->
             <div class="container-busqueda-tablas">   <!-- EDITAR EL CLASS DE ESTE DIV 4/4-->
-                <h2>Lista de Adopciones</h2>
+                <h2>Listado de Adopciones</h2>
                 <div class="buscador-container">
-                    <input type="text" id="buscador" placeholder="Buscar por nombre...">
+                    <input type="text" id="buscador" placeholder="Buscar por adoptante o animalito...">
                     <button id="verTablas">Ver Tablas</button> <!-- NO EDITAR ID PERO TENER EN CUENTA-->
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre Adoptante</th>
-                        <th>Nombre Animal</th>
+                        <th>Nombre Huellita</th>
                         <th>Teléfono</th>
                         <th>Dirección</th> <!-- Domicilio -->
                         <th>Fecha de visita</th> <!-- Fecha de adopcion -->
@@ -66,7 +66,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre Adoptante</th>
-                            <th>Nombre Animal</th>
+                            <th>Nombre Huellita</th>
                             <th>Teléfono</th>
                             <th>Dirección</th> <!-- Domicilio -->
                             <th>Fecha de visita</th> <!-- Fecha de adopcion -->
@@ -94,8 +94,9 @@
                 <form id="editarForm">
                     <input type="hidden" id="editar_id_adopcion" name="editar_id_adopcion">
                     <label for="editar_nombre_apellido">Nombre del Adoptante:</label>
+                    <input type="hidden" id="editar_id_usuario">
                     <input type="text" id="editar_nombre_apellido" name="editar_nombre_apellido" readonly>
-                    <label for="editar_id_animal">Nombre del Animal:</label>
+                    <label for="editar_id_animal">Nombre Huellita:</label>
                     <select id="editar_id_animal" name="id_animal">
                         <option value="">Seleccione el animalito</option>
                     </select>
