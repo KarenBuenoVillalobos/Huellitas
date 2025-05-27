@@ -27,17 +27,71 @@ const loadAnimales = async () => {
 
 document.addEventListener('DOMContentLoaded', loadAnimales);
 
-// Registrar adopcion
+// // Registrar adopcion
+// const form = document.getElementById('adopcionForm');
+// form.addEventListener('submit', async (event) => {
+//     event.preventDefault();
+//     if (!validarFormulario()) return;
+//     const formData = new FormData(form);
+
+//     try {
+//         const response = await fetch('/adopciones', {
+//             method: 'POST',
+//             body: formData
+//         });
+
+//         if (!response.ok) {
+//             const errorData = await response.json();
+//             Swal.fire({
+//                 icon: "error",
+//                 title: "Error",
+//                 text: errorData.error || "Error al registrar la adopción.",
+//             });
+//             return;
+//         }
+
+//         Swal.fire({
+//             icon: "success",
+//             title: "Éxito",
+//             text: "Adopción registrada con éxito.",
+//         });
+
+//         form.reset();
+//         document.getElementById('verTablas').click(); // Recarga la tabla
+//     } catch (error) {
+//         console.error('Error al registrar la adopción:', error);
+//         Swal.fire({
+//             icon: "error",
+//             title: "Error",
+//             text: "Error al registrar la adopción. Intente más tarde.",
+//         });
+//     }
+// });
 const form = document.getElementById('adopcionForm');
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validarFormulario()) return;
-    const formData = new FormData(form);
+
+    // Tomá los valores de los campos
+    const nombre = document.getElementById('nombre_apellido').value;
+    const id_animal = document.getElementById('id_animal').value;
+    const telefono = document.getElementById('telefono').value;
+    const direccion = document.getElementById('direccion').value;
+    const fecha_adopcion = document.getElementById('fecha_adopcion').value;
+
+    const body = {
+        nombre,
+        id_animal,
+        telefono,
+        direccion,
+        fecha_adopcion
+    };
 
     try {
         const response = await fetch('/adopciones', {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {
@@ -88,7 +142,7 @@ function renderRows() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${start + index + 1}</td>
-            <td>${adopcion.nombre_usuario}</td>
+            <td>${adopcion.nombre_apellido || adopcion.nombre}</td>
             <td>${adopcion.nombre_animal}</td>
             <td>${adopcion.telefono}</td>
             <td>${adopcion.direccion}</td>
@@ -159,18 +213,74 @@ document.getElementById('verTablas').addEventListener('click', async () => {
     }
 });
 
-// Buscar adopciones por nombre de animalito
-const buscarAnimal = async (nombre) => {
+// // Buscar adopciones por nombre del adoptante
+// const buscarAdoptante = async (nombre) => {
+//     try {
+//         const response = await fetch(`/adopciones/nombre/${nombre}`);
+//         if (!response.ok) throw new Error('Error al buscar el adoptante.');
+//         adopciones = await response.json();
+//         totalRows = adopciones.length;
+//         currentPage = 1;
+//         renderRows();
+//         document.getElementById('tablaAdopciones').style.display = 'table';
+//     } catch (error) {
+//         console.error('Error al buscar el adoptante:', error);
+//         const tabla = document.getElementById('tablaAdopciones');
+//         const tbody = tabla.querySelector('tbody');
+//         tbody.innerHTML = '<tr><td colspan="7">No se encontraron resultados</td></tr>';
+//     }
+// };
+// // Buscar adopciones por nombre de animalito
+// const buscarAnimal = async (nombre) => {
+//     try {
+//         const response = await fetch(`/adopciones/nombre/${nombre}`);
+//         if (!response.ok) throw new Error('Error al buscar el animalito.');
+//         adopciones = await response.json();
+//         totalRows = adopciones.length;
+//         currentPage = 1;
+//         renderRows();
+//         document.getElementById('tablaAdopciones').style.display = 'table';
+//     } catch (error) {
+//         console.error('Error al buscar el animal:', error);
+//         const tabla = document.getElementById('tablaAdopciones');
+//         const tbody = tabla.querySelector('tbody');
+//         tbody.innerHTML = '<tr><td colspan="7">No se encontraron resultados</td></tr>';
+//     }
+// };
+
+// // Evento de búsqueda
+// document.getElementById('buscador').addEventListener('input', (event) => {
+//     const nombre = event.target.value.trim();
+//     if (nombre === '') {
+//         document.getElementById('verTablas').click();
+//     } else {
+//         buscarAdoptante(nombre);
+//     }
+// });
+const buscarAdopcion = async (valor) => {
     try {
-        const response = await fetch(`/adopciones/nombre/${nombre}`);
-        if (!response.ok) throw new Error('Error al buscar el animalito.');
+        // Primero intenta buscar por nombre del adoptante
+        let response = await fetch(`/adopciones/nombre/${valor}`);
+        if (response.ok) {
+            adopciones = await response.json();
+            if (adopciones.length > 0) {
+                totalRows = adopciones.length;
+                currentPage = 1;
+                renderRows();
+                document.getElementById('tablaAdopciones').style.display = 'table';
+                return;
+            }
+        }
+        // Si no hay resultados, busca por nombre de animal
+        response = await fetch(`/adopciones/animal/${valor}`);
+        if (!response.ok) throw new Error('Error al buscar la adopción.');
         adopciones = await response.json();
         totalRows = adopciones.length;
         currentPage = 1;
         renderRows();
         document.getElementById('tablaAdopciones').style.display = 'table';
     } catch (error) {
-        console.error('Error al buscar el animal:', error);
+        console.error('Error al buscar la adopción:', error);
         const tabla = document.getElementById('tablaAdopciones');
         const tbody = tabla.querySelector('tbody');
         tbody.innerHTML = '<tr><td colspan="7">No se encontraron resultados</td></tr>';
@@ -179,11 +289,11 @@ const buscarAnimal = async (nombre) => {
 
 // Evento de búsqueda
 document.getElementById('buscador').addEventListener('input', (event) => {
-    const nombre = event.target.value.trim();
-    if (nombre === '') {
+    const valor = event.target.value.trim();
+    if (valor === '') {
         document.getElementById('verTablas').click();
     } else {
-        buscarAnimal(nombre);
+        buscarAdopcion(valor);
     }
 });
 
@@ -209,11 +319,15 @@ window.editarAdopcion = async (id_adopcion) => {
         const adopcion = await response.json();
         // Cargar datos en el modal
         document.getElementById('editar_id_adopcion').value = adopcion.id_adopcion;
-        document.getElementById('editar_nombre_apellido').value = adopcion.nombre_usuario;
+        document.getElementById('editar_nombre_apellido').value = adopcion.nombre_apellido;
         document.getElementById('editar_telefono').value = adopcion.telefono;
         document.getElementById('editar_direccion').value = adopcion.direccion;
-        document.getElementById('editar_fecha_adopcion').value = adopcion.fecha_adopcion;
-
+        // Formatear la fecha para el input date
+        let fecha = adopcion.fecha_adopcion;
+        if (fecha) {
+            fecha = fecha.split('T')[0];
+        }
+        document.getElementById('editar_fecha_adopcion').value = fecha;
         // Cargar animales en el combobox del modal
         const animalesResponse = await fetch('/adopciones/animales');
         if (!animalesResponse.ok) throw new Error('Error al obtener los animales.');
@@ -278,16 +392,27 @@ document.getElementById('cerrarModal').addEventListener('click', () => {
     document.getElementById('modalEditar').style.display = 'none';
 });
 
-// Editar adopcion (guardar cambios)
 document.getElementById('editarForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validarFormulario(true)) return;
     const id_adopcion = document.getElementById('editar_id_adopcion').value;
-    const formData = new FormData(document.getElementById('editarForm'));
+    const id_animal = document.getElementById('editar_id_animal').value;
+    const telefono = document.getElementById('editar_telefono').value;
+    const direccion = document.getElementById('editar_direccion').value;
+    const fecha_adopcion = document.getElementById('editar_fecha_adopcion').value;
+
+    const body = {
+        id_animal,
+        telefono,
+        direccion,
+        fecha_adopcion
+    };
+
     try {
         const response = await fetch(`/adopciones/${id_adopcion}`, {
             method: 'PUT',
-            body: formData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
         });
         if (!response.ok) throw new Error('Error al actualizar la adopción.');
         Swal.fire({
@@ -315,21 +440,6 @@ function validarFormulario(esEdicion = false) {
     const direccion = document.getElementById(esEdicion ? 'editar_direccion' : 'direccion').value.trim();
     const fecha_adopcion = document.getElementById(esEdicion ? 'editar_fecha_adopcion' : 'fecha_adopcion').value;
     // Validaciones
-    const nombreRegex = /^[a-zA-Z\s]+$/;
-    // if (!nombre) {
-    //     Swal.fire({ icon: "error", title: "Campo requerido", text: "El nombre no puede estar en blanco." });
-    //     return false;
-    // }
-
-    // if (!nombreRegex.test(nombre)) {
-    //     Swal.fire({ icon: "error", title: "Nombre inválido", text: "El nombre solo puede contener letras y espacios." });
-    //     return false;
-    // }
-
-    // if (nombre.length < 3 || nombre.length > 30) {
-    //     Swal.fire({ icon: "error", title: "Longitud inválida", text: "El nombre debe tener entre 3 y 30 caracteres." });
-    //     return false;
-    // }
 
     if (!animal || animal === "") {
         Swal.fire({ icon: "error", title: "Campo requerido", text: "Por favor, selecciona un animal." });
@@ -338,6 +448,11 @@ function validarFormulario(esEdicion = false) {
 
     if (!telefono) {
         Swal.fire({ icon: "error", title: "Campo requerido", text: "Por favor, ingresa un teléfono." });
+        return false;
+    }
+
+    if (!/^\d{10}$/.test(telefono)) {
+        Swal.fire({ icon: "error", title: "Teléfono inválido", text: "El teléfono debe tener exactamente 10 números." });
         return false;
     }
 

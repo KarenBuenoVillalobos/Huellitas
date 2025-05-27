@@ -77,12 +77,20 @@ function renderRows() {
     const end = start + rowsPerPage;
     const rows = donaciones.slice(start, end);
     rows.forEach((donacion, index) => {
+        // Formatear la fecha
+        let fecha = donacion.fecha_donacion;
+        if (fecha) {
+            const d = new Date(fecha);
+            fecha = d.toLocaleDateString('es-AR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        } else {
+            fecha = '';
+        }
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${start + index + 1}</td>
             <td>${donacion.nombre_donador}</td>
             <td>${donacion.nombre_articulo || donacion.articulo}</td>
-            <td>${donacion.fecha_donacion}</td>
+            <td>${fecha}</td>
             <td>
                 <button class="btn btn-warning" onclick="editarDonacion(${donacion.id_donacion})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
                 <button class="btn btn-danger" onclick="eliminarDonacion(${donacion.id_donacion})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
@@ -200,8 +208,12 @@ window.editarDonacion = async (id_donacion) => {
         // Cargar datos en el modal
         document.getElementById('editar_id_donacion').value = donacion.id_donacion;
         document.getElementById('editar_nombre_donador').value = donacion.nombre_donador;
-        // document.getElementById('editar_nombre_articulo').value = donacion.nombre_articulo;
-        document.getElementById('editar_fecha_donacion').value = donacion.fecha_donacion;
+        // Formatear la fecha para el input date
+        let fecha = donacion.fecha_donacion;
+        if (fecha) {
+            fecha = fecha.split('T')[0];
+        }
+        document.getElementById('editar_fecha_donacion').value = fecha;
 
         // Cargar articulos en el combobox del modal ARTICULOS
         const articulosResponse = await fetch('/donaciones/articulos');
@@ -272,11 +284,21 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
     event.preventDefault();
     if (!validarFormulario(true)) return;
     const id_donacion = document.getElementById('editar_id_donacion').value;
-    const formData = new FormData(document.getElementById('editarForm'));
+    const nombre_donador = document.getElementById('editar_nombre_donador').value.trim();
+    const id_articulo = document.getElementById('editar_id_articulo').value;
+    const fecha_donacion = document.getElementById('editar_fecha_donacion').value.trim();
+
+    const body = {
+        nombre_donador,
+        id_articulo,
+        fecha_donacion
+    };
+
     try {
         const response = await fetch(`/donaciones/${id_donacion}`, {
             method: 'PUT',
-            body: formData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
         });
         if (!response.ok) throw new Error('Error al actualizar la donación.');
         Swal.fire({

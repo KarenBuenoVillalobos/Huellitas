@@ -32,12 +32,18 @@ const form = document.getElementById('voluntarioForm');
 form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validarFormulario()) return;
-    const formData = new FormData(form);
+
+    const email = document.getElementById('email').value.trim();
+    const id_asignacion = document.getElementById('id_asignacion').value;
+    const tarea = document.getElementById('tarea').value.trim();
+
+    const body = { email, id_asignacion, tarea };
 
     try {
         const response = await fetch('/voluntarios', {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
         });
 
         if (!response.ok) {
@@ -57,7 +63,7 @@ form.addEventListener('submit', async (event) => {
         });
 
         form.reset();
-        document.getElementById('verTablas').click(); // Recarga la tabla
+        document.getElementById('verTablas').click();
     } catch (error) {
         console.error('Error al registrar el voluntario:', error);
         Swal.fire({
@@ -149,10 +155,10 @@ document.getElementById('verTablas').addEventListener('click', async () => {
     }
 });
 
-// Buscar voluntarios por nombre
-const buscarVoluntario = async (nombre) => {
+// Buscar voluntarios por asignación
+const buscarVoluntario = async (asignacion) => {
     try {
-        const response = await fetch(`/voluntarios/nombre/${nombre}`);
+        const response = await fetch(`/voluntarios/asignacion/${asignacion}`);
         if (!response.ok) throw new Error('Error al buscar el voluntario.');
         voluntarios = await response.json();
         totalRows = voluntarios.length;
@@ -167,13 +173,13 @@ const buscarVoluntario = async (nombre) => {
     }
 };
 
-// Evento de búsqueda
+// Evento de búsqueda SOLO por asignación
 document.getElementById('buscador').addEventListener('input', (event) => {
-    const nombre = event.target.value.trim();
-    if (nombre === '') {
+    const asignacion = event.target.value.trim();
+    if (asignacion === '') {
         document.getElementById('verTablas').click();
     } else {
-        buscarVoluntario(nombre);
+        buscarVoluntario(asignacion);
     }
 });
 
@@ -270,12 +276,19 @@ document.getElementById('cerrarModal').addEventListener('click', () => {
 document.getElementById('editarForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!validarFormulario(true)) return;
+
     const id_voluntario = document.getElementById('editar_id_voluntario').value;
-    const formData = new FormData(document.getElementById('editarForm'));
+    const email = document.getElementById('editar_email').value.trim();
+    const id_asignacion = document.getElementById('editar_id_asignacion').value;
+    const tarea = document.getElementById('editar_tarea').value.trim();
+
+    const body = { email, id_asignacion, tarea };
+
     try {
         const response = await fetch(`/voluntarios/${id_voluntario}`, {
             method: 'PUT',
-            body: formData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
         });
         if (!response.ok) throw new Error('Error al actualizar el voluntario.');
         Swal.fire({
@@ -321,7 +334,7 @@ function validarFormulario(esEdicion = false) {
         Swal.fire({ icon: "error", title: "Campo requerido", text: "Por favor, ingresa una descripción de la tarea." });
         return false;
     }
-    if (tarea.length > 50) {
+    if (tarea.length > 80) {
         Swal.fire({ icon: "error", title: "Descripción demasiado larga", text: "La descripción de la tarea no puede exceder los 50 caracteres." });
         return false;
     }

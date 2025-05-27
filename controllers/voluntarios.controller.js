@@ -69,9 +69,8 @@ const showVoluntario = (req, res) => {
     }); 
 };
 
-const showVoluntarioEmail = (req, res) => {
-    const { email } = req.params;
-    console.log(email);
+const showVoluntarioAsignacion = (req, res) => {
+    const { asignacion } = req.params;
     const sql = `
         SELECT 
             voluntarios.id_voluntario,
@@ -80,39 +79,20 @@ const showVoluntarioEmail = (req, res) => {
             voluntarios.tarea
         FROM voluntarios
         INNER JOIN asignaciones ON voluntarios.id_asignacion = asignaciones.id_asignacion
-        WHERE voluntarios.email LIKE ?
+        WHERE asignaciones.nombre_asignacion LIKE ?
     `;
-    db.query(sql, [`%${email}%`], (error, rows) => {
-        console.log(rows);
+    db.query(sql, [`%${asignacion}%`], (error, rows) => {
         if (error) {
             return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
         }
         if (rows.length === 0) {
             return res.status(404).send({ error: "ERROR: No existe el voluntario buscado." });
         }
-        res.json(rows); // Devuelve todos los resultados
+        res.json(rows);
     });
 };
 
-
 //// METODO POST  ////
-/*const insertVoluntario = (req, res) => {
-    const { email, id_asignacion, tarea } = req.body;
-    const sql = `
-        INSERT INTO voluntarios (email, id_asignacion, tarea) 
-        VALUES (?, ?, ?)
-    `;
-    db.query(sql, [email, id_asignacion, tarea], (error, result) => {
-        console.log(result);
-        if(error){
-            return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
-        }
-        const voluntario = {...req.body, id: result.insertId}; // ... reconstruir el objeto del body
-        res.status(201).json(voluntario); // muestra creado con exito el elemento
-    });     
-
-};*/
-
 const insertVoluntario = (req, res) => {
     const { email, id_asignacion, tarea } = req.body;
     const sql = `
@@ -238,5 +218,5 @@ module.exports = {
     updateVoluntario,
     deleteVoluntario,
     getAsignaciones,
-    showVoluntarioEmail
+    showVoluntarioAsignacion
 };

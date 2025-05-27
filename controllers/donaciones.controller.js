@@ -75,7 +75,7 @@ const showDonadorName = (req, res) => {
         SELECT 
             donaciones.id_donacion,
             donaciones.nombre_donador,
-            articulos.nombre_articulo AS articulo,
+            articulos.nombre_articulo,
             donaciones.fecha_donacion
         FROM donaciones
         INNER JOIN articulos ON donaciones.id_articulo = articulos.id_articulo
