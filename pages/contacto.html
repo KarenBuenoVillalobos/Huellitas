@@ -16,14 +16,15 @@
         <h1>Contacto</h1>
         <p>🐾 ¡Tu ayuda puede cambiar vidas! Completa este formulario y súmate como voluntario en nuestra causa animal. 🐶🐱</p>
 
-        <form action="" class="contacto animate__animated animate__fadeIn">
+        <form action="" class="contacto animate__animated animate__fadeIn" method="POST" action="/voluntarios">
             <label for="email">Correo electrónico:</label>
             <input type="email" name="email" id="email" placeholder="Ingrese su correo electrónico...">
             <label for="asignacion">Selecciona tu área de interés:</label>
-            <select name="asignacion" id="asignacion">
-                <option value="">Rescatista</option>
+            <select name="id_asignacion" id="asignacion">
+                <!--<option value="">Rescatista</option>
                 <option value="">Veterinario</option>
-                <option value="">Hogar temporal</option>
+                <option value="">Hogar temporal</option>-->
+                <option value="">Seleccione una especie</option>
             </select>
             <label for="tarea">¿Con qué tareas te gustaría contribuir?:</label>
             <textarea name="tarea" id="tarea" placeholder="Describe brevemente en qué te gustaría ayudar, por ejemplo: 'Puedo cuidar perros los fines de semana'"></textarea>
@@ -55,6 +56,7 @@
 
     <footer id="footer"></footer>
     <script src="/js/script.js"></script>
+    <script src="/js/contacto.js"></script>
 </body>
 
 </html>

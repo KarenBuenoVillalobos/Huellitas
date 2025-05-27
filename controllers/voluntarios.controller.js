@@ -5,7 +5,7 @@
 // asignacion
 
 const db = require("../db/db");
-// const { get } = require("../routers/voluntarios.router");
+require("dotenv").config(); // Cargar las variables de entorno desde el archivo .env
 
 //Envio de correos
 const nodemailer = require('nodemailer');
@@ -96,7 +96,7 @@ const showVoluntarioEmail = (req, res) => {
 
 
 //// METODO POST  ////
-const insertVoluntario = (req, res) => {
+/*const insertVoluntario = (req, res) => {
     const { email, id_asignacion, tarea } = req.body;
     const sql = `
         INSERT INTO voluntarios (email, id_asignacion, tarea) 
@@ -111,6 +111,78 @@ const insertVoluntario = (req, res) => {
         res.status(201).json(voluntario); // muestra creado con exito el elemento
     });     
 
+};*/
+
+const insertVoluntario = (req, res) => {
+    const { email, id_asignacion, tarea } = req.body;
+    const sql = `
+        INSERT INTO voluntarios (email, id_asignacion, tarea) 
+        VALUES (?, ?, ?)
+    `;
+    db.query(sql, [email, id_asignacion, tarea], (error, result) => {
+        if(error){
+            return res.status(500).json({error : "ERROR: Intente más tarde por favor."});
+        }
+
+        // Consultar el nombre de la asignación
+        const sqlAsignacion = 'SELECT nombre_asignacion FROM asignaciones WHERE id_asignacion = ?';
+        db.query(sqlAsignacion, [id_asignacion], (err, rows) => {
+            let nombreAsignacion = id_asignacion;
+            if (!err && rows.length > 0) {
+                nombreAsignacion = rows[0].nombre_asignacion;
+            }
+
+            // Configurar Nodemailer
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.MAIL_USER,
+                    pass: process.env.MAIL_PASSWORD
+                }
+            });
+
+            // Configurar el mensaje
+            const mailOptions = {
+                from: process.env.MAIL_USER,
+                to: `${email}`,
+                subject: 'Solicitud de voluntariado recibida',
+                html: `
+                    <div style="font-family: Arial, sans-serif; color: #222;">
+                        <img src="cid:logoHuellitas" alt="Huellitas de Amor" style="width:100px; margin-bottom: 20px;">
+                        <h2>¡Gracias por tu solicitud!</h2>
+                        <p><b>Datos enviados:</b></p>
+                        <ul>
+                            <li><b>Correo:</b> ${email}</li>
+                            <li><b>Asignación:</b> ${nombreAsignacion}</li>
+                            <li><b>Tarea:</b> ${tarea}</li>
+                        </ul>
+                        <p>Nos pondremos en contacto contigo pronto.</p>
+                    </div>
+                `,
+                attachments: [{
+                    filename: 'logo.png',
+                    path: __dirname + '/../img/logo.png',
+                    cid: 'logoHuellitas'
+                }]
+            };
+
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.error('Error enviando correo:', err);
+                    return res.status(201).json({
+                        ...req.body,
+                        id: result.insertId,
+                        aviso: 'Voluntario registrado, pero hubo un error enviando el correo al administrador.'
+                    });
+                }
+                const voluntario = { ...req.body, id: result.insertId };
+                res.status(201).json({
+                    ...voluntario,
+                    mensaje: 'Voluntario registrado y correo enviado al administrador correctamente.'
+                });
+            });
+        });
+    });     
 };
 
 //// METODO PUT  ////
