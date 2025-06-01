@@ -11,7 +11,7 @@ const path = require("path");
 
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
-        cb(null, 'uploads'); // esta carpeta debe existir en el proyecto (raiz)
+        cb(null, 'uploads/usuario'); // esta carpeta debe existir en el proyecto (raiz)
     },
     filename: (req, file, cb) => {
         console.log(file);
@@ -43,11 +43,23 @@ const controller = require("../controllers/usuarios.controller");
 
 //// METODO GET  /////
 
+// Obtener todas las localidades
+router.get('/localidades', controller.getLocalidades); 
+
+// Obtener todos los generos
+router.get('/generos', controller.getGeneros);
+
+// Obtener todos los roles
+router.get('/roles', controller.getRoles);
+
 // Para todos los productos
-router.get('/', controller.allUsuario);
+router.get('/usuario', controller.allUsuario);
 
 // Para un producto
 router.get('/:id_usuario', controller.showUsuario);
+
+//// METODO POST ////
+router.post('/', upload.single('foto_usuario'), controller.createUsuario);
 
 
 //// METODO PUT  ////
