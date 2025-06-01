@@ -130,6 +130,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 
+// Paginación
+function updatePaginationButtons() {
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage >= Math.ceil(totalRows / rowsPerPage);
+    document.getElementById('pageInfo').textContent = currentPage;
+}
+
+document.getElementById('prevPage').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderRows();
+    }
+});
+document.getElementById('nextPage').addEventListener('click', () => {
+    if (currentPage < Math.ceil(totalRows / rowsPerPage)) {
+        currentPage++;
+        renderRows();
+    }
+});
+
 function renderRows() {
     const tbody = document.querySelector('#tablaUsuarios tbody');
     tbody.innerHTML = '';
@@ -157,21 +177,9 @@ function renderRows() {
         `;
         tbody.appendChild(tr);
     });
-}
 
-// Paginación
-document.getElementById('prevPage').addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        renderRows();
-    }
-});
-document.getElementById('nextPage').addEventListener('click', () => {
-    if (currentPage < Math.ceil(totalRows / rowsPerPage)) {
-        currentPage++;
-        renderRows();
-    }
-});
+    updatePaginationButtons();
+}
 
     // Mostrar tabla de usuarios al hacer click en "Ver Tablas"
 document.getElementById('verTablas').addEventListener('click', async () => {
