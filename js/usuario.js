@@ -150,7 +150,10 @@ function renderRows() {
                     ? `<img src="/uploads/usuario/${usuario.foto_usuario}" alt="Foto" style="width:40px;height:40px;object-fit:cover;border-radius:50%;">`
                     : ''}
             </td>
-            <td></td>
+            <td>
+                <button class="btn btn-warning" onclick="editarUsuario(${usuario.id_usuario})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                <button class="btn btn-danger" onclick="eliminarUsuario(${usuario.id_usuario})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
+            </td>
         `;
         tbody.appendChild(tr);
     });
