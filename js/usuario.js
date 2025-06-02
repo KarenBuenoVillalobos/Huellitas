@@ -322,6 +322,39 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
 
     const id_usuario = document.getElementById('editar_id_usuario').value;
     const form = document.getElementById('editarForm');
+
+    // Obtener los valores del formulario de edición
+    const nombre_apellido = form.editar_nombre_apellido.value.trim();
+    const email = form.editar_email.value.trim();
+    const id_localidad = form.editar_localidad.value;
+    const id_genero = form.editar_genero.value;
+    const password = form.password.value;
+    const id_rol = form.editar_rol.value;
+    // const foto_usuario = form.editar_foto_usuario.files[0]; // Si necesitas validar imagen
+
+    // Validar usando la función personalizada
+    const campos = {
+        nombre_apellido,
+        email,
+        password,
+        localidad: id_localidad,
+        genero: id_genero,
+        rol: id_rol
+    };
+
+    const validacion = validarRegistro(campos, form);
+    if (!validacion.valido) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: validacion.mensaje
+        });
+        // Asegúrate que el campo existe en el formulario
+        const campo = form.querySelector(`[name="${validacion.campo}"]`) || form[validacion.campo];
+        if (campo) campo.focus();
+        return;
+    }
+
     const formData = new FormData(form);
 
     try {
