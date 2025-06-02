@@ -41,10 +41,7 @@ CREATE TABLE `adopciones` (
 --
 
 INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, `direccion`, `fecha_adopcion`) VALUES
-(6, 1, 2, '1135761763', 'Urquiza 123', '2025-05-22'),
-(7, 2, 5, '1187686623', 'Av. Entre Rios 1231', '2025-05-09'),
-(9, 3, 4, '1567681792', 'Av. Corrientes 1231', '2025-05-03'),
-(10, 7, 6, '1512345123', 'Santa Fe 1234', '2025-05-26');
+(1, 1, 6, '1512345123', 'Santa Fe 1234', '2025-05-26');
 
 -- --------------------------------------------------------
 
@@ -246,12 +243,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`, `id_genero`, `password`, `foto_usuario`, `id_rol`) VALUES
-(1, 'Sofia', 'sofia@prueba.com', 2, 2, '12345', '1747006336366.jpg', 1),
-(2, 'Karen', 'karen@gmail.com', 1, 1, '$2a$08$qH8NCbgv', '1731199734959.jpg', 1),
-(3, 'Juan Pérez', 'juan@gmail.com', 1, 2, 'Prueba123', '1731352177923.jpg', 2),
-(5, 'Leonel Girett', 'leonelg@gmail.com', 5, 2, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2),
-(6, 'Ariel', 'ariel@gmail.com', 5, 2, '$2a$08$q7TcbGG/J139l', '1743970208243.jpg', 2),
-(7, 'Mariana', 'mariana@prueba.com', 1, 1, '$2a$08$mVCiy3LoSyJhV6YLn.WykuzKBgQi/w/S0k4mYquEtpkbN3yboxfqK', '1743970730874.jpeg', 2);
+(1, 'Leonel Girett', 'leonelg@gmail.com', 5, 2, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2);
 
 -- --------------------------------------------------------
 
