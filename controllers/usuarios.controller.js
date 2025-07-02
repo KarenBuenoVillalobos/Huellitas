@@ -107,6 +107,60 @@ const showUsuario = (req, res) => {
     });
 };
 
+// Buscar usuarios por nombre
+const buscarUsuarioPorNombre = (req, res) => {
+    const { nombre } = req.params;
+    const sql = `
+        SELECT 
+            usuarios.id_usuario,
+            usuarios.nombre_apellido,
+            usuarios.email,
+            usuarios.password,
+            usuarios.foto_usuario,
+            localidades.descripcion AS localidad,
+            genero.descripcion AS genero,
+            roles.descripcion AS rol
+        FROM usuarios
+        LEFT JOIN localidades ON usuarios.id_localidad = localidades.id_localidad
+        LEFT JOIN genero ON usuarios.id_genero = genero.id_genero
+        LEFT JOIN roles ON usuarios.id_rol = roles.id_rol
+        WHERE usuarios.nombre_apellido LIKE ?
+    `;
+    db.query(sql, [`%${nombre}%`], (error, rows) => {
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        res.json(rows);
+    });
+};
+
+// Buscar usuarios por email
+const buscarUsuarioPorEmail = (req, res) => {
+    const { email } = req.params;
+    const sql = `
+        SELECT 
+            usuarios.id_usuario,
+            usuarios.nombre_apellido,
+            usuarios.email,
+            usuarios.password,
+            usuarios.foto_usuario,
+            localidades.descripcion AS localidad,
+            genero.descripcion AS genero,
+            roles.descripcion AS rol
+        FROM usuarios
+        LEFT JOIN localidades ON usuarios.id_localidad = localidades.id_localidad
+        LEFT JOIN genero ON usuarios.id_genero = genero.id_genero
+        LEFT JOIN roles ON usuarios.id_rol = roles.id_rol
+        WHERE usuarios.email LIKE ?
+    `;
+    db.query(sql, [`%${email}%`], (error, rows) => {
+        if (error) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        res.json(rows);
+    });
+};
+
 //// METODO POST ////
 const createUsuario = (req, res) => {
     let imageName = "";
@@ -277,5 +331,7 @@ module.exports = {
     showUsuario,
     createUsuario,
     updateUsuario,
-    deleteUsuario
+    deleteUsuario,
+    buscarUsuarioPorNombre,
+    buscarUsuarioPorEmail
 };

@@ -195,6 +195,33 @@ document.getElementById('verTablas').addEventListener('click', async () => {
         console.error('Error al cargar usuarios:', error);
     }
 });
+// Buscar usuarios por nombre
+const buscarUsuario = async (nombre) => {
+    try {
+        const response = await fetch(`/login/usuario/nombre/${nombre}`);
+        if (!response.ok) throw new Error('Error al buscar el usuario');
+        usuarios = await response.json();
+        totalRows = usuarios.length;
+        currentPage = 1;
+        renderRows();
+        document.getElementById('tablaUsuarios').style.display = 'table';
+    } catch (error) {
+        console.error('Error al buscar el usuario:', error);
+        const tabla = document.getElementById('tablaUsuarios');
+        const tbody = tabla.querySelector('tbody');
+        tbody.innerHTML = '<tr><td colspan="7">No se encontraron resultados</td></tr>';
+    }
+};
+
+// Evento de búsqueda para usuarios
+document.getElementById('buscador').addEventListener('input', (event) => {
+    const nombre = event.target.value.trim();
+    if (nombre === '') {
+        document.getElementById('verTablas').click();
+    } else {
+        buscarUsuario(nombre);
+    }
+});
 
 // Función para editar un usuario (abre el modal y carga los datos)
 window.editarUsuario = async (id_usuario) => {

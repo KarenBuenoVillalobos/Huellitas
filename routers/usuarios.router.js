@@ -58,6 +58,10 @@ router.get('/usuario', controller.allUsuario);
 // Para un producto
 router.get('/:id_usuario', controller.showUsuario);
 
+// Buscar usuario por nombre
+router.get('/usuario/nombre/:nombre', controller.buscarUsuarioPorNombre);
+
+
 //// METODO POST ////
 router.post('/', upload.single('foto_usuario'), controller.createUsuario);
 
