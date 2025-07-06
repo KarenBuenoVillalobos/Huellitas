@@ -1109,14 +1109,15 @@ iframe {
 }
 @media screen and (max-width: 576px){
     .main-contacto{
-        padding: 40px 0;
+        padding: 30px 0 40px;
     }
     .main-contacto p{
         margin: 16px;
     }
     .contacto{
-        min-width: 420px;
-        /* padding-top: 10px; */
+        min-width: 400px;
+        height: 100%;
+        padding: 0;
     }
     .contacto label,
     .contacto input,
@@ -1127,8 +1128,10 @@ iframe {
     }
     .contacto button{
         font-weight: bold;
+        margin: 10px 0 25px;
     }
     .seguinos-contacto{
+        padding: 15px 0;
         margin: 30px auto 0;
     }
     .seguinos-contacto h3{
@@ -1249,22 +1252,41 @@ iframe {
     }
 }
 @media screen and (max-width: 576px){
+    .main-donaciones{
+        padding: 40px;
+    }
     .haz-diferencia{
         padding: 0;
     }
+    .haz-diferencia h1{
+        font-size: 24px;
+    }
     .haz-diferencia h2{
         margin: 5px 0;
+        font-size: 20px;
     }
     .haz-diferencia p{
-        font-size: 15px;
+        font-size: 16px;
     }
     .como-contribuir{
         margin: 25px auto;
         padding: 25px 10px;
         width: 100%;
     }
+    .como-contribuir h2,
+    .otras-formas h2{
+        font-size: 24px;
+    }
+    .como-contribuir h3{
+        font-size: 20px;
+    }
+    .como-contribuir li,
+    .otras-formas p,
+    .otras-formas li{
+        font-size: 16px;
+    }
     .otras-formas{
-        margin: 25px auto;
+        margin: 25px auto 0;
         padding: 25px;
         width: 100%;
     }
