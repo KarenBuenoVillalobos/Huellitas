@@ -461,36 +461,56 @@ iframe {
     /*PRESENTACION*/
     .intro-container,
     .main-home{
-        padding: 60px 0;
+        padding: 40px 0;
     }
     .presentacion{
-        padding: 40px;
+        padding: 30px;
     }
     .presentacion p{
         text-align: justify;
+        font-size: 16px;
     }
     /*CONTENIDO MAIN*/
     .objetivos{
         grid-template-columns: 1fr;
         gap: 20px;
+        padding: 30px;
+    }
+    .objetivo p{
+        font-size: 16px;
     }
     /*REQUISITOS ADOPCION*/
+    .requisitos-adopcion{
+        padding: 30px;
+        margin: 40px auto;
+    }
     .requisitos-adopcion h1,
     .home-como-ayudar h1{
         font-size: 28px;
     }
     .requisitos-adopcion p{
         text-align: justify;
+        font-size: 16px;
     }
     .requisitos-adopcion ul{
         margin: 5%;
     }
     /*COMO AYUDAR*/
+    .home-como-ayudar{
+        padding: 30px;
+    }
     .home-como-ayudar h1{
         margin-bottom: 20px;
     }
     .home-como-ayudar ul{
         margin: 0;
+    }
+    .home-como-ayudar li{
+        font-size: 16px;
+    }
+    .home-como-ayudar a{
+        font-weight: bold;
+        color: darkslategray;
     }
     /*CARRUSEL*/
     .images img{
@@ -499,7 +519,7 @@ iframe {
     /*CONTACTO*/
     .contacto-home{
         display: block;
-        padding: 50px 70px;
+        padding: 40px 60px;
     }
     .contacto-direccion{
         margin-bottom: 40px;
@@ -508,7 +528,7 @@ iframe {
         text-align: center;
     }
     .contacto-direccion ul{
-        margin: 0 15%;
+        /* margin: auto; */
     }
     iframe{
         width: 285px;
