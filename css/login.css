@@ -200,7 +200,7 @@
         font-size: 24px;
     }
     .container-welcome h3 {
-        font-size: 24px;
+        font-size: 22px;
     }
     .container {
         flex-direction: column;
@@ -237,6 +237,9 @@
     }
     .container-welcome .welcome {
         gap: 10px;
+    }
+    .container-welcome .button {
+        margin-top: 5px;
     }
     .container.toggle .container-welcome { /*mensaje hola*/
         transform: translateY(0);
