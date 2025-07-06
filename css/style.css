@@ -217,7 +217,10 @@
     margin-top: 40px;
     text-align: center;
 }
-
+.home-como-ayudar a{
+    font-weight: bold;
+    color: darkslategray;
+}
 /* CARRUSEL */
 .carrusel {
     width: 100%;
@@ -516,10 +519,6 @@ iframe {
     .home-como-ayudar h3{
         margin-top: 20px;
     }
-    .home-como-ayudar a{
-        font-weight: bold;
-        color: darkslategray;
-    }
     /*CARRUSEL*/
     .images img{
         height: 200px;
@@ -737,6 +736,9 @@ iframe {
         line-height: 1.5;
         font-size: 24px;
     }
+    .texto-bienvenida p{
+        font-size: 16px;
+    }
     .img-bienvenida{
         height: 250px;
     }
@@ -747,7 +749,7 @@ iframe {
         margin-bottom: 10px;
     }
     .nosotros-parrafo p{
-        font-size: 15px;
+        font-size: 16px;
     }
     .nosotros-item{
         margin: 20px auto 0;
@@ -763,18 +765,15 @@ iframe {
     .nosotros-galeria h1{
         padding: 15px 0;
         margin-bottom: 35px;
-        font-size: 22px;
+        font-size: 20px;
     }
     .galeria{
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    .galeria h1{
-        font-size: 20px;
-    }
     .galeria img{
         height: 220px;
-        width: 90%;
+        /* width: 90%; */
     }
     .mensaje-nosotros{
         height: 350px;
@@ -982,7 +981,7 @@ iframe {
     }
     #parrafo-mascotas h2{
         margin-bottom: 10px;
-        font-size: 25px;
+        font-size: 24px;
     }
     #parrafo-mascotas p{
         line-height: 1.5;
@@ -1110,22 +1109,30 @@ iframe {
 }
 @media screen and (max-width: 576px){
     .main-contacto{
-        padding: 50px 0;
+        padding: 40px 0;
     }
     .main-contacto p{
-        margin: 20px;
+        margin: 16px;
     }
     .contacto{
-        min-width: 450px;
+        min-width: 420px;
+        /* padding-top: 10px; */
     }
     .contacto label,
     .contacto input,
     .contacto textarea,
     .seguinos-contacto{
         width: 80%;
+        padding: 12px;
     }
     .contacto button{
         font-weight: bold;
+    }
+    .seguinos-contacto{
+        margin: 30px auto 0;
+    }
+    .seguinos-contacto h3{
+        font-size: 18px;
     }
 }
 
