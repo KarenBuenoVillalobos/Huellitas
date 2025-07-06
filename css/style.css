@@ -476,6 +476,9 @@ iframe {
         gap: 20px;
         padding: 30px;
     }
+    .objetivos h2{
+        font-size: 22px;
+    }
     .objetivo p{
         font-size: 16px;
     }
@@ -486,14 +489,14 @@ iframe {
     }
     .requisitos-adopcion h1,
     .home-como-ayudar h1{
-        font-size: 28px;
+        font-size: 24px;
     }
     .requisitos-adopcion p{
         text-align: justify;
         font-size: 16px;
     }
     .requisitos-adopcion ul{
-        margin: 5%;
+        margin: 10px 0 0 0;
     }
     /*COMO AYUDAR*/
     .home-como-ayudar{
@@ -505,8 +508,13 @@ iframe {
     .home-como-ayudar ul{
         margin: 0;
     }
-    .home-como-ayudar li{
+    .home-como-ayudar li,
+    .home-como-ayudar h3{
         font-size: 16px;
+    }
+    .home-como-ayudar p,
+    .home-como-ayudar h3{
+        margin-top: 20px;
     }
     .home-como-ayudar a{
         font-weight: bold;
@@ -526,9 +534,6 @@ iframe {
     }
     .contacto-direccion h2{
         text-align: center;
-    }
-    .contacto-direccion ul{
-        /* margin: auto; */
     }
     iframe{
         width: 285px;
@@ -730,6 +735,7 @@ iframe {
     .texto-bienvenida h1{
         margin-bottom: 15px;
         line-height: 1.5;
+        font-size: 24px;
     }
     .img-bienvenida{
         height: 250px;
@@ -744,12 +750,15 @@ iframe {
         font-size: 15px;
     }
     .nosotros-item{
-        margin: 18px auto 0;
+        margin: 20px auto 0;
         width: 100%;
         padding: 25px;
     }
+    .nosotros-item h2{
+        font-size: 24px;
+    }
     .nosotros-item p{
-        font-size: 17px;
+        font-size: 16px;
     }
     .nosotros-galeria h1{
         padding: 15px 0;
@@ -760,6 +769,9 @@ iframe {
         grid-template-columns: 1fr;
         gap: 15px;
     }
+    .galeria h1{
+        font-size: 20px;
+    }
     .galeria img{
         height: 220px;
         width: 90%;
@@ -769,6 +781,7 @@ iframe {
     }
     .mensaje-nosotros p{
         margin: 15% 10%;
+        font-size: 16px;
     }
 }
 
