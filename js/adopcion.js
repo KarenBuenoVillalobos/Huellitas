@@ -396,16 +396,25 @@ function validarFormulario(esEdicion = false) {
         return false;
     }
 
+    // Fecha
+    const partes = fecha_adopcion.split('-');
+    const fechaIngresada = new Date(partes[0], partes[1] - 1, partes[2]);
+    fechaIngresada.setHours(0,0,0,0);
+
     const hoy = new Date();
-    const fechaIngresada = new Date(fecha_adopcion);
-    if (fechaIngresada > hoy) {
-        Swal.fire({ icon: "error", title: "Fecha inválida", text: "La fecha no puede ser futura." });
+    hoy.setHours(0,0,0,0);
+
+    const unaSemanaDespues = new Date(hoy);
+    unaSemanaDespues.setDate(hoy.getDate() + 7);
+    unaSemanaDespues.setHours(0,0,0,0);
+
+    // Ahora la comparación es incluyente
+    if (fechaIngresada < hoy) {
+        Swal.fire({ icon: "error", title: "Fecha inválida", text: "La fecha no puede ser anterior a hoy." });
         return false;
     }
-
-    const fechaMinima = new Date('2024-01-01');
-    if (fechaIngresada < fechaMinima) {
-        Swal.fire({ icon: "error", title: "Fecha inválida", text: "La fecha no puede ser anterior al año 2024." });
+    if (fechaIngresada > unaSemanaDespues) {
+        Swal.fire({ icon: "error", title: "Fecha inválida", text: "Solo puedes elegir una fecha hasta 7 días desde hoy." });
         return false;
     }
     return true;
