@@ -364,7 +364,8 @@ function validarFormulario(esEdicion = false) {
     const telefono = document.getElementById(esEdicion ? 'editar_telefono' : 'telefono').value.trim();
     const direccion = document.getElementById(esEdicion ? 'editar_direccion' : 'direccion').value.trim();
     const fecha_adopcion = document.getElementById(esEdicion ? 'editar_fecha_adopcion' : 'fecha_adopcion').value;
-    // Validaciones
+    
+    // Validaciones de campos
 
     if (!animal || animal === "") {
         Swal.fire({ icon: "error", title: "Campo requerido", text: "Por favor, selecciona un animal." });
