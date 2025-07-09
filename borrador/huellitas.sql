@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2025 a las 00:29:42
+-- Tiempo de generación: 09-07-2025 a las 18:05:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -36,13 +36,6 @@ CREATE TABLE `adopciones` (
   `fecha_adopcion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `adopciones`
---
-
-INSERT INTO `adopciones` (`id_adopcion`, `id_usuario`, `id_animal`, `telefono`, `direccion`, `fecha_adopcion`) VALUES
-(1, 1, 6, '1512345123', 'Santa Fe 1234', '2025-05-26');
-
 -- --------------------------------------------------------
 
 --
@@ -63,11 +56,11 @@ CREATE TABLE `animales` (
 --
 
 INSERT INTO `animales` (`id_animal`, `id_especie`, `nombre_animal`, `edad`, `descripcion`, `foto_animal`) VALUES
-(2, 2, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1744587833000.jpg'),
-(4, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1746207750800.jpg'),
-(5, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
-(6, 2, 'Callie', 12, 'Muy gris y mala', '1746207757956.jfif'),
-(7, 2, 'Nucita', 7, 'Muy tierna y tranquila, color negro y blanco.', '1746207765791.jfif');
+(1, 2, 'Firulais', 10, 'Muy tierna y tranquila, color negro y blanco.', '1744587833000.jpg'),
+(2, 1, 'Kayla', 12, 'Muy tierna y tranquila, color negro y blanco.', '1746207750800.jpg'),
+(3, 1, 'Amapola', 7, 'Muy tierna y tranquila, color negro y blanco.', '1744585873352.jpg'),
+(4, 2, 'Callie', 12, 'Muy gris y mala', '1746207757956.jfif'),
+(5, 2, 'Naranjita', 1, 'sdfdsaf', '1748391880493.jpg');
 
 -- --------------------------------------------------------
 
@@ -89,8 +82,7 @@ INSERT INTO `articulos` (`id_articulo`, `nombre_articulo`, `detalles`) VALUES
 (1, 'Manta', '3m x 3m, color violeta.'),
 (2, 'Pipeta', 'Para gatos adultos.'),
 (3, 'Collar', 'Color verde.'),
-(5, 'Piedritas', '4 kg'),
-(6, 'Arenero', 'Grande.');
+(5, 'Piedritas', '4 kg');
 
 -- --------------------------------------------------------
 
@@ -131,11 +123,7 @@ CREATE TABLE `donaciones` (
 
 INSERT INTO `donaciones` (`id_donacion`, `id_articulo`, `nombre_donador`, `fecha_donacion`) VALUES
 (3, 2, 'Luciana', '2025-04-18'),
-(6, 3, 'Magdalena', '2024-03-07'),
-(7, 1, 'Fernando', '2025-05-16'),
-(8, 2, 'Mariana', '2025-05-25'),
-(9, 6, 'Andres', '2025-05-27'),
-(10, 5, 'Maria', '2025-05-27');
+(6, 3, 'Magdalena', '2024-03-07');
 
 -- --------------------------------------------------------
 
@@ -237,13 +225,6 @@ CREATE TABLE `usuarios` (
   `foto_usuario` varchar(250) NOT NULL,
   `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id_usuario`, `nombre_apellido`, `email`, `id_localidad`, `id_genero`, `password`, `foto_usuario`, `id_rol`) VALUES
-(1, 'Leonel Girett', 'leonelg@gmail.com', 5, 2, '$2a$08$7eyDVGkoQiCO.', '1731351583346.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -353,19 +334,19 @@ ALTER TABLE `voluntarios`
 -- AUTO_INCREMENT de la tabla `adopciones`
 --
 ALTER TABLE `adopciones`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `animales`
 --
 ALTER TABLE `animales`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `asignaciones`
@@ -407,13 +388,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `voluntarios`
 --
 ALTER TABLE `voluntarios`
-  MODIFY `id_voluntario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_voluntario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
