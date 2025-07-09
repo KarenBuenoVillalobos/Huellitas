@@ -20,6 +20,9 @@ router.get('/animal/:nombre_animal', controller.showAnimalName);
 //// METODO POST  ////
 router.post('/', controller.insertAdopcion);
 
+// Ruta para insertar una adopción desde el formulario
+router.post('/form-adopcion', controller.insertAdopcionForm);
+
 //// METODO PUT  ////
 router.put('/:id_adopcion', controller.updateAdopcion);
 

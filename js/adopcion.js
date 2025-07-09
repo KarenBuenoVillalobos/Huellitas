@@ -24,41 +24,7 @@ const loadAnimales = async () => {
         console.error('Error al cargar los animales:', error);
     }
 };
-
-// const loadAnimalesDisponibles = async () => {
-//     const response = await fetch('/adopciones/animales-disponibles');
-//     const animales = await response.json();
-//     const select = document.getElementById('id_animal');
-//     select.innerHTML = '';
-//     animales.forEach(animal => {
-//         const option = document.createElement('option');
-//         option.value = animal.id_animal;
-//         option.textContent = animal.nombre_animal;
-//         select.appendChild(option);
-//     });
-// };
-
-// const loadAnimalesParaEdicion = async (id_animal_actual) => {
-//     const response = await fetch('/adopciones/animales-disponibles');
-//     let animales = await response.json();
-
-//     // Si el animal actual no está en la lista, lo agregamos
-//     if (!animales.some(a => a.id_animal == id_animal_actual)) {
-//         // Puedes obtener el nombre del animal actual desde la base o desde el objeto de la adopción
-//         const nombre_actual = document.getElementById('editar_nombre_animal')?.value || 'Animal actual';
-//         animales.push({ id_animal: id_animal_actual, nombre_animal: nombre_actual });
-//     }
-
-//     const select = document.getElementById('editar_id_animal');
-//     select.innerHTML = '';
-//     animales.forEach(animal => {
-//         const option = document.createElement('option');
-//         option.value = animal.id_animal;
-//         option.textContent = animal.nombre_animal;
-//         if (animal.id_animal == id_animal_actual) option.selected = true;
-//         select.appendChild(option);
-//     });
-// };
+// Cargar animales al abrir el formulario
 
 document.addEventListener('DOMContentLoaded', loadAnimales);
 
@@ -307,7 +273,7 @@ window.editarAdopcion = async (id_adopcion) => {
 };
 
 // Eliminar adopcion
-window.eliminarAdopcion = async (id_animal) => {
+window.eliminarAdopcion = async (id_adopcion) => {
     const confirmacion = await Swal.fire({
         icon: "warning",
         title: "¿Estás seguro?",

@@ -181,6 +181,47 @@ const insertAdopcion = (req, res) => {
     });
 };
 
+// POST para /form-adopcion
+const insertAdopcionForm = (req, res) => {
+    const { nombre_apellido, nombre_animal, telefono, direccion, fecha_adopcion } = req.body;
+
+    // Buscar el id_usuario por nombre_apellido
+    const buscarUsuario = `SELECT id_usuario FROM usuarios WHERE nombre_apellido = ?`;
+    db.query(buscarUsuario, [nombre_apellido], (errorUsuario, rowsUsuario) => {
+        if (errorUsuario) {
+            return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+        }
+        if (rowsUsuario.length === 0) {
+            return res.status(400).json({ error: "El nombre ingresado no está registrado como usuario." });
+        }
+        const id_usuario = rowsUsuario[0].id_usuario;
+
+        // Buscar el id_animal por nombre_animal
+        const buscarAnimal = `SELECT id_animal FROM animales WHERE nombre_animal = ?`;
+        db.query(buscarAnimal, [nombre_animal], (errorAnimal, rowsAnimal) => {
+            if (errorAnimal) {
+                return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+            }
+            if (rowsAnimal.length === 0) {
+                return res.status(400).json({ error: "El animal ingresado no está registrado." });
+            }
+            const id_animal = rowsAnimal[0].id_animal;
+
+            // Insertar la adopción con los IDs
+            const sql = `
+                INSERT INTO adopciones (id_usuario, id_animal, telefono, direccion, fecha_adopcion)
+                VALUES (?, ?, ?, ?, ?)
+            `;
+            db.query(sql, [id_usuario, id_animal, telefono, direccion, fecha_adopcion], (error, result) => {
+                if (error) {
+                    return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
+                }
+                res.status(201).json({ id: result.insertId });
+            });
+        });
+    });
+};
+
 //// METODO PUT  ////
 const updateAdopcion = (req, res) => {
     const { id_adopcion } = req.params;
@@ -239,6 +280,6 @@ module.exports = {
     deleteAdopcion,
     getAnimales,
     showAdoptanteName,
-    showAnimalName
-    // getAnimalesDisponibles
+    showAnimalName,
+    insertAdopcionForm
 };

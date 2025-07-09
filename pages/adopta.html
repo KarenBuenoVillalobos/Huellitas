@@ -31,42 +31,7 @@
                     ¡Explora y encuentra a tu compañero de vida peludo hoy mismo!</p>
             </div>
             <section class="list-mascotas">
-                <!--<div class="info-mascota">
-                    <div class="foto-huellita">
-                        <img src="/img/burbuja.jpg" alt="Burbuja">
-                    </div>
-                    <a href="/pages/form-adopcion.html" class="nombre-huellita">Burbuja</a>
-                </div>
-                <div class="info-mascota">
-                    <div class="foto-huellita">
-                        <img src="/img/toulouse.jpg" alt="Toulouse">
-                    </div>
-                    <a href="/pages/form-adopcion.html" class="nombre-huellita">Toulouse</a>
-                </div>
-                <div class="info-mascota">
-                    <div class="foto-huellita">
-                        <img src="/img/mojo-jojo.webp" alt="Mojo Jojo">
-                    </div>
-                    <a href="/pages/form-adopcion.html" class="nombre-huellita">Mojo Jojo</a>
-                </div>
-                <div class="info-mascota">
-                    <div class="foto-huellita">
-                        <img src="/img/cosmo.jpg" alt="Cosmo">
-                    </div>
-                    <a href="/pages/form-adopcion.html" class="nombre-huellita">Cosmo</a>
-                </div>
-                <div class="info-mascota">
-                    <div class="foto-huellita">
-                        <img src="/img/bellota.jpg" alt="Bellota">
-                    </div>
-                    <a href="/pages/form-adopcion.html" class="nombre-huellita">Bellota</a>
-                </div>
-                <div class="info-mascota">
-                    <div class="foto-huellita">
-                        <img src="/img/bombon.jpeg" alt="Bombón">
-                    </div>
-                    <a href="/pages/form-adopcion.html" class="nombre-huellita">Bombón</a>
-                </div> -->
+                <!-- Aquí se agregarán dinámicamente las mascotas disponibles -->
             </section>
         </article>
     </main>
@@ -99,7 +64,7 @@
                                 <button onclick="togglePopup(this)">Cerrar</button>
                             </div>
                         </div>
-                        <a href="/pages/form-adopcion.html" class="nombre-huellita">${animal.nombre_animal}</a>
+                        <a href="/form-adopcion" class="nombre-huellita" onclick="guardarNombreAnimal('${animal.nombre_animal}')">${animal.nombre_animal}</a>
                     `;
                     listMascotas.appendChild(div); // Agrega el nuevo elemento al final
                 });
@@ -113,6 +78,10 @@
             const popup = element.closest('.foto-huellita').querySelector('.popup');
             popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
         }
+        
+        function guardarNombreAnimal(nombre) {
+        localStorage.setItem('nombre_animal', nombre);
+}
     </script>
 
     <footer id="footer"></footer>
@@ -120,6 +89,7 @@
     <script src="/js/script.js"></script>
     <script type="module" src=" https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js "></script>
     <script nomodule src=" https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js "></script>
+    <!--<script src="/js/adopcion.js"></script>-->
 </body>
 
 </html>

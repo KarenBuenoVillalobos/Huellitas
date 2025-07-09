@@ -15,7 +15,7 @@
 
     <main class="main-form-adopcion">
         <section class="form-adopcion"> <!-- FORMULARIO DE ADOPCION -->
-            <form action="/pages/form-confirmacion.html" method="get" id="formulario" class="formulario">
+            <form action="/adopciones/form-adopcion" method="POST" id="formulario" class="formulario">
                 <h1>Formulario de adopción</h1>
                 <div class="container-input-adopcion">
                     <label for="nombre_apellido">Nombre del Adoptante: </label>
@@ -23,11 +23,11 @@
                     <label for="nombre_animal">Nombre del Animal: </label>
                     <input type="text" name="nombre_animal" id="nombre_animal" placeholder="Ingrese su apellido..">
                     <label for="telefono">Teléfono: </label>
-                    <input type="number" name="telefono" id="telefono" placeholder="Ingrese su teléfono..">
+                    <input type="text" name="telefono" id="telefono" placeholder="Ingrese su teléfono..">
                     <label for="direccion">Domicilio: </label>
                     <input type="text" name="direccion" id="direccion" placeholder="Ingrese su domicilio..">
                     <label for="fecha-adopcion">Seleccione una fecha para la visita:</label>
-                    <input type="date" id="fecha-adopcion" name="fecha-adopcion">                    
+                    <input type="date" id="fecha-adopcion" name="fecha_adopcion">                    
                 </div>
                 <input id="boton-enviar" type="submit" value="Enviar">
             </form>
@@ -37,5 +37,6 @@
     <footer id="footer"></footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/adopcionConfirmacion.js"></script>
 </body>
 </html>
