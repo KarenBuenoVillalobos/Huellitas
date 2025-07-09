@@ -28,21 +28,6 @@ const getAnimales = (req, res) => {
     });
 };
 
-// // Obtener los animales disponibles para adopción
-// const getAnimalesDisponibles = (req, res) => {
-//     const sql = `
-//         SELECT a.id_animal, a.nombre_animal
-//         FROM animales a
-//         WHERE a.id_animal NOT IN (SELECT id_animal FROM adopciones)
-//     `;
-//     db.query(sql, (error, rows) => {
-//         if (error) {
-//             return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
-//         }
-//         res.json(rows);
-//     });
-// };
-
 // Para todos las adopciones
 const allAdopcion = (req, res) => {
     const sql = `
