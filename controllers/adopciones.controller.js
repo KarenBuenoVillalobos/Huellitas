@@ -10,6 +10,11 @@
 
 const db = require("../db/db");
 
+require("dotenv").config(); // Cargar las variables de entorno desde el archivo .env
+
+//Envio de correos
+const nodemailer = require('nodemailer');
+
 //// METODO GET  /////
 // Obtener los animales
 const getAnimales = (req, res) => {
@@ -186,15 +191,16 @@ const insertAdopcionForm = (req, res) => {
     const { nombre_apellido, nombre_animal, telefono, direccion, fecha_adopcion } = req.body;
 
     // Buscar el id_usuario por nombre_apellido
-    const buscarUsuario = `SELECT id_usuario FROM usuarios WHERE nombre_apellido = ?`;
+    const buscarUsuario = `SELECT id_usuario, email FROM usuarios WHERE nombre_apellido = ?`;
     db.query(buscarUsuario, [nombre_apellido], (errorUsuario, rowsUsuario) => {
         if (errorUsuario) {
             return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
         }
         if (rowsUsuario.length === 0) {
-            return res.status(400).json({ error: "El nombre ingresado no está registrado como usuario." });
+            return res.status(400).json({ error: "El usuario no existe. Debe registrarse en el sistema antes de adoptar." });
         }
         const id_usuario = rowsUsuario[0].id_usuario;
+        const email = rowsUsuario[0].email;
 
         // Buscar el id_animal por nombre_animal
         const buscarAnimal = `SELECT id_animal FROM animales WHERE nombre_animal = ?`;
@@ -216,7 +222,58 @@ const insertAdopcionForm = (req, res) => {
                 if (error) {
                     return res.status(500).json({ error: "ERROR: Intente más tarde por favor." });
                 }
-                res.status(201).json({ id: result.insertId });
+
+                // Configurar Nodemailer
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.MAIL_USER,
+                        pass: process.env.MAIL_PASSWORD
+                    }
+                });
+
+                // Configurar el mensaje
+                const mailOptions = {
+                    from: process.env.MAIL_USER,
+                    to: email, // correo del adoptante
+                    subject: 'Solicitud de adopción recibida',
+                    html: `
+                        <div style="font-family: Arial, sans-serif; color: #222;">
+                            <img src="cid:logoHuellitas" alt="Huellitas de Amor" style="width:100px; margin-bottom: 20px;">
+                            <h2>¡Gracias por tu solicitud de adopción!</h2>
+                            <p><b>Datos enviados:</b></p>
+                            <ul>
+                                <li><b>Adoptante:</b> ${nombre_apellido}</li>
+                                <li><b>Animal:</b> ${nombre_animal}</li>
+                                <li><b>Teléfono:</b> ${telefono}</li>
+                                <li><b>Dirección:</b> ${direccion}</li>
+                                <li><b>Fecha de visita:</b> ${fecha_adopcion}</li>
+                            </ul>
+                            <p>Nos pondremos en contacto contigo pronto.</p>
+                        </div>
+                    `,
+                    attachments: [{
+                        filename: 'logo.png',
+                        path: __dirname + '/../img/logo.png',
+                        cid: 'logoHuellitas'
+                    }]
+                };
+
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) {
+                        console.error('Error enviando correo:', err);
+                        return res.status(201).json({
+                            ...req.body,
+                            id: result.insertId,
+                            aviso: 'Adopción registrada, pero hubo un error enviando el correo al usuario.'
+                        });
+                    }
+                    res.status(201).json({
+                        ...req.body,
+                        id: result.insertId,
+                        mensaje: 'Adopción registrada y correo enviado correctamente.'
+                    });
+                });
             });
         });
     });
