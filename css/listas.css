@@ -600,13 +600,16 @@
   .container-listas h1 {
     font-size: 24px;
     padding: 15px 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
-  .container-listas label,
   .container-listas input,
   .container-listas select,
   .container-listas textarea{
-    width: 80%;
+    width: 75%;
+    padding: 5px;
+  }
+  .container-listas label{
+    width: 75%;
     padding: 8px 5px;
   }
   .container-busqueda-tablas {
@@ -627,6 +630,7 @@
     width: 100%;
     padding-bottom: 0;
     overflow-x: auto;
+    padding: 0 5px;
   }
   .buscador-container {
     padding: 10px 0;
@@ -635,8 +639,12 @@
     /* max-width: 90vw; */
     font-size: 14px;
     overflow-x: auto;
+    width: 100%;
+    display: block !important;
   }
-  .container-tabla-listas th,
+  .container-tabla-listas th{
+    padding: 6px;
+  }
   .container-tabla-listas td {
     padding: 3px 6px 1px;
   }
