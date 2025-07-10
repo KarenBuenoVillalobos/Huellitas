@@ -588,18 +588,34 @@
   #atras {
     display: none;
   }
-
+  .container-form-listas{
+    margin-bottom: 20px;
+  }
   .container-form-listas form {
     width: 90%;
+  }
+  .container-listas{
+    padding: 20px 0;
+  }
+  .container-listas h1 {
+    font-size: 24px;
+    padding: 15px 0;
+    margin-bottom: 10px;
   }
   .container-listas label,
   .container-listas input,
   .container-listas select,
   .container-listas textarea{
     width: 80%;
+    padding: 8px 5px;
   }
   .container-busqueda-tablas {
-    width: 400px;
+    /* width: 400px; */
+    width: 90%;
+  }
+  .container-busqueda-tablas h2 {
+    font-size: 20px;
+    padding: 15px 0;
   }
   #buscador{
     max-width: 200px;
@@ -607,24 +623,25 @@
   .container-busqueda-tablas button{
     padding: 10px;
   }
-
   .container-tabla-listas {
     width: 100%;
-    padding-bottom: 20px;
-    /* overflow-x: auto; */
-  }
-  .tabla-container table{
-    width: 100vw;
-    margin: 0 10px;
+    padding-bottom: 0;
     overflow-x: auto;
+  }
+  .buscador-container {
+    padding: 10px 0;
   }
   .container-tabla-listas table {
     /* max-width: 90vw; */
     font-size: 14px;
+    overflow-x: auto;
   }
   .container-tabla-listas th,
   .container-tabla-listas td {
-    padding: 8px 6px;
+    padding: 3px 6px 1px;
+  }
+  .container-tabla-listas table button {
+    margin-bottom: 2px;
   }
   .modal-editar {
     width: 90%;
