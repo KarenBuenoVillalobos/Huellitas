@@ -630,10 +630,13 @@
     width: 100%;
     padding-bottom: 0;
     overflow-x: auto;
-    padding: 0 8px;
+    padding: 0 10px;
   }
   .buscador-container {
     padding: 10px 0;
+  }
+  .buscador-container button{
+    font-size: 14px;
   }
   .container-tabla-listas table {
     /* max-width: 90vw; */
@@ -662,6 +665,11 @@
   .modal-editar img {
     max-height: 120px;
     margin: 10px 0 0;
+  }
+  #modalUsuario input,
+  #modalUsuario select,
+  #modalUsuario label {
+    padding: 5px 8px;
   }
   #editarForm button[type="submit"] {
     font-size: 15px;
