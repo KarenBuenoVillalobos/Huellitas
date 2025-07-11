@@ -661,11 +661,12 @@
   }
   .modal-editar img {
     max-height: 120px;
-    margin: 10px 0 5px;
+    margin: 10px 0 0;
   }
   #editarForm button[type="submit"] {
     font-size: 15px;
-    padding: 10px 15px;
+    padding: 10px 13px;
+    margin: 10px 0 5px;
   }
   #cerrarModal {
     padding: 8px 12px;
