@@ -653,12 +653,15 @@
   }
   .modal-editar {
     width: 90%;
+    margin: 20px auto auto;
   }
   .modal-editar h2 {
-    padding: 15px 0;
+    padding: 10px 0;
+    font-size: 20px;
   }
   .modal-editar img {
     max-height: 120px;
+    margin: 10px 0;
   }
   #editarForm button[type="submit"] {
     font-size: 15px;
