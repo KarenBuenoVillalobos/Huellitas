@@ -605,11 +605,11 @@
   .container-listas input,
   .container-listas select,
   .container-listas textarea{
-    width: 75%;
+    width: 240px;
     padding: 5px;
   }
   .container-listas label{
-    width: 75%;
+    width: 240px;
     padding: 8px 5px;
   }
   .container-busqueda-tablas {
@@ -639,17 +639,16 @@
     font-size: 14px;
   }
   .container-tabla-listas table {
-    /* max-width: 90vw; */
     font-size: 14px;
     overflow-x: auto;
     width: 100%;
     display: block !important;
   }
   .container-tabla-listas th{
-    padding: 6px;
+    padding: 6px auto;
   }
   .container-tabla-listas td {
-    padding: 3px 6px 1px;
+    padding: 3px auto 1px;
   }
   .container-tabla-listas table button {
     margin-bottom: 2px;
