@@ -21,23 +21,28 @@
                 <h3>¡Tu apoyo significa mucho para nosotros y para todas nuestras queridas mascotas!</h3>
             </div>
             <div class="como-contribuir animate__animated animate__fadeIn">
-                <h2>¿Cómo puedes contribuir?</h2>
-                <h3>Datos de cuenta bancaria</h3>
-                <ul class="datos-banco">
-                    <li><img src="/img/tick-donaciones.ico" alt="">Banco de la Amistad</li>
-                    <li><img src="/img/tick-donaciones.ico" alt="">Caja de Ahorros $ N° 123-456789/0</li>
-                    <li><img src="/img/tick-donaciones.ico" alt="">CBU: 0123456789012345678</li>
-                    <li><img src="/img/tick-donaciones.ico" alt="">Titular: Karen Villalobos</li>
-                    <li><img src="/img/tick-donaciones.ico" alt="">DNI: 12.345.678</li>
-                    <li><img src="/img/tick-donaciones.ico" alt="">ALIAS: huellitas.mp</li>
-                </ul>
+                <div class="datos-bancarios">
+                    <h2>¿Cómo puedes contribuir?</h2>
+                    <h3>Datos de cuenta bancaria</h3>
+                    <ul class="li-banco">
+                        <li><img src="/img/tick-donaciones.ico" alt="">Banco de la Amistad</li>
+                        <li><img src="/img/tick-donaciones.ico" alt="">Caja de Ahorros $ N° 123-456789/0</li>
+                        <li><img src="/img/tick-donaciones.ico" alt="">CBU: 0123456789012345678</li>
+                        <li><img src="/img/tick-donaciones.ico" alt="">Titular: Karen Villalobos</li>
+                        <li><img src="/img/tick-donaciones.ico" alt="">DNI: 12.345.678</li>
+                        <li><img src="/img/tick-donaciones.ico" alt="">ALIAS: huellitas.mp</li>
+                    </ul>
+                </div>
+                <div class="boton-donar">
+                    <button id="btn-donar">¡Quiero ayudar!</button>
+                </div>
             </div>
             <div class="otras-formas">
                 <h2>Otras formas de contribuir</h2>
                 <p>Puedes ayudar adoptando, difundiendo, creando conciencia, siendo voluntario/a, participando y más.</p>
                 <p>Además, también necesitamos:</p>
                 <ul class="lista-formas">
-                    <li><img src="/img/tick-donaciones2.ico" alt="">Alimento balanceado de alta calidad para mascotas de todas las edades.</li>
+                    <li><img src="/img/tick-donaciones2.ico" alt="">Alimento balanceado para mascotas de todas las edades.</li>
                     <li><img src="/img/tick-donaciones2.ico" alt="">Productos antiparasitarios como pipetas, antiparasitarios y collares repelentes.</li>
                     <li><img src="/img/tick-donaciones2.ico" alt="">Medicamentos veterinarios esenciales.</li>
                     <li><img src="/img/tick-donaciones2.ico" alt="">Abrigos en diversos tamaños para proteger a nuestras mascotas del frío.</li>
@@ -51,5 +56,43 @@
     <footer id="footer"></footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/script.js"></script>
+    <script>
+        document.getElementById('btn-donar').addEventListener('click', function () {
+            Swal.fire({
+                title: '¡Gracias por tu ayuda!',
+                html: `
+                <p>Por favor, completa tus datos para colaborar con artículos:</p>
+                <input type="text" id="nombre_donador" class="swal2-input" placeholder="Nombre Donador">
+                <input type="email" id="email" class="swal2-input" placeholder="Correo electrónico">
+                <input type="text" id="nombre_articulo" class="swal2-input" placeholder="Nombre del Artículo">
+                <textarea id="detalles" class="swal2-textarea" placeholder="Descripción del Artículo"></textarea>
+            `,
+                background: '#fff8f5', // Fondo claro
+                color: '#6b2b2b',      // Texto marrón
+                confirmButtonColor: '#8aceb5', // Botón verde claro
+                confirmButtonText: 'Enviar',
+                showCancelButton: true,
+                cancelButtonText: 'Cerrar',
+                cancelButtonColor: '#e57373',
+                focusConfirm: false,
+                preConfirm: () => {
+                    const nombre = document.getElementById('nombre_donador').value;
+                    const email = document.getElementById('email').value;
+                    const articulo = document.getElementById('nombre_articulo').value;
+                    const detalles = document.getElementById('detalles').value;
+                    if (!nombre || !email || !articulo || !detalles) {
+                        Swal.showValidationMessage('Por favor, completa todos los campos');
+                        return false;
+                    }
+                    // Aquí puedes enviar los datos por fetch/AJAX si lo deseas
+                    return { nombre, email, articulo, detalles };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('¡Gracias!', 'Tus datos fueron enviados correctamente.', 'success');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

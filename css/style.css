@@ -32,6 +32,9 @@
     padding: 0 10px;
     transition: 0.4s;
 }
+#notification-link img{
+    padding-top: 5px;
+}
 .mostrar-menu,
 .esconder-menu {
     font-size: 30px;
@@ -370,6 +373,9 @@ iframe {
     .menu a {
         display: block;
         padding: 20px 0;
+    }
+    #notification-link {
+        padding: 0;
     }
     .user-info {
         margin: 10px 0 0;
@@ -1184,17 +1190,42 @@ iframe {
 .como-contribuir h3{
     margin: 10px 0;
 }
-.datos-banco{           /*es el ul*/
+.li-banco{           /*es el ul*/
     list-style: none;
 }
-.datos-banco li,
+.li-banco li,
 .otras-formas li{
     display: flex;
     align-items: center;
 }
-.datos-banco img,
+.li-banco img,
 .otras-formas img{
     margin-right: 10px;
+}
+.boton-donar{
+    margin-top: 20px;
+}
+.boton-donar button{
+    background-color: pink;
+    color: palevioletred;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Sombra para efecto elevado */
+}
+.boton-donar button:hover{
+    background-color: #b6e2a1;
+    color: #fff;
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35); /* Sombra más pronunciada al hacer hover */
+    transition: all 0.3s ease;
+}
+.boton-donar button:focus{
+    outline: none; /* Elimina el borde de enfoque */
 }
 .otras-formas{
     margin: 40px auto;
@@ -1236,6 +1267,10 @@ iframe {
         margin: 25px auto;
         padding: 25px 20%;
         width: 90%;
+    }
+    .boton-donar{
+        display: flex;
+        justify-content: center;
     }
     .otras-formas{
         margin: auto;
@@ -1306,6 +1341,13 @@ iframe {
     .como-contribuir li,
     .otras-formas li{
         margin-top: 8px;
+    }
+    .boton-donar{
+        margin-top: 15px;
+    }
+    .boton-donar button{
+        font-size: 16px;
+        padding: 10px 20px;
     }
 }
 
