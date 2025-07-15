@@ -21,6 +21,10 @@
                 <h1>AÑADIR DONACIÓN</h1>
                 <label for="nombre_donador">Nombre del Donador:</label>
                 <input type="text" id="nombre_donador" name="nombre_donador">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" name="descripcion">
                 <label for="id_articulo">Nombre del Artículo:</label>
                 <select id="id_articulo" name="id_articulo">
                     <option value="">Seleccione el artículo</option>
@@ -45,7 +49,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre Donador</th>
-                        <th>Nombre Artículo</th>
+                        <th>Email</th>
+                        <th>Descripción</th>
+                        <th>Articulo</th>
                         <th>Fecha de Donación</th>
                         <th></th> <!-- Columna vacía para el botón de editar y borrar -->
                     </tr>
@@ -85,7 +91,10 @@
                 <form id="editarForm">
                     <input type="hidden" id="editar_id_donacion" name="id_donacion">
                     <label for="editar_nombre_donador">Nombre del Donador:</label>
-                    <input type="text" id="editar_nombre_donador" name="editar_nombre_donador">
+                    <input type="text" id="editar_nombre_donador" name="editar_nombre_donador">                        <label for="editar_email">Email:</label>
+                    <input type="email" id="editar_email" name="editar_email">
+                    <label for="editar_descripcion">Descripción:</label>
+                    <input type="text" id="editar_descripcion" name="editar_descripcion">
                     <label for="editar_id_articulo">Nombre del Artículo:</label>
                     <select id="editar_id_articulo" name="id_articulo">
                         <option value="">Seleccione el artículo</option>

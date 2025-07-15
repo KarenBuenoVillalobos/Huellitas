@@ -35,11 +35,15 @@ form.addEventListener('submit', async (event) => {
 
     // Toma los valores de los campos
     const nombre_donador = document.getElementById('nombre_donador').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
     const id_articulo = document.getElementById('id_articulo').value;
     const fecha_donacion = document.getElementById('fecha_donacion').value.trim();
 
     const body = {
         nombre_donador,
+        email,
+        descripcion,
         id_articulo,
         fecha_donacion
     };
@@ -100,6 +104,8 @@ function renderRows() {
         row.innerHTML = `
             <td>${start + index + 1}</td>
             <td>${donacion.nombre_donador}</td>
+            <td>${donacion.email || ''}</td>
+            <td>${donacion.descripcion || ''}</td>
             <td>${donacion.nombre_articulo || donacion.articulo}</td>
             <td>${fecha}</td>
             <td>
@@ -200,7 +206,7 @@ document.getElementById('buscador').addEventListener('input', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     const ths = document.querySelectorAll('#tablaDonaciones thead th');
     // El primer th es el incremental, los siguientes son los campos reales
-    const columns = [null, 'nombre_donador', 'nombre_articulo'];  // CAMBIAR ESTO SEGUN COLUMNAS
+    const columns = [null, 'nombre_donador', 'email', 'descripcion', 'nombre_articulo'];  // Ajustado para nuevas columnas
     ths.forEach((th, i) => {
         if (columns[i]) {
             th.style.cursor = 'pointer';
@@ -219,6 +225,8 @@ window.editarDonacion = async (id_donacion) => {
         // Cargar datos en el modal
         document.getElementById('editar_id_donacion').value = donacion.id_donacion;
         document.getElementById('editar_nombre_donador').value = donacion.nombre_donador;
+        document.getElementById('editar_email').value = donacion.email || '';
+        document.getElementById('editar_descripcion').value = donacion.descripcion || '';
         // Formatear la fecha para el input date
         let fecha = donacion.fecha_donacion;
         if (fecha) {
@@ -296,11 +304,15 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
     if (!validarFormulario(true)) return;
     const id_donacion = document.getElementById('editar_id_donacion').value;
     const nombre_donador = document.getElementById('editar_nombre_donador').value.trim();
+    const email = document.getElementById('editar_email').value.trim();
+    const descripcion = document.getElementById('editar_descripcion').value.trim();
     const id_articulo = document.getElementById('editar_id_articulo').value;
     const fecha_donacion = document.getElementById('editar_fecha_donacion').value.trim();
 
     const body = {
         nombre_donador,
+        email,
+        descripcion,
         id_articulo,
         fecha_donacion
     };
@@ -332,10 +344,13 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
 // Validación de formulario  REVISAR CUALES ME SIRVEN
 function validarFormulario(esEdicion = false) {
     const nombre = document.getElementById(esEdicion ? 'editar_nombre_donador' : 'nombre_donador').value.trim();
+    const email = document.getElementById(esEdicion ? 'editar_email' : 'email').value.trim();
+    const descripcion = document.getElementById(esEdicion ? 'editar_descripcion' : 'descripcion').value.trim();
     const articulo = document.getElementById(esEdicion ? 'editar_id_articulo' : 'id_articulo').value;
     const fecha_donacion = document.getElementById(esEdicion ? 'editar_fecha_donacion' : 'fecha_donacion').value.trim();
     // Validaciones
     const nombreRegex = /^[a-zA-Z\s]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!nombre) {
         Swal.fire({ icon: "error", title: "Campo requerido", text: "El nombre no puede estar en blanco." });
         return false;
@@ -348,6 +363,26 @@ function validarFormulario(esEdicion = false) {
 
     if (nombre.length < 3 || nombre.length > 30) {
         Swal.fire({ icon: "error", title: "Longitud inválida", text: "El nombre debe tener entre 3 y 30 caracteres." });
+        return false;
+    }
+
+    if (!email) {
+        Swal.fire({ icon: "error", title: "Campo requerido", text: "El email no puede estar en blanco." });
+        return false;
+    }
+
+    if (!emailRegex.test(email)) {
+        Swal.fire({ icon: "error", title: "Email inválido", text: "Ingrese un email válido." });
+        return false;
+    }
+
+    if (!descripcion) {
+        Swal.fire({ icon: "error", title: "Campo requerido", text: "La descripción no puede estar en blanco." });
+        return false;
+    }
+
+    if (descripcion.length < 5 || descripcion.length > 100) {
+        Swal.fire({ icon: "error", title: "Longitud inválida", text: "La descripción debe tener entre 5 y 100 caracteres." });
         return false;
     }
 
