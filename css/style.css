@@ -251,7 +251,7 @@
     }
     100% {
         transform: translateX(-100%); /* Desplaza las imágenes hacia la izquierda */
-   }
+    }
 }
 
 /* MAPA Y REDES DE CONTACTO */
@@ -1252,6 +1252,8 @@ iframe {
     margin-top: 20px;
     color: #daf7a6;
 }
+
+
 @media (max-width: 768px) { /*765*/
     .main-donaciones{
         padding: 50px;
@@ -1413,6 +1415,19 @@ iframe {
 #boton-enviar:hover {
     background-color: palevioletred;
     color: whitesmoke;
+}
+
+/*REVISAR PARA NOTIFICACION KATY*/
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    z-index: 10;
 }
 
 @media (max-width: 768px) { /* 765 */

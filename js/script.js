@@ -80,7 +80,7 @@ function togglePopup(element) {
 }
 
 /* LOGIN / REGISTRO */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const container = document.querySelector(".container");
     const btnSignIn = document.getElementById("btn-sign-in");
     const btnSignUp = document.getElementById("btn-sign-up");
@@ -94,4 +94,114 @@ document.addEventListener('DOMContentLoaded', () => {
             container.classList.add('toggle');
         });
     }
+
+    // --- ADMIN: Badge de notificaciones pendientes ---
+    const notificationLink = document.getElementById('notification-link');
+    if (notificationLink) {
+        try {
+            const response = await fetch('/donaciones/pendientes');
+            if (response.ok) {
+                const pendientes = await response.json();
+                if (pendientes.length > 0) {
+                    let badge = document.createElement('span');
+                    badge.textContent = pendientes.length;
+                    badge.className = 'notification-badge';
+                    notificationLink.style.position = 'relative';
+                    badge.style.position = 'absolute';
+                    badge.style.top = '-5px';
+                    badge.style.right = '-5px';
+                    badge.style.background = 'red';
+                    badge.style.color = 'white';
+                    badge.style.borderRadius = '50%';
+                    badge.style.padding = '2px 6px';
+                    badge.style.fontSize = '12px';
+                    badge.style.zIndex = '10';
+                    notificationLink.appendChild(badge);
+                }
+            }
+        } catch (e) {
+            // No mostrar nada si hay error
+        }
+
+        // --- ADMIN: Notificaciones de solicitudes pendientes ---
+        notificationLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                const response = await fetch('/donaciones/pendientes');
+                if (!response.ok) throw new Error('No se pudo obtener las solicitudes.');
+                const pendientes = await response.json();
+
+                if (!pendientes.length) {
+                    Swal.fire('Solicitudes', 'No hay solicitudes de donación pendientes.', 'info');
+                    return;
+                }
+
+                // Muestra todas las solicitudes pendientes
+                let html = '<ul style="text-align:left;">';
+                pendientes.forEach((d, idx) => {
+                    let fecha = d.fecha_donacion ? d.fecha_donacion.split('T')[0] : '';
+                    html += `
+                        <li style="margin-bottom:10px;">
+                            <b>${d.nombre_donador}</b> (${d.email})<br>
+                            Artículo: ${d.nombre_articulo}<br>
+                            Descripción: ${d.descripcion}<br>
+                            Fecha: ${fecha}<br>
+                            <button class="btn-aceptar" data-id="${d.id_donacion}" 
+                                style="margin-right:8px; background:#8aceb5; color:#6b2b2b; border:none; border-radius:4px; padding:4px 12px; cursor:pointer;">
+                                Aceptar
+                            </button>
+                            <button class="btn-rechazar" data-id="${d.id_donacion}" 
+                                style="background:#e57373; color:#fff8f5; border:none; border-radius:4px; padding:4px 12px; cursor:pointer;">
+                                Rechazar
+                            </button>
+                        </li>
+                    `;
+                });
+                html += '</ul>';
+
+                Swal.fire({
+                    title: 'Solicitudes pendientes',
+                    html,
+                    width: 600,
+                    showConfirmButton: false,
+                    background: '#fff8f5',
+                    didOpen: () => {
+                        document.querySelectorAll('.btn-aceptar').forEach(btn => {
+                            btn.addEventListener('click', async function () {
+                                const id = this.getAttribute('data-id');
+                                const li = this.closest('li');
+                                await actualizarEstadoDonacion(id, 'aceptada');
+                                if (li) li.remove();
+                            });
+                        });
+                        document.querySelectorAll('.btn-rechazar').forEach(btn => {
+                            btn.addEventListener('click', async function () {
+                                const id = this.getAttribute('data-id');
+                                const li = this.closest('li');
+                                await actualizarEstadoDonacion(id, 'rechazada');
+                                if (li) li.remove();
+                            });
+                        });
+                    }
+                });
+            } catch (error) {
+                Swal.fire('Error', 'No se pudieron cargar las solicitudes.', 'error');
+            }
+        });
+    }
 });
+
+// Función para actualizar el estado de la donación (aceptar/rechazar)
+async function actualizarEstadoDonacion(id, nuevoEstado) {
+    try {
+        const response = await fetch(`/donaciones/${id}/estado`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ estado: nuevoEstado })
+        });
+        if (!response.ok) throw new Error();
+        await Swal.fire('Listo', `Solicitud ${nuevoEstado === 'aceptada' ? 'aceptada' : 'rechazada'} correctamente.`, 'success');
+    } catch {
+        Swal.fire('Error', 'No se pudo actualizar la solicitud.', 'error');
+    }
+}

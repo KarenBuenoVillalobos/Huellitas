@@ -125,7 +125,6 @@ const insertVoluntario = (req, res) => {
             // Configurar el mensaje
             const mailOptions = {
                 from: process.env.MAIL_USER,
-                //`${email}`,
                 to: email,
                 subject: 'Solicitud de voluntariado recibida',
                 html: `
@@ -139,6 +138,17 @@ const insertVoluntario = (req, res) => {
                             <li><b>Tarea:</b> ${tarea}</li>
                         </ul>
                         <p>Nos pondremos en contacto contigo pronto.</p>
+                        <hr style="margin:24px 0;">
+                        <div style="font-size:18px; margin-bottom:8px; display:inline-block;">
+                            <span style="color:#e573b3; font-weight:bold;">H</span>uellitas de
+                            <span style="color:#e573b3; font-weight:bold;">A</span>m
+                            <img src="cid:logoHuellitas" alt="o" style="width:17px; height:17px; vertical-align:middle; border-radius:50%; background:#fff; margin:0 -2px; padding:0; display:inline-block;">
+                            r
+                        </div>
+                        <div style="font-size:14px; color:#888;">
+                            <span>Tel: 11-1234-5678</span><br>
+                            <span>Email: <a href="mailto:huellitasdeamor.adm@gmail.com" style="color:#e573b3;">huellitasdeamor.adm@gmail.com</a></span>
+                        </div>
                     </div>
                 `,
                 attachments: [{
