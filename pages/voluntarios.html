@@ -20,13 +20,13 @@
             <form id="voluntarioForm" enctype="multipart/form-data" method="POST" action="/voluntarios">
                 <h1>AÑADIR VOLUNTARIO</h1>
                 <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" placeholder="Ingrese email..">
                 <label for="id_asignacion">Asignación:</label>
                 <select id="id_asignacion" name="id_asignacion">
                     <option value="">Seleccione el área de interés</option>
                 </select>
                 <label for="tarea">Tarea:</label>
-                <textarea id="tarea" name="tarea"></textarea>
+                <textarea id="tarea" name="tarea" placeholder="Ingrese descripción de la tarea.."></textarea>
 
                 <button type="submit">Registrar Voluntario</button>
             </form>

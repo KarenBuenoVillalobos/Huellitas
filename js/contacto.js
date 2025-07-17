@@ -25,7 +25,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tarea = form.tarea.value.trim();
 
         if (!email || !id_asignacion || !tarea) {
-            alert('Por favor, completa todos los campos.');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos incompletos',
+                text: 'Por favor, completa todos los campos.',
+                confirmButtonColor: '#8aceb5'
+            });
             return;
         }
 
@@ -37,13 +42,28 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             const data = await response.json();
             if (response.ok) {
-                alert('¡Solicitud enviada correctamente!');
+                Swal.fire({
+                    title: '¡Solicitud enviada!',
+                    text: 'Gracias por sumarte como voluntario. Nos pondremos en contacto pronto.',
+                    icon: 'success',
+                    confirmButtonColor: '#8aceb5'
+                });
                 form.reset();
             } else {
-                alert(data.error || 'Error al enviar la solicitud.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.error || 'Error al enviar la solicitud.',
+                    confirmButtonColor: '#8aceb5'
+                });
             }
         } catch (error) {
-            alert('Error al enviar la solicitud.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al enviar la solicitud.',
+                confirmButtonColor: '#8aceb5'
+            });
         }
     });
 });
