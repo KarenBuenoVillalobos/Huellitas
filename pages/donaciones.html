@@ -31,7 +31,13 @@
                 </select>
                 <label for="fecha_donacion">Fecha de Donación:</label>
                 <input type="date" id="fecha_donacion" name="fecha_donacion">
-
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="">Seleccione estado</option>
+                    <option value="aceptada">Aceptada</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="rechazada">Rechazada</option>
+                </select>
                 <button type="submit">Registrar Donación</button>
             </form>
         </div>
@@ -47,12 +53,13 @@
             <table id="tablaDonaciones">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>N°</th>
                         <th>Nombre Donador</th>
                         <th>Email</th>
                         <th>Descripción</th>
                         <th>Articulo</th>
                         <th>Fecha de Donación</th>
+                        <th>Estado</th>
                         <th></th> <!-- Columna vacía para el botón de editar y borrar -->
                     </tr>
                 </thead>
@@ -101,6 +108,13 @@
                     </select>
                     <label for="editar_fecha_donacion">Fecha de donación:</label>
                     <input type="date" name="editar_fecha_donacion" id="editar_fecha_donacion">
+                    <label for="editar_estado">Estado:</label>
+                    <select id="editar_estado" name="editar_estado">
+                        <option value="">Seleccione estado</option>
+                        <option value="aceptada">Aceptada</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="rechazada">Rechazada</option>
+                    </select>
                     <button type="submit">Guardar Cambios</button>
                     <button type="button" id="cerrarModal">Cancelar</button>
                 </form>

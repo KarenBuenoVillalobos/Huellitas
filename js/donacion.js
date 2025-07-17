@@ -39,13 +39,15 @@ form.addEventListener('submit', async (event) => {
     const descripcion = document.getElementById('descripcion').value.trim();
     const id_articulo = document.getElementById('id_articulo').value;
     const fecha_donacion = document.getElementById('fecha_donacion').value.trim();
+    const estado = document.getElementById('estado').value;
 
     const body = {
         nombre_donador,
         email,
         descripcion,
         id_articulo,
-        fecha_donacion
+        fecha_donacion,
+        estado
     };
 
     try {
@@ -83,6 +85,19 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
+function getEstadoImg(estado) {
+    switch (estado) {
+        case 'aceptada':
+            return '<img src="/img/icon-accept.svg" alt="Aceptada" title="Aceptada" style="width:100%;height:25px;">';
+        case 'pendiente':
+            return '<img src="/img/icon-pending.svg" alt="Pendiente" title="Pendiente" style="width:100%;height:25px;">';
+        case 'rechazada':
+            return '<img src="/img/icon-cancel.svg" alt="Rechazada" title="Rechazada" style="width:100%;height:25px;">';
+        default:
+            return '';
+    }
+}
+
 // Renderizar filas de la tabla con paginación y ordenamiento
 function renderRows() {
     const tabla = document.getElementById('tablaDonaciones');
@@ -108,6 +123,7 @@ function renderRows() {
             <td>${donacion.descripcion || ''}</td>
             <td>${donacion.nombre_articulo || donacion.articulo}</td>
             <td>${fecha}</td>
+            <td>${getEstadoImg(donacion.estado)}</td>
             <td>
                 <button class="btn btn-warning" onclick="editarDonacion(${donacion.id_donacion})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
                 <button class="btn btn-danger" onclick="eliminarDonacion(${donacion.id_donacion})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
@@ -227,6 +243,7 @@ window.editarDonacion = async (id_donacion) => {
         document.getElementById('editar_nombre_donador').value = donacion.nombre_donador;
         document.getElementById('editar_email').value = donacion.email || '';
         document.getElementById('editar_descripcion').value = donacion.descripcion || '';
+        document.getElementById('editar_estado').value = donacion.estado || 'pendiente';
         // Formatear la fecha para el input date
         let fecha = donacion.fecha_donacion;
         if (fecha) {
@@ -308,13 +325,15 @@ document.getElementById('editarForm').addEventListener('submit', async (event) =
     const descripcion = document.getElementById('editar_descripcion').value.trim();
     const id_articulo = document.getElementById('editar_id_articulo').value;
     const fecha_donacion = document.getElementById('editar_fecha_donacion').value.trim();
+    const estado = document.getElementById('editar_estado').value;
 
     const body = {
         nombre_donador,
         email,
         descripcion,
         id_articulo,
-        fecha_donacion
+        fecha_donacion,
+        estado
     };
 
     try {
@@ -348,6 +367,7 @@ function validarFormulario(esEdicion = false) {
     const descripcion = document.getElementById(esEdicion ? 'editar_descripcion' : 'descripcion').value.trim();
     const articulo = document.getElementById(esEdicion ? 'editar_id_articulo' : 'id_articulo').value;
     const fecha_donacion = document.getElementById(esEdicion ? 'editar_fecha_donacion' : 'fecha_donacion').value.trim();
+    const estado = document.getElementById(esEdicion ? 'editar_estado' : 'estado').value;
     // Validaciones
     const nombreRegex = /^[a-zA-Z\s]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -409,5 +429,9 @@ function validarFormulario(esEdicion = false) {
         return false;
     }
 
+    if (!estado || estado === "") {
+        Swal.fire({ icon: "error", title: "Campo requerido", text: "Por favor, selecciona un estado." });
+        return false;
+    }
     return true;
 }
