@@ -1428,15 +1428,16 @@ iframe {
     box-shadow: 0 2px 8px #ccc;
     border-radius: 8px;
     z-index: 2;
-    transition: width 0.2s, height 0.2s;
+    transition: all 0.2s;
 }
 
 @media (max-width: 600px) {
     .qr-donacion {
-        width: 50px;
-        height: 50px;
-        top: 6px;
-        right: 6px;
+        position: static;
+        display: block;
+        margin: 16px auto 0 auto;
+        width: 80px;
+        height: 80px;
     }
 }
 
