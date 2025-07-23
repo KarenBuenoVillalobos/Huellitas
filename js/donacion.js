@@ -222,7 +222,7 @@ document.getElementById('buscador').addEventListener('input', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     const ths = document.querySelectorAll('#tablaDonaciones thead th');
     // El primer th es el incremental, los siguientes son los campos reales
-    const columns = [null, 'nombre_donador', 'email', 'descripcion', 'nombre_articulo'];  // Ajustado para nuevas columnas
+    const columns = [null, 'nombre_donador', 'email', 'descripcion', 'nombre_articulo','fecha_donacion'];  // Ajustado para nuevas columnas
     ths.forEach((th, i) => {
         if (columns[i]) {
             th.style.cursor = 'pointer';
