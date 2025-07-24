@@ -20,8 +20,7 @@
                 <p>Tu generosidad puede marcar la diferencia. Con tu donación, puedes ayudarnos a cubrir los costos de atención veterinaria, alimentos, albergue y otros gastos asociados con el cuidado de nuestros animales rescatados. Cada contribución, grande o pequeña, nos acerca un paso más a nuestro objetivo compartido de proporcionar un hogar amoroso para cada animal necesitado.</p>
                 <h3>¡Tu apoyo significa mucho para nosotros y para todas nuestras queridas mascotas!</h3>
             </div>
-            <div class="como-contribuir animate__animated animate__fadeIn" style="position: relative;">
-                <img src="/img/qr_mp.png" alt="Escanea para donar" class="qr-donacion">
+            <div class="como-contribuir animate__animated animate__fadeIn">
                 <div class="datos-bancarios">
                     <h2>¿Cómo puedes contribuir?</h2>
                     <h3>Datos de cuenta bancaria</h3>
@@ -33,9 +32,12 @@
                         <li><img src="/img/tick-donaciones.ico" alt="">DNI: 12.345.678</li>
                         <li><img src="/img/tick-donaciones.ico" alt="">ALIAS: huellitas.mp</li>
                     </ul>
+                    <div class="boton-donar">
+                        <button id="btn-donar">¡Quiero ayudar!</button>
+                    </div>
                 </div>
-                <div class="boton-donar">
-                    <button id="btn-donar">¡Quiero ayudar!</button>
+                <div class="qr-donacion">
+                    <img src="/img/qr_mp.png" alt="Escanea para donar">
                 </div>
             </div>
             <div class="otras-formas">
@@ -52,17 +54,17 @@
                 <h3>¡Gracias por ser parte de nuestra familia de ayuda y esperanza!</h3>
             </div>
             <!-- Chatbot con opciones sobre el sitio -->
-            <div id="chatbot-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-                <button id="open-chat" style="border-radius:50%;width:60px;height:60px;background:#e573b3;color:#fff;font-size:30px;border:none;box-shadow:0 2px 8px #ccc;">💬</button>
-                <div id="chat-window" style="display:none;width:320px;height:420px;background:#fff;border-radius:10px;box-shadow:0 2px 8px #ccc;flex-direction:column;overflow:hidden;flex:1 1 auto;position:relative;">
-                    <div style="background:#e573b3;color:#fff;padding:10px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;">
+            <div id="chatbot-widget">
+                <button id="open-chat">💬</button>
+                <div id="chat-window">
+                    <div id="chat-header">
                         <span>Huellitas Chat</span>
-                        <button id="close-chat" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">&times;</button>
+                        <button id="close-chat">&times;</button>
                     </div>
-                    <div id="chat-messages" style="flex:1;overflow-y:auto;padding:10px;height:300px;font-size:15px;"></div>
-                    <form id="chat-form" style="display:flex;border-top:1px solid #eee;">
-                        <input id="chat-input" type="text" placeholder="Escribe tu pregunta o elige una opción..." style="flex:1;padding:8px;border:none;">
-                        <button type="submit" style="background:#e573b3;color:#fff;border:none;padding:8px 12px;">Enviar</button>
+                    <div id="chat-messages"></div>
+                    <form id="chat-form">
+                        <input id="chat-input" type="text" placeholder="Escribe tu pregunta o elige una opción...">
+                        <button type="submit">Enviar</button>
                     </form>
                 </div>
             </div>

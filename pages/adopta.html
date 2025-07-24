@@ -34,6 +34,22 @@
                 <!-- Aquí se agregarán dinámicamente las mascotas disponibles -->
             </section>
         </article>
+
+        <!-- Chatbot con opciones sobre el sitio -->
+        <div id="chatbot-widget">
+            <button id="open-chat">💬</button>
+            <div id="chat-window">
+                <div id="chat-header">
+                    <span>Huellitas Chat</span>
+                    <button id="close-chat">&times;</button>
+                </div>
+                <div id="chat-messages"></div>
+                <form id="chat-form">
+                    <input id="chat-input" type="text" placeholder="Escribe tu pregunta o elige una opción...">
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
@@ -87,6 +103,7 @@
     <footer id="footer"></footer>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/chatbot.js"></script>
     <script type="module" src=" https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js "></script>
     <script nomodule src=" https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js "></script>
     <!--<script src="/js/adopcion.js"></script>-->
