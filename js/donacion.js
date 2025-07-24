@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             th.onclick = () => sortDonaciones(columns[i]);
         }
     });
-    // Inicializar el primer ordenamiento
+    // Inicializar el primer ordenamiento.
 });
 
 // Función para editar un donador (abre el modal y carga los datos)
