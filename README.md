@@ -101,9 +101,11 @@ Refugio de Animales
 ## 👩‍💻 Autoría
 
 - **Backend:**  
-  [Leonel1414](https://github.com/leonel1414)
+  [Leonel1414](https://github.com/leonel1414)  
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Leonel%20Girett-blue?logo=linkedin)](https://www.linkedin.com/in/leonel-girett/)
 
 - **Frontend & Diseño:**  
-  [KarenBuenoVillalobos](https://github.com/KarenBuenoVillalobos)
+  [KarenBuenoVillalobos](https://github.com/KarenBuenoVillalobos)  
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Karen%20Bueno%20Villalobos-blue?logo=linkedin)](https://www.linkedin.com/in/karen-anah%C3%AD-bueno-villalobos-a31b7b1a0/)
 
 ---
