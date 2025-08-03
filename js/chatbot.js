@@ -19,9 +19,9 @@ const respuestas = {
 
 function mostrarOpciones() {
     const chat = document.getElementById('chat-messages');
-    let html = `<div style="margin-bottom:8px;color:#e573b3;"><b>¿Sobre qué tema necesitas ayuda?</b></div>`;
+    let html = `<div style="margin-bottom:8px;color:#abd498;"><b>¿Sobre qué tema necesitas ayuda?</b></div>`;
     opciones.forEach(op => {
-        html += `<button class="chat-opcion" data-clave="${op.clave}" style="margin:4px 4px 8px 0;padding:6px 12px;border-radius:16px;border:1px solid #e573b3;background:#fff;color:#e573b3;cursor:pointer;">${op.texto}</button>`;
+        html += `<button class="chat-opcion" data-clave="${op.clave}" style="margin:4px 4px 8px 0;padding:6px 12px;border-radius:16px;border:1px solid #abd498;background:#fff;color:#abd498;cursor:pointer;">${op.texto}</button>`;
     });
     chat.innerHTML += html;
     chat.scrollTop = chat.scrollHeight;
@@ -55,14 +55,14 @@ function responderBot(clave) {
 document.getElementById('open-chat').onclick = function() {
     document.getElementById('chat-window').style.display = 'flex';
     this.style.display = 'none';
-    document.getElementById('chat-messages').innerHTML = `<div style="margin-bottom:8px;color:#e573b3;"><b>¡Hola! ¿Cómo es tu nombre?</b></div>`;
+    document.getElementById('chat-messages').innerHTML = `<div style="margin-bottom:8px;color:#f87da6;"><b>¡Hola! ¿Cómo es tu nombre?</b></div>`;
     nombreUsuario = "";
     esperandoAyudaExtra = false;
 };
 
 document.getElementById('close-chat').onclick = function() {
     document.getElementById('chat-window').style.display = 'none';
-    document.getElementById('open-chat').style.display = 'block';
+    document.getElementById('open-chat').style.display = 'flex';
 };
 
 document.getElementById('chat-form').onsubmit = function(e) {
@@ -90,7 +90,7 @@ document.getElementById('chat-form').onsubmit = function(e) {
             esperandoAyudaExtra = false;
             setTimeout(() => {
                 document.getElementById('chat-window').style.display = 'none';
-                document.getElementById('open-chat').style.display = 'block';
+                document.getElementById('open-chat').style.display = 'flex';
             }, 1800);
         }
     } else {

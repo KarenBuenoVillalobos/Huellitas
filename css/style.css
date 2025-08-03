@@ -68,12 +68,18 @@
     border-radius:50%;
     width:60px;
     height:60px;
-    background:#ce6da4;
+    background:#b6e2a1;
     border: none;
     color: #fff;
     font-size: 30px;
     cursor: pointer;
     box-shadow:0 2px 6px #9b9b9b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#open-chat img{
+    width: 40px;
 }
 #chat-window{
     display:none;
@@ -88,7 +94,7 @@
     position:relative;
 }
 #chat-header{
-    background:#e573b3;
+    background:#f87da6;
     color:#fff;
     padding:10px;
     font-weight:bold;
@@ -124,7 +130,7 @@
     outline:none;
 }
 #chat-form button{
-    background:#e573b3;
+    background:#7bd3ea;
     color:#fff;
     border:none;
     padding:8px 12px;
@@ -319,9 +325,6 @@
     height: auto;
     display: flex;
     transition: margin-left 1s, opacity 1s; /* Combina las transiciones en una sola línea */
-/* }
-.images {
-    display: flex; */
     animation: desplazar 30s linear infinite alternate; /* Desplazamiento continuo */
 }
 .images img {
@@ -863,7 +866,6 @@ iframe {
     }
     .galeria img{
         height: 220px;
-        /* width: 90%; */
     }
     .mensaje-nosotros{
         height: 350px;
@@ -956,20 +958,20 @@ iframe {
     position: relative;
 }
 .icon-info{
-    width: 30px !important;
-    height: 30px !important;
+    width: 32px !important;
+    height: 32px !important;
     border-radius: 100% !important;
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: #eceae9;
+    background-color: transparent;
     transition: all 0.6s;
 }
 .icon-info:hover{
-    background-color: #ecbd9d;
+    background-color: #a5d48f;
 }
 .icon-info img{
-    width: 30px !important;
+    width: 32px !important;
     height: 100% !important;
     border-radius: 0 !important;
     object-fit: cover !important;
@@ -985,7 +987,6 @@ iframe {
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* z-index: 100; */
     display: none;
     min-width: 240px;
 }
@@ -995,14 +996,14 @@ iframe {
 .popup button {
     margin-top: 5px;
     padding: 5px 10px;
-    background-color: #f06d64;
+    background-color: #e06f67;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 .popup button:hover {
-    background-color: #d83f3f;
+    background-color: #ee5656;
 }
 .foto-huellita img{
     width: 100%;

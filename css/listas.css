@@ -13,12 +13,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../img/fondo-login.jpg");
+  background-size: cover;
 }
 
 /* -----------------Listas buttons-------------------- */
 #atras {
   position: absolute;
   margin-left: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  background-color: #b6e2d3;
+}
+#atras:hover {
+  background-color: #a8d5ba;
 }
 
 .container-menu-listas {
@@ -112,10 +123,11 @@
 
 /*-------------Animales---------------- */
 .container-listas {
-  /* height: auto; */
   padding: 50px 0;
   min-height: 90vh;
   display: flex;
+  background-image: url("../img/fondo-tablas.jpg");
+  background-size: cover;
 }
 
 .container-listas h1 {
@@ -278,6 +290,8 @@
   display: flex;
   justify-content: center;
   padding: 20px 0;
+  border-radius: 0 0 10px 10px;
+  background-color: #fdfcf9;
 }
 
 .buscador-container input {

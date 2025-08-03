@@ -91,34 +91,48 @@ function renderRows() {
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
     const rows = adopciones.slice(start, end);
-    rows.forEach((adopcion, index) => {
-        // Formatear la fecha
-        let fecha = adopcion.fecha_adopcion;
-        if (fecha) {
-            const d = new Date(fecha);
-            fecha = d.toLocaleDateString('es-AR', { year: 'numeric', month: '2-digit', day: '2-digit' });
-        } else {
-            fecha = '';
-        }
+
+    // Si no hay datos, muestra una fila con el mensaje
+    if (rows.length === 0) {
         const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${start + index + 1}</td>
-            <td>${adopcion.nombre_usuario || adopcion.nombre_apellido || adopcion.nombre}</td>
-            <td>${adopcion.nombre_animal}</td>
-            <td>${adopcion.telefono}</td>
-            <td>${adopcion.direccion}</td>
-            <td>${fecha}</td>
-            <td>
-                <button class="btn btn-warning" onclick="editarAdopcion(${adopcion.id_adopcion})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
-                <button class="btn btn-danger" onclick="eliminarAdopcion(${adopcion.id_adopcion})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
-            </td>
-        `;
+        row.innerHTML = `<td colspan="7">No hay adopciones registradas</td>`;
         tbody.appendChild(row);
-    });
+    } else {
+        rows.forEach((adopcion, index) => {
+            // Formatear la fecha
+            let fecha = adopcion.fecha_adopcion;
+            if (fecha) {
+                const d = new Date(fecha);
+                fecha = d.toLocaleDateString('es-AR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+            } else {
+                fecha = '';
+            }
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${start + index + 1}</td>
+                <td>${adopcion.nombre_usuario || adopcion.nombre_apellido || adopcion.nombre}</td>
+                <td>${adopcion.nombre_animal}</td>
+                <td>${adopcion.telefono}</td>
+                <td>${adopcion.direccion}</td>
+                <td>${fecha}</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editarAdopcion(${adopcion.id_adopcion})"><img src="/img/icon-editar.png" alt="btn-editar"></button>
+                    <button class="btn btn-danger" onclick="eliminarAdopcion(${adopcion.id_adopcion})"><img src="/img/icon-eliminar.png" alt="btn-eliminar"></button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
     // Actualiza la información de la página
     document.getElementById('pageInfo').textContent = `${currentPage}`;
     document.getElementById('prevPage').disabled = currentPage === 1;
     document.getElementById('nextPage').disabled = currentPage === Math.ceil(totalRows / rowsPerPage);
+
+    if (totalRows === 0) {
+        document.getElementById('nextPage').disabled = true;
+        document.getElementById('prevPage').disabled = true;
+    }
 }
 
 // Ordenar animales por columna

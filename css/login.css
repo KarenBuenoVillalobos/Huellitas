@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: #F0F4F3;
+    background-image: url('/img/fondo-login.jpg');
 }
 
 .container {
